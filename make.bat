@@ -20,16 +20,8 @@ if exist "./src/Components/%~2/" (
         "   const [user, loading, error] = useAuthState(auth);"
         "   const navigate = useNavigate();"
         echo.
-        "   useEffect(() => {"
-        "       if (loading) {"
-        "          // maybe trigger a loading screen"
-        "          return;"
-        "       }"
-        "       if (!user) return navigate("/homepage");"
-        "   }, [user, loading]);"
-        echo.
         "   return ("
-        "       <div></div>"
+        "       <div class="%~2"></div>"
         "   );"
         "}"
         echo.
