@@ -1,0 +1,41 @@
+.Homepage {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  width: 99vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.name {
+  margin: 0;
+  font-size: max(10vw, 46px);
+
+  span {
+    animation: cursor-blink 1.5s infinite;
+
+    @keyframes cursor-blink {
+        0% {opacity: 0;}
+        50% {opacity: 1;}
+        100% {opacity: 0;}
+    }
+  }
+}
+
+.description {
+  margin: 0;
+  font-size: 22px;
+  text-align: center;
+  word-break: break-word;
+  align-items: center;
+
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .description {
+    font-size: 20px;
+  }
+}

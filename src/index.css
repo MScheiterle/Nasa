@@ -1,14 +1,19 @@
 @font-face {
-  font-family: 'GT America Expanded';
-  src: local('GT America Expanded'), url(./fonts/GT-America/GT-America-Expanded-Black-Trial.otf) format('opentype');
+  font-family: "GT America Expanded";
+  src: local("GT America Expanded"),
+    url(./fonts/GT-America/GT-America-Expanded-Black-Trial.otf)
+      format("opentype");
 }
 @font-face {
-  font-family: 'GT America Extended';
-  src: local('GT America Extended'), url(./fonts/GT-America/GT-America-Extended-Black-Trial.otf) format('opentype');
+  font-family: "GT America Extended";
+  src: local("GT America Extended"),
+    url(./fonts/GT-America/GT-America-Extended-Black-Trial.otf)
+      format("opentype");
 }
 @font-face {
-  font-family: 'GT America Mono';
-  src: local('GT America Mono'), url(./fonts/GT-America/GT-America-Mono-Regular-Trial.otf) format('opentype');
+  font-family: "GT America Mono";
+  src: local("GT America Mono"),
+    url(./fonts/GT-America/GT-America-Mono-Regular-Trial.otf) format("opentype");
 }
 
 body {
@@ -16,8 +21,22 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #1f2022;
+  color: #f7f3f2;
+  overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5 {
-  font-family: 'GT America Expanded';
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "GT America Expanded";
+}
+
+p {
+  font-family: "GT America Extended";
+}
+
+.mono {
+  font-family: "GT America Mono";
 }

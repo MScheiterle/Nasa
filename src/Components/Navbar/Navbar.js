@@ -7,18 +7,14 @@ function Navbar() {
 
   return (
     <div class="Navbar">
-      <a onClick={() => navigate("/")}>
-        <img class="MainLogo" src="3DS_Snow_NoLines.png" alt="" />
-      </a>
-
       <div class="navlinks">
-        <div class="left">
-          <a onClick={() => navigate("Projects")}><h1>Projects</h1></a>
-        </div>
-        <div class="right">
-          <a onClick={() => navigate("Resume")}><h1>Resume</h1></a>
-          <a onClick={() => navigate("Contact Me")}><h1>Contact Me</h1></a>
-        </div>
+        <a onClick={() => navigate("Projects")}>
+          <h1>// Projects</h1>
+        </a>
+        <a class="MainLogo" onClick={() => navigate("/")}></a>
+        <a onClick={() => navigate("Contact Me")}>
+          <h1>// Contact Me</h1>
+        </a>
       </div>
     </div>
   );
