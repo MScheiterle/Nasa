@@ -8,13 +8,13 @@ function Navbar() {
   return (
     <div class="Navbar">
       <div class="navlinks">
-        <a onClick={() => navigate("Projects")}>
-          <h1>// Projects</h1>
-        </a>
-        <a class="MainLogo" onClick={() => navigate("/")}></a>
-        <a onClick={() => navigate("Contact Me")}>
-          <h1>// Contact Me</h1>
-        </a>
+        <div onClick={() => navigate("Projects")}>
+          <h1>{'//'} Projects</h1>
+        </div>
+        <div class="MainLogo" onClick={() => navigate("/")} />
+        <div onClick={() => navigate("Contact Me")}>
+          <h1>{'//'} Contact Me</h1>
+        </div>
       </div>
     </div>
   );

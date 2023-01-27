@@ -7,6 +7,8 @@ import { far } from "@fortawesome/free-regular-svg-icons";
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
 import Homepage from "./Components/Homepage/Homepage";
+import Projects from "./Components/Projects/Projects";
+import Contact from "./Components/Contact/Contact";
 import NoPage from "./Components/NoPage/NoPage";
 
 library.add(fas, far);
@@ -44,6 +46,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/contact me" element={<Contact />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
         <Footer />

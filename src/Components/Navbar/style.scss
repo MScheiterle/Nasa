@@ -11,7 +11,9 @@
   white-space: nowrap;
   height: 100px;
 
-  a {
+  div {
+    position: relative;
+    color: inherit;
     margin-left: 5px;
     margin-right: 5px;
     display: flex;
