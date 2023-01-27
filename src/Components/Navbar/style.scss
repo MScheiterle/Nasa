@@ -12,12 +12,11 @@
   height: 100px;
 
   a {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
     display: flex;
     flex-wrap: nowrap;
 
-    margin-left: 10px;
     cursor: pointer;
     text-decoration: underline 0.15em rgba(0, 0, 0, 0);
     text-underline-offset: 0.2em;
@@ -31,10 +30,11 @@
 }
 
 .MainLogo {
+  position: relative;
   border-radius: 50%;
   width: 100px;
   height: 100px;
-  background-image: url("./3DS_Snow_NoLines.png");
+  background-image: url("./../../../public/3DS_Snow_NoLines.png");
   background-position: center;
   background-size: cover;
 

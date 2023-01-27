@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     // callback function to call when event triggers
     const onPageLoad = () => {
-      const ele = document.getElementById("ipl-progress-indicator");
+      const ele = document.getElementById("loading-indicator");
       if (ele) {
         // fade out
         ele.classList.add("available");
@@ -26,14 +26,16 @@ function App() {
       }
     };
 
-    // Check if the page has already loaded
-    if (document.readyState === "complete") {
-      onPageLoad();
-    } else {
-      window.addEventListener("load", onPageLoad, false);
-      // Remove the event listener when component unmounts
-      return () => window.removeEventListener("load", onPageLoad);
-    }
+    setTimeout(() => {
+      // Check if the page has already loaded
+      if (document.readyState === "complete") {
+        onPageLoad();
+      } else {
+        window.addEventListener("load", onPageLoad, false);
+        // Remove the event listener when component unmounts
+        return () => window.removeEventListener("load", onPageLoad);
+      }
+    }, 1000);
   }, []);
 
   return (
