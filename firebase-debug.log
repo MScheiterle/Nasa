@@ -1,184 +1,616 @@
-[debug] [2023-01-27T23:58:15.556Z] ----------------------------------------------------------------------
-[debug] [2023-01-27T23:58:15.558Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\schei\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
-[debug] [2023-01-27T23:58:15.558Z] CLI Version:   11.19.0
-[debug] [2023-01-27T23:58:15.558Z] Platform:      win32
-[debug] [2023-01-27T23:58:15.558Z] Node Version:  v18.12.1
-[debug] [2023-01-27T23:58:15.559Z] Time:          Fri Jan 27 2023 18:58:15 GMT-0500 (Eastern Standard Time)
-[debug] [2023-01-27T23:58:15.559Z] ----------------------------------------------------------------------
+[debug] [2023-01-28T01:18:23.037Z] ----------------------------------------------------------------------
+[debug] [2023-01-28T01:18:23.038Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\schei\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js --debug emulators:start --only functions,hosting
+[debug] [2023-01-28T01:18:23.039Z] CLI Version:   11.19.0
+[debug] [2023-01-28T01:18:23.039Z] Platform:      win32
+[debug] [2023-01-28T01:18:23.039Z] Node Version:  v18.12.1
+[debug] [2023-01-28T01:18:23.039Z] Time:          Fri Jan 27 2023 20:18:23 GMT-0500 (Eastern Standard Time)
+[debug] [2023-01-28T01:18:23.040Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2023-01-27T23:58:15.613Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2023-01-27T23:58:15.614Z] > authorizing via signed-in user (scheiterlem@gmail.com)
+[debug] [2023-01-28T01:18:23.101Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-28T01:18:23.102Z] > authorizing via signed-in user (scheiterlem@gmail.com)
+[info] i  emulators: Starting emulators: functions, hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions, hosting"}}
+[debug] [2023-01-28T01:18:23.114Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T01:18:23.114Z] [hosting] Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T01:18:23.115Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2023-01-28T01:18:23.119Z] [hub] writing locator at C:\Users\schei\AppData\Local\Temp\hub-simplified-projects.json
+[debug] [2023-01-28T01:18:23.135Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T01:18:23.135Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T01:18:23.136Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] !  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: auth, firestore, database, pubsub, storage {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mauth, firestore, database, pubsub, storage\u001b[22m"}}
+[warn] !  Your requested "node" version "16" doesn't match your global version "18". Using node@18 from host. {"metadata":{"emulator":{"name":"functions"},"message":"Your requested \"node\" version \"16\" doesn't match your global version \"18\". Using node@18 from host."}}
+[debug] [2023-01-28T01:18:23.206Z] defaultcredentials: writing to file C:\Users\schei\AppData\Roaming\firebase\scheiterlem_gmail_com_application_default_credentials.json
+[debug] [2023-01-28T01:18:23.213Z] Setting GAC to C:\Users\schei\AppData\Roaming\firebase\scheiterlem_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\schei\\AppData\\Roaming\\firebase\\scheiterlem_gmail_com_application_default_credentials.json"}}
+[debug] [2023-01-28T01:18:23.215Z] > refreshing access token with scopes: []
+[debug] [2023-01-28T01:18:23.217Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-01-28T01:18:23.218Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-28T01:18:23.352Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-01-28T01:18:23.352Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-28T01:18:23.358Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/adminSdkConfig [none]
+[debug] [2023-01-28T01:18:23.653Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/adminSdkConfig 200
+[debug] [2023-01-28T01:18:23.654Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/adminSdkConfig {"projectId":"simplified-projects","storageBucket":"simplified-projects.appspot.com"}
+[debug] [2023-01-28T01:18:23.664Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/simplified-projects/sites 
+[debug] [2023-01-28T01:18:24.114Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/simplified-projects/sites 200
+[debug] [2023-01-28T01:18:24.115Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/simplified-projects/sites {"sites":[{"name":"projects/simplified-projects/sites/simplified-projects","defaultUrl":"https://simplified-projects.web.app","appId":"1:1091607222028:web:db94f2c173edb3a8795b29","type":"DEFAULT_SITE"}]}
+[debug] [2023-01-28T01:18:24.115Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/webApps/1:1091607222028:web:db94f2c173edb3a8795b29/config [none]
+[debug] [2023-01-28T01:18:24.584Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/webApps/1:1091607222028:web:db94f2c173edb3a8795b29/config 200
+[debug] [2023-01-28T01:18:24.584Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/webApps/1:1091607222028:web:db94f2c173edb3a8795b29/config {"projectId":"simplified-projects","appId":"1:1091607222028:web:db94f2c173edb3a8795b29","storageBucket":"simplified-projects.appspot.com","apiKey":"AIzaSyC3RZfgAHb1ST5zLwojaHYxGa3QQGAKmlc","authDomain":"simplified-projects.firebaseapp.com","messagingSenderId":"1091607222028","measurementId":"G-P5D60JED26"}
+[debug] [2023-01-28T01:18:24.589Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects [none]
+[debug] [2023-01-28T01:18:24.776Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects 200
+[debug] [2023-01-28T01:18:24.777Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects {"projectId":"simplified-projects","projectNumber":"1091607222028","displayName":"simplified-projects","name":"projects/simplified-projects","resources":{"hostingSite":"simplified-projects"},"state":"ACTIVE","etag":"1_20d9449c-4d78-4abf-8cf5-2d223ac244bd"}
+[info] i  hosting[simplified-projects]: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] +  hosting[simplified-projects]: Local server: http://127.0.0.1:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://127.0.0.1:5000\u001b[22m\u001b[24m"}}
+[debug] [2023-01-28T01:18:24.805Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-01-28T01:18:24.806Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2023-01-28T01:18:24.807Z] Starting Emulator UI with command {"binary":"node","args":["C:\\Users\\schei\\.cache\\firebase\\emulators\\ui-v1.11.1\\server\\server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"C:\\\\Users\\\\schei\\\\.cache\\\\firebase\\\\emulators\\\\ui-v1.11.1\\\\server\\\\server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2023-01-28T01:18:25.005Z] Web / API server started at 127.0.0.1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at 127.0.0.1:4000\n"}}
+[debug] [2023-01-28T01:18:25.006Z] Web / API server started at ::1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at ::1:4000\n"}}
+[info] i  functions: Watching "C:\Users\schei\OneDrive\Desktop\Simpl1f1ed.com\functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"C:\\Users\\schei\\OneDrive\\Desktop\\Simpl1f1ed.com\\functions\" for Cloud Functions..."}}
+[debug] [2023-01-28T01:18:25.167Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] !  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2023-01-28T01:18:28.094Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2023-01-28T01:18:28.095Z] Building nodejs source
+[debug] [2023-01-28T01:18:28.097Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-01-28T01:18:28.536Z] Serving at port 9005
+
+[debug] [2023-01-28T01:18:28.615Z] Got response from /__/functions.yaml {"endpoints":{"helloWorld":{"platform":"gcfv1","httpsTrigger":{},"entryPoint":"helloWorld"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2023-01-28T01:18:28.623Z] shutdown requested via /__/quitquitquit
+
+[info] +  functions: Loaded functions definitions from source: helloWorld. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: helloWorld."}}
+[info] +  functions[us-central1-helloWorld]: http function initialized (http://127.0.0.1:5001/simplified-projects/us-central1/helloWorld). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/simplified-projects/us-central1/helloWorld)."}}
 [info] 
-     ######## #### ########  ######## ########     ###     ######  ########
-     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
-     ######    ##  ########  ######   ########  #########  ######  ######
-     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
-     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
 
-You're about to initialize a Firebase project in this directory:
+┌───────────┬────────────────┬─────────────────────────────────┐
+│ Emulator  │ Host:Port      │ View in Emulator UI             │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Functions │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Hosting   │ 127.0.0.1:5000 │ n/a                             │
+└───────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500
 
-  C:\Users\schei\OneDrive\Desktop\Simpl1f1ed.com
-
-Before we get started, keep in mind:
-
-  * You are initializing within an existing Firebase project directory
-
-[info] 
-=== Project Setup
-[info] 
-[info] First, let's associate this project directory with a Firebase project.
-[info] You can create multiple project aliases by running firebase use --add, 
-[info] but for now we'll just set up a default project.
-[info] 
-[debug] [2023-01-27T23:58:29.938Z] Using project from CLI flag: react-test-31efb
-[debug] [2023-01-27T23:58:29.940Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/react-test-31efb [none]
-[debug] [2023-01-27T23:58:30.239Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/react-test-31efb 403
-[debug] [2023-01-27T23:58:30.239Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/react-test-31efb {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
-[debug] [2023-01-27T23:58:30.240Z] HTTP Error: 403, The caller does not have permission
-[debug] [2023-01-27T23:58:30.240Z] FirebaseError: HTTP Error: 403, The caller does not have permission
-    at responseToError (C:\Users\schei\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
-    at RetryOperation._fn (C:\Users\schei\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:288:77)
-    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-[error] 
-[error] Error: Failed to get Firebase project react-test-31efb. Please make sure the project exists and your account has permission to access it.
-[debug] [2023-01-28T00:02:16.581Z] ----------------------------------------------------------------------
-[debug] [2023-01-28T00:02:16.583Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\schei\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
-[debug] [2023-01-28T00:02:16.583Z] CLI Version:   11.19.0
-[debug] [2023-01-28T00:02:16.583Z] Platform:      win32
-[debug] [2023-01-28T00:02:16.583Z] Node Version:  v18.12.1
-[debug] [2023-01-28T00:02:16.584Z] Time:          Fri Jan 27 2023 19:02:16 GMT-0500 (Eastern Standard Time)
-[debug] [2023-01-28T00:02:16.584Z] ----------------------------------------------------------------------
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:18:43 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:18:43 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:18:44 +0000] "GET /%PUBLIC_URL%/favicon.ico HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:18:44 +0000] \"GET /%PUBLIC_URL%/favicon.ico HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:18:44 +0000] "GET /%PUBLIC_URL%/manifest.json HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:18:44 +0000] \"GET /%PUBLIC_URL%/manifest.json HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:25:37 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:25:37 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:25:38 +0000] "GET /%PUBLIC_URL%/favicon.ico HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:25:38 +0000] \"GET /%PUBLIC_URL%/favicon.ico HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:25:38 +0000] "GET /%PUBLIC_URL%/manifest.json HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:25:38 +0000] \"GET /%PUBLIC_URL%/manifest.json HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[debug] [2023-01-28T01:26:03.846Z] Received signal SIGINT (Ctrl-C) 1
+[info]  
+[info] i  emulators: Received SIGINT (Ctrl-C) for the first time. Starting a clean shutdown. 
+[info] i  emulators: Please wait for a clean shutdown or send the SIGINT (Ctrl-C) signal again to stop right now. 
+[info] i  emulators: Shutting down emulators. {"metadata":{"emulator":{"name":"hub"},"message":"Shutting down emulators."}}
+[info] i  ui: Stopping Emulator UI {"metadata":{"emulator":{"name":"ui"},"message":"Stopping Emulator UI"}}
+[warn] !  Emulator UI has exited upon receiving signal: SIGINT 
+[info] i  functions: Stopping Functions Emulator {"metadata":{"emulator":{"name":"functions"},"message":"Stopping Functions Emulator"}}
+[info] i  hosting: Stopping Hosting Emulator {"metadata":{"emulator":{"name":"hosting"},"message":"Stopping Hosting Emulator"}}
+[info] i  eventarc: Stopping Eventarc Emulator {"metadata":{"emulator":{"name":"eventarc"},"message":"Stopping Eventarc Emulator"}}
+[info] i  hub: Stopping emulator hub {"metadata":{"emulator":{"name":"hub"},"message":"Stopping emulator hub"}}
+[info] i  logging: Stopping Logging Emulator {"metadata":{"emulator":{"name":"logging"},"message":"Stopping Logging Emulator"}}
+[debug] [2023-01-28T01:26:08.161Z] ----------------------------------------------------------------------
+[debug] [2023-01-28T01:26:08.163Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\schei\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js --debug emulators:start --only functions,hosting
+[debug] [2023-01-28T01:26:08.163Z] CLI Version:   11.19.0
+[debug] [2023-01-28T01:26:08.163Z] Platform:      win32
+[debug] [2023-01-28T01:26:08.163Z] Node Version:  v18.12.1
+[debug] [2023-01-28T01:26:08.164Z] Time:          Fri Jan 27 2023 20:26:08 GMT-0500 (Eastern Standard Time)
+[debug] [2023-01-28T01:26:08.164Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2023-01-28T00:02:16.644Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2023-01-28T00:02:16.645Z] > authorizing via signed-in user (scheiterlem@gmail.com)
-[info] 
-     ######## #### ########  ######## ########     ###     ######  ########
-     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
-     ######    ##  ########  ######   ########  #########  ######  ######
-     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
-     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+[debug] [2023-01-28T01:26:08.226Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-28T01:26:08.228Z] > authorizing via signed-in user (scheiterlem@gmail.com)
+[info] i  emulators: Starting emulators: functions, hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions, hosting"}}
+[debug] [2023-01-28T01:26:08.238Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T01:26:08.239Z] [hosting] Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T01:26:08.240Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2023-01-28T01:26:08.246Z] [hub] writing locator at C:\Users\schei\AppData\Local\Temp\hub-simplified-projects.json
+[debug] [2023-01-28T01:26:08.259Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T01:26:08.260Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T01:26:08.261Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] !  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: auth, firestore, database, pubsub, storage {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mauth, firestore, database, pubsub, storage\u001b[22m"}}
+[warn] !  Your requested "node" version "16" doesn't match your global version "18". Using node@18 from host. {"metadata":{"emulator":{"name":"functions"},"message":"Your requested \"node\" version \"16\" doesn't match your global version \"18\". Using node@18 from host."}}
+[debug] [2023-01-28T01:26:08.343Z] defaultcredentials: writing to file C:\Users\schei\AppData\Roaming\firebase\scheiterlem_gmail_com_application_default_credentials.json
+[debug] [2023-01-28T01:26:08.349Z] Setting GAC to C:\Users\schei\AppData\Roaming\firebase\scheiterlem_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\schei\\AppData\\Roaming\\firebase\\scheiterlem_gmail_com_application_default_credentials.json"}}
+[debug] [2023-01-28T01:26:08.352Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/adminSdkConfig [none]
+[debug] [2023-01-28T01:26:08.684Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/adminSdkConfig 200
+[debug] [2023-01-28T01:26:08.685Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/adminSdkConfig {"projectId":"simplified-projects","storageBucket":"simplified-projects.appspot.com"}
+[debug] [2023-01-28T01:26:08.699Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/simplified-projects/sites 
+[debug] [2023-01-28T01:26:09.138Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/simplified-projects/sites 200
+[debug] [2023-01-28T01:26:09.138Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/simplified-projects/sites {"sites":[{"name":"projects/simplified-projects/sites/simplified-projects","defaultUrl":"https://simplified-projects.web.app","appId":"1:1091607222028:web:db94f2c173edb3a8795b29","type":"DEFAULT_SITE"}]}
+[debug] [2023-01-28T01:26:09.139Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/webApps/1:1091607222028:web:db94f2c173edb3a8795b29/config [none]
+[debug] [2023-01-28T01:26:09.603Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/webApps/1:1091607222028:web:db94f2c173edb3a8795b29/config 200
+[debug] [2023-01-28T01:26:09.603Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/webApps/1:1091607222028:web:db94f2c173edb3a8795b29/config {"projectId":"simplified-projects","appId":"1:1091607222028:web:db94f2c173edb3a8795b29","storageBucket":"simplified-projects.appspot.com","apiKey":"AIzaSyC3RZfgAHb1ST5zLwojaHYxGa3QQGAKmlc","authDomain":"simplified-projects.firebaseapp.com","messagingSenderId":"1091607222028","measurementId":"G-P5D60JED26"}
+[debug] [2023-01-28T01:26:09.608Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects [none]
+[debug] [2023-01-28T01:26:09.900Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects 200
+[debug] [2023-01-28T01:26:09.901Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects {"projectId":"simplified-projects","projectNumber":"1091607222028","displayName":"simplified-projects","name":"projects/simplified-projects","resources":{"hostingSite":"simplified-projects"},"state":"ACTIVE","etag":"1_20d9449c-4d78-4abf-8cf5-2d223ac244bd"}
+[info] i  hosting[simplified-projects]: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] +  hosting[simplified-projects]: Local server: http://127.0.0.1:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://127.0.0.1:5000\u001b[22m\u001b[24m"}}
+[debug] [2023-01-28T01:26:09.923Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-01-28T01:26:09.923Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2023-01-28T01:26:09.924Z] Starting Emulator UI with command {"binary":"node","args":["C:\\Users\\schei\\.cache\\firebase\\emulators\\ui-v1.11.1\\server\\server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"C:\\\\Users\\\\schei\\\\.cache\\\\firebase\\\\emulators\\\\ui-v1.11.1\\\\server\\\\server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2023-01-28T01:26:10.138Z] Web / API server started at 127.0.0.1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at 127.0.0.1:4000\n"}}
+[debug] [2023-01-28T01:26:10.139Z] Web / API server started at ::1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at ::1:4000\n"}}
+[info] i  functions: Watching "C:\Users\schei\OneDrive\Desktop\Simpl1f1ed.com\functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"C:\\Users\\schei\\OneDrive\\Desktop\\Simpl1f1ed.com\\functions\" for Cloud Functions..."}}
+[debug] [2023-01-28T01:26:10.288Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] !  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2023-01-28T01:26:12.223Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2023-01-28T01:26:12.225Z] Building nodejs source
+[debug] [2023-01-28T01:26:12.228Z] Could not find functions.yaml. Must use http discovery
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:26:12 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:26:12 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:26:12 +0000] "GET /%PUBLIC_URL%/favicon.ico HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:26:12 +0000] \"GET /%PUBLIC_URL%/favicon.ico HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[debug] [2023-01-28T01:26:12.627Z] Serving at port 9005
 
-You're about to initialize a Firebase project in this directory:
+[debug] [2023-01-28T01:26:12.703Z] Got response from /__/functions.yaml {"endpoints":{"helloWorld":{"platform":"gcfv1","httpsTrigger":{},"entryPoint":"helloWorld"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2023-01-28T01:26:12.713Z] shutdown requested via /__/quitquitquit
 
-  C:\Users\schei\OneDrive\Desktop\Simpl1f1ed.com
+[info] +  functions: Loaded functions definitions from source: helloWorld. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: helloWorld."}}
+[info] +  functions[us-central1-helloWorld]: http function initialized (http://127.0.0.1:5001/simplified-projects/us-central1/helloWorld). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/simplified-projects/us-central1/helloWorld)."}}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
 
-Before we get started, keep in mind:
+┌───────────┬────────────────┬─────────────────────────────────┐
+│ Emulator  │ Host:Port      │ View in Emulator UI             │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Functions │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Hosting   │ 127.0.0.1:5000 │ n/a                             │
+└───────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500
 
-  * You are initializing within an existing Firebase project directory
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:26:12 +0000] "GET /%PUBLIC_URL%/manifest.json HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:26:12 +0000] \"GET /%PUBLIC_URL%/manifest.json HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:26:15 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:26:15 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:26:15 +0000] "GET /%PUBLIC_URL%/manifest.json HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:26:15 +0000] \"GET /%PUBLIC_URL%/manifest.json HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:26:15 +0000] "GET /%PUBLIC_URL%/favicon.ico HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:26:15 +0000] \"GET /%PUBLIC_URL%/favicon.ico HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:26:32 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:26:32 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:26:32 +0000] "GET /%PUBLIC_URL%/manifest.json HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:26:32 +0000] \"GET /%PUBLIC_URL%/manifest.json HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:26:32 +0000] "GET /%PUBLIC_URL%/favicon.ico HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:26:32 +0000] \"GET /%PUBLIC_URL%/favicon.ico HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[debug] [2023-01-28T01:26:46.633Z] Received signal SIGINT (Ctrl-C) 1
+[info]  
+[info] i  emulators: Received SIGINT (Ctrl-C) for the first time. Starting a clean shutdown. 
+[info] i  emulators: Please wait for a clean shutdown or send the SIGINT (Ctrl-C) signal again to stop right now. 
+[info] i  emulators: Shutting down emulators. {"metadata":{"emulator":{"name":"hub"},"message":"Shutting down emulators."}}
+[info] i  ui: Stopping Emulator UI {"metadata":{"emulator":{"name":"ui"},"message":"Stopping Emulator UI"}}
+[warn] !  Emulator UI has exited upon receiving signal: SIGINT 
+[info] i  functions: Stopping Functions Emulator {"metadata":{"emulator":{"name":"functions"},"message":"Stopping Functions Emulator"}}
+[info] i  hosting: Stopping Hosting Emulator {"metadata":{"emulator":{"name":"hosting"},"message":"Stopping Hosting Emulator"}}
+[info] i  eventarc: Stopping Eventarc Emulator {"metadata":{"emulator":{"name":"eventarc"},"message":"Stopping Eventarc Emulator"}}
+[info] i  hub: Stopping emulator hub {"metadata":{"emulator":{"name":"hub"},"message":"Stopping emulator hub"}}
+[debug] [2023-01-28T01:26:49.651Z] ----------------------------------------------------------------------
+[debug] [2023-01-28T01:26:49.653Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\schei\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js --debug emulators:start --only functions,hosting
+[debug] [2023-01-28T01:26:49.654Z] CLI Version:   11.19.0
+[debug] [2023-01-28T01:26:49.654Z] Platform:      win32
+[debug] [2023-01-28T01:26:49.654Z] Node Version:  v18.12.1
+[debug] [2023-01-28T01:26:49.655Z] Time:          Fri Jan 27 2023 20:26:49 GMT-0500 (Eastern Standard Time)
+[debug] [2023-01-28T01:26:49.655Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-01-28T01:26:49.735Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-28T01:26:49.737Z] > authorizing via signed-in user (scheiterlem@gmail.com)
+[info] i  emulators: Starting emulators: functions, hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions, hosting"}}
+[debug] [2023-01-28T01:26:49.747Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T01:26:49.748Z] [hosting] Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T01:26:49.748Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2023-01-28T01:26:49.753Z] [hub] writing locator at C:\Users\schei\AppData\Local\Temp\hub-simplified-projects.json
+[debug] [2023-01-28T01:26:49.777Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T01:26:49.778Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T01:26:49.779Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] !  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: auth, firestore, database, pubsub, storage {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mauth, firestore, database, pubsub, storage\u001b[22m"}}
+[warn] !  Your requested "node" version "16" doesn't match your global version "18". Using node@18 from host. {"metadata":{"emulator":{"name":"functions"},"message":"Your requested \"node\" version \"16\" doesn't match your global version \"18\". Using node@18 from host."}}
+[debug] [2023-01-28T01:26:49.847Z] defaultcredentials: writing to file C:\Users\schei\AppData\Roaming\firebase\scheiterlem_gmail_com_application_default_credentials.json
+[debug] [2023-01-28T01:26:49.850Z] Setting GAC to C:\Users\schei\AppData\Roaming\firebase\scheiterlem_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\schei\\AppData\\Roaming\\firebase\\scheiterlem_gmail_com_application_default_credentials.json"}}
+[debug] [2023-01-28T01:26:49.852Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/adminSdkConfig [none]
+[debug] [2023-01-28T01:26:50.163Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/adminSdkConfig 200
+[debug] [2023-01-28T01:26:50.164Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/adminSdkConfig {"projectId":"simplified-projects","storageBucket":"simplified-projects.appspot.com"}
+[debug] [2023-01-28T01:26:50.178Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/simplified-projects/sites 
+[debug] [2023-01-28T01:26:50.574Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/simplified-projects/sites 200
+[debug] [2023-01-28T01:26:50.575Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/simplified-projects/sites {"sites":[{"name":"projects/simplified-projects/sites/simplified-projects","defaultUrl":"https://simplified-projects.web.app","appId":"1:1091607222028:web:db94f2c173edb3a8795b29","type":"DEFAULT_SITE"}]}
+[debug] [2023-01-28T01:26:50.575Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/webApps/1:1091607222028:web:db94f2c173edb3a8795b29/config [none]
+[debug] [2023-01-28T01:26:51.059Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/webApps/1:1091607222028:web:db94f2c173edb3a8795b29/config 200
+[debug] [2023-01-28T01:26:51.060Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/webApps/1:1091607222028:web:db94f2c173edb3a8795b29/config {"projectId":"simplified-projects","appId":"1:1091607222028:web:db94f2c173edb3a8795b29","storageBucket":"simplified-projects.appspot.com","apiKey":"AIzaSyC3RZfgAHb1ST5zLwojaHYxGa3QQGAKmlc","authDomain":"simplified-projects.firebaseapp.com","messagingSenderId":"1091607222028","measurementId":"G-P5D60JED26"}
+[debug] [2023-01-28T01:26:51.065Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects [none]
+[debug] [2023-01-28T01:26:51.307Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects 200
+[debug] [2023-01-28T01:26:51.307Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects {"projectId":"simplified-projects","projectNumber":"1091607222028","displayName":"simplified-projects","name":"projects/simplified-projects","resources":{"hostingSite":"simplified-projects"},"state":"ACTIVE","etag":"1_20d9449c-4d78-4abf-8cf5-2d223ac244bd"}
+[info] i  hosting[simplified-projects]: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] +  hosting[simplified-projects]: Local server: http://127.0.0.1:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://127.0.0.1:5000\u001b[22m\u001b[24m"}}
+[debug] [2023-01-28T01:26:51.324Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-01-28T01:26:51.325Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2023-01-28T01:26:51.325Z] Starting Emulator UI with command {"binary":"node","args":["C:\\Users\\schei\\.cache\\firebase\\emulators\\ui-v1.11.1\\server\\server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"C:\\\\Users\\\\schei\\\\.cache\\\\firebase\\\\emulators\\\\ui-v1.11.1\\\\server\\\\server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2023-01-28T01:26:51.524Z] Web / API server started at 127.0.0.1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at 127.0.0.1:4000\n"}}
+[debug] [2023-01-28T01:26:51.525Z] Web / API server started at ::1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at ::1:4000\n"}}
+[info] i  functions: Watching "C:\Users\schei\OneDrive\Desktop\Simpl1f1ed.com\functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"C:\\Users\\schei\\OneDrive\\Desktop\\Simpl1f1ed.com\\functions\" for Cloud Functions..."}}
+[debug] [2023-01-28T01:26:51.679Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] !  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2023-01-28T01:26:53.183Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2023-01-28T01:26:53.185Z] Building nodejs source
+[debug] [2023-01-28T01:26:53.188Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-01-28T01:26:53.594Z] Serving at port 9005
 
-[info] 
-=== Project Setup
-[info] 
-[info] First, let's associate this project directory with a Firebase project.
-[info] You can create multiple project aliases by running firebase use --add, 
-[info] but for now we'll just set up a default project.
-[info] 
-[debug] [2023-01-28T00:05:23.863Z] Using project from CLI flag: simplified-projects
-[debug] [2023-01-28T00:05:23.866Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects [none]
-[debug] [2023-01-28T00:05:24.185Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects 200
-[debug] [2023-01-28T00:05:24.185Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects {"projectId":"simplified-projects","projectNumber":"1091607222028","displayName":"simplified-projects","name":"projects/simplified-projects","resources":{"hostingSite":"simplified-projects"},"state":"ACTIVE","etag":"1_20d9449c-4d78-4abf-8cf5-2d223ac244bd"}
-[info] i  Using project simplified-projects (simplified-projects) 
-[info] 
-=== Functions Setup
-[debug] [2023-01-28T00:05:24.191Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2023-01-28T00:05:24.192Z] > authorizing via signed-in user (scheiterlem@gmail.com)
-[debug] [2023-01-28T00:05:24.192Z] [iam] checking project simplified-projects for permissions ["firebase.projects.get"]
-[debug] [2023-01-28T00:05:24.192Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/simplified-projects:testIamPermissions [none]
-[debug] [2023-01-28T00:05:24.192Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/simplified-projects:testIamPermissions x-goog-quota-user=projects/simplified-projects
-[debug] [2023-01-28T00:05:24.192Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/simplified-projects:testIamPermissions {"permissions":["firebase.projects.get"]}
-[debug] [2023-01-28T00:05:24.348Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/simplified-projects:testIamPermissions 200
-[debug] [2023-01-28T00:05:24.348Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/simplified-projects:testIamPermissions {"permissions":["firebase.projects.get"]}
-[debug] [2023-01-28T00:05:24.349Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/simplified-projects/services/cloudfunctions.googleapis.com [none]
-[debug] [2023-01-28T00:05:24.349Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/simplified-projects/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/simplified-projects
-[debug] [2023-01-28T00:05:24.350Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/simplified-projects/services/runtimeconfig.googleapis.com [none]
-[debug] [2023-01-28T00:05:24.350Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/simplified-projects/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/simplified-projects
-[debug] [2023-01-28T00:05:24.731Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/simplified-projects/services/runtimeconfig.googleapis.com 200
-[debug] [2023-01-28T00:05:24.732Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/simplified-projects/services/runtimeconfig.googleapis.com [omitted]
-[debug] [2023-01-28T00:05:24.758Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/simplified-projects/services/cloudfunctions.googleapis.com 200
-[debug] [2023-01-28T00:05:24.758Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/simplified-projects/services/cloudfunctions.googleapis.com [omitted]
-[info] 
-Detected existing codebase(s): default
+[debug] [2023-01-28T01:26:53.658Z] Got response from /__/functions.yaml {"endpoints":{"helloWorld":{"platform":"gcfv1","httpsTrigger":{},"entryPoint":"helloWorld"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2023-01-28T01:26:53.665Z] shutdown requested via /__/quitquitquit
 
+[info] +  functions: Loaded functions definitions from source: helloWorld. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: helloWorld."}}
+[info] +  functions[us-central1-helloWorld]: http function initialized (http://127.0.0.1:5001/simplified-projects/us-central1/helloWorld). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/simplified-projects/us-central1/helloWorld)."}}
 [info] 
-Overwriting codebase default...
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
 
-[info] i  Skipping write of functions/package.json 
-[info] i  Skipping write of functions/index.js 
-[info] i  Skipping write of functions/.gitignore 
+┌───────────┬────────────────┬─────────────────────────────────┐
+│ Emulator  │ Host:Port      │ View in Emulator UI             │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Functions │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Hosting   │ 127.0.0.1:5000 │ n/a                             │
+└───────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:26:57 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:26:57 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:26:57 +0000] "GET /%PUBLIC_URL%/favicon.ico HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:26:57 +0000] \"GET /%PUBLIC_URL%/favicon.ico HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:26:57 +0000] "GET /%PUBLIC_URL%/manifest.json HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:26:57 +0000] \"GET /%PUBLIC_URL%/manifest.json HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:34:42 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:34:42 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:34:43 +0000] "GET /%PUBLIC_URL%/favicon.ico HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:34:43 +0000] \"GET /%PUBLIC_URL%/favicon.ico HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:34:43 +0000] "GET /%PUBLIC_URL%/manifest.json HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:34:43 +0000] \"GET /%PUBLIC_URL%/manifest.json HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:35:10 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:35:10 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:35:10 +0000] "GET /%PUBLIC_URL%/manifest.json HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:35:10 +0000] \"GET /%PUBLIC_URL%/manifest.json HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:35:10 +0000] "GET /%PUBLIC_URL%/favicon.ico HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:35:10 +0000] \"GET /%PUBLIC_URL%/favicon.ico HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:43:42 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:43:42 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:43:42 +0000] "GET /%PUBLIC_URL%/favicon.ico HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:43:42 +0000] \"GET /%PUBLIC_URL%/favicon.ico HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:01:43:43 +0000] "GET /%PUBLIC_URL%/manifest.json HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:01:43:43 +0000] \"GET /%PUBLIC_URL%/manifest.json HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:02:15:00 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:02:15:00 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:02:15:00 +0000] "GET /%PUBLIC_URL%/favicon.ico HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:02:15:00 +0000] \"GET /%PUBLIC_URL%/favicon.ico HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[debug] [2023-01-28T02:18:43.170Z] Received signal SIGINT (Ctrl-C) 1
+[info]  
+[info] i  emulators: Received SIGINT (Ctrl-C) for the first time. Starting a clean shutdown. 
+[info] i  emulators: Please wait for a clean shutdown or send the SIGINT (Ctrl-C) signal again to stop right now. 
+[info] i  emulators: Shutting down emulators. {"metadata":{"emulator":{"name":"hub"},"message":"Shutting down emulators."}}
+[info] i  ui: Stopping Emulator UI {"metadata":{"emulator":{"name":"ui"},"message":"Stopping Emulator UI"}}
+[warn] !  Emulator UI has exited upon receiving signal: SIGINT 
+[info] i  functions: Stopping Functions Emulator {"metadata":{"emulator":{"name":"functions"},"message":"Stopping Functions Emulator"}}
+[info] i  hosting: Stopping Hosting Emulator {"metadata":{"emulator":{"name":"hosting"},"message":"Stopping Hosting Emulator"}}
+[info] i  eventarc: Stopping Eventarc Emulator {"metadata":{"emulator":{"name":"eventarc"},"message":"Stopping Eventarc Emulator"}}
+[info] i  hub: Stopping emulator hub {"metadata":{"emulator":{"name":"hub"},"message":"Stopping emulator hub"}}
+[info] i  logging: Stopping Logging Emulator {"metadata":{"emulator":{"name":"logging"},"message":"Stopping Logging Emulator"}}
+[debug] [2023-01-28T02:19:12.933Z] ----------------------------------------------------------------------
+[debug] [2023-01-28T02:19:12.935Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\schei\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js --debug emulators:start --only functions,hosting
+[debug] [2023-01-28T02:19:12.935Z] CLI Version:   11.19.0
+[debug] [2023-01-28T02:19:12.935Z] Platform:      win32
+[debug] [2023-01-28T02:19:12.936Z] Node Version:  v18.12.1
+[debug] [2023-01-28T02:19:12.936Z] Time:          Fri Jan 27 2023 21:19:12 GMT-0500 (Eastern Standard Time)
+[debug] [2023-01-28T02:19:12.936Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-01-28T02:19:12.992Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-28T02:19:12.994Z] > authorizing via signed-in user (scheiterlem@gmail.com)
+[info] i  emulators: Starting emulators: functions, hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions, hosting"}}
+[debug] [2023-01-28T02:19:13.004Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T02:19:13.004Z] [hosting] Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T02:19:13.005Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2023-01-28T02:19:13.009Z] [hub] writing locator at C:\Users\schei\AppData\Local\Temp\hub-simplified-projects.json
+[debug] [2023-01-28T02:19:13.021Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T02:19:13.022Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T02:19:13.022Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] !  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: auth, firestore, database, pubsub, storage {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mauth, firestore, database, pubsub, storage\u001b[22m"}}
+[warn] !  Your requested "node" version "16" doesn't match your global version "18". Using node@18 from host. {"metadata":{"emulator":{"name":"functions"},"message":"Your requested \"node\" version \"16\" doesn't match your global version \"18\". Using node@18 from host."}}
+[debug] [2023-01-28T02:19:13.046Z] defaultcredentials: writing to file C:\Users\schei\AppData\Roaming\firebase\scheiterlem_gmail_com_application_default_credentials.json
+[debug] [2023-01-28T02:19:13.052Z] Setting GAC to C:\Users\schei\AppData\Roaming\firebase\scheiterlem_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\schei\\AppData\\Roaming\\firebase\\scheiterlem_gmail_com_application_default_credentials.json"}}
+[debug] [2023-01-28T02:19:13.055Z] > refreshing access token with scopes: []
+[debug] [2023-01-28T02:19:13.056Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-01-28T02:19:13.057Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-28T02:19:13.224Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-01-28T02:19:13.225Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-28T02:19:13.232Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/adminSdkConfig [none]
+[debug] [2023-01-28T02:19:13.535Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/adminSdkConfig 200
+[debug] [2023-01-28T02:19:13.535Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/adminSdkConfig {"projectId":"simplified-projects","storageBucket":"simplified-projects.appspot.com"}
+[debug] [2023-01-28T02:19:13.544Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/simplified-projects/sites 
+[debug] [2023-01-28T02:19:13.983Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/simplified-projects/sites 200
+[debug] [2023-01-28T02:19:13.983Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/simplified-projects/sites {"sites":[{"name":"projects/simplified-projects/sites/simplified-projects","defaultUrl":"https://simplified-projects.web.app","appId":"1:1091607222028:web:db94f2c173edb3a8795b29","type":"DEFAULT_SITE"}]}
+[debug] [2023-01-28T02:19:13.984Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/webApps/1:1091607222028:web:db94f2c173edb3a8795b29/config [none]
+[debug] [2023-01-28T02:19:14.472Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/webApps/1:1091607222028:web:db94f2c173edb3a8795b29/config 200
+[debug] [2023-01-28T02:19:14.472Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/webApps/1:1091607222028:web:db94f2c173edb3a8795b29/config {"projectId":"simplified-projects","appId":"1:1091607222028:web:db94f2c173edb3a8795b29","storageBucket":"simplified-projects.appspot.com","apiKey":"AIzaSyC3RZfgAHb1ST5zLwojaHYxGa3QQGAKmlc","authDomain":"simplified-projects.firebaseapp.com","messagingSenderId":"1091607222028","measurementId":"G-P5D60JED26"}
+[debug] [2023-01-28T02:19:14.478Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects [none]
+[debug] [2023-01-28T02:19:14.736Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects 200
+[debug] [2023-01-28T02:19:14.736Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects {"projectId":"simplified-projects","projectNumber":"1091607222028","displayName":"simplified-projects","name":"projects/simplified-projects","resources":{"hostingSite":"simplified-projects"},"state":"ACTIVE","etag":"1_20d9449c-4d78-4abf-8cf5-2d223ac244bd"}
+[info] i  hosting[simplified-projects]: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] +  hosting[simplified-projects]: Local server: http://127.0.0.1:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://127.0.0.1:5000\u001b[22m\u001b[24m"}}
+[debug] [2023-01-28T02:19:14.753Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-01-28T02:19:14.753Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2023-01-28T02:19:14.753Z] Starting Emulator UI with command {"binary":"node","args":["C:\\Users\\schei\\.cache\\firebase\\emulators\\ui-v1.11.1\\server\\server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"C:\\\\Users\\\\schei\\\\.cache\\\\firebase\\\\emulators\\\\ui-v1.11.1\\\\server\\\\server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2023-01-28T02:19:14.854Z] Web / API server started at 127.0.0.1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at 127.0.0.1:4000\n"}}
+[debug] [2023-01-28T02:19:14.855Z] Web / API server started at ::1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at ::1:4000\n"}}
+[info] i  functions: Watching "C:\Users\schei\OneDrive\Desktop\Simpl1f1ed.com\functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"C:\\Users\\schei\\OneDrive\\Desktop\\Simpl1f1ed.com\\functions\" for Cloud Functions..."}}
+[debug] [2023-01-28T02:19:15.022Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] !  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2023-01-28T02:19:17.249Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2023-01-28T02:19:17.251Z] Building nodejs source
+[debug] [2023-01-28T02:19:17.252Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-01-28T02:19:17.431Z] Serving at port 9005
+
+[debug] [2023-01-28T02:19:17.485Z] Got response from /__/functions.yaml {"endpoints":{"helloWorld":{"platform":"gcfv1","httpsTrigger":{},"entryPoint":"helloWorld"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2023-01-28T02:19:17.492Z] shutdown requested via /__/quitquitquit
+
+[info] +  functions: Loaded functions definitions from source: helloWorld. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: helloWorld."}}
+[info] +  functions[us-central1-helloWorld]: http function initialized (http://127.0.0.1:5001/simplified-projects/us-central1/helloWorld). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/simplified-projects/us-central1/helloWorld)."}}
 [info] 
-=== Hosting Setup
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌───────────┬────────────────┬─────────────────────────────────┐
+│ Emulator  │ Host:Port      │ View in Emulator UI             │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Functions │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Hosting   │ 127.0.0.1:5000 │ n/a                             │
+└───────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:02:19:22 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:02:19:22 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:02:19:23 +0000] "GET /%PUBLIC_URL%/favicon.ico HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:02:19:23 +0000] \"GET /%PUBLIC_URL%/favicon.ico HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:02:19:23 +0000] "GET /%PUBLIC_URL%/manifest.json HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:02:19:23 +0000] \"GET /%PUBLIC_URL%/manifest.json HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:02:23:42 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:02:23:42 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:02:23:43 +0000] "GET /%PUBLIC_URL%/favicon.ico HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:02:23:43 +0000] \"GET /%PUBLIC_URL%/favicon.ico HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:02:23:43 +0000] "GET /%PUBLIC_URL%/manifest.json HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:02:23:43 +0000] \"GET /%PUBLIC_URL%/manifest.json HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[debug] [2023-01-28T02:23:55.576Z] Received signal SIGINT (Ctrl-C) 1
+[info]  
+[info] i  emulators: Received SIGINT (Ctrl-C) for the first time. Starting a clean shutdown. 
+[info] i  emulators: Please wait for a clean shutdown or send the SIGINT (Ctrl-C) signal again to stop right now. 
+[info] i  emulators: Shutting down emulators. {"metadata":{"emulator":{"name":"hub"},"message":"Shutting down emulators."}}
+[info] i  ui: Stopping Emulator UI {"metadata":{"emulator":{"name":"ui"},"message":"Stopping Emulator UI"}}
+[warn] !  Emulator UI has exited upon receiving signal: SIGINT 
+[info] i  functions: Stopping Functions Emulator {"metadata":{"emulator":{"name":"functions"},"message":"Stopping Functions Emulator"}}
+[info] i  hosting: Stopping Hosting Emulator {"metadata":{"emulator":{"name":"hosting"},"message":"Stopping Hosting Emulator"}}
+[info] i  eventarc: Stopping Eventarc Emulator {"metadata":{"emulator":{"name":"eventarc"},"message":"Stopping Eventarc Emulator"}}
+[info] i  hub: Stopping emulator hub {"metadata":{"emulator":{"name":"hub"},"message":"Stopping emulator hub"}}
+[info] i  logging: Stopping Logging Emulator {"metadata":{"emulator":{"name":"logging"},"message":"Stopping Logging Emulator"}}
+[debug] [2023-01-28T02:23:59.531Z] ----------------------------------------------------------------------
+[debug] [2023-01-28T02:23:59.532Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\schei\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js --debug emulators:start --only functions,hosting
+[debug] [2023-01-28T02:23:59.533Z] CLI Version:   11.19.0
+[debug] [2023-01-28T02:23:59.533Z] Platform:      win32
+[debug] [2023-01-28T02:23:59.533Z] Node Version:  v18.12.1
+[debug] [2023-01-28T02:23:59.533Z] Time:          Fri Jan 27 2023 21:23:59 GMT-0500 (Eastern Standard Time)
+[debug] [2023-01-28T02:23:59.534Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-01-28T02:23:59.588Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-28T02:23:59.589Z] > authorizing via signed-in user (scheiterlem@gmail.com)
+[info] i  emulators: Starting emulators: functions, hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions, hosting"}}
+[debug] [2023-01-28T02:23:59.600Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T02:23:59.601Z] [hosting] Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T02:23:59.601Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2023-01-28T02:23:59.606Z] [hub] writing locator at C:\Users\schei\AppData\Local\Temp\hub-simplified-projects.json
+[debug] [2023-01-28T02:23:59.618Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T02:23:59.618Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-01-28T02:23:59.619Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] !  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: auth, firestore, database, pubsub, storage {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mauth, firestore, database, pubsub, storage\u001b[22m"}}
+[warn] !  Your requested "node" version "16" doesn't match your global version "18". Using node@18 from host. {"metadata":{"emulator":{"name":"functions"},"message":"Your requested \"node\" version \"16\" doesn't match your global version \"18\". Using node@18 from host."}}
+[debug] [2023-01-28T02:23:59.638Z] defaultcredentials: writing to file C:\Users\schei\AppData\Roaming\firebase\scheiterlem_gmail_com_application_default_credentials.json
+[debug] [2023-01-28T02:23:59.651Z] Setting GAC to C:\Users\schei\AppData\Roaming\firebase\scheiterlem_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\schei\\AppData\\Roaming\\firebase\\scheiterlem_gmail_com_application_default_credentials.json"}}
+[debug] [2023-01-28T02:23:59.655Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/adminSdkConfig [none]
+[debug] [2023-01-28T02:23:59.909Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/adminSdkConfig 200
+[debug] [2023-01-28T02:23:59.910Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/adminSdkConfig {"projectId":"simplified-projects","storageBucket":"simplified-projects.appspot.com"}
+[debug] [2023-01-28T02:23:59.920Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/simplified-projects/sites 
+[debug] [2023-01-28T02:24:00.386Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/simplified-projects/sites 200
+[debug] [2023-01-28T02:24:00.387Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/simplified-projects/sites {"sites":[{"name":"projects/simplified-projects/sites/simplified-projects","defaultUrl":"https://simplified-projects.web.app","appId":"1:1091607222028:web:db94f2c173edb3a8795b29","type":"DEFAULT_SITE"}]}
+[debug] [2023-01-28T02:24:00.387Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/webApps/1:1091607222028:web:db94f2c173edb3a8795b29/config [none]
+[debug] [2023-01-28T02:24:00.850Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/webApps/1:1091607222028:web:db94f2c173edb3a8795b29/config 200
+[debug] [2023-01-28T02:24:00.850Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/webApps/1:1091607222028:web:db94f2c173edb3a8795b29/config {"projectId":"simplified-projects","appId":"1:1091607222028:web:db94f2c173edb3a8795b29","storageBucket":"simplified-projects.appspot.com","apiKey":"AIzaSyC3RZfgAHb1ST5zLwojaHYxGa3QQGAKmlc","authDomain":"simplified-projects.firebaseapp.com","messagingSenderId":"1091607222028","measurementId":"G-P5D60JED26"}
+[debug] [2023-01-28T02:24:00.854Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects [none]
+[debug] [2023-01-28T02:24:01.123Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects 200
+[debug] [2023-01-28T02:24:01.123Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects {"projectId":"simplified-projects","projectNumber":"1091607222028","displayName":"simplified-projects","name":"projects/simplified-projects","resources":{"hostingSite":"simplified-projects"},"state":"ACTIVE","etag":"1_20d9449c-4d78-4abf-8cf5-2d223ac244bd"}
+[info] i  hosting[simplified-projects]: Serving hosting files from: build {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mbuild\u001b[22m"}}
+[info] +  hosting[simplified-projects]: Local server: http://127.0.0.1:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://127.0.0.1:5000\u001b[22m\u001b[24m"}}
+[debug] [2023-01-28T02:24:01.137Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-01-28T02:24:01.138Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2023-01-28T02:24:01.138Z] Starting Emulator UI with command {"binary":"node","args":["C:\\Users\\schei\\.cache\\firebase\\emulators\\ui-v1.11.1\\server\\server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"C:\\\\Users\\\\schei\\\\.cache\\\\firebase\\\\emulators\\\\ui-v1.11.1\\\\server\\\\server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2023-01-28T02:24:01.244Z] Web / API server started at 127.0.0.1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at 127.0.0.1:4000\n"}}
+[debug] [2023-01-28T02:24:01.245Z] Web / API server started at ::1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at ::1:4000\n"}}
+[info] i  functions: Watching "C:\Users\schei\OneDrive\Desktop\Simpl1f1ed.com\functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"C:\\Users\\schei\\OneDrive\\Desktop\\Simpl1f1ed.com\\functions\" for Cloud Functions..."}}
+[debug] [2023-01-28T02:24:01.416Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] !  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2023-01-28T02:24:02.600Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2023-01-28T02:24:02.602Z] Building nodejs source
+[debug] [2023-01-28T02:24:02.604Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-01-28T02:24:02.791Z] Serving at port 9005
+
+[debug] [2023-01-28T02:24:02.848Z] Got response from /__/functions.yaml {"endpoints":{"helloWorld":{"platform":"gcfv1","httpsTrigger":{},"entryPoint":"helloWorld"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2023-01-28T02:24:02.855Z] shutdown requested via /__/quitquitquit
+
+[info] +  functions: Loaded functions definitions from source: helloWorld. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: helloWorld."}}
+[info] +  functions[us-central1-helloWorld]: http function initialized (http://127.0.0.1:5001/simplified-projects/us-central1/helloWorld). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/simplified-projects/us-central1/helloWorld)."}}
 [info] 
-[info] Your public directory is the folder (relative to your project directory) that
-[info] will contain Hosting assets to be uploaded with firebase deploy. If you
-[info] have a build process for your assets, use your build's output directory.
-[info] 
-[info] i  Skipping write of public/404.html 
-[debug] [2023-01-28T00:07:33.338Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/releases.json [none]
-[debug] [2023-01-28T00:07:33.516Z] <<< [apiv2][status] GET https://www.gstatic.com/firebasejs/releases.json 200
-[debug] [2023-01-28T00:07:33.516Z] <<< [apiv2][body] GET https://www.gstatic.com/firebasejs/releases.json {"current":{"version":"9.16.0","browserURL":"https://www.gstatic.com/firebasejs/9.16.0/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/9.16.0/firebase.tgz"},"live":{"version":"9.16","browserURL":"https://www.gstatic.com/firebasejs/live/9.16/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/live/9.16/firebase.tgz"},"components":{"analytics":"https://www.gstatic.com/firebasejs/9.16.0/firebase-analytics.js","app":"https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js","app-check":"https://www.gstatic.com/firebasejs/9.16.0/firebase-app-check.js","auth":"https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js","auth/cordova":"https://www.gstatic.com/firebasejs/9.16.0/firebase-auth/cordova.js","auth/react-native":"https://www.gstatic.com/firebasejs/9.16.0/firebase-auth/react-native.js","functions":"https://www.gstatic.com/firebasejs/9.16.0/firebase-functions.js","firestore":"https://www.gstatic.com/firebasejs/9.16.0/firebase-firestore.js","firestore/lite":"https://www.gstatic.com/firebasejs/9.16.0/firebase-firestore/lite.js","installations":"https://www.gstatic.com/firebasejs/9.16.0/firebase-installations.js","storage":"https://www.gstatic.com/firebasejs/9.16.0/firebase-storage.js","performance":"https://www.gstatic.com/firebasejs/9.16.0/firebase-performance.js","remote-config":"https://www.gstatic.com/firebasejs/9.16.0/firebase-remote-config.js","messaging":"https://www.gstatic.com/firebasejs/9.16.0/firebase-messaging.js","messaging/sw":"https://www.gstatic.com/firebasejs/9.16.0/firebase-messaging/sw.js","database":"https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js","firestore.memory":"https://www.gstatic.com/firebasejs/9.16.0/firebase-firestore.memory.js"}}
-[info] i  Skipping write of public/index.html 
-[info] 
-[info] i  Detected a .git folder at C:\Users\schei\OneDrive\Desktop\Simpl1f1ed.com 
-[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
-[info] 
-[info] Visit this URL on this device to log in:
-[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=717457682&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
-[info] 
-[info] Waiting for authentication...
-[debug] [2023-01-28T00:07:35.797Z] >>> [apiv2][query] POST https://github.com/login/oauth/access_token [none]
-[debug] [2023-01-28T00:07:35.797Z] >>> [apiv2][body] POST https://github.com/login/oauth/access_token [stream]
-[debug] [2023-01-28T00:07:35.962Z] <<< [apiv2][status] POST https://github.com/login/oauth/access_token 200
-[debug] [2023-01-28T00:07:35.962Z] <<< [apiv2][body] POST https://github.com/login/oauth/access_token {"access_token":"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","token_type":"bearer","scope":"read:user,repo"}
-[debug] [2023-01-28T00:07:35.966Z] >>> [apiv2][query] GET https://api.github.com/user [none]
-[debug] [2023-01-28T00:07:36.177Z] <<< [apiv2][status] GET https://api.github.com/user 200
-[debug] [2023-01-28T00:07:36.177Z] <<< [apiv2][body] GET https://api.github.com/user {"login":"MScheiterle","id":49690288,"node_id":"MDQ6VXNlcjQ5NjkwMjg4","avatar_url":"https://avatars.githubusercontent.com/u/49690288?v=4","gravatar_id":"","url":"https://api.github.com/users/MScheiterle","html_url":"https://github.com/MScheiterle","followers_url":"https://api.github.com/users/MScheiterle/followers","following_url":"https://api.github.com/users/MScheiterle/following{/other_user}","gists_url":"https://api.github.com/users/MScheiterle/gists{/gist_id}","starred_url":"https://api.github.com/users/MScheiterle/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/MScheiterle/subscriptions","organizations_url":"https://api.github.com/users/MScheiterle/orgs","repos_url":"https://api.github.com/users/MScheiterle/repos","events_url":"https://api.github.com/users/MScheiterle/events{/privacy}","received_events_url":"https://api.github.com/users/MScheiterle/received_events","type":"User","site_admin":false,"name":"Simpl1f1ed","company":null,"blog":"","location":null,"email":null,"hireable":null,"bio":"I'm all about doing a project to complete perfection, but sometimes I get distracted half way...","twitter_username":null,"public_repos":5,"public_gists":0,"followers":3,"following":0,"created_at":"2019-04-16T16:01:22Z","updated_at":"2022-12-30T06:30:22Z","private_gists":0,"total_private_repos":2,"owned_private_repos":2,"disk_usage":24054,"collaborators":0,"two_factor_authentication":false,"plan":{"name":"free","space":976562499,"collaborators":0,"private_repos":10000}}
-[info] 
-[info] +  Success! Logged into GitHub as MScheiterle 
-[info] 
-[debug] [2023-01-28T00:09:42.501Z] >>> [apiv2][query] GET https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/actions/secrets/public-key type=owner
-[debug] [2023-01-28T00:09:42.638Z] <<< [apiv2][status] GET https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/actions/secrets/public-key 200
-[debug] [2023-01-28T00:09:42.638Z] <<< [apiv2][body] GET https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/actions/secrets/public-key {"key_id":"568250167242549743","key":"2JSaCYrx7jBWR7lrwG/mkjzGsajlfy6y5vv6mu3HeFc="}
-[debug] [2023-01-28T00:09:42.639Z] >>> [apiv2][query] GET https://api.github.com/repos/MScheiterle/Simpl1f1ed.com [none]
-[debug] [2023-01-28T00:09:42.970Z] <<< [apiv2][status] GET https://api.github.com/repos/MScheiterle/Simpl1f1ed.com 200
-[debug] [2023-01-28T00:09:42.970Z] <<< [apiv2][body] GET https://api.github.com/repos/MScheiterle/Simpl1f1ed.com {"id":569864894,"node_id":"R_kgDOIfdyvg","name":"Simpl1f1ed.com","full_name":"MScheiterle/Simpl1f1ed.com","private":false,"owner":{"login":"MScheiterle","id":49690288,"node_id":"MDQ6VXNlcjQ5NjkwMjg4","avatar_url":"https://avatars.githubusercontent.com/u/49690288?v=4","gravatar_id":"","url":"https://api.github.com/users/MScheiterle","html_url":"https://github.com/MScheiterle","followers_url":"https://api.github.com/users/MScheiterle/followers","following_url":"https://api.github.com/users/MScheiterle/following{/other_user}","gists_url":"https://api.github.com/users/MScheiterle/gists{/gist_id}","starred_url":"https://api.github.com/users/MScheiterle/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/MScheiterle/subscriptions","organizations_url":"https://api.github.com/users/MScheiterle/orgs","repos_url":"https://api.github.com/users/MScheiterle/repos","events_url":"https://api.github.com/users/MScheiterle/events{/privacy}","received_events_url":"https://api.github.com/users/MScheiterle/received_events","type":"User","site_admin":false},"html_url":"https://github.com/MScheiterle/Simpl1f1ed.com","description":"Website for everything I do, also used for testing and posting projects.","fork":false,"url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com","forks_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/forks","keys_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/keys{/key_id}","collaborators_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/teams","hooks_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/hooks","issue_events_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/issues/events{/number}","events_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/events","assignees_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/assignees{/user}","branches_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/branches{/branch}","tags_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/tags","blobs_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/git/refs{/sha}","trees_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/git/trees{/sha}","statuses_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/statuses/{sha}","languages_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/languages","stargazers_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/stargazers","contributors_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/contributors","subscribers_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/subscribers","subscription_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/subscription","commits_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/commits{/sha}","git_commits_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/git/commits{/sha}","comments_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/comments{/number}","issue_comment_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/issues/comments{/number}","contents_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/contents/{+path}","compare_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/compare/{base}...{head}","merges_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/merges","archive_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/downloads","issues_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/issues{/number}","pulls_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/pulls{/number}","milestones_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/milestones{/number}","notifications_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/labels{/name}","releases_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/releases{/id}","deployments_url":"https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/deployments","created_at":"2022-11-23T19:44:22Z","updated_at":"2023-01-24T02:54:46Z","pushed_at":"2023-01-27T23:39:05Z","git_url":"git://github.com/MScheiterle/Simpl1f1ed.com.git","ssh_url":"git@github.com:MScheiterle/Simpl1f1ed.com.git","clone_url":"https://github.com/MScheiterle/Simpl1f1ed.com.git","svn_url":"https://github.com/MScheiterle/Simpl1f1ed.com","homepage":"","size":610,"stargazers_count":0,"watchers_count":0,"language":"HTML","has_issues":true,"has_projects":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"has_discussions":false,"forks_count":0,"mirror_url":null,"archived":false,"disabled":false,"open_issues_count":0,"license":null,"allow_forking":true,"is_template":false,"web_commit_signoff_required":false,"topics":["firebase","react","scss"],"visibility":"public","forks":0,"open_issues":0,"watchers":0,"default_branch":"master","permissions":{"admin":true,"maintain":true,"push":true,"triage":true,"pull":true},"temp_clone_token":"","allow_squash_merge":true,"allow_merge_commit":true,"allow_rebase_merge":true,"allow_auto_merge":false,"delete_branch_on_merge":false,"allow_update_branch":false,"use_squash_pr_title_as_default":false,"squash_merge_commit_message":"COMMIT_MESSAGES","squash_merge_commit_title":"COMMIT_OR_PR_TITLE","merge_commit_message":"PR_TITLE","merge_commit_title":"MERGE_MESSAGE","security_and_analysis":{"secret_scanning":{"status":"disabled"},"secret_scanning_push_protection":{"status":"disabled"}},"network_count":0,"subscribers_count":1}
-[debug] [2023-01-28T00:09:42.971Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/simplified-projects/serviceAccounts [none]
-[debug] [2023-01-28T00:09:42.971Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/simplified-projects/serviceAccounts {"accountId":"github-action-569864894","serviceAccount":{"displayName":"GitHub Actions (MScheiterle/Simpl1f1ed.com)","description":"A service account with permission to deploy to Firebase Hosting for the GitHub repository MScheiterle/Simpl1f1ed.com"}}
-[debug] [2023-01-28T00:09:43.326Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/simplified-projects/serviceAccounts 409
-[debug] [2023-01-28T00:09:43.326Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/simplified-projects/serviceAccounts [omitted]
-[debug] [2023-01-28T00:09:43.327Z] >>> [apiv2][query] GET https://iam.googleapis.com/v1/projects/simplified-projects/serviceAccounts/github-action-569864894@simplified-projects.iam.gserviceaccount.com [none]
-[debug] [2023-01-28T00:09:43.329Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/simplified-projects:getIamPolicy [none]
-[debug] [2023-01-28T00:09:43.497Z] <<< [apiv2][status] GET https://iam.googleapis.com/v1/projects/simplified-projects/serviceAccounts/github-action-569864894@simplified-projects.iam.gserviceaccount.com 200
-[debug] [2023-01-28T00:09:43.497Z] <<< [apiv2][body] GET https://iam.googleapis.com/v1/projects/simplified-projects/serviceAccounts/github-action-569864894@simplified-projects.iam.gserviceaccount.com {"name":"projects/simplified-projects/serviceAccounts/github-action-569864894@simplified-projects.iam.gserviceaccount.com","projectId":"simplified-projects","uniqueId":"106174745121871769265","email":"github-action-569864894@simplified-projects.iam.gserviceaccount.com","displayName":"GitHub Actions (MScheiterle/Simpl1f1ed.com)","etag":"MDEwMjE5MjA=","description":"A service account with permission to deploy to Firebase Hosting for the GitHub repository MScheiterle/Simpl1f1ed.com","oauth2ClientId":"106174745121871769265"}
-[debug] [2023-01-28T00:09:43.534Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/simplified-projects:getIamPolicy 200
-[debug] [2023-01-28T00:09:43.535Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/simplified-projects:getIamPolicy {"version":1,"etag":"BwXuKWnDYaw=","bindings":[{"role":"roles/artifactregistry.serviceAgent","members":["serviceAccount:service-1091607222028@gcp-sa-artifactregistry.iam.gserviceaccount.com"]},{"role":"roles/cloudbuild.builds.builder","members":["serviceAccount:1091607222028@cloudbuild.gserviceaccount.com"]},{"role":"roles/cloudbuild.serviceAgent","members":["serviceAccount:service-1091607222028@gcp-sa-cloudbuild.iam.gserviceaccount.com"]},{"role":"roles/cloudfunctions.serviceAgent","members":["serviceAccount:service-1091607222028@gcf-admin-robot.iam.gserviceaccount.com"]},{"role":"roles/containerregistry.ServiceAgent","members":["serviceAccount:service-1091607222028@containerregistry.iam.gserviceaccount.com"]},{"role":"roles/editor","members":["serviceAccount:simplified-projects@appspot.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:firebase-service-account@firebase-sa-management.iam.gserviceaccount.com","serviceAccount:service-1091607222028@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-8iz14@simplified-projects.iam.gserviceaccount.com"]},{"role":"roles/firebaseauth.admin","members":["serviceAccount:github-action-569864894@simplified-projects.iam.gserviceaccount.com"]},{"role":"roles/firebasehosting.admin","members":["serviceAccount:github-action-569864894@simplified-projects.iam.gserviceaccount.com"]},{"role":"roles/firebaserules.system","members":["serviceAccount:service-1091607222028@firebase-rules.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-8iz14@simplified-projects.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:ScheiterleM@gmail.com"]},{"role":"roles/pubsub.serviceAgent","members":["serviceAccount:service-1091607222028@gcp-sa-pubsub.iam.gserviceaccount.com"]},{"role":"roles/run.viewer","members":["serviceAccount:github-action-569864894@simplified-projects.iam.gserviceaccount.com"]},{"role":"roles/serviceusage.apiKeysViewer","members":["serviceAccount:github-action-569864894@simplified-projects.iam.gserviceaccount.com"]}]}
-[debug] [2023-01-28T00:09:43.535Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/simplified-projects:setIamPolicy [none]
-[debug] [2023-01-28T00:09:43.535Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/simplified-projects:setIamPolicy {"policy":{"version":1,"etag":"BwXuKWnDYaw=","bindings":[{"role":"roles/artifactregistry.serviceAgent","members":["serviceAccount:service-1091607222028@gcp-sa-artifactregistry.iam.gserviceaccount.com"]},{"role":"roles/cloudbuild.builds.builder","members":["serviceAccount:1091607222028@cloudbuild.gserviceaccount.com"]},{"role":"roles/cloudbuild.serviceAgent","members":["serviceAccount:service-1091607222028@gcp-sa-cloudbuild.iam.gserviceaccount.com"]},{"role":"roles/cloudfunctions.serviceAgent","members":["serviceAccount:service-1091607222028@gcf-admin-robot.iam.gserviceaccount.com"]},{"role":"roles/containerregistry.ServiceAgent","members":["serviceAccount:service-1091607222028@containerregistry.iam.gserviceaccount.com"]},{"role":"roles/editor","members":["serviceAccount:simplified-projects@appspot.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:firebase-service-account@firebase-sa-management.iam.gserviceaccount.com","serviceAccount:service-1091607222028@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-8iz14@simplified-projects.iam.gserviceaccount.com"]},{"role":"roles/firebaseauth.admin","members":["serviceAccount:github-action-569864894@simplified-projects.iam.gserviceaccount.com"]},{"role":"roles/firebasehosting.admin","members":["serviceAccount:github-action-569864894@simplified-projects.iam.gserviceaccount.com"]},{"role":"roles/firebaserules.system","members":["serviceAccount:service-1091607222028@firebase-rules.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-8iz14@simplified-projects.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:ScheiterleM@gmail.com"]},{"role":"roles/pubsub.serviceAgent","members":["serviceAccount:service-1091607222028@gcp-sa-pubsub.iam.gserviceaccount.com"]},{"role":"roles/run.viewer","members":["serviceAccount:github-action-569864894@simplified-projects.iam.gserviceaccount.com"]},{"role":"roles/serviceusage.apiKeysViewer","members":["serviceAccount:github-action-569864894@simplified-projects.iam.gserviceaccount.com"]}]},"updateMask":"bindings"}
-[debug] [2023-01-28T00:09:44.340Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/simplified-projects:setIamPolicy 200
-[debug] [2023-01-28T00:09:44.340Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/simplified-projects:setIamPolicy {"version":1,"etag":"BwXzR8yWl4I=","bindings":[{"role":"roles/artifactregistry.serviceAgent","members":["serviceAccount:service-1091607222028@gcp-sa-artifactregistry.iam.gserviceaccount.com"]},{"role":"roles/cloudbuild.builds.builder","members":["serviceAccount:1091607222028@cloudbuild.gserviceaccount.com"]},{"role":"roles/cloudbuild.serviceAgent","members":["serviceAccount:service-1091607222028@gcp-sa-cloudbuild.iam.gserviceaccount.com"]},{"role":"roles/cloudfunctions.serviceAgent","members":["serviceAccount:service-1091607222028@gcf-admin-robot.iam.gserviceaccount.com"]},{"role":"roles/containerregistry.ServiceAgent","members":["serviceAccount:service-1091607222028@containerregistry.iam.gserviceaccount.com"]},{"role":"roles/editor","members":["serviceAccount:simplified-projects@appspot.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:firebase-service-account@firebase-sa-management.iam.gserviceaccount.com","serviceAccount:service-1091607222028@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-8iz14@simplified-projects.iam.gserviceaccount.com"]},{"role":"roles/firebaseauth.admin","members":["serviceAccount:github-action-569864894@simplified-projects.iam.gserviceaccount.com"]},{"role":"roles/firebasehosting.admin","members":["serviceAccount:github-action-569864894@simplified-projects.iam.gserviceaccount.com"]},{"role":"roles/firebaserules.system","members":["serviceAccount:service-1091607222028@firebase-rules.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-8iz14@simplified-projects.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:ScheiterleM@gmail.com"]},{"role":"roles/pubsub.serviceAgent","members":["serviceAccount:service-1091607222028@gcp-sa-pubsub.iam.gserviceaccount.com"]},{"role":"roles/run.viewer","members":["serviceAccount:github-action-569864894@simplified-projects.iam.gserviceaccount.com"]},{"role":"roles/serviceusage.apiKeysViewer","members":["serviceAccount:github-action-569864894@simplified-projects.iam.gserviceaccount.com"]}]}
-[debug] [2023-01-28T00:09:44.341Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/simplified-projects/serviceAccounts/github-action-569864894@simplified-projects.iam.gserviceaccount.com/keys [none]
-[debug] [2023-01-28T00:09:44.341Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/simplified-projects/serviceAccounts/github-action-569864894@simplified-projects.iam.gserviceaccount.com/keys {"keyAlgorithm":"KEY_ALG_UNSPECIFIED","privateKeyType":"TYPE_GOOGLE_CREDENTIALS_FILE"}
-[debug] [2023-01-28T00:09:45.003Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/simplified-projects/serviceAccounts/github-action-569864894@simplified-projects.iam.gserviceaccount.com/keys 200
-[debug] [2023-01-28T00:09:45.004Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/simplified-projects/serviceAccounts/github-action-569864894@simplified-projects.iam.gserviceaccount.com/keys {"name":"projects/simplified-projects/serviceAccounts/github-action-569864894@simplified-projects.iam.gserviceaccount.com/keys/628383f6b4fac369be1927fb78eb2c9890b0e820","privateKeyType":"TYPE_GOOGLE_CREDENTIALS_FILE","privateKeyData":"ewogICJ0eXBlIjogInNlcnZpY2VfYWNjb3VudCIsCiAgInByb2plY3RfaWQiOiAic2ltcGxpZmllZC1wcm9qZWN0cyIsCiAgInByaXZhdGVfa2V5X2lkIjogIjYyODM4M2Y2YjRmYWMzNjliZTE5MjdmYjc4ZWIyYzk4OTBiMGU4MjAiLAogICJwcml2YXRlX2tleSI6ICItLS0tLUJFR0lOIFBSSVZBVEUgS0VZLS0tLS1cbk1JSUV2QUlCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktZd2dnU2lBZ0VBQW9JQkFRRFlOOEgycFByWEVOL2JcbnJqbFI4d1g1STJDSkFxVy9KWW45S0ZOaDhaazltUWZRUFJjWnYzamRUOU9KYm1ReWZzNGlFd3BFZHVBbEdnUlNcbnRpakhWd2k0MkN2MUl3YjllMko3ZTVGYTRPRmxiTUZOVTExWTZYMTdYOU9JTnVCenZtQ1YraTg1YzVYWFdMU3NcbnI4aHZHQUtjS0xJaCtFMnE1dVlmcXh0dnRYdVhuYzhxRlh1SjI4WkloWTVUcG9NdFNkd3FHWWl5ejYrQlZ4dkpcbnFkOCtJdSs3UVFYakhFbFhHY2xzMWFSVkVTREF0QVlLSThJanBNUXRDQnIyUUE1eUVUNzIvakoweDNPR1B2UHpcbkQwUktnY3cvZzM3SFVYZ0RSTW5SNG5wb2FvNXdKUFkwclVKT3A0clJwSnZrcUgvM0RRM0dLWFhDZGZqazZPWkdcbmxScldrd2xyQWdNQkFBRUNnZ0VBWER3azVRZHA3aGJIdUJueFg5RVJDaithTGJoUVptTW9Jek54cG9WK3ZuVXFcbmpSMlNYaXg4N2NQZzFHNmdGWjVjWnRMQ2ZZUk1oK2M2VXVKY01QVWl4bCtKR1BDUlNjNjVxejJDTzBkVlA0UU9cblRlTXpIZnUweU0yUEdqdDJza2xUUUlkU1grcTd6L3FLVUdSSVY0UGhrU1lYSDBDaU9UWjRrcWZXYzJmeXlqRUJcbnRRREppdHIyNVZDdW10SUN2STZXVjVtcmdNbDBEVVhJRzhWdGd3SVc2QUs5RXFRTG1rY0N1TW1JOVE0L21qaXZcbk1ZSGd2TXhncnNPZDVYejFucUpmaUJHQzBWL2l0VW05MWdIU2xhaTNkT040ekl0dDNwbmJtcTBrM2pRMDJ2UW9cbnh3b0k0TDhRRHhMeUFuOW4vQ052Q3RIaWNBZUR1RVhSMWlLME1mK3V3UUtCZ1FEM1hqLzFkUzhENVlENUE4VGJcbkhid054c2NhdS9nR3dvNUM2enlyWkdwUjM1dWR2a3U1Wm5CTXNhTDV1bXRTWHNYeVE5K05KR1pTMURZOWdFV0hcbngwMjhPYk92MThlTXo2NGRwdzFjZ2pFd2dkMDl5SWkzWDVrNXh6bVIwcE1rV0pzR05vaXRoK1hGQS9IY3YxbTRcbmM0dnBwd0xGNysxVEVrU1B3OWY5ejNGVlN3S0JnUURmd3oySVByeXgxQm0rNFQzdlVKQ3FBWDFHR1pma1VFTVdcbnFmRi94cEdMZXFqR21tWEtWSy9ITGNrR2YxNEprWTF3d3VDeVQvMFRoaHR2VkdJWlZrODhEL0RtMFlrYmxXZUpcbnl3dGxUUlpqT2xsWkNESUdtMm5DV0VrS0xjcHJrdXRFMGhUZVgyQTNkVHV5WUg2SFBIMGNRMEh0SVBhV2lGL1hcbjJrUEgreW9vWVFLQmdFVnpVTUc1aE5tek5lSzBEREQ0eURPVis1Q2w5Wnp3UXNESEN1R1Q3OFhNNGdRSHlYcmtcbkorTmdmRUZnOVlESzJ3aUp4ZG42dmovREZQZHZiQllTL3VBNTB4a3JtL3NNMC9XL1VTRUg3SWVSN212S1FaZzZcblh1cTU1SS9zYnlObFBTRWhibjVLQ1Zpbkl1QzNXSmxRMTVkaUxJVW1ONXQ3SllTM2w0ekxFU2JCQW9HQU9LMWpcbmNKY3poSGVNN2VSdm82WnNmaU5TYitjYnFpRUtYVHMraUhicmRzRGk3eXM4alR0V0tzVldIZWMxRW9kanBDUTRcbmRmSDgwRzB2bGN0eDdha0crTmV3MVVaTnpFYlRxdnRiTDVXUERpTkJibU85Q0I5bGNteWFVNUcxcS9uU3plUElcbmxXcmpIQ2o5cmZqekU1NG1zbm4yd1BHUWhDQ1c1ajNLM1dTcEVRRUNnWUJqT2JydFFpR040RXJGRHdEc25oRmpcbnNuWnRLVHRzdWV6NFMxN1hpb3ZoOXB2ZisxdUJKdlN2ZzVOUnU4SGdvUS8wYmRUVkxZSVEvTVUwVHpON2Z2VXlcbjN0Q2xWeDhaelNNSFRWUXJubEd4N2dQZ2Z4eWJaSEFDeXRjQU9jRUM2YWUzVVFKRFNFNVZ0bEtkQVcwNnd6UGFcbmVlQ3ZvNUlYWGN0N0ZPMjVlbmNEZmc9PVxuLS0tLS1FTkQgUFJJVkFURSBLRVktLS0tLVxuIiwKICAiY2xpZW50X2VtYWlsIjogImdpdGh1Yi1hY3Rpb24tNTY5ODY0ODk0QHNpbXBsaWZpZWQtcHJvamVjdHMuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLAogICJjbGllbnRfaWQiOiAiMTA2MTc0NzQ1MTIxODcxNzY5MjY1IiwKICAiYXV0aF91cmkiOiAiaHR0cHM6Ly9hY2NvdW50cy5nb29nbGUuY29tL28vb2F1dGgyL2F1dGgiLAogICJ0b2tlbl91cmkiOiAiaHR0cHM6Ly9vYXV0aDIuZ29vZ2xlYXBpcy5jb20vdG9rZW4iLAogICJhdXRoX3Byb3ZpZGVyX3g1MDlfY2VydF91cmwiOiAiaHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vb2F1dGgyL3YxL2NlcnRzIiwKICAiY2xpZW50X3g1MDlfY2VydF91cmwiOiAiaHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vcm9ib3QvdjEvbWV0YWRhdGEveDUwOS9naXRodWItYWN0aW9uLTU2OTg2NDg5NCU0MHNpbXBsaWZpZWQtcHJvamVjdHMuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iCn0K","validAfterTime":"2023-01-28T00:09:44Z","validBeforeTime":"9999-12-31T23:59:59Z","keyAlgorithm":"KEY_ALG_RSA_2048","keyOrigin":"GOOGLE_PROVIDED","keyType":"USER_MANAGED"}
-[info] 
-[info] +  Created service account github-action-569864894 with Firebase Hosting admin permissions. 
-[debug] [2023-01-28T00:09:45.006Z] >>> [apiv2][query] PUT https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/actions/secrets/FIREBASE_SERVICE_ACCOUNT_SIMPLIFIED_PROJECTS [none]
-[debug] [2023-01-28T00:09:45.006Z] >>> [apiv2][body] PUT https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/actions/secrets/FIREBASE_SERVICE_ACCOUNT_SIMPLIFIED_PROJECTS {"encrypted_value":"48BaBQmQ0BMX/1tkx/GFoIIlAKZpQ4osVHSehH7foTKVjnEb+JE97ht+pkJ0xK3ZRSH9Zu0ta6jDPOe88tr4jvRmrlpScpmfdkQWvugHeBTiH8v8DvgYlVlJY18DUmbcufTTQarthEq70UJ9n7mNLROnaaPH9pdIQszCWZL9RgTOLlwu84IUefd5dVBLbDqLingD9qRgeWIwt/JMOFySCVVbqdnuNz+ASXcAcn+L7xi2mybb/vW6PwXckUF+GkBpLRhbuYgM01qAHD7qju5pUL5KY80IxdzQe+E+1fCTaBTvLDbDrkIgPh6p+027NGnas9HvCG006mu7vXPOYjb/EabJDmHUj2tVS3P/W+J22hxv97dOpTgIYCt5AVsT8rhWpt8RGRJZBxOdhrNLNjaOig5Ep6Pt8lSY+wF+i+mXGmNAjxp0CSWnkE7+dKztoaqpDw9WxrPtuyo9DD5ORtu7XufjVMij6Y0CQRTDuZa3MpZO8t7bzLeffxGAbcBHCCckUJ4Y7yKmw6HNwrbnyF1Ce3rvclriektQK1IPJPwA8ISxOf6BX/3gliZt6EUk9xG/PreRPwCH7xEI+ORBRbCwXO3kH2AZFq650j9n2C496vFdvs3Pbd1Yf5s2oLxQQJR89HykT5n9xapRu8ELCLozThHmkvKmB8T6ufHTh1H4fN3vpGKY+tSdLdPc9CnOFkdAzxVdP+AKr1fpgMfZw+yHKw5IALYzg/MOBoaitEIqMOSwAM3fIq1fL8tiQ6EXP6Vm/sVitBIDaoZ0wmX1lcpYgNX5mpw5/7YxJpc6AaEw+zSqDA14Aap01DrcPtvpgnr0iG4zr1ckQ7mrnrsxdAcOW55BQ2RJi6RknrrTOieRFTMl6nfQf//cT2BcFA9/QHBJh58zREmrIiVqG1IQT3UmrIDDSRAF7g+QYNhL/9YUB57CJF5iJehzpiQwbxa2SmXscY277m4OMnkO1Y0IYyuDeIwmQIWuK9eZplS1qe2YFwt5ckbEXO29Y9gSjg4ilR/TgubyObkzIYZtTiz2HZ/P95vWKQvkyHN0IjrCbvX6Qr9bb3wOspiZhfg8pZLaBWdttwXr2g4Tnl37rBvZPdBxxtr9HHA8THtptexVQ52/4DW8IL+xlb2ApEyEDBMAmKezzk0273fmOPLcusBteVd13KFX9kddgAS9Qu6pGhHC3rRPz3ojnTHJePwx3+6688iror7MDvy5zGZrZTDqYTOuOIjU4T9SJ1u2fX92aRRiH1LDvapmHsIhjPhed7Zo7kzgvnrvdT0w0k20GUt98m9plxFEUG6UrdeM9O1VHk222b7aHuO7dbifWyt4AJdEr1e3SFrNSI9bQ/Oy7GJ3algAxm48Ewq1AcmeFxNbdoPzVneYTc1RS2wthvA3O3eNj2YDWgawpV+ganj+Ewd9zNHEqzwmrnIBEcsZc9Rgsn3L1h+278f5s0DpW/RfWSzX7BFjsSwRF/sCARGwGh76Cyrjr0+NAmpkljTk+nnOOw3AD/87CTjKJf+REUzH2bUN/qGZ0So402YxRK6n1g0jpdblq1gIu++MKnmpWH+Jwupxw1+oJZRRpcv34LD7+O4nwMP/Q5xQjEZS2X1qgV5LQXz4R3GkhnabNknSlduSDyq/yRqHmpBoZkvgWahBle2/bsrqdneFBIT1X9XYMz0gxqN4+7/ScI+IBYgp36wQxm3Cf7/6oLbh9cU8VZR0mB0YfE57GMRaiYod9ZepXLVOxtPdTpd61vGkiOtL4N4nT36YpfuVBLsG8n6cUsy37M+5J85mVR2ea7D/4VvszUzuA4RQi8PMlnNJSt6yMvF1RfKKYYxRKcIT9rgiNosWvv4FLpOpNpLqjyESAe3l0wzKDAgiV8p4jmxlBVkK14YvxG3HkPJvtvdBeKUGy/42yQVLZpsg6uj3Ep+By1z8sqf+nNtda2uzI+1KynAHqR4BsVPJjRbOyJzHsYLrEuUbPqUAygrpY64pkFIXwu0RxpGd4Fdmcu1Hze+/RP1sawaSSD44EV6k93LvFFYoOqtq7OtVdTAsQV+o5BigUToG7k6bA2JiRwnR/A1EP6Gd7fo0U8SF2Hjvx9C44SdkNBbMCT9qEM4swBks1pm1p5a3/Kr6SGe5uOo1RHCIlHKm8fBvXkIq/Qxew5MEat4g5laCToD68s6ENVRb+xsMgA7xCdjQQaxIDQQO8//52j+nxqsR3ndW5Srl/jXq9qGULzn4ADcPvRkT/5bXKGKrJnD9Q6TM7V1PHDkKuCW6VJh6v5lbdi4LCbCTELDHF78vBuzUAALJ7vTsKzI5KifBzDfPhMrEWTJ+RZLhrkry9sitnIVdrqiJIevKQ0bQ1m+YSKyzB5oaU4AY3nLy/Dv0MlMOGLhoA23nsFC4HDVAL1g/gJakTYLnDfS/NjWkF2uvfdo5jIRyy+OLvEGMKknpqcI0uofbbkt5zSs1Rx2dflZBS+bWJtoYnj9fTruxI8AhULp2Bm2qjGYcQU5+sazneqEmjn7r2cwv3g9L+XtB4cPpKI2jOYjxEG7YHvR4RdhyZn4eFDDQjdovJUtsWyabJS8MROsn9Y3BkgQF9ixkcYR6I+O48J6ZvWlnmRat9Sxh/OXkCYp/Q23jyJM9tuxuKdXrfWwlhPoOPOWi5yjs1S3DLsg91zcY3QbJDAV0WLCV6ihz3MnRunOeaLg99XOAdvYqSvtM50R0cRtNZXXMR7aCeoKnKszWmqlBe9O0jZ3D3emS1UvUJFXs17faqR4JZKzdEgUVqW3+2yt/kdfRaj0NgHogm3w2XYw9pJ72fUo7GykJchVxrqzzTQRCQcVYeJiiXMnppZdbt+PPWiQtsh8ZDSiXnFiI9TgLm7C1dsTn76nnPUgKMUAOnAMoUbHLVwrlMSv64G6xny2P9a23F6rpl9cqowcZJQ9Tz6SGkeMvFv8nlK9VVR4on8CczIrD3qkaD2qMX6E/msJZnxyV9F6qz3/Svp0G0BPlGPxk3/X+XjTBkqGVk+4qgpv4ACWCoioq1lOiXsY6u3e/98y9G8DxJi4XAV6Rpe6qcbAmzX9MJZNwVox34p6Ox4HdW1x77X6ge6DbwO38oE0LDC9ClcnEdiN/MpAOW85dW3EhzRMRI0u7rZcsMj8uXLKXs0kbnhX5+8LwDgfZGT34WhdNF+84Z9rl3PlPeyQUP8+MQHIXmkSw0gULUQD3zPtYn41j","key_id":"568250167242549743"}
-[debug] [2023-01-28T00:09:45.238Z] <<< [apiv2][status] PUT https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/actions/secrets/FIREBASE_SERVICE_ACCOUNT_SIMPLIFIED_PROJECTS 204
-[debug] [2023-01-28T00:09:45.238Z] <<< [apiv2][body] PUT https://api.github.com/repos/MScheiterle/Simpl1f1ed.com/actions/secrets/FIREBASE_SERVICE_ACCOUNT_SIMPLIFIED_PROJECTS undefined
-[info] +  Uploaded service account JSON to GitHub as secret FIREBASE_SERVICE_ACCOUNT_SIMPLIFIED_PROJECTS. 
-[info] i  You can manage your secrets at https://github.com/MScheiterle/Simpl1f1ed.com/settings/secrets. 
-[info] 
-[info] 
-[info] +  Created workflow file C:\Users\schei\OneDrive\Desktop\Simpl1f1ed.com\.github/workflows/firebase-hosting-pull-request.yml 
-[info] 
-[info] i  Action required: Visit this URL to revoke authorization for the Firebase CLI GitHub OAuth App: 
-[info] https://github.com/settings/connections/applications/89cf50f02ac6aaed3484
-[info] i  Action required: Push any new workflow file(s) to your repo 
-[info] 
-=== Emulators Setup
-[info] i  ui: downloading ui-v1.11.1.zip... {"metadata":{"emulator":{"name":"ui"},"message":"downloading ui-v1.11.1.zip..."}}
-[debug] [2023-01-28T00:13:14.146Z] >>> [apiv2][query] GET https://storage.googleapis.com/firebase-preview-drop/emulator/ui-v1.11.1.zip 
-[info] 
-=== Remoteconfig Setup
-[debug] [2023-01-28T00:13:14.348Z] <<< [apiv2][status] GET https://storage.googleapis.com/firebase-preview-drop/emulator/ui-v1.11.1.zip 200
-[debug] [2023-01-28T00:13:14.348Z] <<< [apiv2][body] GET https://storage.googleapis.com/firebase-preview-drop/emulator/ui-v1.11.1.zip [stream]
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌───────────┬────────────────┬─────────────────────────────────┐
+│ Emulator  │ Host:Port      │ View in Emulator UI             │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Functions │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Hosting   │ 127.0.0.1:5000 │ n/a                             │
+└───────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:02:24:06 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:02:24:06 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:02:24:06 +0000] "GET /static/css/main.6149c9d9.css HTTP/1.1" 200 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:02:24:06 +0000] \"GET /static/css/main.6149c9d9.css HTTP/1.1\" 200 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:02:24:06 +0000] "GET /static/js/main.671929be.js HTTP/1.1" 200 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:02:24:06 +0000] \"GET /static/js/main.671929be.js HTTP/1.1\" 200 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:02:24:07 +0000] "GET /static/media/GT-America-Extended-Black-Trial.a25bb2dfd3bc69a4f7d5.otf HTTP/1.1" 200 - "http://localhost:5000/static/css/main.6149c9d9.css" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:02:24:07 +0000] \"GET /static/media/GT-America-Extended-Black-Trial.a25bb2dfd3bc69a4f7d5.otf HTTP/1.1\" 200 - \"http://localhost:5000/static/css/main.6149c9d9.css\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:02:24:07 +0000] "GET /static/media/GT-America-Expanded-Black-Trial.ddc1c565b767d544e51d.otf HTTP/1.1" 200 - "http://localhost:5000/static/css/main.6149c9d9.css" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:02:24:07 +0000] \"GET /static/media/GT-America-Expanded-Black-Trial.ddc1c565b767d544e51d.otf HTTP/1.1\" 200 - \"http://localhost:5000/static/css/main.6149c9d9.css\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:02:24:07 +0000] "GET /favicon.ico HTTP/1.1" 200 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:02:24:07 +0000] \"GET /favicon.ico HTTP/1.1\" 200 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Jan/2023:02:24:07 +0000] "GET /manifest.json HTTP/1.1" 200 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Jan/2023:02:24:07 +0000] \"GET /manifest.json HTTP/1.1\" 200 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[debug] [2023-01-28T02:24:25.897Z] Received signal SIGINT (Ctrl-C) 1
+[info]  
+[info] i  emulators: Received SIGINT (Ctrl-C) for the first time. Starting a clean shutdown. 
+[info] i  emulators: Please wait for a clean shutdown or send the SIGINT (Ctrl-C) signal again to stop right now. 
+[info] i  emulators: Shutting down emulators. {"metadata":{"emulator":{"name":"hub"},"message":"Shutting down emulators."}}
+[info] i  ui: Stopping Emulator UI {"metadata":{"emulator":{"name":"ui"},"message":"Stopping Emulator UI"}}
+[warn] !  Emulator UI has exited upon receiving signal: SIGINT 
+[info] i  functions: Stopping Functions Emulator {"metadata":{"emulator":{"name":"functions"},"message":"Stopping Functions Emulator"}}
+[info] i  hosting: Stopping Hosting Emulator {"metadata":{"emulator":{"name":"hosting"},"message":"Stopping Hosting Emulator"}}
+[info] i  eventarc: Stopping Eventarc Emulator {"metadata":{"emulator":{"name":"eventarc"},"message":"Stopping Eventarc Emulator"}}
+[info] i  hub: Stopping emulator hub {"metadata":{"emulator":{"name":"hub"},"message":"Stopping emulator hub"}}
+[info] i  logging: Stopping Logging Emulator {"metadata":{"emulator":{"name":"logging"},"message":"Stopping Logging Emulator"}}
