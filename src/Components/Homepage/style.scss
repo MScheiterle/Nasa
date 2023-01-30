@@ -1,25 +1,30 @@
 .Homepage {
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  width: 99vw;
+  width: 100vw;
   height: 100vh;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .name {
   margin: 0;
-  font-size: max(10vw, 46px);
+  font-size: max(10vw, 30px);
 
   span {
     animation: cursor-blink 1.5s infinite;
 
     @keyframes cursor-blink {
-        0% {opacity: 0;}
-        50% {opacity: 1;}
-        100% {opacity: 0;}
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
     }
   }
 }
@@ -36,6 +41,16 @@
 
 @media (max-width: 768px) {
   .description {
-    font-size: 20px;
+    font-size: 13px;
   }
+}
+
+canvas {
+  width: 100vw;
+  height: 100vw;
+  z-index: -1;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  overflow: hidden;
 }

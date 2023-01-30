@@ -4,8 +4,8 @@ import "./style.scss";
 
 function Projects() {
   return (
-    <div class="Projects">
-      Nothing here yet. A leter version will have content.
+    <div className="Projects">
+      Nothing here yet. A later version will have content.
     </div>
   );
 }

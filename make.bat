@@ -21,7 +21,7 @@ if exist "./src/Components/%~2/" (
         "   const navigate = useNavigate();"
         echo.
         "   return ("
-        "       <div class="%~2"></div>"
+        "       <div className="%~2"></div>"
         "   );"
         "}"
         echo.
