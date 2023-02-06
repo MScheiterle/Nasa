@@ -10,15 +10,11 @@ if exist "./src/Components/%~2/" (
 
     >"./src/Components/%~2/%~2.js" (
     for %%I in (
-        "import React, { useEffect, useState } from "react";"
-        "import { useAuthState } from "react-firebase-hooks/auth";"
-        "import { useNavigate } from "react-router-dom";"
+        "import React, { useEffect } from "react";"
         "import { auth } from "./../../firebase";"
         "import "./style.scss";"
         echo.
         "function %~2() {"
-        "   const [user, loading, error] = useAuthState(auth);"
-        "   const navigate = useNavigate();"
         echo.
         "   return ("
         "       <div className="%~2"></div>"

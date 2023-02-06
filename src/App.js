@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import Navbar from "./Components/Navbar/Navbar";
-import Footer from "./Components/Footer/Footer";
-import Homepage from "./Components/Homepage/Homepage";
-import Projects from "./Components/Projects/Projects";
-import Contact from "./Components/Contact/Contact";
+import World from "./Components/World/World";
 import NoPage from "./Components/NoPage/NoPage";
 
 function App() {
@@ -38,14 +34,10 @@ function App() {
   return (
     <div className="app">
       <Router>
-        <Navbar />
+        <World />
         <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
-        <Footer />
       </Router>
     </div>
   );
