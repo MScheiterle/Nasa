@@ -34,8 +34,8 @@ function App() {
   return (
     <div className="app">
       <Router>
-        <World />
         <Routes>
+          <Route path="/" element={<World />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </Router>

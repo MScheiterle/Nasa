@@ -1,2 +1,3 @@
 My personal website
-Version: 0.2.0
+
+Version In package.json
