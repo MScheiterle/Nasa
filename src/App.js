@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import World from "./Components/World/World";
+import Navbar from "./Components/Navbar/Navbar";
+import Home from "./Components/Home/Home";
+import Login from "./Components/Login/Login";
+import Register from "./Components/Register/Register";
+import Reset from "./Components/Reset/Reset";
 import NoPage from "./Components/NoPage/NoPage";
 
 function App() {
@@ -34,8 +38,12 @@ function App() {
   return (
     <div className="app">
       <Router>
+        <Navbar />
         <Routes>
-          <Route path="/" element={<World />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/password_reset" element={<Reset />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </Router>

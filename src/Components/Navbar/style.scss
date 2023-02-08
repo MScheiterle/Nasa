@@ -1,0 +1,72 @@
+.Navbar {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+}
+
+.LeftNav {
+  position: absolute;
+  left: 0;
+  bottom: 1%;
+  height: fit-content;
+  width: 50px;
+
+  svg {
+    fill: #f7f3f2;
+  }
+}
+
+.navlinks {
+  align-items: center;
+  display: flex;
+  white-space: nowrap;
+  height: 10vh;
+
+  div {
+    position: relative;
+    color: inherit;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100%;
+    align-items: center;
+    cursor: pointer;
+
+    p {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      color: #c1678b;
+    }
+
+    &:hover {
+      transition: 300ms ease-in;
+      box-shadow: 0px 5px 0px -1px #c1678b;
+    }
+  }
+}
+
+.MainLogo {
+  position: relative;
+  width: 10vh;
+  height: 10vh;
+  background-image: url("./../../../public/3DS_Snow_NoLines.png");
+  background-position: center;
+  background-size: cover;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 768px) {
+  .navlinks {
+    display: flex;
+    font-size: 7px;
+  }
+  .MainLogo {
+    width: 10vh;
+    height: 10vh;
+  }
+}
