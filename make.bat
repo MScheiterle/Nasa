@@ -10,8 +10,7 @@ if exist "./src/Components/%~2/" (
 
     >"./src/Components/%~2/%~2.js" (
     for %%I in (
-        "import React, { useEffect } from "react";"
-        "import { auth } from "./../../firebase";"
+        "import React from "react";"
         "import "./style.scss";"
         echo.
         "function %~2() {"
@@ -24,11 +23,14 @@ if exist "./src/Components/%~2/" (
         "export default %~2;"
     ) do if "%%~I" == "echo." ( echo. ) else ( echo %%~I )
     )
-
     echo File '%~2.js' created at "./src/Components/%~2/%~2.js"
 
-    echo.  > "./src/Components/%~2/style.scss"
-    echo File 'style.css' created at "./src/Components/%~2/style.scss"
+    >"./src/Components/%~2/style.scss" (
+    for %%I in (
+        ".%~2 {}"
+    ) do if "%%~I" == "echo." ( echo. ) else ( echo %%~I )
+    )
+    echo File 'style.scss' created at "./src/Components/%~2/style.scss"
 )
 
 EXIT /B 0

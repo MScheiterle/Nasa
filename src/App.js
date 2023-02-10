@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import Navbar from "./Components/Navbar/Navbar";
-import Home from "./Components/Home/Home";
-import Login from "./Components/Login/Login";
-import Register from "./Components/Register/Register";
-import Reset from "./Components/Reset/Reset";
-import NoPage from "./Components/NoPage/NoPage";
+import Navbar from "./Components/Layout/Navbar/Navbar";
+import Home from "./Components/Layout/Home/Home";
+import Login from "./Components/Accounts/Login/Login";
+import Register from "./Components/Accounts/Register/Register";
+import Reset from "./Components/Accounts/Reset/Reset";
+import NoPage from "./Components/Layout/NoPage/NoPage";
+import OpenIntel from "./Components/Projects/OpenIntel/OpenIntel";
+import ImageComb from "./Components/Projects/ImageComb/ImageComb";
 
 function App() {
   useEffect(() => {

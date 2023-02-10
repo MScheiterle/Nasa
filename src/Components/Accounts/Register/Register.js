@@ -5,7 +5,7 @@ import {
   auth,
   registerWithEmailAndPassword,
   signInWithGoogle
-} from "./../../firebase";
+} from "./../../../firebase";
 import "./style.scss";
 
 function Register() {
