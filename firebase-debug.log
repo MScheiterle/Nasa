@@ -1,0 +1,43 @@
+[debug] [2023-02-06T19:56:47.643Z] ----------------------------------------------------------------------
+[debug] [2023-02-06T19:56:47.644Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\schei\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
+[debug] [2023-02-06T19:56:47.645Z] CLI Version:   11.19.0
+[debug] [2023-02-06T19:56:47.645Z] Platform:      win32
+[debug] [2023-02-06T19:56:47.645Z] Node Version:  v18.12.1
+[debug] [2023-02-06T19:56:47.646Z] Time:          Mon Feb 06 2023 14:56:47 GMT-0500 (Eastern Standard Time)
+[debug] [2023-02-06T19:56:47.646Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-02-06T19:56:47.706Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-02-06T19:56:47.707Z] > authorizing via signed-in user (scheiterlem@gmail.com)
+[info] i  emulators: Starting emulators: hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: hosting"}}
+[debug] [2023-02-06T19:56:47.717Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-02-06T19:56:47.717Z] [hosting] Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-02-06T19:56:47.717Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2023-02-06T19:56:47.721Z] [hub] writing locator at C:\Users\schei\AppData\Local\Temp\hub-simplified-projects.json
+[debug] [2023-02-06T19:56:47.734Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/simplified-projects/sites 
+[debug] [2023-02-06T19:56:48.259Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/simplified-projects/sites 200
+[debug] [2023-02-06T19:56:48.260Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/simplified-projects/sites {"sites":[{"name":"projects/simplified-projects/sites/simplified-projects","defaultUrl":"https://simplified-projects.web.app","appId":"1:1091607222028:web:db94f2c173edb3a8795b29","type":"DEFAULT_SITE"}]}
+[debug] [2023-02-06T19:56:48.260Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/webApps/1:1091607222028:web:db94f2c173edb3a8795b29/config [none]
+[debug] [2023-02-06T19:56:48.704Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/webApps/1:1091607222028:web:db94f2c173edb3a8795b29/config 200
+[debug] [2023-02-06T19:56:48.704Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects/webApps/1:1091607222028:web:db94f2c173edb3a8795b29/config {"projectId":"simplified-projects","appId":"1:1091607222028:web:db94f2c173edb3a8795b29","storageBucket":"simplified-projects.appspot.com","apiKey":"AIzaSyC3RZfgAHb1ST5zLwojaHYxGa3QQGAKmlc","authDomain":"simplified-projects.firebaseapp.com","messagingSenderId":"1091607222028","measurementId":"G-P5D60JED26"}
+[debug] [2023-02-06T19:56:48.709Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects [none]
+[debug] [2023-02-06T19:56:48.923Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects 200
+[debug] [2023-02-06T19:56:48.923Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/simplified-projects {"projectId":"simplified-projects","projectNumber":"1091607222028","displayName":"simplified-projects","name":"projects/simplified-projects","resources":{"hostingSite":"simplified-projects"},"state":"ACTIVE","etag":"1_0b7ae1f4-0a47-4082-b49a-8bb65dc97de6"}
+[debug] [2023-02-06T19:56:48.924Z] Specified "public" directory "build" does not exist; Deploy to Hosting site "simplified-projects" may fail or be empty.
+[info] i  hosting[simplified-projects]: Serving hosting files from: build {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mbuild\u001b[22m"}}
+[info] +  hosting[simplified-projects]: Local server: http://127.0.0.1:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://127.0.0.1:5000\u001b[22m\u001b[24m"}}
+[warn] !  emulators: The Emulator UI is not starting, either because none of the emulated products have an interaction layer in Emulator UI or it cannot determine the Project ID. Pass the --project flag to specify a project. {"metadata":{"emulator":{"name":"hub"},"message":"The Emulator UI is not starting, either because none of the emulated products have an interaction layer in Emulator UI or it cannot determine the Project ID. Pass the --project flag to specify a project."}}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+└─────────────────────────────────────────────────────────────┘
+
+┌──────────┬────────────────┐
+│ Emulator │ Host:Port      │
+├──────────┼────────────────┤
+│ Hosting  │ 127.0.0.1:5000 │
+└──────────┴────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 

@@ -1,0 +1,16 @@
+.NoPage {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  p {
+    margin-top: 0;
+  }
+}

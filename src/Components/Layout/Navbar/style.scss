@@ -1,0 +1,91 @@
+.Navbar {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 10vh;
+  align-items: center;
+  display: flex;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+
+  .projectLinks {
+    display: flex;
+    height: 10vh;
+    overflow-y: visible;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .MainLogo {
+    min-width: 10vh;
+    min-height: 10vh;
+    background-image: url("./../../../../public/3DS_Snow_NoLines.png");
+    background-position: center;
+    background-size: cover;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .navLink {
+    font-size: 0.5rem;
+    display: flex;
+    flex-wrap: nowrap;
+    position: relative;
+    align-items: center;
+    color: inherit;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+
+    p {
+      z-index: -1;
+      margin: 0;
+      padding: 0;
+      font-size: 4rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #c1678b;
+    }
+
+    &:hover {
+      transition: 300ms ease-in;
+      box-shadow: inset 0px 5px 0px -1px #c1678b;
+    }
+  }
+
+  .userAddon {
+    height: 10vh;
+    margin-left: auto;
+    margin-right: 10px;
+    display: flex;
+  }
+
+  @media (max-width: 768px) {
+    .Navbar {
+      display: none;
+    }
+  }
+}
+
+.CTAs {
+  position: absolute;
+  left: 0;
+  bottom: 1%;
+  height: fit-content;
+  width: 50px;
+
+  svg {
+    fill: #f7f3f2;
+  }
+}
