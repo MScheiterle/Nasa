@@ -2,20 +2,20 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on merge
-environment: env
-'on':
+"on":
   push:
     branches:
       - master
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    environment: env
     steps:
       - uses: actions/checkout@v3
       - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SIMPLIFIED_PROJECTS }}'
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_SIMPLIFIED_PROJECTS }}"
           channelId: live
           projectId: simplified-projects
