@@ -16,6 +16,13 @@
     url(./fonts/GT-America/GT-America-Mono-Regular-Trial.otf) format("opentype");
 }
 
+*,
+:root {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: "GT America Mono";
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -30,14 +37,16 @@ h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+.ExpandedFont {
   font-family: "GT America Expanded";
 }
 
-p {
+p,
+.ExtendedFont {
   font-family: "GT America Extended";
 }
 
-.mono {
+.MonoFont {
   font-family: "GT America Mono";
 }
