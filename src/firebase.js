@@ -17,7 +17,6 @@ import {
   where,
   addDoc,
 } from "firebase/firestore";
-import { errorParser } from "./Constants";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -52,14 +51,28 @@ const signInWithGoogle = async () => {
     alert(err.message);
   }
 };
-const logInWithEmailAndPassword = async (email, password, fields) => {
+const logInWithEmailAndPassword = async (
+  email,
+  password,
+  fields,
+  errorMessageField
+) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    errorParser(err.message, fields);
+    errorMessageField.innerHTML = "Error: Email and Passowrd don't match...";
+    Array.from(fields).forEach((value) => {
+      value.parentElement.classList.add("errored");
+    });
   }
 };
-const registerWithEmailAndPassword = async (name, email, password, fields) => {
+const registerWithEmailAndPassword = async (
+  name,
+  email,
+  password,
+  fields,
+  errorMessageField
+) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
@@ -70,17 +83,30 @@ const registerWithEmailAndPassword = async (name, email, password, fields) => {
       email,
     });
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    console.log(err);
+    if (err.message.includes("email-already-in-use")) {
+      errorMessageField.innerHTML = "Error: Email already in use...";
+    } else {
+      errorMessageField.innerHTML = "Error: Report this to Simpl1f1ed";
+    }
+    Array.from(fields).forEach((value) => {
+      value.parentElement.classList.add("errored");
+    });
   }
 };
-const sendPasswordReset = async (email, fields) => {
+const sendPasswordReset = async (email, fields, errorMessageField) => {
   try {
     await sendPasswordResetEmail(auth, email);
     alert("Password reset link sent!");
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    if (err.message.includes("user-not-found")) {
+      errorMessageField.innerHTML = "Error: Email not recognized...";
+    } else {
+      errorMessageField.innerHTML = "Error: Report this to Simpl1f1ed";
+    }
+    Array.from(fields).forEach((value) => {
+      value.parentElement.classList.add("errored");
+    });
   }
 };
 const logout = () => {

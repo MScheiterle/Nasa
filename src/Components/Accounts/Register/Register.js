@@ -7,6 +7,11 @@ import {
   signInWithGoogle,
 } from "./../../../firebase";
 import "./style.scss";
+import {
+  validateEmail,
+  validateMediumPassword,
+  validateUsername,
+} from "../../../Constants";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -17,9 +22,42 @@ function Register() {
 
   const navigate = useNavigate();
 
-  const register = () => {
-    if (!name) alert("Please enter name");
-    registerWithEmailAndPassword(name, email, password);
+  const handleRegister = () => {
+    const errorMessageElem = document.getElementById("erorrMessage");
+    const nameElem = document.getElementById("name").parentElement;
+    if (!validateUsername(name)) {
+      nameElem.classList.add("errored");
+      errorMessageElem.innerHTML =
+        "Error: This is not a valid username Ex: Foo.Bar_13-1";
+      return;
+    }
+    nameElem.classList.remove("errored");
+
+    const emailElem = document.getElementById("email").parentElement;
+    if (!validateEmail(email)) {
+      emailElem.classList.add("errored");
+      errorMessageElem.innerHTML =
+        "Error: This is not a valid email Ex: foobar13@gmail.com";
+      return;
+    }
+    emailElem.classList.remove("errored");
+
+    const passwordElem = document.getElementById("password").parentElement;
+    if (!validateMediumPassword(password)) {
+      passwordElem.classList.add("errored");
+      errorMessageElem.innerHTML =
+        "Error: This is not a strong enough password [7 charachters long with 1 number and a special character]...";
+      return;
+    }
+    passwordElem.classList.remove("errored");
+
+    registerWithEmailAndPassword(
+      name,
+      email,
+      password,
+      document.getElementsByClassName("registerInput"),
+      document.getElementById("erorrMessage")
+    );
   };
 
   useEffect(() => {
@@ -31,6 +69,11 @@ function Register() {
     <div className="Register">
       <div className="register-form">
         <div className="flex-row">
+          <label className="errorLabel" htmlFor="name">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+            </svg>
+          </label>
           <label className="registerLabel" htmlFor="name">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
               <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
@@ -45,6 +88,11 @@ function Register() {
           />
         </div>
         <div className="flex-row">
+          <label className="errorLabel" htmlFor="email">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+            </svg>
+          </label>
           <label className="registerLabel" htmlFor="email">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z" />
@@ -59,6 +107,11 @@ function Register() {
           />
         </div>
         <div className="flex-row">
+          <label className="errorLabel" htmlFor="password">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+            </svg>
+          </label>
           <label className="registerLabel" htmlFor="password">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path d="M336 352c97.2 0 176-78.8 176-176S433.2 0 336 0S160 78.8 160 176c0 18.7 2.9 36.8 8.3 53.7L7 391c-4.5 4.5-7 10.6-7 17v80c0 13.3 10.7 24 24 24h80c13.3 0 24-10.7 24-24V448h40c13.3 0 24-10.7 24-24V384h40c6.4 0 12.5-2.5 17-7l33.3-33.3c16.9 5.4 35 8.3 53.7 8.3zM376 96a40 40 0 1 1 0 80 40 40 0 1 1 0-80z" />
@@ -72,11 +125,12 @@ function Register() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        <p id="erorrMessage"></p>
         <input
           className="registerSubmit ExtendedFont"
           type="submit"
           value="REGISTER"
-          onClick={() => register()}
+          onClick={() => handleRegister()}
         />
       </div>
       <div className="registerProvidersSection">

@@ -13,18 +13,49 @@
   background: rgba(black, 0.15);
 
   .register-form {
-    width: 100vw;
+    width: 75vw;
     position: relative;
 
     @media screen and (min-width: 600px) {
       width: 50vw;
-      max-width: 15em;
+      max-width: 20em;
     }
   }
 
   .flex-row {
+    position: relative;
     display: flex;
     margin-bottom: 1em;
+
+    &.errored {
+      box-shadow: 0px 0px 0px 5px #bf4a4a;
+
+      .errorLabel {
+        @extend .registerLabel;
+
+        position: absolute;
+        top: 50%;
+        left: -2.5em;
+        transform: translate(0, -50%);
+
+        svg {
+          opacity: 1 !important;
+          fill: #bf4a4a !important;
+        }
+
+        background: transparent !important;
+        display: block;
+      }
+    }
+  }
+
+  #erorrMessage {
+    color: #bf4a4a;
+    text-align: center;
+  }
+
+  .errorLabel {
+    display: none;
   }
 
   .registerLabel {

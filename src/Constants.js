@@ -17,20 +17,25 @@ export const projects = [
   },
 ];
 
-export const errorParser = (err, fields) => {
-  const availableFields = ["email", "name", "password"];
+export const validateEmail = (email) => {
+  return email.match(
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  );
+};
 
-  let erroredFields = [];
+// Not used ATM
+export const validateStrongPassword = (password) => {
+  return password.match(
+    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/
+  );
+};
 
-  availableFields.forEach((value) => {
-    if (err.includes(value)) {
-      erroredFields.push(value);
-    }
-  });
+export const validateMediumPassword = (password) => {
+  return password.match(
+    /^^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,}$/
+  );
+};
 
-  Array.from(fields).forEach((value) => {
-    if (erroredFields.includes(value.id)) {
-      value.parentElement.classList.add("errored");
-    }
-  });
+export const validateUsername = (username) => {
+  return username.match(/^([A-Za-z0-9]|[-._](?![-._])){4,20}$/);
 };
