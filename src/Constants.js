@@ -16,3 +16,21 @@ export const projects = [
     desc: "This website.",
   },
 ];
+
+export const errorParser = (err, fields) => {
+  const availableFields = ["email", "name", "password"];
+
+  let erroredFields = [];
+
+  availableFields.forEach((value) => {
+    if (err.includes(value)) {
+      erroredFields.push(value);
+    }
+  });
+
+  Array.from(fields).forEach((value) => {
+    if (erroredFields.includes(value.id)) {
+      value.parentElement.classList.add("errored");
+    }
+  });
+};

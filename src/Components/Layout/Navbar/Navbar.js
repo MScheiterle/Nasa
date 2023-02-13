@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import "./style.scss";
@@ -9,33 +9,34 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 import { projects } from "./../../../Constants";
 
 function Navbar() {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
   const navigate = useNavigate();
 
-  const fetchUserName = async () => {
+  const fetchUserName = useCallback(async () => {
     try {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
       const doc = await getDocs(q);
       const data = doc.docs[0].data();
       setName(data.name);
     } catch (err) {
-      console.error(err);
       alert("An error occured while fetching user data");
     }
-  };
+  }, [user?.uid]);
 
   const userAddon = user ? (
     <>
-      <div className="navLink">{<h1>name</h1>}</div>
-      <div className="navLink">{<h1>user?.email</h1>}</div>
+      <div className="navLink userName">{<h1>{name}</h1>}</div>
+      <div className="navLink" onClick={() => logout()}>
+        {<h1>Logout</h1>}
+      </div>
     </>
   ) : (
     <>
-      <div className="navLink">
+      <div className="navLink" onClick={() => navigate("/login")}>
         <h1>Login</h1>
       </div>
-      <div className="navLink">
+      <div className="navLink" onClick={() => navigate("/register")}>
         <h1>Register</h1>
       </div>
     </>
@@ -53,8 +54,15 @@ function Navbar() {
   });
 
   useEffect(() => {
-    if (loading) return;
-    if (user) return fetchUserName();
+    if (loading) return () => {}
+    const fetchCall = () => (user ? fetchUserName() : null);
+
+    if (document.readyState === "complete" && user) {
+      fetchCall();
+    } else {
+      window.addEventListener("load", fetchCall, false);
+      return () => window.removeEventListener("load", fetchCall);
+    }
 
     const slider = document.querySelector(".projectLinks");
     let isDown = false;
@@ -76,13 +84,13 @@ function Navbar() {
       slider.classList.remove("active");
     });
     slider.addEventListener("mousemove", (e) => {
-      if (!isDown) return;
+      if (!isDown) return () => {};
       e.preventDefault();
       const x = e.pageX - slider.offsetLeft;
       const walk = (x - startX) * 3; //scroll-fast
       slider.scrollLeft = scrollLeft - walk;
     });
-  }, [user, loading]);
+  }, [user, loading, fetchUserName]);
 
   return (
     <>

@@ -1,1 +1,97 @@
-  
+.Reset {
+  $green-light: #00d6b7;
+  $gray: #8f8f8f;
+  $gray-light: #f5f6f8;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(black, 0.15);
+
+  .reset-form {
+    width: 100vw;
+    position: relative;
+
+    @media screen and (min-width: 600px) {
+      width: 50vw;
+      max-width: 15em;
+    }
+  }
+
+  .flex-row {
+    display: flex;
+    margin-bottom: 1em;
+  }
+
+  .resetLabel {
+    width: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 18px;
+      opacity: 0.5;
+      fill: #c1678b;
+    }
+
+    background: $gray-light;
+    cursor: pointer;
+  }
+  .resetInput {
+    width: 1em;
+    flex: 1;
+    padding: 1em;
+    border: 0;
+    color: $gray;
+    font-size: 1rem;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .resetSubmit {
+    display: block;
+    padding: 1em;
+    width: 100%;
+
+    background: #c1678b;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.75em;
+    font-weight: 600;
+    text-shadow: 0 1px 0 rgba(black, 0.2);
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .alternateOptions {
+    margin-top: 1em;
+    font-size: 0.8em;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    :first-child,
+    :last-child {
+      margin-left: 5px;
+      margin-right: 5px;
+      cursor: pointer;
+
+      &:hover {
+        transition: 300ms ease-in;
+        box-shadow: 0px 5px 0px -1px #c1678b;
+      }
+    }
+  }
+}

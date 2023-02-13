@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import {
   GoogleAuthProvider,
+  //GithubAuthProvider,
   getAuth,
   signInWithPopup,
   signInWithEmailAndPassword,
@@ -16,6 +17,7 @@ import {
   where,
   addDoc,
 } from "firebase/firestore";
+import { errorParser } from "./Constants";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -50,15 +52,14 @@ const signInWithGoogle = async () => {
     alert(err.message);
   }
 };
-const logInWithEmailAndPassword = async (email, password) => {
+const logInWithEmailAndPassword = async (email, password, fields) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    errorParser(err.message, fields);
   }
 };
-const registerWithEmailAndPassword = async (name, email, password) => {
+const registerWithEmailAndPassword = async (name, email, password, fields) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
@@ -73,7 +74,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     alert(err.message);
   }
 };
-const sendPasswordReset = async (email) => {
+const sendPasswordReset = async (email, fields) => {
   try {
     await sendPasswordResetEmail(auth, email);
     alert("Password reset link sent!");
