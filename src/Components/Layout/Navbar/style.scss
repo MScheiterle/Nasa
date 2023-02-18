@@ -1,5 +1,6 @@
 .Navbar {
-  position: absolute;
+  z-index: 999;
+  position: sticky;
   top: 0;
   width: 100vw;
   height: 10vh;
@@ -7,8 +8,11 @@
   display: flex;
   white-space: nowrap;
   overflow: hidden;
-  margin: 0;
-  padding: 0;
+
+  &.scrolled {
+    background: #1f2022;
+    box-shadow: 0px 2px 10px 0px #c1678b;
+  }
 
   .projectLinks {
     display: flex;
@@ -17,6 +21,10 @@
     overflow-x: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
+
+    > :nth-child(n) {
+      min-width: 5vw;
+    }
 
     &::-webkit-scrollbar {
       display: none;
@@ -67,7 +75,7 @@
   .userAddon {
     height: 10vh;
     margin-left: auto;
-    margin-right: 10px;
+    margin-right: 40px;
     display: flex;
 
     .userName {
@@ -78,7 +86,7 @@
     }
   }
 
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     .Navbar {
       display: none;
     }
@@ -86,13 +94,18 @@
 }
 
 .CTAs {
-  position: absolute;
-  left: 0;
-  bottom: 1%;
-  height: fit-content;
-  width: 50px;
+  z-index: 999;
+  position: sticky;
+  left: 1vw;
+  bottom: 1vh;
+  width: 32px;
+  height: 0;
+  overflow: visible;
+  top: calc(100vh - 60px);
 
   svg {
+    height: 32px;
+    width: 32px;
     fill: #f7f3f2;
   }
 }

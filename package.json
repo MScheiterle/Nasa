@@ -1,6 +1,6 @@
 {
   "name": "simpl1f1ed.com",
-  "version": "2.1",
+  "version": "2.2",
   "private": true,
   "dependencies": {
     "firebase": "^9.14.0",
