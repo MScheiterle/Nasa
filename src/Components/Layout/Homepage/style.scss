@@ -1,0 +1,142 @@
+.Homepage {
+  margin-top: -10vh;
+
+  .name {
+    margin: 0;
+    font-size: max(10vw, 30px);
+
+    span {
+      animation: cursor-blink 1.5s infinite;
+
+      @keyframes cursor-blink {
+        0% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  .description {
+    margin: 0;
+    font-size: 22px;
+    text-align: center;
+    word-break: break-word;
+    align-items: center;
+    text-transform: uppercase;
+  }
+
+  .scrollIndicator {
+    position: absolute;
+    bottom: 5vh;
+    left: 50%;
+
+    :nth-child(1) {
+      top: 0;
+      left: 0;
+      -webkit-animation-delay: 0.1s;
+      -moz-animation-delay: 0.1s;
+      -webkit-animation-direction: alternate;
+
+      animation-direction: alternate;
+      animation-delay: alternate;
+    }
+
+    :nth-child(2) {
+      top: 10px;
+      left: 0px;
+      -webkit-animation-delay: 0.2s;
+      -moz-animation-delay: 0.2s;
+      -webkit-animation-direction: alternate;
+
+      animation-delay: 0.2s;
+      animation-direction: alternate;
+    }
+
+    :nth-child(3) {
+      top: 20px;
+      left: 0px;
+      -webkit-animation-delay: 0.3s;
+      -moz-animation-delay: 0.3s;
+      -webkit-animation-direction: alternate;
+
+      animation-delay: 0.3s;
+      animation-direction: alternate;
+    }
+
+    svg {
+      -webkit-animation: mouse-scroll 1s infinite;
+      -moz-animation: mouse-scroll 1s infinite;
+      animation: mouse-scroll 1s infinite;
+      transform: translate(-50%);
+      position: absolute;
+      fill: #c1678b;
+      padding: 0;
+      margin: 0;
+      height: 32px;
+      width: 32px;
+      opacity: 0;
+    }
+
+    @-webkit-keyframes mouse-scroll {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @-moz-keyframes mouse-scroll {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @-o-keyframes mouse-scroll {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes mouse-scroll {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes mouse-scroll-end {
+      100% {
+        opacity: 0;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .description {
+      font-size: 13px;
+    }
+  }
+}

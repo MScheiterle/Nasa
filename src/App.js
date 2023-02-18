@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Navbar from "./Components/Layout/Navbar/Navbar";
 import Home from "./Components/Layout/Home/Home";
+import Footer from "./Components/Layout/Footer/Footer";
 import Login from "./Components/Accounts/Login/Login";
 import Register from "./Components/Accounts/Register/Register";
 import Reset from "./Components/Accounts/Reset/Reset";
@@ -15,9 +16,7 @@ function App() {
         const ele = document.getElementById("loading-indicator");
         if (ele) {
           ele.classList.add("available");
-          setTimeout(() => {
-            ele.outerHTML = "";
-          }, 2000);
+          ele.outerHTML = "";
         }
       }, 1000);
     };
@@ -41,6 +40,7 @@ function App() {
           <Route path="/password_reset" element={<Reset />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );
