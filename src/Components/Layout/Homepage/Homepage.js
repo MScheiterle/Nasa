@@ -8,7 +8,7 @@ function Homepage() {
         Simpl1f1ed<span style={{ color: "#c1678b" }}>_</span>
       </h1>
       <p className="description">
-        Front End Developer • Back End and Graphics Hobbiest • Intelligence
+        Front End Developer • Back End and Graphics Hobbiest • Intelligence and Education
         Enthusiast
       </p>
       <div id="scrollIndicator" className="scrollIndicator">

@@ -1,12 +1,15 @@
-export const pages = [{ name: "Projects" }];
+export const navLinks = [
+  { name: "Projects", link: false },
+  { name: "QuickMaths", link: true, destination: "/QuickMaths" },
+];
 
 export const projects = [
   {
     name: "Website",
     status: "finished",
     description:
-      "This allowed me a platform to display the projects I've done over my time coding. I hope to improve this project by changing the design to allow for a more dynamic and interactive experiance. Rating 6 becuase I gave up on some cool features due to performance issues that I couldn't figure out. Will change this someday but not today.",
-    timespan: "3 Weeks",
+      "Constantly working here to improve my front end design skill, adding themes and creating a dynamic content loading scheme to ensure that all themes work seamlessly with each other. This allows me a platform to display my talent and projects. Aswell as, make projects with a sophisticated back end using Firebase.",
+    timespan: "Constant",
     rating: "6/10",
     githubLink: "https://github.com/MScheiterle/Simpl1f1ed.com",
   },
@@ -20,8 +23,17 @@ export const projects = [
     githubLink: "https://github.com/MScheiterle/Capstone-Project",
   },
   {
-    name: "Open Intel",
+    name: "QuickMaths",
     status: "current",
+    description:
+      "This will be the foundation for a competative and practice math website, testing how fast people can do all forms of math problems. It will be hosted on this website until it is fully finished and in demand.",
+    timespan: "",
+    rating: "",
+    githubLink: "",
+  },
+  {
+    name: "Open Intel",
+    status: "planned",
     description:
       "This software will allow access to all Open Source Intelligence (OSINT) gathering tools. I hope this becomes something that people can use more than the other white pages copy sites that have fake information. This will be difficult though...",
     timespan: "",

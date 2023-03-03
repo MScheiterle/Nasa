@@ -6,7 +6,7 @@ import "./style.scss";
 import { auth, db, logout } from "./../../../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 
-import { pages } from "./../../../Constants";
+import { navLinks } from "./../../../Constants";
 
 function Navbar() {
   const [user, loading] = useAuthState(auth);
@@ -41,10 +41,23 @@ function Navbar() {
     </>
   ) : (
     <>
-      <div className="navLink" onClick={() => navigate("/login")}>
+      <div
+        className="navLink"
+        onClick={() => {
+          navigate("/login");
+          setTimeout(() => {
+            smoothScroll("Login");
+          }, 150);
+        }}
+      >
         <h1>Login</h1>
       </div>
-      <div className="navLink" onClick={() => navigate("/register")}>
+      <div className="navLink" onClick={() => {
+          navigate("/register");
+          setTimeout(() => {
+            smoothScroll("Register");
+          }, 150);
+        }}>
         <h1>Register</h1>
       </div>
     </>
@@ -52,14 +65,16 @@ function Navbar() {
 
   const pageELements = [];
 
-  pages.forEach((element, index) => {
+  navLinks.forEach((element, index) => {
     pageELements.push(
       <div
         className="navLink"
         key={index}
         onClick={() => {
-          navigate("/");
-          smoothScroll(element.name);
+          navigate(element.link ? element.destination : "/");
+          setTimeout(() => {
+            smoothScroll(element.name);
+          }, 150);
         }}
       >
         <h1>{element.name}</h1>
@@ -69,53 +84,10 @@ function Navbar() {
   });
 
   var smoothScroll = function (elementId) {
-    var MIN_PIXELS_PER_STEP = 16;
-    var MAX_SCROLL_STEPS = 30;
-    var target = document.getElementById(elementId);
-    var scrollContainer = target;
-    do {
-      scrollContainer = scrollContainer.parentNode;
-      if (!scrollContainer) return;
-      scrollContainer.scrollTop += 1;
-    } while (scrollContainer.scrollTop === 0);
-
-    var targetY = 0;
-    do {
-      if (target === scrollContainer) break;
-      targetY += target.offsetTop;
-    } while ((target = target.offsetParent));
-
-    var pixelsPerStep = Math.max(
-      MIN_PIXELS_PER_STEP,
-      Math.abs(targetY - scrollContainer.scrollTop) / MAX_SCROLL_STEPS
-    );
-
-    var isUp = targetY < scrollContainer.scrollTop;
-
-    var stepFunc = function () {
-      if (isUp) {
-        scrollContainer.scrollTop = Math.max(
-          targetY,
-          scrollContainer.scrollTop - pixelsPerStep
-        );
-        if (scrollContainer.scrollTop <= targetY) {
-          return;
-        }
-      } else {
-        scrollContainer.scrollTop = Math.min(
-          targetY,
-          scrollContainer.scrollTop + pixelsPerStep
-        );
-
-        if (scrollContainer.scrollTop >= targetY) {
-          return;
-        }
-      }
-
-      window.requestAnimationFrame(stepFunc);
-    };
-
-    window.requestAnimationFrame(stepFunc);
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   useEffect(() => {
@@ -136,11 +108,23 @@ function Navbar() {
         className="MainLogo navLink"
         onClick={() => {
           navigate("/");
-          smoothScroll("Homepage");
+          setTimeout(() => {
+            smoothScroll("Homepage");
+          }, 150);
         }}
       />
       <div className="projectLinks">{pageELements}</div>
       <div className="userAddon">{userAddon}</div>
+      <div
+        className="menuButton"
+        onClick={() => {
+          document.getElementById("Navbar").classList.toggle("mobileToggle");
+        }}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
+        </svg>
+      </div>
     </div>
   );
 }

@@ -5,8 +5,8 @@ import "./style.scss";
 
 function Home() {
   const availableContent = [
-    <Homepage />,
-    <Projects />,
+    <Homepage key={"Homepage"} />,
+    <Projects key={"Projects"} />,
   ];
 
   return <div className="Home">{availableContent}</div>;
