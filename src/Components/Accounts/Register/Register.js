@@ -66,7 +66,7 @@ function Register() {
   }, [user, navigate, loading]);
 
   return (
-    <div className="Register">
+    <div id="Register" className="Register">
       <div className="register-form">
         <div className="flex-row">
           <label className="errorLabel" htmlFor="name">

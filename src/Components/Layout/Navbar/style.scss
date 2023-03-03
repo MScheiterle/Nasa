@@ -17,8 +17,6 @@
   .projectLinks {
     display: flex;
     height: 10vh;
-    overflow-y: visible;
-    overflow-x: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
 
@@ -49,10 +47,15 @@
     flex-wrap: nowrap;
     position: relative;
     align-items: center;
+    justify-content: center;
     color: inherit;
     margin-left: 10px;
     margin-right: 10px;
     cursor: pointer;
+
+    h1 {
+      text-align: center;
+    }
 
     p {
       z-index: -1;
@@ -79,16 +82,84 @@
     display: flex;
 
     .userName {
-      white-space: nowrap;
+      text-align: center;
+      width: 200px;
       overflow: hidden;
+      white-space: pre-line;
       text-overflow: ellipsis;
       max-width: 200px;
     }
   }
 
-  @media (min-width: 768px) {
-    .Navbar {
+  .menuButton {
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    display: none;
+    fill: #f7f3f2;
+    height: 32px;
+    width: 32px;
+  }
+
+  @media (max-width: 767px) {
+    .userAddon,
+    .projectLinks {
       display: none;
+    }
+
+    div:last-child {
+      display: block;
+    }
+
+    &.mobileToggle {
+      background: #1f2022;
+      height: fit-content;
+      flex-direction: column;
+
+      .navLink {
+        font-size: 0.35rem;
+
+        &:hover {
+          transition: unset;
+          box-shadow: unset;
+        }
+      }
+
+      .MainLogo {
+        align-self: flex-start;
+      }
+
+      .userAddon,
+      .projectLinks {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .userName {
+          width: 50vw;
+        }
+      }
+
+      .projectLinks {
+        display: grid;
+        grid-template-columns: 50vw 50vw;
+        height: unset;
+        margin-left: -23px;
+
+        & > :nth-child(n) {
+          display: grid;
+          align-self: start;
+          width: 50vw;
+          height: 4rem;
+        }
+      }
+
+      .userAddon {
+        justify-content: center;
+        top: 20vh;
+        width: 100vw;
+      }
     }
   }
 }

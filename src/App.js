@@ -8,6 +8,7 @@ import Login from "./Components/Accounts/Login/Login";
 import Register from "./Components/Accounts/Register/Register";
 import Reset from "./Components/Accounts/Reset/Reset";
 import NoPage from "./Components/Layout/NoPage/NoPage";
+import QuickMaths from "./Components/QuickMaths/QuickMaths";
 
 function App() {
   useEffect(() => {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/password_reset" element={<Reset />} />
+          <Route path="/QuickMaths" element={<QuickMaths />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
         <Footer />

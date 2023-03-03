@@ -34,7 +34,7 @@ function Reset() {
   }, [user, navigate, loading]);
 
   return (
-    <div className="Reset">
+    <div id="Reset" className="Reset">
       <div className="reset-form">
         <div className="flex-row">
           <label className="errorLabel" htmlFor="email">

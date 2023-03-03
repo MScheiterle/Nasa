@@ -3,11 +3,15 @@
   position: relative;
   overflow: hidden;
 
+  .mobileProjects {
+    display: none;
+  }
+
   .scroller {
     border-left: 10px solid rgba(black, 0.15);
     border-right: 10px solid rgba(black, 0.15);
     min-height: 100vw;
-    max-width: 40rem;
+    max-height: 100vw;
     overflow-x: hidden;
     overflow-y: auto;
     white-space: nowrap;
@@ -30,7 +34,7 @@
     height: 30em;
     width: 30em;
     background: rgba(black, 0.15);
-    margin: 4em;
+    margin: 6em;
 
     & > .completion {
       content: "";
@@ -119,6 +123,66 @@
 
       & > :nth-child(n) {
         margin: 0;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    & {
+      height: fit-content !important;
+    }
+
+    .scroller {
+      display: none;
+    }
+
+    .mobileProjects {
+      display: block;
+    }
+
+    .project-card {
+      text-align: center;
+      height: fit-content;
+      transform: unset;
+      width: 85vw;
+
+      & > :nth-child(n) {
+        font-size: 0.75em;
+      }
+
+      & > .completion {
+        width: 32px;
+        height: 32px;
+      }
+
+      .card-header {
+        height: 10em;
+      }
+
+      &:hover .card-body {
+        max-height: 300px;
+      }
+
+      .card-body {
+        -webkit-transition: max-height 1s;
+        -moz-transition: max-height 1s;
+        -ms-transition: max-height 1s;
+        -o-transition: max-height 1s;
+        transition: max-height 1s;
+        max-height: 0;
+        overflow: hidden;
+      }
+
+      .card-footer {
+        min-height: 10em;
+        align-items: center;
+
+        .source-status {
+          svg {
+            width: 32px;
+            min-height: 32px;
+          }
+        }
       }
     }
   }

@@ -1,12 +1,9 @@
 .Register {
-  $green-light: #00d6b7;
-  $gray: #8f8f8f;
-  $gray-light: #f5f6f8;
-
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: -10vh;
   width: 100vw;
   height: 100vh;
 
@@ -70,7 +67,7 @@
       fill: #c1678b;
     }
 
-    background: $gray-light;
+    background: #dfdcdb;
     cursor: pointer;
   }
   .registerInput {
@@ -78,7 +75,6 @@
     flex: 1;
     padding: 1em;
     border: 0;
-    color: $gray;
     font-size: 1rem;
 
     &:focus {
