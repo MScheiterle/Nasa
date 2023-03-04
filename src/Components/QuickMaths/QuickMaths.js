@@ -1,66 +1,139 @@
 import React, { useState } from "react";
-import { evaluate } from "mathjs";
+import * as math from "mathjs";
 import "./style.scss";
 
-function FlashCard() {
-  const [showAnswer, setShowAnswer] = useState(false);
-  const [expression, setExpression] = useState(generateExpression());
+function ElementaryMathPractice() {
+  const [expression, setExpression] = useState(generateExpression("+"));
   const [answer, setAnswer] = useState("");
+  const [showAnswer, setShowAnswer] = useState(false);
+  const [operator, setOperator] = useState("+");
 
-  function generateExpression() {
-    const operations = ["+", "-", "*", "/"];
-    const operands = Array.from({ length: 2 }, () =>
-      Math.floor(Math.random() * 10)
-    );
-    const operator = operations[Math.floor(Math.random() * operations.length)];
-    return `${operands[0]} ${operator} ${operands[1]}`;
-  }
-
-  function checkAnswer(answer) {
-    const correctAnswer = evaluate(expression).toString();
-    setAnswer(answer);
-    if (answer === correctAnswer) {
-      generateNewCard();
+  function generateExpression(operator) {
+    const min = 1;
+    const max = 20;
+    const num1 = Math.floor(Math.random() * (max - min + 1) + min);
+    const num2 = Math.floor(Math.random() * (max - min + 1) + min);
+    switch (operator) {
+      case "+":
+        return `${num1} + ${num2}`;
+      case "-":
+        return `${num1} - ${num2}`;
+      case "*":
+        return `${num1} * ${num2}`;
+      case "/":
+        return `${num1 * num2} / ${num1}`;
+      default:
+        return `${num1} + ${num2}`;
     }
   }
 
-  function toggleAnswer() {
-    setShowAnswer(!showAnswer);
+  function checkAnswer(answer) {
+    const correctAnswer = math.evaluate(expression).toString();
+    setAnswer(answer);
+    if (answer === correctAnswer) {
+      resetCard();
+    }
   }
 
-  function generateNewCard() {
-    setExpression(generateExpression());
-    setAnswer("");
+  function resetCard() {
     setShowAnswer(false);
+    setExpression(generateExpression(operator));
+    setAnswer("");
+  }
+
+  function handleOperatorChange(event) {
+    const newOperator = event.target.value;
+    if (newOperator !== operator) {
+      setOperator(newOperator);
+      setExpression(generateExpression(newOperator));
+      setAnswer("");
+      setShowAnswer(false);
+    }
   }
 
   return (
-    <div className="QuickMaths">
-      <p>
-        {expression} =
-        <span>{showAnswer && evaluate(expression).toString()}</span>
-      </p>
-      {!showAnswer ? (
-        <input
-          type="text"
-          value={answer}
-          onChange={(event) => {
-            checkAnswer(event.target.value);
-          }}
-        />
-      ) : (
-        <></>
-      )}
-      <div className="Buttons">
-        {!showAnswer ? (
-          <button onClick={toggleAnswer}>Show Answer</button>
-        ) : (
-          <></>
-        )}
-        <button onClick={generateNewCard}>Skip</button>
+    <div className="ElementaryMath">
+      <div>
+        <h2>Elementary Math Practice</h2>
+        <div>
+          <label>
+            <input
+              type="radio"
+              name="operator"
+              value="+"
+              checked={operator === "+"}
+              onChange={handleOperatorChange}
+            />
+            Addition
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="operator"
+              value="-"
+              checked={operator === "-"}
+              onChange={handleOperatorChange}
+            />
+            Subtraction
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="operator"
+              value="*"
+              checked={operator === "*"}
+              onChange={handleOperatorChange}
+            />
+            Multiplication
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="operator"
+              value="/"
+              checked={operator === "/"}
+              onChange={handleOperatorChange}
+            />
+            Division
+          </label>
+        </div>
+      </div>
+      <div>
+        <h3 className="expression">
+          {expression} = {showAnswer ? math.evaluate(expression) : <></>}
+        </h3>
+
+        <div className="input_section">
+          <div>
+            {!showAnswer ? (
+              <input
+                type="text"
+                value={answer}
+                onChange={(event) => {
+                  checkAnswer(event.target.value);
+                }}
+              />
+            ) : (
+              <input
+                type="text"
+                value={answer}
+                onChange={(event) => {
+                  checkAnswer(event.target.value);
+                }}
+                disabled
+              />
+            )}
+            {!showAnswer ? (
+              <button onClick={() => setShowAnswer(true)}>Show Answer</button>
+            ) : (
+              <></>
+            )}
+            <button onClick={resetCard}>{showAnswer ? "Next" : "Skip"}</button>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
-export default FlashCard;
+export default ElementaryMathPractice;
