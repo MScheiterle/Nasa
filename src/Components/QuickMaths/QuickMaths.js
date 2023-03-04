@@ -52,7 +52,7 @@ function ElementaryMathPractice() {
   }
 
   return (
-    <div className="ElementaryMath">
+    <div className="QuickMaths">
       <div>
         <h2>Elementary Math Practice</h2>
         <div>
