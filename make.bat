@@ -16,7 +16,7 @@ if exist "./src/Components/%~2/" (
         "function %~2() {"
         echo.
         "   return ("
-        "       <div className="%~2"></div>"
+        "       <div id="%~2"></div>"
         "   );"
         "}"
         echo.
@@ -27,7 +27,7 @@ if exist "./src/Components/%~2/" (
 
     >"./src/Components/%~2/style.scss" (
     for %%I in (
-        ".%~2 {}"
+        "#%~2 {}"
     ) do if "%%~I" == "echo." ( echo. ) else ( echo %%~I )
     )
     echo File 'style.scss' created at "./src/Components/%~2/style.scss"

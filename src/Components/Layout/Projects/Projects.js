@@ -56,7 +56,7 @@ function Projects() {
     );
   });
   return (
-    <div id="Projects" className="Projects">
+    <div id="Projects">
       <div className="scroller">{projectComponents}</div>
       <div className="mobileProjects">{projectComponents}</div>
     </div>

@@ -103,7 +103,7 @@ function Navbar() {
   }, [user, loading, fetchUserName]);
 
   return (
-    <div id="Navbar" className="Navbar">
+    <div id="Navbar">
       <div
         className="MainLogo navLink"
         onClick={() => {

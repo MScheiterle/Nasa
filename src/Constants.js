@@ -1,7 +1,41 @@
 export const navLinks = [
   { name: "Projects", link: false },
-  { name: "QuickMaths", link: true, destination: "/QuickMaths" },
+  { name: "QuickMaths", link: true, destination: "/QuickMaths/home" },
+  { name: "OpenIntel", link: true, destination: "/OpenIntel" },
 ];
+
+export const educationalComps = {
+  Elementary: [
+    { name: "Addition", symbol: "+" },
+    { name: "Subtraction", symbol: "-" },
+    { name: "Multiplication", symbol: "*" },
+    { name: "Division", symbol: "/" },
+    { name: "Fractions", symbol: "1/2" },
+    { name: "Decimals", symbol: "1.2" },
+    { name: "Percentages", symbol: "%" },
+    { name: "Exponents", symbol: "1^2" },
+  ],
+  MiddleEducation: [
+    { name: "Square Roots", symbol: "M" },
+    { name: "Order of operations", symbol: "M" },
+    { name: "Variables", symbol: "M" },
+    { name: "Multiple Step Equations", symbol: "M" },
+    { name: "Systems of Equations", symbol: "f(x)" },
+    { name: "Inequalities", symbol: "M" },
+    { name: "Factoring", symbol: "M" },
+    { name: "Graphing", symbol: "M" },
+  ],
+  HigherEducation: [
+    { name: "Matrices", symbol: "M" },
+    { name: "Polynomials", symbol: "M" },
+    { name: "Number Theory", symbol: "M" },
+    { name: "Summation", symbol: "Σ" },
+    { name: "Statistics", symbol: "U" },
+    { name: "Geometry", symbol: "⊾" },
+    { name: "Derivatives", symbol: "d/dx" },
+    { name: "Integrals", symbol: "∫" },
+  ],
+};
 
 export const projects = [
   {
@@ -53,7 +87,7 @@ export const projects = [
 
 export const validateEmail = (email) => {
   return email.match(
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    /^(([^<>()[\]\\.,;:\s@"]M(\.[^<>()[\]\\.,;:\s@"]M)*)|(".M"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]M\.)M[a-zA-Z]{2,}))$/
   );
 };
 

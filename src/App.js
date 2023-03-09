@@ -39,7 +39,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/password_reset" element={<Reset />} />
-          <Route path="/QuickMaths" element={<QuickMaths />} />
+          <Route path="/QuickMaths/*" element={<QuickMaths />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
         <Footer />
