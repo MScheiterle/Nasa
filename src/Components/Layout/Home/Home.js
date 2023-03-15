@@ -9,6 +9,6 @@ function Home() {
     <Projects key={"Projects"} />,
   ];
 
-  return <div className="Home">{availableContent}</div>;
+  return <div id="Home">{availableContent}</div>;
 }
 export default Home;

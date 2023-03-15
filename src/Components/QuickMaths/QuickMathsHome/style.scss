@@ -1,0 +1,102 @@
+#QuickMathsHome {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+
+  .headerText {
+    margin-top: 10vw;
+    min-width: 50vw;
+    text-align: center;
+    font-size: 1.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    & > :nth-child(n) {
+      margin: 0;
+      padding: 0;
+    }
+
+    p {
+      font-size: 1.25rem;
+      span {
+        color: #c1678b;
+      }
+    }
+
+    .flashCardButton {
+      margin-top: 20vh;
+      background: #c1678b84;
+      border-radius: 20px;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      outline-offset: 4px;
+
+      .front {
+        will-change: transform;
+        transition: transform 250ms;
+        display: block;
+        padding: 12px 42px;
+        border-radius: 20px;
+        font-size: 2.5rem;
+        background: #c1678b;
+        color: #f7f3f2;
+        transform: translateY(-6px);
+      }
+
+      &:active .front {
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  .QuickMathsCube {
+    min-width: 50vw;
+    height: 100%;
+    box-shadow: -2px -10px 0px 0px #c1678b;
+  }
+
+  @media (max-width: 767px) {
+    & {
+      flex-direction: column;
+
+      .headerText {
+        padding-top: 15vh;
+        justify-content: center;
+        min-height: 50vh;
+        font-size: 0.5rem;
+        text-align: center;
+
+        & > :nth-child(n):not(:last-child) {
+          padding-bottom: 20px;
+        }
+
+        .flashCardButton {
+          margin-top: 5vh;
+          .front {
+            font-size: 0.75rem;
+          }
+        }
+
+        p {
+          font-size: 0.75rem;
+          span {
+            color: #c1678b;
+          }
+        }
+      }
+
+      .QuickMathsCube {
+        box-shadow: 0px -2px 0px 0px #c1678b;
+        min-height: 50vh;
+      }
+    }
+  }
+}

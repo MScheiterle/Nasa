@@ -47,7 +47,7 @@ function Login() {
   }, [user, navigate, loading]);
 
   return (
-    <div id="Login" className="Login">
+    <div id="Login">
       <div className="login-form">
         <div className="flex-row">
           <label className="errorLabel" htmlFor="email">
