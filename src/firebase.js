@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import {
   GoogleAuthProvider,
-  //GithubAuthProvider,
   getAuth,
   signInWithPopup,
   signInWithEmailAndPassword,

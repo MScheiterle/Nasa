@@ -19,11 +19,8 @@ function CubePane(props) {
   // Hold state for hovered and clicked events
   const [hovered, hover] = useState(false);
   const [clicked, click] = useState(false);
-  const [depth] = useState(Math.random() * (0.1 - 0) + 0);
 
-  useFrame(() => {
-    
-  });
+  useFrame(() => {});
 
   const baseMaterial = new THREE.MeshPhongMaterial({
     color: props.color
@@ -33,16 +30,11 @@ function CubePane(props) {
       : "#f7f3f2",
   });
 
-  const font = useLoader(FontLoader, "/fonts/STIX-Two-Text-SemiBold-Italic.json");
+  const font = useLoader(FontLoader, "/fonts/Noto-Sans-Math-Regular.json");
   const textGeometry = new TextGeometry(props.symbol, {
     font: font,
     size: 0.5,
     height: 0.05,
-    bevelEnabled: true,
-    bevelThickness: 0.05,
-    bevelSize: 0,
-    bevelOffset: 0,
-    bevelSegments: 1,
   });
 
   // compute the center of the TextGeometry
@@ -52,6 +44,11 @@ function CubePane(props) {
 
   // shift the TextGeometry to the origin
   textGeometry.translate(-center.x, -center.y, -center.z);
+  textGeometry.scale(
+    props.textGeometryScale[0],
+    props.textGeometryScale[1],
+    0.01
+  );
 
   // Return the view, these are regular Threejs elements expressed in JSX
   return (
@@ -59,7 +56,7 @@ function CubePane(props) {
       <mesh
         {...props}
         onClick={(event) => {
-          if (!props.color) navigate("/" + props.name);
+          if (!props.color) navigate("/QuickMaths/Challenge/" + props.name);
           event.stopPropagation();
         }}
         onPointerOver={(event) => {
@@ -76,7 +73,7 @@ function CubePane(props) {
         }}
         material={baseMaterial}
       >
-        <boxGeometry args={[1, 1, !clicked ? depth : depth + 0.5]} />
+        <boxGeometry args={[1, 1, 0]} />
       </mesh>
       <mesh
         ref={ref}
@@ -94,7 +91,7 @@ function CubePane(props) {
   );
 }
 
-function Cube() {
+function Cube(props) {
   const box = useRef();
 
   useFrame(() => {
@@ -115,8 +112,18 @@ function Cube() {
             key={"FBX" + x + "Y" + y + "Z" + z}
             sides={"FB"}
             position={[y, z, x ? 1.5 * -1 : 1.5]}
+            rotation={[0, x ? Math.PI : 0, 0]}
             color={z === 0 && y === 0 ? "#1f2022" : ""}
-            symbol={educationalComps.Elementary[count].symbol}
+            symbol={
+              z === 0 && y === 0
+                ? "Elementary\n Education\n   Mastery"
+                : educationalComps.Elementary[count].symbol
+            }
+            textGeometryScale={
+              z === 0 && y === 0
+                ? [0.25, 0.25]
+                : educationalComps.Elementary[count].textGeometryScale
+            }
             name={educationalComps.Elementary[count].name}
           />
         );
@@ -137,9 +144,18 @@ function Cube() {
             key={"LRX" + x + "Y" + y + "Z" + z}
             sides={"LR"}
             position={[x ? 1.5 * -1 : 1.5, y, z]}
-            rotation={[0, Math.PI / 2, 0]}
+            rotation={[0, x ? Math.PI / -2 : Math.PI / 2, 0]}
             color={z === 0 && y === 0 ? "#1f2022" : ""}
-            symbol={educationalComps.MiddleEducation[count].symbol}
+            symbol={
+              z === 0 && y === 0
+                ? "   Middle\nEducation\n  Mastery"
+                : educationalComps.MiddleEducation[count].symbol
+            }
+            textGeometryScale={
+              z === 0 && y === 0
+                ? [0.25, 0.25]
+                : educationalComps.MiddleEducation[count].textGeometryScale
+            }
             name={educationalComps.MiddleEducation[count].name}
           />
         );
@@ -160,9 +176,18 @@ function Cube() {
             key={"TBX" + x + "Y" + y + "Z" + z}
             sides={"TB"}
             position={[z, x ? 1.5 * -1 : 1.5, y]}
-            rotation={[Math.PI / 2, 0, 0]}
+            rotation={[Math.PI / 2, x ? Math.PI * -1 : Math.PI, Math.PI / 2]}
             color={z === 0 && y === 0 ? "#1f2022" : ""}
-            symbol={educationalComps.HigherEducation[count].symbol}
+            symbol={
+              z === 0 && y === 0
+                ? "   Higher\nEducation\n  Mastery"
+                : educationalComps.HigherEducation[count].symbol
+            }
+            textGeometryScale={
+              z === 0 && y === 0
+                ? [0.25, 0.25]
+                : educationalComps.HigherEducation[count].textGeometryScale
+            }
             name={educationalComps.HigherEducation[count].name}
           />
         );
@@ -179,7 +204,23 @@ function Cube() {
 export default function QuickMathsHome() {
   return (
     <div id="QuickMathsHome">
-      <Canvas camera={{ fov: 75, position: [10, 0, 0] }}>
+      <div className="headerText">
+        <h1>Test Your Skills In Math</h1>
+        <p className="ExtendedFont">
+          Complete the <span className="ExpandedFont">Cube of Pain</span> to
+          prove you have mastered math!
+        </p>
+        <p className="MonoFont">
+          Or just come here to practice, im not your boss...
+        </p>
+        <button className="flashCardButton">
+          <span className="front">Flash Cards</span>
+        </button>
+      </div>
+      <Canvas
+        className="QuickMathsCube"
+        camera={{ fov: 75, position: [7, 0, 0] }}
+      >
         <ambientLight intensity={0.25} />
         <spotLight position={[8, 10, 8]} angle={0.2} penumbra={1} />
         <spotLight position={[-5, -23, -8]} angle={0.2} penumbra={1} />

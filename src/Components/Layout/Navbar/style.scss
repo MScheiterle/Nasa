@@ -8,10 +8,10 @@
   display: flex;
   white-space: nowrap;
   overflow: hidden;
+  background: #1f2022;
   margin-bottom: -10vh;
 
   &.scrolled {
-    background: #1f2022;
     box-shadow: 0px 2px 10px 0px #c1678b;
   }
 

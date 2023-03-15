@@ -14,6 +14,10 @@ function Navbar() {
   const navigate = useNavigate();
 
   onscroll = (event) => {
+    if (document.getElementsByClassName("subNav").length !== 0) {
+      return;
+    }
+
     if (window.scrollY === 0) {
       document.getElementById("Navbar").classList.remove("scrolled");
     } else {
@@ -52,12 +56,15 @@ function Navbar() {
       >
         <h1>Login</h1>
       </div>
-      <div className="navLink" onClick={() => {
+      <div
+        className="navLink"
+        onClick={() => {
           navigate("/register");
           setTimeout(() => {
             smoothScroll("Register");
           }, 150);
-        }}>
+        }}
+      >
         <h1>Register</h1>
       </div>
     </>
