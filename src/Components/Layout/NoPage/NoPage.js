@@ -3,9 +3,9 @@ import "./style.scss";
 
 function NoPage() {
   return (
-    <div id="NoPage">
+    <div id="NoPage" className="page">
       <h1>404</h1>
-      <p className="MonoFont">Page not found</p>
+      <p>We cant seem to find the page you're looking for...</p>
     </div>
   );
 }

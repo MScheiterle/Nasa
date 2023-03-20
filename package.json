@@ -1,6 +1,6 @@
 {
   "name": "simpl1f1ed.com",
-  "version": "v2.4",
+  "version": "v3.0",
   "private": true,
   "dependencies": {
     "@react-three/drei": "^9.57.0",
@@ -12,7 +12,7 @@
     "react-firebase-hooks": "^5.1.0",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
-    "sass": "^1.56.1",
+    "sass": "^1.59.3",
     "three": "^0.150.1",
     "three-bmfont-text": "^3.0.1",
     "web-vitals": "^2.1.4"

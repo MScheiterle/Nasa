@@ -1,176 +1,258 @@
+$navHeight: 7.5vh;
+
 #Navbar {
   z-index: 999;
   position: sticky;
   top: 0;
-  width: 100vw;
-  height: 10vh;
-  align-items: center;
   display: flex;
-  white-space: nowrap;
-  overflow: hidden;
-  background: #1f2022;
-  margin-bottom: -10vh;
-
-  &.scrolled {
-    box-shadow: 0px 2px 10px 0px #c1678b;
-  }
-
-  .projectLinks {
-    display: flex;
-    height: 10vh;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-
-    > :nth-child(n) {
-      min-width: 5vw;
-    }
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
+  align-items: center;
+  height: $navHeight;
+  max-width: 100vw;
+  padding-left: 6rem;
+  padding-right: 6rem;
+  margin-bottom: -$navHeight;
 
   .MainLogo {
-    min-width: 10vh;
-    min-height: 10vh;
-    background-image: url("./../../../../public/3DS_Snow_NoLines.png");
-    background-position: center;
-    background-size: cover;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  .navLink {
-    font-size: 0.5rem;
     display: flex;
-    flex-wrap: nowrap;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    color: inherit;
-    margin-left: 10px;
-    margin-right: 10px;
     cursor: pointer;
+    padding: 5px;
+    transition: all 300ms ease-in-out;
 
-    h1 {
-      transition: all 300ms;
-      text-align: center;
+    & > .logoImage {
+      max-width: $navHeight;
+      max-height: $navHeight;
+      min-width: $navHeight;
+      min-height: $navHeight;
+      background-image: url("./../../../../public/3DS_Snow_NoLines.png");
+      background-position: left;
+      background-size: cover;
+      transform: translate3d(50%, 0, 0);
+      transition: all 300ms ease-in-out;
     }
 
-    p {
-      transition: all 300ms;
-      z-index: -1;
-      margin: 0;
-      padding: 0;
-      font-size: 4rem;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #c1678b;
-    }
-
-    &:hover {
-      transition: 300ms ease-in;
-      box-shadow: inset 0px 5px 0px -1px #c1678b;
-
-      p {
-        color: #f7f3f2;
-      }
-
-      h1 {
-        color: #c1678b;
-      }
-
-    }
-  }
-
-  .userAddon {
-    height: 10vh;
-    margin-left: auto;
-    margin-right: 40px;
-    display: flex;
-
-    .userName {
-      text-align: center;
-      width: 200px;
+    & > .logoText {
       overflow: hidden;
-      white-space: pre-line;
-      text-overflow: ellipsis;
-      max-width: 200px;
+      display: flex;
+      flex-direction: column-reverse;
+      font-size: 1.75rem;
+      transform: translate3d(-5%, 0, 0);
+
+      & > div {
+        transition: all 300ms ease-in-out;
+        transform: translate3d(-100%, 0, 0);
+      }
+    }
+
+    &:hover {
+      box-shadow: inset 0px -4px 0px -3px white;
+      & > .logoImage {
+        transform: translate3d(0, 0, 0);
+      }
+      & > .logoText {
+        & > div {
+          transform: translate3d(0, 0, 0);
+        }
+      }
     }
   }
 
-  .menuButton {
+  .navItem {
+    white-space: nowrap;
+    width: auto;
+    padding: 5px;
+    height: $navHeight;
+    transition: all 300ms ease-in-out;
     cursor: pointer;
-    position: absolute;
-    top: 20px;
-    right: 40px;
-    display: none;
-    fill: #f7f3f2;
-    height: 32px;
-    width: 32px;
+
+    &:not(:first-child) {
+      margin-left: 7.5%;
+    }
+
+    &:hover {
+      box-shadow: inset 0px -4px 0px -3px white;
+    }
+  }
+
+  .pageLinks {
+    display: flex;
+  }
+
+  .addons {
+    padding: 5px;
+    margin-left: auto;
+    display: flex;
+
+    .menuAddon {
+      display: none;
+    }
+
+    .addonGroup {
+      display: flex;
+      border-radius: 5px;
+      width: 10rem;
+      height: 2.5rem;
+      margin-right: 20px;
+
+      > :nth-child(n) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        &:hover {
+          background-color: var(--colorThree);
+        }
+      }
+    }
+
+    .lightModeAddon {
+      &::before {
+        content: "";
+        display: none !important;
+        transition: all 300ms ease-in-out;
+        top: 50%;
+        position: absolute;
+        transform: translate3d(-50%, -50%, 0);
+        border-radius: 50%;
+        width: 2.5rem;
+        height: 2.5rem;
+        background-color: var(--colorThree);
+      }
+
+      &.darkMode {
+        .light {
+          display: none;
+        }
+        .dark {
+          display: block;
+        }
+      }
+      &.lightMode {
+        .light {
+          display: block;
+        }
+        .dark {
+          display: none;
+        }
+      }
+
+      &:hover {
+        background-color: transparent !important;
+        border-radius: 20%/50% !important;
+        width: 5rem !important;
+
+        &::before {
+          display: block !important;
+        }
+
+        .light {
+          left: 25%;
+          display: block;
+        }
+        .dark {
+          left: 75%;
+          display: block;
+        }
+
+        &.darkMode {
+          &::before {
+            left: 75%;
+          }
+        }
+        &.lightMode {
+          &::before {
+            left: 25%;
+          }
+        }
+      }
+    }
+
+    .addon {
+      transition: all 300ms ease-in-out;
+      position: relative;
+      border-radius: 50%;
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-right: 20px;
+      background-color: var(--colorThree);
+      cursor: pointer;
+
+      &.hasDropDown:hover {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+
+        .dropDown {
+          visibility: visible;
+        }
+      }
+
+      svg {
+        transition: all 300ms ease-in-out;
+        fill: var(--textColor);
+        position: absolute;
+        width: 1rem;
+        height: 1rem;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+      }
+
+      &.hasDropDown > .dropDown {
+        visibility: hidden;
+        display: flex;
+        position: absolute;
+        top: 100%;
+        right: 50%;
+        transform: translate3d(50%, 0, 0);
+        width: 150px;
+        padding: 10px;
+        background-color: var(--textColor);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: var(--colorThree);
+
+        > :nth-child(n) {
+          padding: 5px;
+          width: 100%;
+          text-align: center;
+
+          &:hover:not(:last-child) {
+            background-color: var(--colorThree);
+            color: var(--textColor);
+          }
+        }
+
+        :last-child {
+          border-top: 1px solid;
+        }
+      }
+
+      &:hover:not(.lightModeAddon) {
+        background-color: var(--textColor);
+        svg {
+          fill: var(--colorThree);
+        }
+      }
+    }
   }
 
   @media (max-width: 767px) {
-    .userAddon,
-    .projectLinks {
+    .menuAddon {
+      display: flex !important;
+    }
+
+    .navItem {
       display: none;
     }
 
-    div:last-child {
-      display: block;
-    }
-
-    &.mobileToggle {
-      background: #1f2022;
-      height: fit-content;
-      flex-direction: column;
-
-      .navLink {
-        font-size: 0.35rem;
-
-        &:hover {
-          transition: unset;
-          box-shadow: unset;
-        }
+    .MainLogo {
+      & > .logoImage {
+        transform: translate3d(0, 0, 0);
       }
-
-      .MainLogo {
-        align-self: flex-start;
-      }
-
-      .userAddon,
-      .projectLinks {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        .userName {
-          width: 50vw;
-        }
-      }
-
-      .projectLinks {
-        display: grid;
-        grid-template-columns: 50vw 50vw;
-        height: unset;
-        margin-left: -23px;
-
-        & > :nth-child(n) {
-          display: grid;
-          align-self: start;
-          width: 50vw;
-          height: 4rem;
-        }
-      }
-
-      .userAddon {
-        justify-content: center;
-        top: 20vh;
-        width: 100vw;
+      & > .logoText {
+        display: none;
       }
     }
   }

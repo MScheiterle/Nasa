@@ -16,7 +16,7 @@ if exist "./src/Components/%~2/" (
         "function %~2() {"
         echo.
         "   return ("
-        "       <div id="%~2"></div>"
+        "       <div id="%~2" className="page"></div>"
         "   );"
         "}"
         echo.

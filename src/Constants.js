@@ -1,57 +1,8 @@
 export const navLinks = [
-  { name: "Projects", link: false },
-  { name: "QuickMaths", link: true, destination: "/QuickMaths/home" },
-  { name: "OpenIntel", link: true, destination: "/OpenIntel" },
+  { name: "About Me", link: false },
+  { name: "Projects", link: true, destination: "/Projects/home" },
+  { name: "Tutorials", link: true, destination: "/Tutorials" },
 ];
-
-export const educationalComps = {
-  Elementary: [
-    { name: "Addition", symbol: "+", textGeometryScale: [1, 1] },
-    { name: "Subtraction", symbol: "-", textGeometryScale: [1, 1] },
-    { name: "Multiplication", symbol: "*", textGeometryScale: [1, 1] },
-    { name: "Division", symbol: "/", textGeometryScale: [1, 1] },
-    { name: "Fractions", symbol: "1/2", textGeometryScale: [0.5, 1] },
-    { name: "Decimals", symbol: "1.2", textGeometryScale: [0.5, 1] },
-    { name: "Percentages", symbol: "%", textGeometryScale: [1, 1] },
-    { name: "Exponents", symbol: "1^2", textGeometryScale: [0.5, 1] },
-  ],
-  MiddleEducation: [
-    { name: "Square Roots", symbol: "√", textGeometryScale: [1, 1] },
-    {
-      name: "Order of Operations",
-      symbol: "PEMDAS",
-      textGeometryScale: [0.3, 1],
-    },
-    { name: "Variables", symbol: "2x", textGeometryScale: [1, 1] },
-    {
-      name: "Multiple Step Equations",
-      symbol: "7x+3=\n2x+13",
-      textGeometryScale: [0.47, 0.5],
-    },
-    { name: "Functions", symbol: "f(x)=", textGeometryScale: [0.7, 1] },
-    { name: "Inequalities", symbol: "≤", textGeometryScale: [1, 1] },
-    {
-      name: "Factoring",
-      symbol: "(x+a)\n(x+b)",
-      textGeometryScale: [0.5, 0.5],
-    },
-    { name: "Graphing", symbol: "⩩", textGeometryScale: [1, 1] },
-  ],
-  HigherEducation: [
-    { name: "Matrices", symbol: "[◻◻◻]", textGeometryScale: [0.5, 1] },
-    {
-      name: "Polynomials",
-      symbol: "5x^2+\n2y-7",
-      textGeometryScale: [0.5, 0.5],
-    },
-    { name: "Number Theory", symbol: "⍺′", textGeometryScale: [1, 1] },
-    { name: "Summation", symbol: "Σ", textGeometryScale: [1, 1] },
-    { name: "Statistics", symbol: "U", textGeometryScale: [1, 1] },
-    { name: "Geometry", symbol: "⊾", textGeometryScale: [1, 1] },
-    { name: "Derivatives", symbol: "d/dx", textGeometryScale: [0.65, 1] },
-    { name: "Integrals", symbol: "∫", textGeometryScale: [1, 1] },
-  ],
-};
 
 export const projects = [
   {
