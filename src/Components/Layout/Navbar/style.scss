@@ -16,18 +16,20 @@ $navHeight: 7.5vh;
     display: flex;
     cursor: pointer;
     padding: 5px;
-    transition: all 300ms ease-in-out;
+    margin-right: 5px;
+    transition: var(--transitionTiming);
 
     & > .logoImage {
       max-width: $navHeight;
       max-height: $navHeight;
       min-width: $navHeight;
       min-height: $navHeight;
-      background-image: url("./../../../../public/3DS_Snow_NoLines.png");
-      background-position: left;
-      background-size: cover;
       transform: translate3d(50%, 0, 0);
-      transition: all 300ms ease-in-out;
+      transition: var(--transitionTiming);
+
+      svg > polygon {
+        fill: var(--textColor);
+      }
     }
 
     & > .logoText {
@@ -38,13 +40,13 @@ $navHeight: 7.5vh;
       transform: translate3d(-5%, 0, 0);
 
       & > div {
-        transition: all 300ms ease-in-out;
+        transition: var(--transitionTiming);
         transform: translate3d(-100%, 0, 0);
       }
     }
 
     &:hover {
-      box-shadow: inset 0px -4px 0px -3px white;
+      box-shadow: inset 0px -4px 0px -3px var(--textColor);
       & > .logoImage {
         transform: translate3d(0, 0, 0);
       }
@@ -61,7 +63,7 @@ $navHeight: 7.5vh;
     width: auto;
     padding: 5px;
     height: $navHeight;
-    transition: all 300ms ease-in-out;
+    transition: var(--transitionTiming);
     cursor: pointer;
 
     &:not(:first-child) {
@@ -69,7 +71,11 @@ $navHeight: 7.5vh;
     }
 
     &:hover {
-      box-shadow: inset 0px -4px 0px -3px white;
+      box-shadow: inset 0px -4px 0px -3px var(--textColor);
+    }
+
+    &.active {
+      box-shadow: inset 0px -4px 0px -3px var(--textColor);
     }
   }
 
@@ -83,7 +89,8 @@ $navHeight: 7.5vh;
     display: flex;
 
     .menuAddon {
-      display: none;
+      display: flex;
+      visibility: hidden;
     }
 
     .addonGroup {
@@ -101,6 +108,7 @@ $navHeight: 7.5vh;
         width: 100%;
         border-radius: 5px;
         &:hover {
+          cursor: pointer;
           background-color: var(--colorThree);
         }
       }
@@ -110,7 +118,7 @@ $navHeight: 7.5vh;
       &::before {
         content: "";
         display: none !important;
-        transition: all 300ms ease-in-out;
+        transition: var(--transitionTiming);
         top: 50%;
         position: absolute;
         transform: translate3d(-50%, -50%, 0);
@@ -169,7 +177,7 @@ $navHeight: 7.5vh;
     }
 
     .addon {
-      transition: all 300ms ease-in-out;
+      transition: var(--transitionTiming);
       position: relative;
       border-radius: 50%;
       width: 2.5rem;
@@ -181,14 +189,16 @@ $navHeight: 7.5vh;
       &.hasDropDown:hover {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
+        transform: translate3d(0, 25%, 0);
 
         .dropDown {
           visibility: visible;
+          cursor: auto !important;
         }
       }
 
       svg {
-        transition: all 300ms ease-in-out;
+        transition: var(--transitionTiming);
         fill: var(--textColor);
         position: absolute;
         width: 1rem;
@@ -198,34 +208,103 @@ $navHeight: 7.5vh;
         transform: translate3d(-50%, -50%, 0);
       }
 
-      &.hasDropDown > .dropDown {
-        visibility: hidden;
-        display: flex;
-        position: absolute;
-        top: 100%;
-        right: 50%;
-        transform: translate3d(50%, 0, 0);
-        width: 150px;
-        padding: 10px;
-        background-color: var(--textColor);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        color: var(--colorThree);
+      &.hasDropDown {
+        &.userAddon > .dropDown {
+          display: flex;
+          width: 150px;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
 
-        > :nth-child(n) {
-          padding: 5px;
-          width: 100%;
-          text-align: center;
+          > :nth-child(n) {
+            padding: 5px;
+            width: 100%;
+            text-align: center;
 
-          &:hover:not(:last-child) {
-            background-color: var(--colorThree);
-            color: var(--textColor);
+            &:hover:not(:last-child) {
+              background-color: var(--colorThree);
+              color: var(--textColor);
+            }
+          }
+
+          :last-child {
+            cursor: auto !important;
+            border-top: 1px solid;
           }
         }
 
-        :last-child {
-          border-top: 1px solid;
+        &.themeAddon > .dropDown {
+          width: 250px;
+          align-items: center;
+          > .upperSection {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            > .variableOptions {
+              text-align: start;
+              white-space: nowrap;
+              font-size: 0.75rem;
+
+              > .active {
+                transform: translate(-25%) scale(1.25);
+              }
+
+              :nth-child(n) {
+                transition: transform var(--transitionTiming);
+                position: relative;
+                &::after {
+                  content: "";
+                  position: absolute;
+                  top: 0;
+                  left: -20%;
+                  width: 0.75rem;
+                  height: 0.75rem;
+                  border: 1px dashed black;
+                }
+
+                &:hover {
+                  cursor: pointer;
+                  transform: scale(1.25);
+                }
+              }
+
+              :nth-child(1):after {
+                background-color: var(--textColor);
+              }
+              :nth-child(2):after {
+                background-color: var(--colorOne);
+              }
+              :nth-child(3):after {
+                background-color: var(--colorTwo);
+              }
+              :nth-child(4):after {
+                background-color: var(--colorThree);
+              }
+              :nth-child(5):after {
+                background-color: var(--contrastOne);
+              }
+              :nth-child(6):after {
+                background-color: var(--contrastTwo);
+              }
+            }
+          }
+
+          > .sliders > label {
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+
+        > .dropDown {
+          visibility: hidden;
+          position: absolute;
+          top: 100%;
+          right: 50%;
+          transform: translate3d(50%, 0, 0);
+          padding: 10px;
+          background-color: var(--textColor);
+          color: var(--colorThree);
         }
       }
 
@@ -239,20 +318,30 @@ $navHeight: 7.5vh;
   }
 
   @media (max-width: 767px) {
-    .menuAddon {
-      display: flex !important;
-    }
+    & {
+      padding-left: 5px;
+      padding-right: 5px;
 
-    .navItem {
-      display: none;
-    }
-
-    .MainLogo {
-      & > .logoImage {
-        transform: translate3d(0, 0, 0);
+      .addon {
+        width: 2.25rem !important;
+        height: 2.25rem !important;
       }
-      & > .logoText {
-        display: none;
+
+      .menuAddon {
+        visibility: visible !important;
+      }
+
+      .MainLogo {
+        & > .logoImage {
+          transform: translate3d(0, 0, 0);
+        }
+        & > .logoText {
+          display: none;
+        }
+      }
+
+      .pageLinks {
+        display: none !important;
       }
     }
   }

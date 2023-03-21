@@ -8,6 +8,217 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 
 import { navLinks } from "./../../../Constants";
 
+function HSLColorSelector() {
+  const [color, setColor] = useState({ h: 0, s: 100, l: 50 });
+  const [colorVar, setColorVar] = useState();
+  const propertyNames = [
+    "textColor",
+    "colorOne",
+    "colorTwo",
+    "colorThree",
+    "contrastOne",
+    "contrastTwo",
+  ];
+  const colorDiamater = 100;
+
+  const setColorToVar = () => {
+    document.body.style.setProperty(
+      `--${propertyNames[colorVar - 1]}`,
+      getHueColor(color.h)
+    );
+  };
+
+  const getHueColor = (hue) => {
+    return `hsl(${hue}, ${color.s}%, ${color.l}%)`;
+  };
+
+  const getHueAngle = (x, y) => {
+    const centerX = colorDiamater / 2;
+    const centerY = colorDiamater / 2;
+    const dx = x - centerX;
+    const dy = y - centerY;
+    const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
+    return angle < 0 ? angle + 360 : angle;
+  };
+
+  const handleMouseDown = (event) => {
+    const hueAngle = getHueAngle(
+      event.nativeEvent.offsetX,
+      event.nativeEvent.offsetY
+    );
+    setColor({ ...color, h: hueAngle });
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+  };
+
+  const handleMouseMove = (event) => {
+    const hueAngle = getHueAngle(
+      event.nativeEvent.offsetX,
+      event.nativeEvent.offsetY
+    );
+    setColor({ ...color, h: hueAngle });
+  };
+
+  const handleMouseUp = () => {
+    document.removeEventListener("mousemove", handleMouseMove);
+    document.removeEventListener("mouseup", handleMouseUp);
+  };
+
+  const handleOptionChange = (e) => {
+    let options = [...document.getElementsByClassName("variableOption")];
+
+    options.forEach((element) => {
+      element.classList.remove("active");
+    });
+
+    e.target.classList.add("active");
+  };
+
+  return (
+    <div className="dropDown">
+      <div className="upperSection">
+        <div
+          style={{
+            position: "relative",
+            width: `${colorDiamater}px`,
+            height: `${colorDiamater}px`,
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: `${colorDiamater}px`,
+              height: `${colorDiamater}px`,
+              borderRadius: "50%",
+              background: `conic-gradient(from 90deg,
+            hsl(0, ${color.s}%, ${color.l}%),
+            hsl(60, ${color.s}%, ${color.l}%),
+            hsl(120, ${color.s}%, ${color.l}%),
+            hsl(180, ${color.s}%, ${color.l}%),
+            hsl(240, ${color.s}%, ${color.l}%),
+            hsl(300, ${color.s}%, ${color.l}%),
+            hsl(360, ${color.s}%, ${color.l}%)
+          )`,
+              cursor: "crosshair",
+            }}
+            onMouseDown={handleMouseDown}
+          ></div>
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              width: `${colorDiamater / 2}px`,
+              height: `${colorDiamater / 2}px`,
+              borderRadius: "50%",
+              border: "5px solid var(--textColor)",
+              transform: "translate(-50%, -50%)",
+              background: `${getHueColor(color.h)}`,
+            }}
+          ></div>
+        </div>
+        <div className="variableOptions">
+          <div
+            className={"variableOption"}
+            onClick={(e) => {
+              setColorVar(1);
+              handleOptionChange(e);
+            }}
+          >
+            textColor
+          </div>
+          <div
+            className={"variableOption"}
+            onClick={(e) => {
+              setColorVar(2);
+              handleOptionChange(e);
+            }}
+          >
+            colorOne
+          </div>
+          <div
+            className={"variableOption"}
+            onClick={(e) => {
+              setColorVar(3);
+              handleOptionChange(e);
+            }}
+          >
+            colorTwo
+          </div>
+          <div
+            className={"variableOption"}
+            onClick={(e) => {
+              setColorVar(4);
+              handleOptionChange(e);
+            }}
+          >
+            colorThree
+          </div>
+          <div
+            className={"variableOption"}
+            onClick={(e) => {
+              setColorVar(5);
+              handleOptionChange(e);
+            }}
+          >
+            contrastOne
+          </div>
+          <div
+            className={"variableOption"}
+            onClick={(e) => {
+              setColorVar(6);
+              handleOptionChange(e);
+            }}
+          >
+            contrastTwo
+          </div>
+        </div>
+      </div>
+      <div className="sliders" style={{ marginTop: "20px" }}>
+        <label>
+          Saturation
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={color.s}
+            onChange={(e) =>
+              setColor({ ...color, s: parseInt(e.target.value) })
+            }
+          />
+        </label>
+        <label>
+          Lightness
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={color.l}
+            onChange={(e) =>
+              setColor({ ...color, l: parseInt(e.target.value) })
+            }
+          />
+        </label>
+      </div>
+      <div
+        style={{ textAlign: "center", marginTop: "20px" }}
+        onClick={setColorToVar}
+      >
+        {colorVar ? (
+          <div style={{ cursor: "pointer" }}>
+            Save To "{`${propertyNames[colorVar - 1]}`}"{" "}
+          </div>
+        ) : (
+          <>Select Variable</>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function Navbar() {
   const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
@@ -26,21 +237,11 @@ function Navbar() {
 
   const userAddon = user ? (
     <>
-      <div
-        className="addon hasDropDown"
-        onMouseEnter={() =>
-          document.querySelector("#userAddonDropDown").classList.add("visible")
-        }
-        onMouseLeave={() =>
-          document
-            .querySelector("#userAddonDropDown")
-            .classList.remove("visible")
-        }
-      >
+      <div className="userAddon addon hasDropDown">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
           <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
         </svg>
-        <div id="userAddonDropDown" className="dropDown">
+        <div className="dropDown">
           <div
             onClick={() => {
               navigate("/Profile");
@@ -58,6 +259,7 @@ function Navbar() {
       <div
         onClick={() => {
           navigate("/login");
+          handlePageChange();
           setTimeout(() => {
             smoothScroll("Login");
           }, 150);
@@ -68,6 +270,7 @@ function Navbar() {
       <div
         onClick={() => {
           navigate("/register");
+          handlePageChange();
           setTimeout(() => {
             smoothScroll("Register");
           }, 150);
@@ -79,11 +282,11 @@ function Navbar() {
   );
 
   const themesAddon = (
-    <div className="addon hasDropDown">
+    <div className="themeAddon addon hasDropDown">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
         <path d="M192 64L160 0H128L96 64 64 0H48C21.5 0 0 21.5 0 48V256H384V48c0-26.5-21.5-48-48-48H224L192 64zM0 288v32c0 35.3 28.7 64 64 64h64v64c0 35.3 28.7 64 64 64s64-28.7 64-64V384h64c35.3 0 64-28.7 64-64V288H0zM192 432a16 16 0 1 1 0 32 16 16 0 1 1 0-32z" />
       </svg>
-      <div className="dropDown"></div>
+      <HSLColorSelector />
     </div>
   );
 
@@ -108,19 +311,30 @@ function Navbar() {
 
   const pageLinks = [];
 
+  const handlePageChange = (e) => {
+    let navItems = [...document.getElementsByClassName("navItem")];
+
+    navItems.forEach((element) => {
+      element.classList.remove("active");
+    });
+
+    e.target.classList.add("active");
+  };
+
   navLinks.forEach((element, index) => {
     pageLinks.push(
       <div
         className="navItem center"
         key={index}
-        onClick={() => {
+        onClick={(e) => {
           navigate(element.link ? element.destination : "/");
+          handlePageChange(e);
           setTimeout(() => {
             smoothScroll(element.name);
           }, 150);
         }}
       >
-        <div>{element.name}</div>
+        {element.name}
       </div>
     );
   });
@@ -150,20 +364,34 @@ function Navbar() {
         className="MainLogo"
         onClick={() => {
           navigate("/");
+          handlePageChange();
           setTimeout(() => {
             smoothScroll("Homepage");
           }, 150);
         }}
       >
-        <div className="logoImage" />
+        <div className="logoImage">
+          <svg
+            id="Layer_1"
+            data-name="Layer 1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <polygon points="187.5 99.64 187.5 178.74 187.47 178.76 118.94 218.33 118.93 218.33 118.93 139.19 187.47 99.62 187.5 99.64" />
+            <polygon points="461.63 178.76 393.09 218.33 324.59 178.78 324.59 178.74 324.55 178.76 256.01 139.19 187.5 99.64 187.5 99.6 256.01 60.05 324.55 99.62 324.59 99.64 393.09 139.19 461.63 178.76" />
+            <polygon points="393.09 297.48 324.59 337.03 324.55 337.05 256.01 297.48 187.5 257.92 187.5 257.89 187.47 257.91 118.94 218.33 187.47 178.76 187.5 178.78 256.01 218.33 324.55 257.91 324.59 257.92 393.09 297.48" />
+            <polygon points="393.09 297.48 393.09 376.62 324.59 416.16 324.59 337.03 393.09 297.48" />
+            <polygon points="324.55 416.19 256.01 455.75 187.5 416.21 187.5 416.17 187.49 416.19 118.94 376.62 118.93 376.62 118.93 376.6 50.42 337.05 50.42 337.03 118.93 297.48 187.47 337.05 187.5 337.07 256.01 376.62 324.55 416.19" />
+          </svg>
+        </div>
         <div className="logoText">
           <div>impl1f1ed</div>
         </div>
       </div>
       <div className="pageLinks">{pageLinks}</div>
       <div className="addons">
-        {themesAddon}
         {userAddon}
+        {themesAddon}
         <div
           className="lightModeAddon addon darkMode"
           onClick={() => {

@@ -19,6 +19,8 @@
 }
 
 body {
+  --transitionTiming: 300ms ease-in-out;
+
   &.lightMode {
     --textColor: #f7f3f2;
     --colorOne: #8C7FFF;

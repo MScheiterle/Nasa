@@ -1,5 +1,4 @@
 export const navLinks = [
-  { name: "About Me", link: false },
   { name: "Projects", link: true, destination: "/Projects/home" },
   { name: "Tutorials", link: true, destination: "/Tutorials" },
 ];
