@@ -31,7 +31,8 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
-const signInWithGoogle = async () => {
+
+const signInWithGoogle = async (): Promise<void> => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     const user = res.user;
@@ -51,27 +52,29 @@ const signInWithGoogle = async () => {
   }
 };
 const logInWithEmailAndPassword = async (
-  email,
-  password,
-  fields,
-  errorMessageField
-) => {
+  email: string,
+  password: string,
+  fields: HTMLCollectionOf<Element>,
+  errorMessageField: HTMLElement
+): Promise<void> => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
     errorMessageField.innerHTML = "Error: Email and Passowrd don't match...";
     Array.from(fields).forEach((value) => {
-      value.parentElement.classList.add("errored");
+      if (value.parentElement) {
+        value.parentElement.classList.add("errored");
+      }
     });
   }
 };
 const registerWithEmailAndPassword = async (
-  name,
-  email,
-  password,
-  fields,
-  errorMessageField
-) => {
+  name: string,
+  email: string,
+  password: string,
+  fields: HTMLCollectionOf<Element>,
+  errorMessageField: HTMLElement
+): Promise<void> => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
@@ -89,11 +92,17 @@ const registerWithEmailAndPassword = async (
       errorMessageField.innerHTML = "Error: Report this to Simpl1f1ed";
     }
     Array.from(fields).forEach((value) => {
-      value.parentElement.classList.add("errored");
+      if (value.parentElement) {
+        value.parentElement.classList.add("errored");
+      }
     });
   }
 };
-const sendPasswordReset = async (email, fields, errorMessageField) => {
+const sendPasswordReset = async (
+  email: string,
+  fields: HTMLCollectionOf<Element>,
+  errorMessageField: HTMLElement
+): Promise<void> => {
   try {
     await sendPasswordResetEmail(auth, email);
     alert("Password reset link sent!");
@@ -104,13 +113,16 @@ const sendPasswordReset = async (email, fields, errorMessageField) => {
       errorMessageField.innerHTML = "Error: Report this to Simpl1f1ed";
     }
     Array.from(fields).forEach((value) => {
-      value.parentElement.classList.add("errored");
+      if (value.parentElement) {
+        value.parentElement.classList.add("errored");
+      }
     });
   }
 };
-const logout = () => {
+const logout = (): void => {
   signOut(auth);
 };
+
 export {
   auth,
   db,

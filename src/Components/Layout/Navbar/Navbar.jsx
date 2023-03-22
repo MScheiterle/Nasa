@@ -3,10 +3,10 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import "./style.scss";
 
-import { auth, db, logout } from "./../../../firebase";
+import { auth, db, logout } from "../../../firebase.ts";
 import { query, collection, getDocs, where } from "firebase/firestore";
 
-import { navLinks } from "./../../../Constants";
+import { navLinks } from "../../../Constants.ts";
 
 function HSLColorSelector() {
   const [color, setColor] = useState({ h: 0, s: 100, l: 50 });
@@ -76,6 +76,21 @@ function HSLColorSelector() {
 
   return (
     <div className="dropDown">
+      <div className="warnings">
+        <div>Heads Up!</div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512">
+            <path d="M72 64c0-17.7-14.3-32-32-32S8 46.3 8 64V320c0 17.7 14.3 32 32 32s32-14.3 32-32V64zM40 480a40 40 0 1 0 0-80 40 40 0 1 0 0 80z" />
+          </svg>
+          <span>Color changes are temporary.</span>
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512">
+            <path d="M72 64c0-17.7-14.3-32-32-32S8 46.3 8 64V320c0 17.7 14.3 32 32 32s32-14.3 32-32V64zM40 480a40 40 0 1 0 0-80 40 40 0 1 0 0 80z" />
+          </svg>
+          <span>Overwrites Dark/Light modes.</span>
+        </div>
+      </div>
       <div className="upperSection">
         <div
           style={{
@@ -177,7 +192,7 @@ function HSLColorSelector() {
           </div>
         </div>
       </div>
-      <div className="sliders" style={{ marginTop: "20px" }}>
+      <div className="sliders" style={{ marginTop: "10px" }}>
         <label>
           Saturation
           <input
@@ -204,7 +219,7 @@ function HSLColorSelector() {
         </label>
       </div>
       <div
-        style={{ textAlign: "center", marginTop: "20px" }}
+        style={{ textAlign: "center", marginTop: "10px" }}
         onClick={setColorToVar}
       >
         {colorVar ? (
@@ -318,7 +333,7 @@ function Navbar() {
       element.classList.remove("active");
     });
 
-    e.target.classList.add("active");
+    e ? e.target.classList.add("active") : <></>;
   };
 
   navLinks.forEach((element, index) => {

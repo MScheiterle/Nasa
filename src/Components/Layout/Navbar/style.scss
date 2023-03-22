@@ -197,7 +197,7 @@ $navHeight: 7.5vh;
         }
       }
 
-      svg {
+      > svg {
         transition: var(--transitionTiming);
         fill: var(--textColor);
         position: absolute;
@@ -236,7 +236,32 @@ $navHeight: 7.5vh;
         &.themeAddon > .dropDown {
           width: 250px;
           align-items: center;
+
+          > .warnings {
+            position: relative;
+            display: block;
+            height: 100%;
+            width: calc(100% + 1rem);
+            transform: translate(-0.5rem);
+            font-size: 0.75rem;
+            text-align: center;
+            background-color: var(--colorOne);
+
+            div {
+              margin-bottom: 5px;
+              color: var(--textColor);
+            }
+
+            svg {
+              position: inherit;
+              width: 0.75rem;
+              height: 0.75rem;
+              fill: var(--textColor);
+            }
+          }
+
           > .upperSection {
+            margin-top: 10px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -302,9 +327,10 @@ $navHeight: 7.5vh;
           top: 100%;
           right: 50%;
           transform: translate3d(50%, 0, 0);
-          padding: 10px;
+          padding: 0.5rem;
           background-color: var(--textColor);
           color: var(--colorThree);
+          border-radius: 5px;
         }
       }
 
@@ -322,9 +348,15 @@ $navHeight: 7.5vh;
       padding-left: 5px;
       padding-right: 5px;
 
-      .addon {
-        width: 2.25rem !important;
-        height: 2.25rem !important;
+      .addons {
+        :not(:last-child) {
+          display: none;
+        }
+
+        .addon {
+          width: 2.25rem !important;
+          height: 2.25rem !important;
+        }
       }
 
       .menuAddon {

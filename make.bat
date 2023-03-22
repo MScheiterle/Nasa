@@ -8,7 +8,7 @@ if exist "./src/Components/%~2/" (
 ) else (
     mkdir "./src/Components/%~2/"
 
-    >"./src/Components/%~2/%~2.js" (
+    >"./src/Components/%~2/%~2.jsx" (
     for %%I in (
         "import React from "react";"
         "import "./style.scss";"
@@ -23,7 +23,7 @@ if exist "./src/Components/%~2/" (
         "export default %~2;"
     ) do if "%%~I" == "echo." ( echo. ) else ( echo %%~I )
     )
-    echo File '%~2.js' created at "./src/Components/%~2/%~2.js"
+    echo File '%~2.jsx' created at "./src/Components/%~2/%~2.jsx"
 
     >"./src/Components/%~2/style.scss" (
     for %%I in (

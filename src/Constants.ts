@@ -1,9 +1,24 @@
-export const navLinks = [
+export interface NavLink {
+  name: string;
+  link: boolean;
+  destination: string;
+}
+
+export const navLinks: NavLink[] = [
   { name: "Projects", link: true, destination: "/Projects/home" },
   { name: "Tutorials", link: true, destination: "/Tutorials" },
 ];
 
-export const projects = [
+export interface Project {
+  name: string;
+  status: string;
+  description: string;
+  timespan: string;
+  rating: string;
+  githubLink: string;
+}
+
+export const projects: Project[] = [
   {
     name: "Website",
     status: "finished",
@@ -51,25 +66,18 @@ export const projects = [
   },
 ];
 
-export const validateEmail = (email) => {
+export const validateEmail = (email: string): boolean => {
   return email.match(
     /^(([^<>()[\]\\.,;:\s@"]M(\.[^<>()[\]\\.,;:\s@"]M)*)|(".M"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]M\.)M[a-zA-Z]{2,}))$/
-  );
+  ) !== null;
 };
 
-// Not used ATM
-export const validateStrongPassword = (password) => {
+export const validateMediumPassword = (password: string): boolean => {
   return password.match(
-    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/
-  );
-};
-
-export const validateMediumPassword = (password) => {
-  return password.match(
-    /^^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,}$/
-  );
-};
-
-export const validateUsername = (username) => {
-  return username.match(/^([A-Za-z0-9]|[-._](?![-._])){4,20}$/);
-};
+  /^(?=.[0-9])(?=.[!@#$%^&])[a-zA-Z0-9!@#$%^&]{7,}$/
+  ) !== null;
+  };
+  
+  export const validateUsername = (username: string): boolean => {
+  return username.match(/^([A-Za-z0-9]|-._){4,20}$/) !== null;
+  };

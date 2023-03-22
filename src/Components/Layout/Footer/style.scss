@@ -1,6 +1,33 @@
+$logoHeight: 75px;
+
 #Footer {
-  height: 20px;
-  text-align: center;
+  position: relative;
+  display: flex;
+  height: 100px;
   width: 100vw;
-  display: block;
+  background-color: var(--colorThree);
+
+  .wave {
+    position: absolute;
+    bottom: 95%;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+
+    > svg > path {
+      fill: var(--colorThree);
+    }
+  }
+
+  .logo {
+    max-width: $logoHeight;
+    max-height: $logoHeight;
+    min-width: $logoHeight;
+    min-height: $logoHeight;
+    transition: var(--transitionTiming);
+
+    svg > polygon {
+      fill: var(--textColor);
+    }
+  }
 }
