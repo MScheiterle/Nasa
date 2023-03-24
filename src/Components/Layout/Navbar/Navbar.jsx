@@ -7,17 +7,20 @@ import { auth, db, logout } from "../../../firebase.ts";
 import { query, collection, getDocs, where } from "firebase/firestore";
 
 import { navLinks } from "../../../Constants.ts";
+import CurvedLine from "../../Utils/CurvedLine";
 
 function HSLColorSelector() {
   const [color, setColor] = useState({ h: 0, s: 100, l: 50 });
   const [colorVar, setColorVar] = useState();
   const propertyNames = [
     "textColor",
-    "colorOne",
-    "colorTwo",
-    "colorThree",
-    "contrastOne",
-    "contrastTwo",
+    "background",
+    "accentOne",
+    "accentTwo",
+    "accentThree",
+    "accentFour",
+    "accentFive",
+    "accentSix",
   ];
   const colorDiamater = 100;
 
@@ -77,8 +80,7 @@ function HSLColorSelector() {
   return (
     <div className="dropDown">
       <div className="warnings">
-        <div>Heads Up!</div>
-        <div>
+        <div style={{ marginBottom: "5px" }}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512">
             <path d="M72 64c0-17.7-14.3-32-32-32S8 46.3 8 64V320c0 17.7 14.3 32 32 32s32-14.3 32-32V64zM40 480a40 40 0 1 0 0-80 40 40 0 1 0 0 80z" />
           </svg>
@@ -129,7 +131,7 @@ function HSLColorSelector() {
               width: `${colorDiamater / 2}px`,
               height: `${colorDiamater / 2}px`,
               borderRadius: "50%",
-              border: "5px solid var(--textColor)",
+              border: "5px solid var(--accentSix)",
               transform: "translate(-50%, -50%)",
               background: `${getHueColor(color.h)}`,
             }}
@@ -143,7 +145,7 @@ function HSLColorSelector() {
               handleOptionChange(e);
             }}
           >
-            textColor
+            {propertyNames[0]}
           </div>
           <div
             className={"variableOption"}
@@ -152,7 +154,7 @@ function HSLColorSelector() {
               handleOptionChange(e);
             }}
           >
-            colorOne
+            {propertyNames[1]}
           </div>
           <div
             className={"variableOption"}
@@ -161,7 +163,7 @@ function HSLColorSelector() {
               handleOptionChange(e);
             }}
           >
-            colorTwo
+            {propertyNames[2]}
           </div>
           <div
             className={"variableOption"}
@@ -170,7 +172,7 @@ function HSLColorSelector() {
               handleOptionChange(e);
             }}
           >
-            colorThree
+            {propertyNames[3]}
           </div>
           <div
             className={"variableOption"}
@@ -179,7 +181,7 @@ function HSLColorSelector() {
               handleOptionChange(e);
             }}
           >
-            contrastOne
+            {propertyNames[4]}
           </div>
           <div
             className={"variableOption"}
@@ -188,7 +190,25 @@ function HSLColorSelector() {
               handleOptionChange(e);
             }}
           >
-            contrastTwo
+            {propertyNames[5]}
+          </div>
+          <div
+            className={"variableOption"}
+            onClick={(e) => {
+              setColorVar(7);
+              handleOptionChange(e);
+            }}
+          >
+            {propertyNames[6]}
+          </div>
+          <div
+            className={"variableOption"}
+            onClick={(e) => {
+              setColorVar(8);
+              handleOptionChange(e);
+            }}
+          >
+            {propertyNames[7]}
           </div>
         </div>
       </div>

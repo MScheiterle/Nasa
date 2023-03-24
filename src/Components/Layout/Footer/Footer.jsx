@@ -1,15 +1,26 @@
 import React from "react";
+import CurvedLine from "../../Utils/CurvedLine";
 import "./style.scss";
 
 function Footer() {
   return (
-    <div id="Footer">
+    <div id="Footer" className="center">
       <div className="wave">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-          <path
-            d="M0,192L48,213.3C96,235,192,277,288,288C384,299,480,277,576,277.3C672,277,768,299,864,304C960,309,1056,299,1152,288C1248,277,1344,267,1392,261.3L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-          ></path>
-        </svg>
+        <CurvedLine
+          strokeColor={"var(--accentFour)"}
+          height={200}
+          peakCount={7}
+        />
+        <CurvedLine
+          strokeColor={"var(--accentFive)"}
+          height={150}
+          peakCount={7}
+        />
+        <CurvedLine
+          strokeColor={"var(--accentSix)"}
+          height={100}
+          peakCount={7}
+        />
       </div>
       <div className="logo">
         <svg
@@ -25,9 +36,7 @@ function Footer() {
           <polygon points="324.55 416.19 256.01 455.75 187.5 416.21 187.5 416.17 187.49 416.19 118.94 376.62 118.93 376.62 118.93 376.6 50.42 337.05 50.42 337.03 118.93 297.48 187.47 337.05 187.5 337.07 256.01 376.62 324.55 416.19" />
         </svg>
       </div>
-      <div className="quickNav"></div>
-      <div className="rights"></div>© 2023-present Marcus Scheiterle (AKA.
-      Simpl1f1ed) All Rights Reserved.
+      © 2023-present Marcus Scheiterle (AKA. Simpl1f1ed) All Rights Reserved.
     </div>
   );
 }

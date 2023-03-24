@@ -10,7 +10,7 @@ $navHeight: 7.5vh;
   max-width: 100vw;
   padding-left: 6rem;
   padding-right: 6rem;
-  margin-bottom: -$navHeight;
+  margin-bottom: 8px;
 
   .MainLogo {
     display: flex;
@@ -109,7 +109,7 @@ $navHeight: 7.5vh;
         border-radius: 5px;
         &:hover {
           cursor: pointer;
-          background-color: var(--colorThree);
+          background-color: var(--accentTwo);
         }
       }
     }
@@ -125,7 +125,7 @@ $navHeight: 7.5vh;
         border-radius: 50%;
         width: 2.5rem;
         height: 2.5rem;
-        background-color: var(--colorThree);
+        background-color: var(--accentSix);
       }
 
       &.darkMode {
@@ -179,11 +179,11 @@ $navHeight: 7.5vh;
     .addon {
       transition: var(--transitionTiming);
       position: relative;
-      border-radius: 50%;
+      border-radius: 25%;
       width: 2.5rem;
       height: 2.5rem;
       margin-right: 20px;
-      background-color: var(--colorThree);
+      background: var(--accentSix);
       cursor: pointer;
 
       &.hasDropDown:hover {
@@ -215,6 +215,7 @@ $navHeight: 7.5vh;
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          padding: 10px;
 
           > :nth-child(n) {
             padding: 5px;
@@ -222,7 +223,7 @@ $navHeight: 7.5vh;
             text-align: center;
 
             &:hover:not(:last-child) {
-              background-color: var(--colorThree);
+              background-color: var(--accentTwo);
               color: var(--textColor);
             }
           }
@@ -236,6 +237,7 @@ $navHeight: 7.5vh;
         &.themeAddon > .dropDown {
           width: 250px;
           align-items: center;
+          border: 1px solid var(--accentSix);
 
           > .warnings {
             position: relative;
@@ -245,7 +247,10 @@ $navHeight: 7.5vh;
             transform: translate(-0.5rem);
             font-size: 0.75rem;
             text-align: center;
-            background-color: var(--colorOne);
+
+            :nth-child(n) {
+              background-color: var(--accentFour);
+            }
 
             div {
               margin-bottom: 5px;
@@ -256,6 +261,8 @@ $navHeight: 7.5vh;
               position: inherit;
               width: 0.75rem;
               height: 0.75rem;
+              padding-left: 5px;
+              float: left;
               fill: var(--textColor);
             }
           }
@@ -285,7 +292,10 @@ $navHeight: 7.5vh;
                   left: -20%;
                   width: 0.75rem;
                   height: 0.75rem;
-                  border: 1px dashed black;
+                  border-top: 1px dashed black;
+                  border-left: 1px dashed black;
+                  border-bottom: 1px dashed white;
+                  border-right: 1px dashed white;
                 }
 
                 &:hover {
@@ -298,19 +308,25 @@ $navHeight: 7.5vh;
                 background-color: var(--textColor);
               }
               :nth-child(2):after {
-                background-color: var(--colorOne);
+                background-color: var(--background);
               }
               :nth-child(3):after {
-                background-color: var(--colorTwo);
+                background-color: var(--accentOne);
               }
               :nth-child(4):after {
-                background-color: var(--colorThree);
+                background-color: var(--accentTwo);
               }
               :nth-child(5):after {
-                background-color: var(--contrastOne);
+                background-color: var(--accentThree);
               }
               :nth-child(6):after {
-                background-color: var(--contrastTwo);
+                background-color: var(--accentFour);
+              }
+              :nth-child(7):after {
+                background-color: var(--accentFive);
+              }
+              :nth-child(8):after {
+                background-color: var(--accentSix);
               }
             }
           }
@@ -328,16 +344,8 @@ $navHeight: 7.5vh;
           right: 50%;
           transform: translate3d(50%, 0, 0);
           padding: 0.5rem;
-          background-color: var(--textColor);
-          color: var(--colorThree);
+          background: var(--accentSix);
           border-radius: 5px;
-        }
-      }
-
-      &:hover:not(.lightModeAddon) {
-        background-color: var(--textColor);
-        svg {
-          fill: var(--colorThree);
         }
       }
     }

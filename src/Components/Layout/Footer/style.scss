@@ -5,17 +5,23 @@ $logoHeight: 75px;
   display: flex;
   height: 100px;
   width: 100vw;
-  background-color: var(--colorThree);
+  background-color: var(--accentSix);
+  z-index: 3;
+
+  > :nth-child(n) {
+    z-index: inherit;
+  }
 
   .wave {
-    position: absolute;
-    bottom: 95%;
-    left: 0;
-    width: 100%;
-    z-index: -1;
+    > :nth-child(3) {
+      transform: translate(0, 10%) !important;
+    }
 
-    > svg > path {
-      fill: var(--colorThree);
+    > :nth-child(n) {
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      width: 100%;
     }
   }
 
