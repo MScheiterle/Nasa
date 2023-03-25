@@ -8,6 +8,10 @@ import Home from "./Components/Layout/Home/Home";
 import Login from "./Components/Accounts/Login/Login";
 import Register from "./Components/Accounts/Register/Register";
 import Reset from "./Components/Accounts/Reset/Reset";
+import Tutorials from "./Components/Layout/Tutorials/Tutorials";
+import Projects from "./Components/Layout/Projects/Projects";
+import Profile from "./Components/Accounts/Profile/Profile";
+import Tools from "./Components/Layout/Tools/Tools";
 import CurvedLine from "./Components/Utils/CurvedLine";
 
 function App() {
@@ -16,27 +20,19 @@ function App() {
       <Router>
         <Navbar />
         <div className="waves">
-          <CurvedLine
-            strokeColor={"var(--accentOne)"}
-            height={200}
-            peakCount={7}
-          />
-          <CurvedLine
-            strokeColor={"var(--accentTwo)"}
-            height={150}
-            peakCount={7}
-          />
-          <CurvedLine
-            strokeColor={"var(--accentThree)"}
-            height={100}
-            peakCount={7}
-          />
+          <CurvedLine strokeColor={"var(--accentOne)"} height={200} />
+          <CurvedLine strokeColor={"var(--accentTwo)"} height={150} />
+          <CurvedLine strokeColor={"var(--accentThree)"} height={100} />
         </div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/password_reset" element={<Reset />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/projects/:page" element={<Projects />} />
+          <Route path="/tutorials" element={<Tutorials />} />
+          <Route path="/tools" element={<Tools />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
         <Footer />

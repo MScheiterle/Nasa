@@ -25,27 +25,26 @@ body
   font-size: 1rem
 
   --transitionTiming: 300ms ease-in-out
+  --textColor: hsl(0, 0%, 100%)
 
   &.lightMode
-    --textColor: hsl(0, 0%, 100%)
-    --background: hsl(23, 97%, 46%)
-    --accentOne: hsl(12, 98%, 44%)
-    --accentTwo: hsl(0, 100%, 41%)
-    --accentThree: hsl(358, 97%, 31%)
-    --accentFour: hsl(354, 93%, 22%)
-    --accentFive: hsl(339, 80%, 12%)
-    --accentSix: hsl(231, 82%, 6%)
+    --background: hsl(330, 85%, 45%) /*Dark Turquoise*/
+    --accentOne: hsl(329, 85%, 39%) /*Deep Teal*/
+    --accentTwo: hsl(324, 85%, 26%) /*Deep Sea Green*/
+    --accentThree: hsl(248, 94%, 6%) /*Navy Blue*/
+    --accentFour: hsl(271, 85%, 8%) /*Deep Indigo*/
+    --accentFive: hsl(289, 83%, 9%) /*Olive Green*/
+    --accentSix: hsl(310, 83%, 14%) /*Dark Plum*/
 
   &.darkMode
     $darknessCoef: 2
-    --textColor: hsl(0, 0%, 100%)
-    --background: hsl(23, 97%, calc(46%/#{$darknessCoef}))
-    --accentOne: hsl(12, 98%, calc(44%/#{$darknessCoef}))
-    --accentTwo: hsl(0, 100%, calc(41%/#{$darknessCoef}))
-    --accentThree: hsl(358, 97%, calc(31%/#{$darknessCoef}))
-    --accentFour: hsl(354, 93%, calc(22%/#{$darknessCoef}))
-    --accentFive: hsl(339, 80%, calc(12%/#{$darknessCoef}))
-    --accentSix: hsl(231, 82%, calc(6%/#{$darknessCoef}))
+    --background: hsl(330, 85%, calc(45%/#{$darknessCoef})) /*Dark Turquoise*/
+    --accentOne: hsl(329, 85%, calc(39%/#{$darknessCoef})) /*Deep Teal*/
+    --accentTwo: hsl(324, 85%, calc(26%/#{$darknessCoef})) /*Deep Sea Green*/
+    --accentThree: hsl(248, 94%, calc(6%/#{$darknessCoef})) /*Navy Blue*/
+    --accentFour: hsl(271, 85%, calc(8%/#{$darknessCoef})) /*Deep Indigo*/
+    --accentFive: hsl(289, 83%, calc(9%/#{$darknessCoef})) /*Olive Green*/
+    --accentSix: hsl(310, 83%, calc(14%/#{$darknessCoef})) /*Dark Plum*/
 
   .page
     height: 100vh

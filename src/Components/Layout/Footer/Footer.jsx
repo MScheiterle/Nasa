@@ -6,21 +6,9 @@ function Footer() {
   return (
     <div id="Footer" className="center">
       <div className="wave">
-        <CurvedLine
-          strokeColor={"var(--accentFour)"}
-          height={200}
-          peakCount={7}
-        />
-        <CurvedLine
-          strokeColor={"var(--accentFive)"}
-          height={150}
-          peakCount={7}
-        />
-        <CurvedLine
-          strokeColor={"var(--accentSix)"}
-          height={100}
-          peakCount={7}
-        />
+        <CurvedLine strokeColor={"var(--accentFour)"} height={200} />
+        <CurvedLine strokeColor={"var(--accentFive)"} height={150} />
+        <CurvedLine strokeColor={"var(--accentSix)"} height={100} />
       </div>
       <div className="logo">
         <svg

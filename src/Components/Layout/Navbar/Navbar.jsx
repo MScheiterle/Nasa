@@ -7,7 +7,6 @@ import { auth, db, logout } from "../../../firebase.ts";
 import { query, collection, getDocs, where } from "firebase/firestore";
 
 import { navLinks } from "../../../Constants.ts";
-import CurvedLine from "../../Utils/CurvedLine";
 
 function HSLColorSelector() {
   const [color, setColor] = useState({ h: 0, s: 100, l: 50 });
@@ -272,7 +271,7 @@ function Navbar() {
 
   const userAddon = user ? (
     <>
-      <div className="userAddon addon hasDropDown">
+      <button className="userAddon addon hasDropDown">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
           <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
         </svg>
@@ -287,7 +286,7 @@ function Navbar() {
           <div onClick={() => logout()}>Logout</div>
           <div>{name}</div>
         </div>
-      </div>
+      </button>
     </>
   ) : (
     <div className="addonGroup">
@@ -317,12 +316,12 @@ function Navbar() {
   );
 
   const themesAddon = (
-    <div className="themeAddon addon hasDropDown">
+    <button className="themeAddon addon hasDropDown">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
         <path d="M192 64L160 0H128L96 64 64 0H48C21.5 0 0 21.5 0 48V256H384V48c0-26.5-21.5-48-48-48H224L192 64zM0 288v32c0 35.3 28.7 64 64 64h64v64c0 35.3 28.7 64 64 64s64-28.7 64-64V384h64c35.3 0 64-28.7 64-64V288H0zM192 432a16 16 0 1 1 0 32 16 16 0 1 1 0-32z" />
       </svg>
       <HSLColorSelector />
-    </div>
+    </button>
   );
 
   const lightModeAddon = (
@@ -359,7 +358,9 @@ function Navbar() {
   navLinks.forEach((element, index) => {
     pageLinks.push(
       <div
-        className="navItem center"
+        className={`navItem center ${
+          window.location.pathname === element.destination ? "active" : ""
+        }`}
         key={index}
         onClick={(e) => {
           navigate(element.link ? element.destination : "/");
@@ -368,16 +369,19 @@ function Navbar() {
             smoothScroll(element.name);
           }, 150);
         }}
+        data-content={element.name}
       >
-        {element.name}
+        <div>{element.name}</div>
       </div>
     );
   });
 
   var smoothScroll = function (elementId) {
     const element = document.getElementById(elementId);
-    if (element) {
+    if (element && !element.classList.contains("page")) {
       element.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.scrollTo(0, 0);
     }
   };
 
@@ -427,8 +431,8 @@ function Navbar() {
       <div className="addons">
         {userAddon}
         {themesAddon}
-        <div
-          className="lightModeAddon addon darkMode"
+        <button
+          className="lightModeAddon addon lightMode"
           onClick={() => {
             document.body.classList.toggle("lightMode");
             document.body.classList.toggle("darkMode");
@@ -441,7 +445,7 @@ function Navbar() {
           }}
         >
           {lightModeAddon}
-        </div>
+        </button>
         <div
           className="menuAddon addon"
           onClick={() => {

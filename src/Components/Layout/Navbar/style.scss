@@ -8,8 +8,8 @@ $navHeight: 7.5vh;
   align-items: center;
   height: $navHeight;
   max-width: 100vw;
-  padding-left: 6rem;
-  padding-right: 6rem;
+  padding-left: 2vw;
+  padding-right: 2vw;
   margin-bottom: 8px;
 
   .MainLogo {
@@ -61,30 +61,68 @@ $navHeight: 7.5vh;
   .navItem {
     white-space: nowrap;
     width: auto;
-    padding: 5px;
     height: $navHeight;
     transition: var(--transitionTiming);
     cursor: pointer;
+    position: relative;
 
-    &:not(:first-child) {
-      margin-left: 7.5%;
+    &:first-child {
+      margin-left: 10%;
+    }
+
+    &:nth-child(n):not(:first-child) {
+      margin-left: 45%;
+    }
+
+    span {
+      position: relative;
+      z-index: 2;
+    }
+
+    &::after {
+      content: attr(data-content);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(2);
+      opacity: 0.2;
+      display: block;
+      z-index: -1;
+      transition: var(--transitionTiming);
     }
 
     &:hover {
-      box-shadow: inset 0px -4px 0px -3px var(--textColor);
+      text-decoration: solid;
     }
 
     &.active {
-      box-shadow: inset 0px -4px 0px -3px var(--textColor);
+      > div {
+        visibility: hidden;
+      }
+      &::after {
+        color: var(--textColor);
+        opacity: 1 !important;
+        z-index: 3;
+        text-decoration: underline;
+      }
     }
   }
 
   .pageLinks {
     display: flex;
+
+    :nth-child(1).navItem:hover::after {
+      transform: translate(-50%, -50%) scale(1.75) rotate(5deg);
+    }
+    :nth-child(2).navItem:hover::after {
+      transform: translate(-50%, -50%) scale(1.75) rotate(-5deg);
+    }
+    :nth-child(3).navItem:hover::after {
+      transform: translate(-50%, -50%) scale(1.75) rotate(7deg);
+    }
   }
 
   .addons {
-    padding: 5px;
     margin-left: auto;
     display: flex;
 
@@ -125,7 +163,12 @@ $navHeight: 7.5vh;
         border-radius: 50%;
         width: 2.5rem;
         height: 2.5rem;
-        background-color: var(--accentSix);
+        border: 2px solid var(--accentSix);
+        background: linear-gradient(
+          to bottom right,
+          var(--background),
+          var(--accentTwo)
+        );
       }
 
       &.darkMode {
@@ -146,7 +189,7 @@ $navHeight: 7.5vh;
       }
 
       &:hover {
-        background-color: transparent !important;
+        background: transparent !important;
         border-radius: 20%/50% !important;
         width: 5rem !important;
 
@@ -183,13 +226,21 @@ $navHeight: 7.5vh;
       width: 2.5rem;
       height: 2.5rem;
       margin-right: 20px;
-      background: var(--accentSix);
+      background: linear-gradient(
+        to bottom right,
+        var(--background),
+        var(--accentTwo)
+      );
       cursor: pointer;
+      border: 2px solid var(--accentSix);
+      color: unset; // Stupid button elems
+      font: unset; // Stupid button elems
 
       &.hasDropDown:hover {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         transform: translate3d(0, 25%, 0);
+        background-size: 300%;
 
         .dropDown {
           visibility: visible;
@@ -223,6 +274,7 @@ $navHeight: 7.5vh;
             text-align: center;
 
             &:hover:not(:last-child) {
+              cursor: pointer;
               background-color: var(--accentTwo);
               color: var(--textColor);
             }
@@ -234,106 +286,107 @@ $navHeight: 7.5vh;
           }
         }
 
-        &.themeAddon > .dropDown {
-          width: 250px;
-          align-items: center;
-          border: 1px solid var(--accentSix);
-
-          > .warnings {
-            position: relative;
-            display: block;
-            height: 100%;
-            width: calc(100% + 1rem);
-            transform: translate(-0.5rem);
-            font-size: 0.75rem;
-            text-align: center;
-
-            :nth-child(n) {
-              background-color: var(--accentFour);
-            }
-
-            div {
-              margin-bottom: 5px;
-              color: var(--textColor);
-            }
-
-            svg {
-              position: inherit;
-              width: 0.75rem;
-              height: 0.75rem;
-              padding-left: 5px;
-              float: left;
-              fill: var(--textColor);
-            }
+        &.themeAddon {
+          > ::before {
+            content: "";
           }
 
-          > .upperSection {
-            margin-top: 10px;
-            display: flex;
+          > .dropDown {
+            width: 250px;
             align-items: center;
-            justify-content: space-between;
 
-            > .variableOptions {
-              text-align: start;
-              white-space: nowrap;
+            > .warnings {
+              position: relative;
+              display: block;
+              height: 100%;
+              width: calc(100% + 1rem);
+              transform: translate(-0.5rem);
               font-size: 0.75rem;
+              text-align: center;
 
-              > .active {
-                transform: translate(-25%) scale(1.25);
-              }
-
-              :nth-child(n) {
-                transition: transform var(--transitionTiming);
-                position: relative;
-                &::after {
-                  content: "";
-                  position: absolute;
-                  top: 0;
-                  left: -20%;
-                  width: 0.75rem;
-                  height: 0.75rem;
-                  border-top: 1px dashed black;
-                  border-left: 1px dashed black;
-                  border-bottom: 1px dashed white;
-                  border-right: 1px dashed white;
-                }
-
-                &:hover {
-                  cursor: pointer;
-                  transform: scale(1.25);
-                }
+              div {
+                margin-bottom: 5px;
+                color: var(--textColor);
               }
 
-              :nth-child(1):after {
-                background-color: var(--textColor);
-              }
-              :nth-child(2):after {
-                background-color: var(--background);
-              }
-              :nth-child(3):after {
-                background-color: var(--accentOne);
-              }
-              :nth-child(4):after {
-                background-color: var(--accentTwo);
-              }
-              :nth-child(5):after {
-                background-color: var(--accentThree);
-              }
-              :nth-child(6):after {
-                background-color: var(--accentFour);
-              }
-              :nth-child(7):after {
-                background-color: var(--accentFive);
-              }
-              :nth-child(8):after {
-                background-color: var(--accentSix);
+              svg {
+                position: inherit;
+                width: 0.75rem;
+                height: 0.75rem;
+                padding-left: 5px;
+                float: left;
+                fill: var(--textColor);
               }
             }
-          }
 
-          > .sliders > label {
-            display: flex;
-            justify-content: space-between;
+            > .upperSection {
+              margin-top: 10px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+
+              > .variableOptions {
+                text-align: start;
+                white-space: nowrap;
+                font-size: 0.75rem;
+
+                > .active {
+                  transform: translate(-25%) scale(1.25);
+                }
+
+                :nth-child(n) {
+                  transition: transform var(--transitionTiming);
+                  position: relative;
+                  &::after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: -20%;
+                    width: 0.75rem;
+                    height: 0.75rem;
+                    border-top: 1px dashed black;
+                    border-left: 1px dashed black;
+                    border-bottom: 1px dashed white;
+                    border-right: 1px dashed white;
+                  }
+
+                  &:hover {
+                    cursor: pointer;
+                    transform: scale(1.25);
+                  }
+                }
+
+                :nth-child(1):after {
+                  background-color: var(--textColor);
+                }
+                :nth-child(2):after {
+                  background-color: var(--background);
+                }
+                :nth-child(3):after {
+                  background-color: var(--accentOne);
+                }
+                :nth-child(4):after {
+                  background-color: var(--accentTwo);
+                }
+                :nth-child(5):after {
+                  background-color: var(--accentThree);
+                }
+                :nth-child(6):after {
+                  background-color: var(--accentFour);
+                }
+                :nth-child(7):after {
+                  background-color: var(--accentFive);
+                }
+                :nth-child(8):after {
+                  background-color: var(--accentSix);
+                }
+              }
+            }
+
+            > .sliders > label {
+              display: flex;
+              justify-content: space-between;
+            }
           }
         }
 
@@ -353,8 +406,8 @@ $navHeight: 7.5vh;
 
   @media (max-width: 767px) {
     & {
-      padding-left: 5px;
-      padding-right: 5px;
+      padding-left: 5vw;
+      padding-right: 5vw;
 
       .addons {
         :not(:last-child) {

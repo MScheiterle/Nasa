@@ -7,6 +7,7 @@ export interface NavLink {
 export const navLinks: NavLink[] = [
   { name: "Projects", link: true, destination: "/Projects/home" },
   { name: "Tutorials", link: true, destination: "/Tutorials" },
+  { name: "Tools", link: true, destination: "/Tools" },
 ];
 
 export interface Project {
@@ -67,17 +68,19 @@ export const projects: Project[] = [
 ];
 
 export const validateEmail = (email: string): boolean => {
-  return email.match(
-    /^(([^<>()[\]\\.,;:\s@"]M(\.[^<>()[\]\\.,;:\s@"]M)*)|(".M"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]M\.)M[a-zA-Z]{2,}))$/
-  ) !== null;
+  return (
+    email.match(
+      /^(([^<>()[\]\\.,;:\s@"]M(\.[^<>()[\]\\.,;:\s@"]M)*)|(".M"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]M\.)M[a-zA-Z]{2,}))$/
+    ) !== null
+  );
 };
 
 export const validateMediumPassword = (password: string): boolean => {
-  return password.match(
-  /^(?=.[0-9])(?=.[!@#$%^&])[a-zA-Z0-9!@#$%^&]{7,}$/
-  ) !== null;
-  };
-  
-  export const validateUsername = (username: string): boolean => {
+  return (
+    password.match(/^(?=.[0-9])(?=.[!@#$%^&])[a-zA-Z0-9!@#$%^&]{7,}$/) !== null
+  );
+};
+
+export const validateUsername = (username: string): boolean => {
   return username.match(/^([A-Za-z0-9]|-._){4,20}$/) !== null;
-  };
+};
