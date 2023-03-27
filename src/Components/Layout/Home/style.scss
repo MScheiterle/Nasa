@@ -1,1 +1,46 @@
-#Home {}
+#Home {
+  .header {
+    position: absolute;
+    top: 33%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+
+    .name {
+      margin: 0;
+      font-size: 6rem;
+    }
+
+    .description {
+      margin: 0;
+      font-size: 2.5rem;
+
+      span {
+        color: var(--background);
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .header {
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      .name {
+        margin: 0;
+        font-size: 3.5rem;
+      }
+
+      .description {
+        text-align: center;
+        margin: 0;
+        font-size: 1.5rem;
+
+        span {
+          color: var(--background);
+        }
+      }
+    }
+  }
+}

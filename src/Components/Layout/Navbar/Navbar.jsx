@@ -269,6 +269,14 @@ function Navbar() {
     }
   }, [user?.uid]);
 
+  onscroll = () => {
+    if (window.scrollY === 0) {
+      document.getElementById("Navbar").classList.remove("scrolled");
+    } else {
+      document.getElementById("Navbar").classList.add("scrolled");
+    }
+  };
+
   const userAddon = user ? (
     <>
       <button className="userAddon addon hasDropDown">
