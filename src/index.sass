@@ -25,10 +25,10 @@ body
   font-size: 1rem
 
   --transitionTiming: 300ms ease-in-out
-  --textColor: hsl(0, 0%, 100%)
   --globalBorderRadius: 5px
 
   &.lightMode
+    --textColor: hsl(0, 0%, 100%)
     --background: hsl(330, 85%, 45%) /*Dark Turquoise*/
     --accentOne: hsl(329, 85%, 39%) /*Deep Teal*/
     --accentTwo: hsl(324, 85%, 26%) /*Deep Sea Green*/
@@ -39,6 +39,7 @@ body
 
   &.darkMode
     $darknessCoef: 2
+    --textColor: hsl(0, 0%, calc(100%/#{$darknessCoef}))
     --background: hsl(330, 85%, calc(45%/#{$darknessCoef})) /*Dark Turquoise*/
     --accentOne: hsl(329, 85%, calc(39%/#{$darknessCoef})) /*Deep Teal*/
     --accentTwo: hsl(324, 85%, calc(26%/#{$darknessCoef})) /*Deep Sea Green*/
