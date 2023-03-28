@@ -1,51 +1,57 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.scss";
 
 function Home() {
-  const typedTextSpan = document.querySelector(".typed-text");
-  const cursorSpan = document.querySelector(".cursor");
+  const [typedText, setTypedText] = useState("");
+  const [typing, setTyping] = useState(false);
 
-  const textArray = ["hard", "fun", "a journey", "LIFE"];
-  const typingDelay = 200;
+  const typingDelay = 100;
   const erasingDelay = 100;
-  const newTextDelay = 2000; // Delay between current and next text
-  let textArrayIndex = 0;
+  const newTextDelay = 1000;
   let charIndex = 0;
 
-  function type() {
-    if (charIndex < textArray[textArrayIndex].length) {
-      if (!cursorSpan.classList.contains("typing"))
-        cursorSpan.classList.add("typing");
-      typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-      charIndex++;
-      setTimeout(type, typingDelay);
-    } else {
-      cursorSpan.classList.remove("typing");
-      setTimeout(erase, newTextDelay);
-    }
-  }
-
-  function erase() {
-    if (charIndex > 0) {
-      if (!cursorSpan.classList.contains("typing"))
-        cursorSpan.classList.add("typing");
-      typedTextSpan.textContent = textArray[textArrayIndex].substring(
-        0,
-        charIndex - 1
-      );
-      charIndex--;
-      setTimeout(erase, erasingDelay);
-    } else {
-      cursorSpan.classList.remove("typing");
-      textArrayIndex++;
-      if (textArrayIndex >= textArray.length) textArrayIndex = 0;
-      setTimeout(type, typingDelay + 1100);
-    }
-  }
-
   useEffect(() => {
-    if (textArray.length) setTimeout(type, newTextDelay + 250);
-  }, []);
+    const textArray = [
+      "Developer",
+      "Graphics Hobbyist",
+      "Gamer",
+      "Music Lover",
+      "Educator",
+      "Learner",
+    ];
+    let textArrayIndex = 0;
+    let timeoutID;
+    function type() {
+      if (charIndex < textArray[textArrayIndex].length) {
+        setTyping(true);
+        setTypedText(textArray[textArrayIndex].substring(0, charIndex + 1));
+        charIndex++;
+        timeoutID = setTimeout(type, typingDelay);
+      } else {
+        setTyping(false);
+        setTimeout(erase, newTextDelay);
+      }
+    }
+    function erase() {
+      if (charIndex > 0) {
+        setTyping(true);
+        setTypedText(textArray[textArrayIndex].substring(0, charIndex - 1));
+        charIndex--;
+        timeoutID = setTimeout(erase, erasingDelay);
+      } else {
+        setTyping(false);
+        textArrayIndex++;
+        if (textArrayIndex >= textArray.length) {
+          textArrayIndex = 0;
+        }
+        timeoutID = setTimeout(type, typingDelay + 1100);
+      }
+    }
+    if (textArray.length) {
+      timeoutID = setTimeout(type, newTextDelay + 250);
+    }
+    return () => clearTimeout(timeoutID);
+  }, [charIndex]);
 
   return (
     <div id="Home" className="page">
@@ -53,8 +59,8 @@ function Home() {
         <div className="name">Simpl1f1ed</div>
         <div className="description">
           A Passionate&nbsp;
-          <span className="typed-text"></span>
-          <span className="cursor">&nbsp;</span>
+          <span className="typed-text">{typedText}</span>
+          <span className={`cursor ${typing ? "typing" : ""}`}></span>
         </div>
       </div>
     </div>
