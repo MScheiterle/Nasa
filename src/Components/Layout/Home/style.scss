@@ -1,59 +1,95 @@
 #Home {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 100vw;
+  overflow: hidden;
+
+  .content {
+    min-width: 50vw;
+  }
+
   .header {
-    position: absolute;
-    top: 33%;
-    left: 25%;
-    transform: translate3d(-50%, 0, 0);
-    width: fit-content;
+    display: flex;
+    min-width: 50vw;
 
     > .name {
+      transform: translate(0, -25%);
       margin: 0;
       font-size: 6rem;
-    }
 
-    > .description {
-      position: fixed;
-      text-align: left;
-      margin: 0;
-      font-size: 2.5rem;
-      white-space: nowrap;
-
-      .typed-text {
+      > .description {
+        position: relative;
+        text-align: left;
+        margin: 0;
+        font-size: calc(6rem / 2.25);
+        max-width: 100vw;
         white-space: nowrap;
-        color: var(--background);
-      }
 
-      .cursor {
-        display: inline-block;
-        background-color: var(--textColor);
-        margin-left: 0.1rem;
-        width: 3px;
-        animation: blink 1s infinite;
-
-        &::after {
-          content: ".";
+        .typed-text {
+          white-space: nowrap;
+          color: var(--background);
         }
 
-        @keyframes blink {
-          0% {
-            background-color: var(--textColor);
+        > .cursor {
+          display: inline-block;
+          background-color: var(--textColor);
+          margin-left: 0.1rem;
+          width: 3px;
+          animation: blink 1s infinite;
+
+          &::after {
+            content: ".";
+            margin-left: 140%;
           }
-          49% {
-            background-color: var(--textColor);
+
+          @keyframes blink {
+            0% {
+              background-color: var(--textColor);
+            }
+            49% {
+              background-color: var(--textColor);
+            }
+            50% {
+              background-color: transparent;
+            }
+            99% {
+              background-color: transparent;
+            }
+            100% {
+              background-color: var(--textColor);
+            }
           }
-          50% {
-            background-color: transparent;
-          }
-          99% {
-            background-color: transparent;
-          }
-          100% {
-            background-color: var(--textColor);
+
+          &.typing {
+            animation: none;
           }
         }
 
-        &.typing {
-          animation: none;
+        svg {
+          display: inline-block;
+          fill: white;
+          cursor: pointer;
+          &.left {
+            transform: translate(-10%, 25%) rotate(180deg);
+          }
+          &.right {
+            transform: translate(10%, 25%);
+          }
+
+          @keyframes arrowBlink {
+            50% {
+              fill: transparent;
+            }
+          }
+
+          $n: 28;
+          @for $x from 1 through $n {
+            &:hover > g > :nth-child(#{$x}) {
+              animation: arrowBlink 1s infinite;
+              animation-delay: 100ms * $x;
+            }
+          }
         }
       }
     }
@@ -61,15 +97,44 @@
 
   @media (max-width: 767px) {
     .header {
-      top: 25%;
-      left: 50%;
-
+      width: 100vw;
       .name {
-        font-size: 3.5rem;
-      }
+        font-size: 3rem;
 
-      .description {
-        text-align: center;
+        .description {
+          text-align: center;
+          font-size: calc(3rem / 2.5);
+
+          svg {
+            width: 32px;
+            &.left {
+              transform: translate(-10%, 40%) rotate(180deg);
+            }
+            &.right {
+              transform: translate(10%, 40%);
+            }
+          }
+          @media (max-width: 392px) {
+            max-width: 100vw;
+            text-overflow: ellipsis;
+            outline: 1px dashed;
+            font-size: calc(3rem / 3);
+
+            svg {
+              position: absolute;
+              top: 100%;
+              width: 32px;
+              &.left {
+                left: 0;
+                transform: translate(-10%) rotate(180deg);
+              }
+              &.right {
+                right: 0;
+                transform: translate(10%);
+              }
+            }
+          }
+        }
       }
     }
   }
