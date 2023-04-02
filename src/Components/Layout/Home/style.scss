@@ -5,7 +5,14 @@
   max-width: 100vw;
   overflow: hidden;
 
+  :nth-child(n) {
+    outline: none;
+  }
+
   .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-width: 50vw;
   }
 
@@ -14,7 +21,6 @@
     min-width: 50vw;
 
     > .name {
-      transform: translate(0, -25%);
       margin: 0;
       font-size: 6rem;
 
@@ -68,7 +74,7 @@
 
         svg {
           display: inline-block;
-          fill: white;
+          fill: var(--textColor);
           cursor: pointer;
           &.left {
             transform: translate(-10%, 25%) rotate(180deg);
@@ -95,6 +101,96 @@
     }
   }
 
+  pre {
+    font-size: 3rem;
+    font-weight: bold;
+    background: var(--accentFive);
+    padding: 2rem;
+    border-radius: 1rem;
+
+    position: relative;
+
+    transform-style: preserve-3d;
+    transform: perspective(5000px) rotateY(var(--rotateX))
+      rotateX(var(--rotateY));
+  }
+
+  pre::before,
+  pre::after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+  }
+
+  pre::before {
+    inset: 0.75rem;
+    border-radius: inherit;
+    background: black;
+    z-index: -1;
+    transform: translateZ(-50px);
+    filter: blur(15px);
+    opacity: 0.5;
+  }
+
+  pre::after {
+    z-index: -2;
+    inset: -1rem;
+    background: linear-gradient(-45deg, var(--background), var(--accentSix));
+    transform: translateZ(-50px);
+  }
+
+  .language-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1rem;
+    border-radius: 0 1rem;
+    background-color: var(--accentFour);
+  }
+
+  .selector {
+    color: var(--background);
+
+    &::after {
+      content: " ";
+    }
+
+    & + .punctuation::after {
+      content: "\a";
+    }
+  }
+
+  .property {
+    color: var(--accentOne);
+
+    &::before {
+      content: "  ";
+    }
+
+    + .punctuation::after {
+      content: " ";
+    }
+  }
+
+  .value {
+    color: var(--accent);
+    + .punctuation::after {
+      content: "\a";
+    }
+
+    &.data-type {
+      color: var(--accentTwo);
+    }
+  }
+
+  .punctuation {
+    color: var(--textColor);
+  }
+
+  .property + .punctuation {
+    color: var(--accentOne);
+  }
+
   @media (max-width: 767px) {
     .header {
       width: 100vw;
@@ -117,7 +213,6 @@
           @media (max-width: 392px) {
             max-width: 100vw;
             text-overflow: ellipsis;
-            outline: 1px dashed;
             font-size: calc(3rem / 3);
 
             svg {
@@ -136,6 +231,10 @@
           }
         }
       }
+    }
+
+    pre {
+      font-size: 5vw;
     }
   }
 }
