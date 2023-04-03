@@ -38,7 +38,7 @@ body
     --accentSix: hsl(310, 83%, 14%) /*Dark Plum*/
 
   &.darkMode
-    $darknessCoef: 2
+    $darknessCoef: 1.5
     --textColor: hsl(0, 0%, calc(100%/#{$darknessCoef}))
     --background: hsl(330, 85%, calc(45%/#{$darknessCoef})) /*Dark Turquoise*/
     --accentOne: hsl(329, 85%, calc(39%/#{$darknessCoef})) /*Deep Teal*/
@@ -63,6 +63,7 @@ body
 
   .waves
     height: 9vh
+    height: 9dvh
     background: var(--background)
     > :nth-child(3)
       transform: translate(0, 10%) !important

@@ -5,6 +5,7 @@ import React, {
   useCallback,
   useMemo,
 } from "react";
+import DeveloperContent from "./DeveloperContent";
 import "./style.scss";
 
 function Home() {
@@ -13,31 +14,7 @@ function Home() {
   const [textArrayIndex, setTextArrayIndex] = useState(0);
   const [selector, setSelector] = useState(0);
 
-  const contentOptions = [
-    [
-      <pre className="language-css" key={"developer"}>
-        <div className="language-header">CSS</div>
-        <code className="language-css">
-          <span className="selector">.Simpl1f1ed</span>
-          <span className="punctuation">{"{"}</span>
-          <span className="property">skill</span>
-          <span className="punctuation">:</span>
-          <span className="value">none</span>
-          <span className="punctuation">;</span>
-          <span className="property">main-tool</span>
-          <span className="punctuation">:</span>
-          <span className="value">"Chat-GPT"</span>
-          <span className="punctuation">;</span>
-          <span className="property">joking</span>
-          <span className="punctuation">:</span>
-          <span className="value">50</span>
-          <span className="value data-type">%</span>
-          <span className="punctuation">;</span>
-          <span className="punctuation">{"}"}</span>
-        </code>
-      </pre>,
-    ],
-  ];
+  const contentOptions = [<DeveloperContent />];
 
   const arrrowPoints = [
     <circle cx="15.279" cy="14.83" r="14.83" key={1} />,
@@ -135,35 +112,6 @@ function Home() {
       setTyping(false);
     };
   }, [type]);
-
-  useEffect(() => {
-    const pre = document.querySelector("pre");
-
-    const rotateElement = (event, element) => {
-      const x = event.clientX;
-      const y = event.clientY;
-
-      const rect = element.getBoundingClientRect();
-      const middleX = rect.left + rect.width / 2;
-      const middleY = rect.top + rect.height / 2;
-
-      const offsetX = ((x - middleX) / middleX) * 45;
-      const offsetY = ((y - middleY) / middleY) * 45;
-
-      if (element) {
-        element.style.setProperty("--rotateX", offsetX + "deg");
-        element.style.setProperty("--rotateY", -1 * offsetY + "deg");
-      }
-    };
-
-    document.addEventListener("mousemove", (e) => {
-      rotateElement(e, pre);
-    });
-
-    return () => {
-      document.removeEventListener("mousemove", rotateElement);
-    };
-  }, [selector]);
 
   return (
     <div id="Home" className="page">

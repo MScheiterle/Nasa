@@ -1,0 +1,132 @@
+.devContent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+
+  pre {
+    font-size: 1rem;
+    font-weight: bold;
+    background: var(--accentFive);
+    padding: 2rem;
+    border-radius: 1rem;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: perspective(5000px) rotateY(var(--rotateX))
+      rotateX(var(--rotateY));
+    max-width: 15vw;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      border-radius: inherit;
+    }
+
+    &::before {
+      inset: 0.75rem;
+      border-radius: inherit;
+      background: black;
+      z-index: -1;
+      transform: translateZ(-50px);
+      filter: blur(15px);
+      opacity: 0.5;
+    }
+
+    &::after {
+      z-index: -2;
+      inset: -1rem;
+      background: linear-gradient(-45deg, var(--background), var(--accentSix));
+      transform: translateZ(-50px);
+    }
+
+    .language-header {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 0.5rem;
+      border-radius: 0 1rem;
+      background-color: var(--accentFour);
+    }
+
+    .python {
+      .def {
+        color: var(--accentTwo);
+
+        & > :last-child::after {
+          content: "\a\a";
+        }
+      }
+      .functionName {
+        color: var(--background);
+        & + .punctuation {
+          color: var(--textColor);
+          &::after {
+            content: "\a";
+          }
+
+          & ~ ::before {
+            content: "  ";
+          }
+        }
+      }
+      .string {
+        white-space: pre-wrap;
+        color: var(--accentTwo);
+      }
+      .argument {
+        color: var(--textColor);
+      }
+      .function {
+        color: var(--background);
+      }
+      .variable {
+        color: var(--textColor);
+      }
+    }
+
+    .css {
+      .selector {
+        color: var(--background);
+
+        &::after {
+          content: " ";
+        }
+
+        & + .punctuation::after {
+          content: "\a";
+        }
+      }
+
+      .property {
+        color: var(--accentTwo);
+
+        &::before {
+          content: "  ";
+        }
+
+        + .punctuation::after {
+          content: " ";
+        }
+      }
+
+      .value {
+        color: var(--accent);
+        + .punctuation::after {
+          content: "\a";
+        }
+
+        &.data-type {
+          color: var(--accentTwo);
+        }
+      }
+
+      .punctuation {
+        color: var(--textColor);
+      }
+
+      .property + .punctuation {
+        color: var(--accentOne);
+      }
+    }
+  }
+}
