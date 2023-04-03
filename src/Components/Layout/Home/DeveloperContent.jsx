@@ -30,19 +30,17 @@ function DeveloperPane(props) {
       }
     };
 
-    console.log("Added event listener");
     document.addEventListener("mousemove", (e) => {
       rotateElement(e, pre);
     });
 
     return () => {
-      console.log("Removed event listener");
       document.removeEventListener("mousemove", rotateElement);
     };
   }, [props.id]);
 
   return (
-    <pre className="codePanel" id={`${props.id}`}>
+    <pre id={`${props.id}`}>
       <div className="language-header">{props.language}</div>
       {props.content}
     </pre>
@@ -112,22 +110,31 @@ function DeveloperContent() {
       <DeveloperPane
         id={"developerContent3"}
         language={"JavaScript"}
-        content={<code className="js"></code>}
-      />
-      <DeveloperPane
-        id={"developerContent4"}
-        language={"C++"}
-        content={<code className="c++"></code>}
-      />
-      <DeveloperPane
-        id={"developerContent5"}
-        language={"HTML"}
-        content={<code className="html"></code>}
-      />
-      <DeveloperPane
-        id={"developerContent6"}
-        language={"Java"}
-        content={<code className="java"></code>}
+        content={
+          <code className="js">
+            <span>const Simpl1f1ed = {"{"}</span>
+            <span>catchphrase: () {"=> {"}</span>
+            <span> const phrases = [</span>
+            <span>
+              {" "}
+              'My code is so bad, I simplified my name to hide from it',
+            </span>
+            <span> 'My code is like a puzzle, but with no solution',</span>
+            <span>
+              {" "}
+              'Debugging my code is like trying to find a needle in a haystack,
+              except the needle doesn\'t exist',
+            </span>
+            <span> 'My code is a masterpiece of spaghetti architecture',</span>
+            <span> ];</span>
+            <span>
+              {" "}
+              const randomIndex = Math.floor(Math.random() * phrases.length);
+            </span>
+            <span> return phrases[randomIndex];</span>
+            <span>{"}};"}</span>
+          </code>
+        }
       />
     </div>
   );
