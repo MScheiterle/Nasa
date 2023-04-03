@@ -2,15 +2,24 @@ import React, { useEffect } from "react";
 import "./contentStyles.scss";
 
 function DeveloperPane(props) {
+  return (
+    <pre id={`${props.id}`}>
+      <div className="language-header">{props.language}</div>
+      {props.content}
+    </pre>
+  );
+}
+
+function DeveloperContent() {
   useEffect(() => {
-    const pre = document.querySelector(`#${props.id}`);
+    const pre = document.querySelector(`.devContent`);
 
     const rotateElement = (event, element) => {
       const x = event.clientX;
       const y = event.clientY;
       const { innerWidth, innerHeight } = window;
 
-      if (element) {
+      if (element && window.innerWidth > 767) {
         const rect = element.getBoundingClientRect();
         const middleX = rect.left + rect.width / 2;
         const middleY = rect.top + rect.height / 2;
@@ -37,17 +46,7 @@ function DeveloperPane(props) {
     return () => {
       document.removeEventListener("mousemove", rotateElement);
     };
-  }, [props.id]);
-
-  return (
-    <pre id={`${props.id}`}>
-      <div className="language-header">{props.language}</div>
-      {props.content}
-    </pre>
-  );
-}
-
-function DeveloperContent() {
+  }, []);
   return (
     <div className="devContent">
       <DeveloperPane
@@ -112,27 +111,65 @@ function DeveloperContent() {
         language={"JavaScript"}
         content={
           <code className="js">
-            <span>const Simpl1f1ed = {"{"}</span>
-            <span>catchphrase: () {"=> {"}</span>
-            <span> const phrases = [</span>
             <span>
-              {" "}
-              'My code is so bad, I simplified my name to hide from it',
+              <span className="variableDec">const</span>
+              <span className="variable">Simpl1f1ed</span>
+              <span className="operator">=</span>
+              <span className="puncuation">{"{"}</span>
             </span>
-            <span> 'My code is like a puzzle, but with no solution',</span>
             <span>
+              <span className="variable">  catchPhrases</span>: ()
+              <span className="operator">{"=>"}</span>
+              <span className="puncuation">{"{"}</span>
+            </span>
+            <span>
+              <span className="variableDec">    const</span>
+              <span className="variable">phrases</span>
+              <span className="operator">=</span>
+              {"["}
+            </span>
+            <span className="string">
+              'My code is so over complicated, I Simpl1f1ed my name to cover it up.',
+            </span>
+            <span className="string">
               {" "}
+              'My code is like a puzzle, but with no solution.',
+            </span>
+            <span className="string">
               'Debugging my code is like trying to find a needle in a haystack,
-              except the needle doesn\'t exist',
+              except the needle doesn\'t exist.',
             </span>
-            <span> 'My code is a masterpiece of spaghetti architecture',</span>
-            <span> ];</span>
-            <span>
+            <span className="string">
               {" "}
-              const randomIndex = Math.floor(Math.random() * phrases.length);
+              'My code is a masterpiece of spaghetti architecture.',
             </span>
-            <span> return phrases[randomIndex];</span>
-            <span>{"}};"}</span>
+            <span>
+              {"]"}
+              <span className="puncuation">;</span>
+            </span>
+            <span>
+              <span className="variableDec">    const</span>
+              <span className="variable">randomIndex</span>
+              <span className="operator">=</span>
+              <span className="class">Math</span>.
+              <span className="function">floor</span>(
+              <span className="class">Math</span>.
+              <span className="function">random()</span>
+              <span className="operator">*</span>
+              <span className="variable">phrases</span>.
+              <span className="function">length</span>)
+              <span className="puncuation">;</span>
+            </span>
+            <span>
+              <span className="function">    return</span>
+              <span className="variable"> phrases</span>[
+              <span className="variable">randomIndex</span>]
+              <span className="puncuation">;</span>
+            </span>
+            <span>
+              <span className="puncuation">{"  }"}</span>
+              <span className="puncuation">{"};"}</span>
+            </span>
           </code>
         }
       />

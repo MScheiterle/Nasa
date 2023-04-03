@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, auto);
-  gap: 1rem;
+  gap: 3rem;
 
   pre {
     font-size: 1rem;
@@ -15,19 +15,40 @@
     transform: perspective(5000px) rotateY(var(--rotateX))
       rotateX(var(--rotateY));
 
+    @media (min-width: 767px) {
+      &:hover {
+        transform-style: preserve-3d;
+        transform: perspective(5000px) scale(1.05);
+      }
+    }
+
     &#developerContent1 {
       grid-row: 1 / 2;
       grid-column: 1 / 2;
+      border-radius: 3rem;
+
+      .language-header {
+        border-radius: 0 3rem;
+      }
     }
 
     &#developerContent2 {
       grid-row: 1 / 2;
       grid-column: 2 / 3;
+      border-radius: 3rem;
+
+      .language-header {
+        border-radius: 0 3rem;
+      }
     }
 
     &#developerContent3 {
       grid-row: 2 / 3;
       grid-column: 1 / -1;
+
+      .language-header {
+        border-radius: 0 1rem;
+      }
     }
 
     &::before,
@@ -58,13 +79,41 @@
       position: absolute;
       top: 0;
       right: 0;
-      padding: 0.5rem;
-      border-radius: 0 1rem;
+      padding: 1rem;
       background-color: var(--accentFour);
     }
 
     .js {
       white-space: pre-wrap;
+
+      .operator {
+        &::before {
+          content: " ";
+        }
+        &::after {
+          content: " ";
+        }
+      }
+      .puncuation {
+        &::after {
+          content: "\a";
+        }
+      }
+      .function {
+        color: var(--background);
+      }
+      .class {
+        color: var(--background);
+      }
+      .variableDec {
+        color: var(--accentTwo);
+        &::after {
+          content: " ";
+        }
+      }
+      .variable {
+        color: var(--accentOne);
+      }
     }
 
     .python {
@@ -145,6 +194,20 @@
 
       .property + .punctuation {
         color: var(--accentOne);
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    pre {
+      border-radius: 1rem !important;
+
+      .language-header {
+        border-radius: 0 1rem !important;
       }
     }
   }

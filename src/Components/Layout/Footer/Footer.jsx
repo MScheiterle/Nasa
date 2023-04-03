@@ -4,15 +4,16 @@ import "./style.scss";
 
 function Footer() {
   return (
-    <div id="Footer" className="center">
-      <div className="wave">
+    <div id="Footer">
+      <div className="waves">
         <CurvedLine strokeColor={"var(--accentFour)"} height={200} />
         <CurvedLine strokeColor={"var(--accentFive)"} height={150} />
         <CurvedLine strokeColor={"var(--accentSix)"} height={100} />
       </div>
-      <div className="logo">
+      <div className="bottom-section">
         <svg
           id="Layer_1"
+          className="logo"
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512"
@@ -23,8 +24,8 @@ function Footer() {
           <polygon points="393.09 297.48 393.09 376.62 324.59 416.16 324.59 337.03 393.09 297.48" />
           <polygon points="324.55 416.19 256.01 455.75 187.5 416.21 187.5 416.17 187.49 416.19 118.94 376.62 118.93 376.62 118.93 376.6 50.42 337.05 50.42 337.03 118.93 297.48 187.47 337.05 187.5 337.07 256.01 376.62 324.55 416.19" />
         </svg>
+        © 2023-present Marcus Scheiterle (AKA. Simpl1f1ed) All Rights Reserved.
       </div>
-      © 2023-present Marcus Scheiterle (AKA. Simpl1f1ed) All Rights Reserved.
     </div>
   );
 }
