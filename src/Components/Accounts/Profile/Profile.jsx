@@ -4,7 +4,7 @@ import "./style.scss";
 function Profile() { 
  
    return ( 
-       <div id="Profile" className="page"></div> 
+       <div id="Profile" className="page center">Coming Soon...</div> 
    ); 
 } 
  

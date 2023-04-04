@@ -12,13 +12,14 @@
     border-radius: 1rem;
     position: relative;
     transform-style: preserve-3d;
-    transform: perspective(5000px) rotateY(var(--rotateX))
-      rotateX(var(--rotateY));
+    transform: scale(0);
+    animation: grow 1000ms;
+    animation-fill-mode: forwards;
 
     @media (min-width: 767px) {
       &:hover {
         transform-style: preserve-3d;
-        transform: perspective(5000px) scale(1.05);
+        transform: perspective(5000px) scale(1.05) !important;
       }
     }
 
@@ -26,6 +27,7 @@
       grid-row: 1 / 2;
       grid-column: 1 / 2;
       border-radius: 3rem;
+      animation-delay: 100ms;
 
       .language-header {
         border-radius: 0 3rem;
@@ -36,6 +38,7 @@
       grid-row: 1 / 2;
       grid-column: 2 / 3;
       border-radius: 3rem;
+      animation-delay: 200ms;
 
       .language-header {
         border-radius: 0 3rem;
@@ -45,9 +48,23 @@
     &#developerContent3 {
       grid-row: 2 / 3;
       grid-column: 1 / -1;
+      animation-delay: 300ms;
 
       .language-header {
         border-radius: 0 1rem;
+      }
+    }
+
+    @keyframes grow {
+      0% {
+        transform: scale(0);
+      }
+      99% {
+        transform: scale(1);
+      }
+      100% {
+        transform: perspective(5000px) rotateY(var(--rotateX))
+          rotateX(var(--rotateY)) scale(1);
       }
     }
 

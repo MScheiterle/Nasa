@@ -1,9 +1,19 @@
 #Login {
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+
+    > :nth-child(n) {
+      min-width: 17rem;
+      max-width: 25vw;
+    }
+  }
 
   .login-form {
+    flex-direction: column;
     width: 75vw;
     position: relative;
 
@@ -19,7 +29,7 @@
     margin-bottom: 1em;
 
     &.errored {
-      box-shadow: 0px 0px 0px 5px #bf4a4a;
+      box-shadow: 0px 0px 0px 5px var(--background);
 
       .errorLabel {
         @extend .loginLabel;
@@ -31,7 +41,7 @@
 
         svg {
           opacity: 1 !important;
-          fill: #bf4a4a !important;
+          fill: var(--background) !important;
         }
 
         background: transparent !important;
@@ -41,8 +51,9 @@
   }
 
   #erorrMessage {
-    color: #bf4a4a;
+    color: var(--background);
     text-align: center;
+    font-size: 1rem;
   }
 
   .errorLabel {
@@ -57,11 +68,10 @@
 
     svg {
       width: 18px;
-      opacity: 0.5;
-      fill: #c1678b;
+      fill: var(--background);
     }
 
-    background: #dfdcdb;
+    background: var(--accentSix);
     cursor: pointer;
   }
   .loginInput {
@@ -69,6 +79,7 @@
     flex: 1;
     padding: 1em;
     border: 0;
+    background-color: var(--textColor);
 
     font-size: 1rem;
 
@@ -79,81 +90,91 @@
 
   .loginSubmit {
     display: block;
-    padding: 1em;
+    padding: 1rem;
     width: 100%;
-
-    background: #c1678b;
+    background: var(--background);
     border: 0;
-    color: #fff;
+    color: var(--textColor);
     cursor: pointer;
-    font-size: 0.75em;
-    font-weight: 600;
-    text-shadow: 0 1px 0 rgba(black, 0.2);
+    font-size: 1rem;
+    font-weight: 1000;
+    height: 3rem;
+    transition: var(--transitionTiming);
 
-    &:focus {
-      outline: none;
+    &:hover {
+      background-color: var(--accentSix);
     }
   }
 
   .alternateOptions {
-    margin-top: 1em;
-    font-size: 0.8em;
     text-align: center;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 
-    :first-child,
-    :last-child {
-      margin-left: 5px;
-      margin-right: 5px;
+    > :nth-child(n):not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    > :nth-child(n) {
+      height: 3rem;
+      display: block;
+      padding: 1rem;
+      width: 100%;
+      background: var(--background);
+      border: 0;
+      color: var(--textColor);
       cursor: pointer;
+      font-size: 1rem;
+      font-weight: 1000;
+      transition: var(--transitionTiming);
 
       &:hover {
-        transition: 300ms ease-in;
-        box-shadow: 0px 5px 0px -1px #c1678b;
+        background-color: var(--accentSix);
       }
     }
   }
 
   .loginProvidersSection {
-    margin-top: 1em;
+    position: relative;
+    font-size: 1rem;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
 
     .loginProviders {
       display: flex;
       flex-direction: row;
-
-      :nth-child(n) {
-        margin-left: 5px;
-        margin-right: 5px;
-      }
+      width: 100%;
 
       .loginProvider {
-        height: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: table;
         cursor: pointer;
+        width: 100%;
 
-        svg {
+        div {
           margin: 0;
-          background-color: #f7f3f2;
-          width: 2em;
+          display: table-cell;
+          vertical-align: middle;
+          text-align: center;
+          width: 100%;
         }
 
-        p {
-          width: 4em;
+        svg {
+          display: table-cell;
+          margin: 0;
+          background-color: var(--textColor);
+          width: 2rem;
+          height: 100%;
         }
 
         &.Google {
-          border: 1px solid #f7f3f2;
+          border: 1px solid var(--textColor);
           background: transparent;
-          color: #f7f3f2;
+          color: var(--textColor);
         }
       }
     }
