@@ -48,7 +48,6 @@ const signInWithGoogle = async (): Promise<void> => {
     }
   } catch (err) {
     console.error(err);
-    alert(err.message);
   }
 };
 const logInWithEmailAndPassword = async (

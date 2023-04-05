@@ -66,10 +66,43 @@ body
     height: 9dvh
     background: var(--background)
     > :nth-child(3)
-      transform: translate(0, 10%) !important
+      transform: translate(0, 5%) !important
 
     > :nth-child(n)
       position: absolute
       bottom: 83%
       left: 0
       width: 100%
+
+  .newItemNotification
+    position: absolute
+    font-size: .75rem
+    width: 16px
+    height: 16px
+    border-radius: 50%
+    background: var(--background)
+    border: 3px solid var(--background)
+
+    svg
+      fill: var(--textColor)
+
+  .navItem > .newItemNotification
+    bottom: 50%
+    left: 100%
+
+  .userAddon
+    > .newItemNotification
+      bottom: 80%
+      left: 80%
+
+    > .dropDown :first-child
+      &:hover > .newItemNotification
+        background: var(--accentTwo)
+        border: 3px solid var(--accentTwo)
+
+      > .newItemNotification
+        top: 50%
+        right: 5%
+        transform: translate(0, -50%)
+        background: var(--accentSix)
+        border: 3px solid var(--accentSix)

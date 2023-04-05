@@ -19,14 +19,14 @@
 
     @media screen and (min-width: 600px) {
       width: 50vw;
-      max-width: 20em;
+      max-width: 20rem;
     }
   }
 
   .flex-row {
     position: relative;
     display: flex;
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
 
     &.errored {
       box-shadow: 0px 0px 0px 5px var(--background);
@@ -61,7 +61,7 @@
   }
 
   .loginLabel {
-    width: 2em;
+    width: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -75,9 +75,9 @@
     cursor: pointer;
   }
   .loginInput {
-    width: 1em;
+    width: 1rem;
+    padding: 1rem;
     flex: 1;
-    padding: 1em;
     border: 0;
     background-color: var(--textColor);
 

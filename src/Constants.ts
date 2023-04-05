@@ -10,17 +10,24 @@ export const navLinks: NavLink[] = [
   { name: "Tools", link: true, destination: "/Tools" },
 ];
 
+export interface newContent {
+  location: string;
+  contentID: string;
+}
+
 export interface Project {
+  contentID: string;
   name: string;
   status: string;
   description: string;
-  timespan: string;
-  rating: string;
-  githubLink: string;
+  timespan?: string;
+  rating?: string;
+  githubLink?: string;
 }
 
 export const projects: Project[] = [
   {
+    contentID: "project1",
     name: "Website",
     status: "finished",
     description:
@@ -30,6 +37,7 @@ export const projects: Project[] = [
     githubLink: "https://github.com/MScheiterle/Simpl1f1ed.com",
   },
   {
+    contentID: "project2",
     name: "Capstone Project",
     status: "finished",
     description:
@@ -39,6 +47,7 @@ export const projects: Project[] = [
     githubLink: "https://github.com/MScheiterle/Capstone-Project",
   },
   {
+    contentID: "project3",
     name: "QuickMaths",
     status: "current",
     description:
@@ -48,6 +57,7 @@ export const projects: Project[] = [
     githubLink: "",
   },
   {
+    contentID: "project4",
     name: "Open Intel",
     status: "planned",
     description:
@@ -57,6 +67,7 @@ export const projects: Project[] = [
     githubLink: "",
   },
   {
+    contentID: "project5",
     name: "Image Comb",
     status: "planned",
     description:

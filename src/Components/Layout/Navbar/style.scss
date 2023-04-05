@@ -77,11 +77,6 @@ $navHeight: 7.5dvh;
       margin-left: 45%;
     }
 
-    span {
-      position: relative;
-      z-index: 2;
-    }
-
     &::after {
       content: attr(data-content);
       position: absolute;
@@ -239,6 +234,10 @@ $navHeight: 7.5dvh;
       color: unset; // Stupid button elems
       font: unset; // Stupid button elems
 
+      &:hover > .newItemNotification {
+        display: none !important;
+      }
+
       &.hasDropDown:hover {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
@@ -283,7 +282,7 @@ $navHeight: 7.5dvh;
             }
           }
 
-          :last-child {
+          > :last-child {
             cursor: auto !important;
             border-top: 1px solid;
           }
@@ -436,6 +435,12 @@ $navHeight: 7.5dvh;
 
     .pageLinks {
       display: none !important;
+    }
+
+    &.mobileToggle {
+      .pageLinks {
+        display: flex !important;
+      }
     }
   }
 }
