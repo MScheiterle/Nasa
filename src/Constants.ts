@@ -10,24 +10,30 @@ export const navLinks: NavLink[] = [
   { name: "Tools", link: true, destination: "/Tools" },
 ];
 
-export interface newContent {
-  location: string;
-  contentID: string;
+export interface Tool {
+  name: string;
 }
 
+export const tools: Tool[] = [];
+
+export interface Tutorial {
+  name: string;
+}
+
+export const tutorials: Tutorial[] = [];
+
 export interface Project {
-  contentID: string;
   name: string;
   status: string;
   description: string;
   timespan?: string;
   rating?: string;
   githubLink?: string;
+  dateCreated: number;
 }
 
 export const projects: Project[] = [
   {
-    contentID: "project1",
     name: "Website",
     status: "finished",
     description:
@@ -35,9 +41,9 @@ export const projects: Project[] = [
     timespan: "Constant",
     rating: "6/10",
     githubLink: "https://github.com/MScheiterle/Simpl1f1ed.com",
+    dateCreated: 1680810698303,
   },
   {
-    contentID: "project2",
     name: "Capstone Project",
     status: "finished",
     description:
@@ -45,9 +51,9 @@ export const projects: Project[] = [
     timespan: "3 weeks",
     rating: "3/10",
     githubLink: "https://github.com/MScheiterle/Capstone-Project",
+    dateCreated: 1680810698303,
   },
   {
-    contentID: "project3",
     name: "QuickMaths",
     status: "current",
     description:
@@ -55,9 +61,9 @@ export const projects: Project[] = [
     timespan: "",
     rating: "",
     githubLink: "",
+    dateCreated: 1680810698303,
   },
   {
-    contentID: "project4",
     name: "Open Intel",
     status: "planned",
     description:
@@ -65,9 +71,9 @@ export const projects: Project[] = [
     timespan: "",
     rating: "",
     githubLink: "",
+    dateCreated: 1680810698303,
   },
   {
-    contentID: "project5",
     name: "Image Comb",
     status: "planned",
     description:
@@ -75,6 +81,7 @@ export const projects: Project[] = [
     timespan: "",
     rating: "",
     githubLink: "",
+    dateCreated: 1680810698303,
   },
 ];
 

@@ -6,7 +6,8 @@ import "./style.scss";
 import { auth, db, logout } from "../../../firebase.ts";
 import { query, collection, getDocs, where } from "firebase/firestore";
 
-import { navLinks } from "../../../Constants.ts";
+import { navLinks, projects, tutorials, tools } from "../../../Constants.ts";
+import CookieManager from "../../Utils/CookieManager";
 
 function HSLColorSelector() {
   const [color, setColor] = useState({ h: 0, s: 100, l: 50 });
@@ -258,6 +259,42 @@ function Navbar() {
   const [name, setName] = useState("");
   const navigate = useNavigate();
 
+  const displayNewContentIcon = (category) => {
+    let lastVisited;
+    let elemDates;
+    switch (category) {
+      case "Projects":
+        lastVisited = new CookieManager().getCookie(
+          "Simpl1f1ed.com-viewedProjects"
+        );
+        projects.map(() => {});
+        break;
+      case "Tutorials":
+        lastVisited = new CookieManager().getCookie(
+          "Simpl1f1ed.com-viewedTutorials"
+        );
+        tutorials.map(() => {});
+        break;
+      case "Tools":
+        lastVisited = new CookieManager().getCookie(
+          "Simpl1f1ed.com-viewedTools"
+        );
+        tools.map(() => {});
+    }
+
+    //const sevenDaysLater = new Date(
+    //  projectRelease.getTime() + 7 * 24 * 60 * 60 * 1000
+    //);
+
+    return (
+      <div className="newItemNotification">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+        </svg>
+      </div>
+    );
+  };
+
   const fetchUserName = useCallback(async () => {
     try {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
@@ -283,11 +320,15 @@ function Navbar() {
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
           <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
         </svg>
-        <div className="newItemNotification">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
-          </svg>
-        </div>
+        {new CookieManager().getCookie("Simpl1f1ed.com-viewedProfile") ? (
+          <></>
+        ) : (
+          <div className="newItemNotification">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+            </svg>
+          </div>
+        )}
         <div className="dropDown">
           <div
             style={{ position: "relative" }}
@@ -296,11 +337,15 @@ function Navbar() {
             }}
           >
             Profile
-            <div className="newItemNotification">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
-              </svg>
-            </div>
+            {new CookieManager().getCookie("Simpl1f1ed.com-viewedProfile") ? (
+              <></>
+            ) : (
+              <div className="newItemNotification">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+                </svg>
+              </div>
+            )}
           </div>
           <div onClick={() => logout()}>Logout</div>
           <div>{name}</div>
@@ -391,11 +436,7 @@ function Navbar() {
         data-content={element.name}
       >
         <div>{element.name}</div>
-        <div className="newItemNotification">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
-          </svg>
-        </div>
+        {displayNewContentIcon(element.name)}
       </div>
     );
   });

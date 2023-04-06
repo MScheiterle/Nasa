@@ -1,0 +1,99 @@
+#AcceptCookies {
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  background: var(--accentSix);
+  height: 20vh;
+  width: 100vw;
+  display: flex;
+
+  .content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    gap: 1rem;
+
+    .text {
+      padding: 1rem;
+      text-align: left;
+      max-width: 50%;
+      min-width: 20%;
+      .cookieQuestion {
+        font-size: 2rem;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1%;
+      max-width: 50%;
+      min-width: 20%;
+
+      button {
+        background: var(--accentTwo);
+        border-radius: 12px;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline-offset: 4px;
+        margin: 5px;
+        font-weight: 1000;
+
+        &.noCookie {
+          font-weight: 500;
+          background: var(--accentThree);
+
+          span {
+            background: var(--accentFour);
+          }
+        }
+
+        span {
+          display: block;
+          padding: 12px 42px;
+          border-radius: 12px;
+          font-size: 1.25rem;
+          background: var(--background);
+          color: white;
+          transform: translateY(-6px);
+        }
+
+        &:active span {
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+
+  .waves {
+    background-color: transparent;
+    & :first-child {
+      transform: translate(0, 5%);
+    }
+
+    > :nth-child(n) {
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 791px) {
+    height: 40vh;
+
+    .content {
+      flex-direction: column;
+
+      > :nth-child(n) {
+        text-align: center;
+        max-width: none;
+        width: 100%;
+      }
+    }
+  }
+}
