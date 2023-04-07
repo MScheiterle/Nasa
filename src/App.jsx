@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import Cookies from "js-cookie";
+import React, { useState, useCallback } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Navbar from "./Components/Layout/Navbar/Navbar";
@@ -15,25 +14,37 @@ import Profile from "./Components/Accounts/Profile/Profile";
 import Tools from "./Components/Layout/Tools/Tools";
 import CurvedLine from "./Components/Utils/CurvedLine";
 import AcceptCookies from "./Components/Layout/AcceptCookies/AcceptCookies";
+import CookieManager from "./Components/Utils/CookieManager";
 
 function App() {
-  const [cookieChosen, setCookieChosen] = useState(
-    Cookies.get("Simpl1f1ed.com-cookieSetting")
+  const cookieValue = new CookieManager().getCookie(
+    "Simpl1f1ed.com-cookieSetting"
   );
-  const [cookieSettings, setCookieSettings] = useState(
-    Cookies.get("Simpl1f1ed.com-cookieSetting")
-  );
+  const [cookieChosen, setCookieChosen] = useState(cookieValue ? true : false);
 
-  function updateCookieSettings(selectedValue) {
-    setCookieSettings(selectedValue);
-    Cookies.set("Simpl1f1ed.com-cookieSetting", "true", { expires: 365 });
+  const updateCookieSettings = useCallback((selectedValue) => {
+    if (selectedValue) {
+      new CookieManager().setCookiePrime(
+        "Simpl1f1ed.com-cookieSetting",
+        "true",
+        {
+          expires: 365,
+        }
+      );
+    }
     setCookieChosen(true);
-  }
+  }, []);
+
+  //new CookieManager().removeCookie("Simpl1f1ed.com-cookieSetting")
+  //new CookieManager().removeCookie("Simpl1f1ed.com-viewedProjects")
+  //new CookieManager().removeCookie("Simpl1f1ed.com-viewedTutorials")
+  //new CookieManager().removeCookie("Simpl1f1ed.com-viewedTools")
+  //new CookieManager().removeCookie("Simpl1f1ed.com-viewedProfile")
 
   return (
     <div id="app">
       <Router>
-        <Navbar cookieSettings={cookieSettings} />
+        <Navbar />
         <div className="waves">
           <CurvedLine strokeColor={"var(--accentOne)"} height={200} />
           <CurvedLine strokeColor={"var(--accentTwo)"} height={150} />
@@ -60,4 +71,5 @@ function App() {
     </div>
   );
 }
+
 export default App;

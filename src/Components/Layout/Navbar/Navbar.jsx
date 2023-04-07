@@ -259,41 +259,42 @@ function Navbar() {
   const [name, setName] = useState("");
   const navigate = useNavigate();
 
-  const displayNewContentIcon = (category) => {
-    let lastVisited;
-    let elemDates;
-    switch (category) {
-      case "Projects":
-        lastVisited = new CookieManager().getCookie(
-          "Simpl1f1ed.com-viewedProjects"
-        );
-        projects.map(() => {});
-        break;
-      case "Tutorials":
-        lastVisited = new CookieManager().getCookie(
-          "Simpl1f1ed.com-viewedTutorials"
-        );
-        tutorials.map(() => {});
-        break;
-      case "Tools":
-        lastVisited = new CookieManager().getCookie(
-          "Simpl1f1ed.com-viewedTools"
-        );
-        tools.map(() => {});
-    }
-
-    //const sevenDaysLater = new Date(
-    //  projectRelease.getTime() + 7 * 24 * 60 * 60 * 1000
-    //);
-
-    return (
-      <div className="newItemNotification">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-          <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
-        </svg>
-      </div>
+  const displayNewContentIcon = useCallback((category) => {
+    let lastVisited = new CookieManager().getCookie(
+      `Simpl1f1ed.com-viewed${category}`
     );
-  };
+    const items =
+      category === "Projects"
+        ? projects
+        : category === "Tutorials"
+        ? tutorials
+        : tools;
+    const elemDates = items.map((elem) => elem.dateCreated);
+
+    elemDates.sort(function (a, b) {
+      return b - a;
+    });
+
+    const sevenDaysAfterMostRecentPost = new Date(
+      elemDates[0] + 7 * 24 * 60 * 60 * 1000
+    );
+
+    if (
+      lastVisited > elemDates[0] ||
+      Date.now() > sevenDaysAfterMostRecentPost ||
+      elemDates.length < 1
+    ) {
+      return <></>;
+    } else {
+      return (
+        <div className="newItemNotification">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+          </svg>
+        </div>
+      );
+    }
+  }, []);
 
   const fetchUserName = useCallback(async () => {
     try {

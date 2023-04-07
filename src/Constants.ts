@@ -12,12 +12,19 @@ export const navLinks: NavLink[] = [
 
 export interface Tool {
   name: string;
+  dateCreated: number; // Unix Mili Format
 }
 
-export const tools: Tool[] = [];
+export const tools: Tool[] = [
+  {
+    name: "test",
+    dateCreated: 1680881739000,
+  },
+];
 
 export interface Tutorial {
   name: string;
+  dateCreated: number; // Unix Mili Format
 }
 
 export const tutorials: Tutorial[] = [];
@@ -29,7 +36,7 @@ export interface Project {
   timespan?: string;
   rating?: string;
   githubLink?: string;
-  dateCreated: number;
+  dateCreated: number; // Unix Mili Format
 }
 
 export const projects: Project[] = [

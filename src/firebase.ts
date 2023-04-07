@@ -84,7 +84,6 @@ const registerWithEmailAndPassword = async (
       email,
     });
   } catch (err) {
-    console.log(err);
     if (err.message.includes("email-already-in-use")) {
       errorMessageField.innerHTML = "Error: Email already in use...";
     } else {
