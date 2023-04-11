@@ -7,6 +7,11 @@ function Tools() {
     new CookieManager().setCookie("Simpl1f1ed.com-viewedTools", `${Date.now()}`, {
       expires: 7,
     });
+    document.title = "Simpl1f1ed.com - Tools";
+
+    return () => {
+      document.title = "Simpl1f1ed.com";
+    }
   }, []);
 
   return (

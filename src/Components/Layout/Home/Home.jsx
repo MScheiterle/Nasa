@@ -77,10 +77,12 @@ function Home() {
 
   useEffect(() => {
     timeoutID.current = setTimeout(() => type());
+    document.title = "Simpl1f1ed.com - Home";
 
     return () => {
       clearTimeout(timeoutID.current);
       setTyping(false);
+      document.title = "Simpl1f1ed.com";
     };
   }, [type]);
 

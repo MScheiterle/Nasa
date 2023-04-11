@@ -11,6 +11,11 @@ function Tutorials() {
         expires: 7,
       }
     );
+    document.title = "Simpl1f1ed.com - Tutorials";
+
+    return () => {
+      document.title = "Simpl1f1ed.com";
+    }
   }, []);
 
   return (

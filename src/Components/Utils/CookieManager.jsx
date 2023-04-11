@@ -27,6 +27,10 @@ class CookieManager extends React.Component {
     Cookies.set(name, value, options);
   }
 
+  removeCookiePrime(name) {
+    Cookies.remove(name);
+  }
+
   removeCookie(name, options = {}) {
     if (this.state.allowed) {
       Cookies.remove(name, options);
@@ -45,6 +49,7 @@ class CookieManager extends React.Component {
     return this.props.children({
       setCookie: this.setCookie.bind(this),
       setCookiePrime: this.setCookiePrime(this),
+      removeCookiePrime: this.removeCookiePrime(this),
       removeCookie: this.removeCookie.bind(this),
       getCookie: this.getCookie.bind(this),
     });

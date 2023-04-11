@@ -60,8 +60,12 @@ function Register() {
   };
 
   useEffect(() => {
-    if (loading) return () => {};
     if (user) navigate("/");
+    document.title = "Simpl1f1ed.com - Register";
+
+    return () => {
+      document.title = "Simpl1f1ed.com";
+    }
   }, [user, navigate, loading]);
 
   return (

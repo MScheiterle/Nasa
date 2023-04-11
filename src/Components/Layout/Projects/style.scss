@@ -1,1 +1,62 @@
-#Projects {} 
+#Projects {
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+
+    .project {
+      margin: 1rem;
+      background-color: var(--accentFive);
+      border-radius: 6px;
+      box-shadow: 0px 0px 10px var(--accentFive);
+      padding: 30px;
+      transition: box-shadow 0.3s ease;
+
+      &:hover {
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      h2 {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 30px;
+      }
+
+      .technologies {
+        display: grid;
+        grid-column: span 1;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+
+        span {
+          display: flex;
+          justify-content: center;
+          padding: 8px 12px;
+          border-radius: 4px;
+          margin-right: 10px;
+          margin-bottom: 10px;
+        }
+      }
+
+      a {
+        display: inline-block;
+        background-color: #000;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #222;
+        }
+      }
+    }
+  }
+}

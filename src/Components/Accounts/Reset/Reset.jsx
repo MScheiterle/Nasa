@@ -29,8 +29,12 @@ function Reset() {
   };
 
   useEffect(() => {
-    if (loading) return () => {};
     if (user) navigate("/");
+    document.title = "Simpl1f1ed.com - Reset";
+
+    return () => {
+      document.title = "Simpl1f1ed.com";
+    }
   }, [user, navigate, loading]);
 
   return (

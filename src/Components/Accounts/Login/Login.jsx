@@ -39,11 +39,12 @@ function Login() {
   };
 
   useEffect(() => {
-    if (loading) {
-      // maybe trigger a loading screen
-      return;
-    }
     if (user) navigate("/");
+    document.title = "Simpl1f1ed.com - Login";
+
+    return () => {
+      document.title = "Simpl1f1ed.com";
+    }
   }, [user, navigate, loading]);
 
   return (

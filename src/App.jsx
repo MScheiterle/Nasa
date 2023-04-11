@@ -35,6 +35,10 @@ function App() {
     setCookieChosen(true);
   }, []);
 
+  // Clear cookie prime (Use Case: User has disallowed cookies and changed their mind)
+  //new CookieManager().removeCookiePrime("Simpl1f1ed.com-cookieSetting")
+
+  // Clear all other cookies
   //new CookieManager().removeCookie("Simpl1f1ed.com-cookieSetting")
   //new CookieManager().removeCookie("Simpl1f1ed.com-viewedProjects")
   //new CookieManager().removeCookie("Simpl1f1ed.com-viewedTutorials")
@@ -56,9 +60,9 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/password_reset" element={<Reset />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/projects/:page" element={<Projects />} />
-          <Route path="/tutorials" element={<Tutorials />} />
-          <Route path="/tools" element={<Tools />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/tutorials/:page" element={<Tutorials />} />
+          <Route path="/tools/:page" element={<Tools />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
         {cookieChosen ? (

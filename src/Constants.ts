@@ -5,9 +5,9 @@ export interface NavLink {
 }
 
 export const navLinks: NavLink[] = [
-  { name: "Projects", link: true, destination: "/Projects/home" },
-  { name: "Tutorials", link: true, destination: "/Tutorials" },
-  { name: "Tools", link: true, destination: "/Tools" },
+  { name: "Projects", link: true, destination: "/Projects" },
+  { name: "Tutorials", link: true, destination: "/Tutorials/home" },
+  { name: "Tools", link: true, destination: "/Tools/home" },
 ];
 
 export interface Tool {
@@ -36,6 +36,7 @@ export interface Project {
   timespan?: string;
   rating?: string;
   githubLink?: string;
+  technologies?: Array<String>;
   dateCreated: number; // Unix Mili Format
 }
 
@@ -48,6 +49,15 @@ export const projects: Project[] = [
     timespan: "Constant",
     rating: "6/10",
     githubLink: "https://github.com/MScheiterle/Simpl1f1ed.com",
+    technologies: [
+      "JS",
+      "HTML",
+      "CSS",
+      "SASS",
+      "TS",
+      "FireBase",
+      "React",
+    ],
     dateCreated: 1680810698303,
   },
   {
@@ -58,6 +68,7 @@ export const projects: Project[] = [
     timespan: "3 weeks",
     rating: "3/10",
     githubLink: "https://github.com/MScheiterle/Capstone-Project",
+    technologies: ["Python", "Flask", "CSS", "HTML", "JS"],
     dateCreated: 1680810698303,
   },
   {
@@ -68,6 +79,7 @@ export const projects: Project[] = [
     timespan: "",
     rating: "",
     githubLink: "",
+    technologies: ["JS", "HTML", "CSS"],
     dateCreated: 1680810698303,
   },
   {
@@ -78,6 +90,7 @@ export const projects: Project[] = [
     timespan: "",
     rating: "",
     githubLink: "",
+    technologies: ["JS", "HTML", "CSS"],
     dateCreated: 1680810698303,
   },
   {
@@ -88,6 +101,7 @@ export const projects: Project[] = [
     timespan: "",
     rating: "",
     githubLink: "",
+    technologies: ["JS", "HTML", "CSS"],
     dateCreated: 1680810698303,
   },
 ];
