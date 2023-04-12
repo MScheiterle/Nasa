@@ -6,7 +6,7 @@ import "./style.scss";
 import { auth, db, logout } from "../../../firebase.ts";
 import { query, collection, getDocs, where } from "firebase/firestore";
 
-import { navLinks, projects, tutorials, tools } from "../../../Constants.ts";
+import { navLinks, projects } from "../../../Constants.ts";
 import CookieManager from "../../Utils/CookieManager";
 
 function HSLColorSelector() {
@@ -263,12 +263,7 @@ function Navbar() {
     let lastVisited = new CookieManager().getCookie(
       `Simpl1f1ed.com-viewed${category}`
     );
-    const items =
-      category === "Projects"
-        ? projects
-        : category === "Tutorials"
-        ? tutorials
-        : tools;
+    const items = projects; // Can be made dynamic by adding inline if statement to match str category with imported data
     const elemDates = items.map((elem) => elem.dateCreated);
 
     elemDates.sort(function (a, b) {

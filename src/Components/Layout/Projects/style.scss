@@ -2,59 +2,180 @@
   .projects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-rows: 1fr;
 
     .project {
-      margin: 1rem;
-      background-color: var(--accentFive);
-      border-radius: 6px;
-      box-shadow: 0px 0px 10px var(--accentFive);
-      padding: 30px;
-      transition: box-shadow 0.3s ease;
+      position: relative;
+      border-radius: 1rem;
+      margin: 1.5rem;
+      background: var(--accentFive);
+      box-shadow: 0 5px 5px 5px var(--accentFour);
 
-      &:hover {
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+      transition: 1s;
+      transform: scale(0);
+      animation: projectsGrow 500ms forwards;
+      text-align: center;
+
+      color: var(--textColor);
+      text-decoration: none;
+
+      &:has(.header svg) {
+        cursor: pointer;
       }
 
-      h2 {
-        font-size: 24px;
-        font-weight: 600;
-        margin-bottom: 20px;
-      }
-
-      p {
-        font-size: 16px;
-        line-height: 1.5;
-        margin-bottom: 30px;
-      }
-
-      .technologies {
-        display: grid;
-        grid-column: span 1;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-
-        span {
-          display: flex;
-          justify-content: center;
-          padding: 8px 12px;
-          border-radius: 4px;
-          margin-right: 10px;
-          margin-bottom: 10px;
+      @keyframes projectsGrow {
+        from {
+          transform: scale(0);
+        }
+        to {
+          transform: scale(1);
         }
       }
 
-      a {
-        display: inline-block;
-        background-color: #000;
-        color: #fff;
-        font-size: 16px;
-        font-weight: 600;
-        padding: 10px 20px;
-        border-radius: 4px;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
+      @for $x from 1 through 100 {
+        &:nth-child(#{$x}) {
+          animation-delay: calc(100ms * $x);
+        }
+      }
 
-        &:hover {
-          background-color: #222;
+      &:hover {
+        scale: 1.05;
+        box-shadow: 0 10px 10px 10px var(--accentFour);
+        transition: var(--transition-timing);
+      }
+
+      &:nth-child(1n) .header {
+        background: repeating-linear-gradient(
+          -45deg,
+          var(--background),
+          var(--background) 10px,
+          var(--accentFive) 10px,
+          var(--accentFive) 20px
+        );
+      }
+
+      &:nth-child(2n) .header {
+        background: radial-gradient(
+          circle at 8.5px 8.5px,
+          var(--background) 0,
+          var(--background) 8px,
+          var(--accentFive) 9px,
+          var(--accentFive) 10px
+        );
+        background-size: 20px 20px;
+      }
+
+      &:nth-child(3n) .header {
+        background: repeating-radial-gradient(
+          circle,
+          transparent 0,
+          transparent 2px,
+          var(--background) 3px,
+          var(--background) 6px
+        );
+      }
+
+      &:nth-child(4n) .header {
+        background: linear-gradient(
+            45deg,
+            var(--background) 25%,
+            transparent 25%,
+            transparent 75%,
+            var(--background) 75%
+          ),
+          linear-gradient(
+            45deg,
+            var(--background) 25%,
+            transparent 25%,
+            transparent 75%,
+            var(--background) 75%
+          );
+        background-size: 30px 30px;
+        background-position: 0 0, 15px 15px;
+      }
+
+      &:nth-child(5n) .header {
+        background: linear-gradient(
+            -45deg,
+            transparent 15px,
+            var(--background) 0,
+            var(--background) 45%,
+            var(--accentFive) 0,
+            var(--accentFive) 55%,
+            var(--background) 0,
+            var(--background)
+          ),
+          linear-gradient(
+            45deg,
+            transparent 15px,
+            var(--background) 0,
+            var(--background) 45%,
+            var(--accentFive) 0,
+            var(--accentFive) 55%,
+            var(--background) 0,
+            var(--background)
+          );
+        background-position: 0 0, 15px 15px;
+        background-size: 30px 30px;
+      }
+
+      .header {
+        margin-bottom: 1rem;
+        border-top-right-radius: 1rem;
+        border-top-left-radius: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10rem;
+        transition: var(--transition-timing);
+
+        svg {
+          width: 2.5rem;
+          height: 2.5rem;
+          fill: var(--textColor);
+          filter: drop-shadow(0 0 5px var(--textColor));
+        }
+
+        > h1 {
+          font-size: 2.5rem;
+          font-weight: bolder;
+          margin: 0;
+          text-shadow: 0 0 5px var(--textColor);
+        }
+      }
+
+      .technologies {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        max-width: 100%;
+        flex-wrap: wrap;
+
+        :nth-child(n) {
+          margin: 0.2rem;
+        }
+      }
+
+      .status {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 4rem;
+        height: 2rem;
+        background: var(--accentThree);
+        padding: 1rem;
+        border-radius: 30% / 50%;
+        outline: 0.25rem solid var(--background);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+          fill: var(--textColor);
+          min-width: 2rem;
+          min-height: 2rem;
         }
       }
     }

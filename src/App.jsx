@@ -8,10 +8,8 @@ import Home from "./Components/Layout/Home/Home";
 import Login from "./Components/Accounts/Login/Login";
 import Register from "./Components/Accounts/Register/Register";
 import Reset from "./Components/Accounts/Reset/Reset";
-import Tutorials from "./Components/Layout/Tutorials/Tutorials";
 import Projects from "./Components/Layout/Projects/Projects";
 import Profile from "./Components/Accounts/Profile/Profile";
-import Tools from "./Components/Layout/Tools/Tools";
 import CurvedLine from "./Components/Utils/CurvedLine";
 import AcceptCookies from "./Components/Layout/AcceptCookies/AcceptCookies";
 import CookieManager from "./Components/Utils/CookieManager";
@@ -41,8 +39,8 @@ function App() {
   // Clear all other cookies
   //new CookieManager().removeCookie("Simpl1f1ed.com-cookieSetting")
   //new CookieManager().removeCookie("Simpl1f1ed.com-viewedProjects")
-  //new CookieManager().removeCookie("Simpl1f1ed.com-viewedTutorials")
-  //new CookieManager().removeCookie("Simpl1f1ed.com-viewedTools")
+  new CookieManager().removeCookie("Simpl1f1ed.com-viewedTutorials")
+  new CookieManager().removeCookie("Simpl1f1ed.com-viewedTools")
   //new CookieManager().removeCookie("Simpl1f1ed.com-viewedProfile")
 
   return (
@@ -61,8 +59,6 @@ function App() {
           <Route path="/password_reset" element={<Reset />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/projects" element={<Projects />} />
-          <Route path="/tutorials/:page" element={<Tutorials />} />
-          <Route path="/tools/:page" element={<Tools />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
         {cookieChosen ? (

@@ -6,28 +6,7 @@ export interface NavLink {
 
 export const navLinks: NavLink[] = [
   { name: "Projects", link: true, destination: "/Projects" },
-  { name: "Tutorials", link: true, destination: "/Tutorials/home" },
-  { name: "Tools", link: true, destination: "/Tools/home" },
 ];
-
-export interface Tool {
-  name: string;
-  dateCreated: number; // Unix Mili Format
-}
-
-export const tools: Tool[] = [
-  {
-    name: "test",
-    dateCreated: 1680881739000,
-  },
-];
-
-export interface Tutorial {
-  name: string;
-  dateCreated: number; // Unix Mili Format
-}
-
-export const tutorials: Tutorial[] = [];
 
 export interface Project {
   name: string;
@@ -43,7 +22,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     name: "Website",
-    status: "finished",
+    status: "current",
     description:
       "Constantly working here to improve my front end design skill, adding themes and creating a dynamic content loading scheme to ensure that all themes work seamlessly with each other. This allows me a platform to display my talent and projects. Aswell as, make projects with a sophisticated back end using Firebase.",
     timespan: "Constant",
@@ -58,7 +37,7 @@ export const projects: Project[] = [
       "FireBase",
       "React",
     ],
-    dateCreated: 1680810698303,
+    dateCreated: 1681238336000,
   },
   {
     name: "Capstone Project",
@@ -73,7 +52,7 @@ export const projects: Project[] = [
   },
   {
     name: "QuickMaths",
-    status: "current",
+    status: "planned",
     description:
       "This will be the foundation for a competative and practice math website, testing how fast people can do all forms of math problems. It will be hosted on this website until it is fully finished and in demand.",
     timespan: "",
