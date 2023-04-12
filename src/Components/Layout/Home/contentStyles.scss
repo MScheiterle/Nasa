@@ -18,7 +18,6 @@
 
     @media (min-width: 767px) {
       &:hover {
-        transform-style: preserve-3d;
         transform: perspective(5000px) scale(1.05) !important;
       }
     }

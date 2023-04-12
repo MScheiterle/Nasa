@@ -1,7 +1,7 @@
 #Projects {
   .projects {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-template-rows: 1fr;
 
     .project {
@@ -18,10 +18,7 @@
 
       color: var(--textColor);
       text-decoration: none;
-
-      &:has(.header svg) {
-        cursor: pointer;
-      }
+      cursor: pointer;
 
       @keyframes projectsGrow {
         from {
@@ -35,6 +32,67 @@
       @for $x from 1 through 100 {
         &:nth-child(#{$x}) {
           animation-delay: calc(100ms * $x);
+        }
+      }
+
+      .description {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        display: none;
+        background: var(--accentFive);
+        border-radius: 1rem;
+        max-height: 100%;
+        cursor: auto !important;
+
+        p {
+          margin: 1rem;
+          outline: 5px dashed var(--background);
+          border-radius: 1rem;
+          padding: 1rem;
+          text-align: left;
+          font-size: 0.85rem;
+          min-height: 60%;
+          max-height: 60%;
+        }
+
+        button {
+          background: var(--accentTwo);
+          border-radius: 12px;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          outline-offset: 4px;
+          margin: 5px;
+          font-weight: 1000;
+
+          span {
+            display: block;
+            padding: 12px 42px;
+            border-radius: 12px;
+            font-size: 1.25rem;
+            background: var(--background);
+            color: white;
+            transform: translateY(-6px);
+          }
+
+          &:active span {
+            transform: translateY(-2px);
+          }
+        }
+      }
+
+      &.focused {
+        .header,
+        .technologies,
+        .status {
+          visibility: hidden;
+        }
+        .description {
+          display: block;
         }
       }
 
@@ -120,6 +178,7 @@
       }
 
       .header {
+        position: relative;
         margin-bottom: 1rem;
         border-top-right-radius: 1rem;
         border-top-left-radius: 1rem;
@@ -128,16 +187,43 @@
         align-items: center;
         height: 10rem;
         transition: var(--transition-timing);
+        max-width: 100%;
 
-        svg {
-          width: 2.5rem;
-          height: 2.5rem;
+        .details {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translate(-50%, 50%);
+
+          > svg {
+            min-width: 1rem;
+            min-height: 1rem;
+            max-width: 1rem;
+            max-height: 1rem;
+            fill: var(--textColor);
+            margin-right: 0.25rem;
+          }
+        }
+
+        > svg {
+          position: absolute;
+          top: 0;
+          right: 0;
+          transform: translate(50%, -50%);
+          min-width: 2.5rem;
+          min-height: 2.5rem;
+          max-width: 2.5rem;
+          max-height: 2.5rem;
           fill: var(--textColor);
           filter: drop-shadow(0 0 5px var(--textColor));
         }
 
         > h1 {
-          font-size: 2.5rem;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 2.25rem;
           font-weight: bolder;
           margin: 0;
           text-shadow: 0 0 5px var(--textColor);
