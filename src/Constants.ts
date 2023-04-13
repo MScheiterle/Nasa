@@ -20,6 +20,16 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    name: "OpenIntel",
+    status: "current",
+    description:
+      "A tool for all the Sherlock Holmes wannabes out there who want to get the inside scoop on everyone and everything. With this software, you'll have access to all the Open Source Intelligence (OSINT) gathering tools. Who knows what secrets you'll uncover? Probably nothing too exciting, but still worth a try.",
+    timespan: "",
+    githubLink: "",
+    technologies: ["JS", "HTML", "React", "Firebase", "SASS"],
+    dateCreated: 1681418904000,
+  },
+  {
     name: "Simpl1f1ed.com",
     status: "current",
     description:
@@ -27,7 +37,7 @@ export const projects: Project[] = [
     timespan: "Constant",
     githubLink: "https://github.com/MScheiterle/Simpl1f1ed.com",
     technologies: ["JS", "HTML", "CSS", "SASS", "TS", "Firebase", "React"],
-    dateCreated: 1681238336000,
+    dateCreated: 1681418904000,
   },
   {
     name: "Capstone Project",
@@ -44,16 +54,6 @@ export const projects: Project[] = [
     status: "planned",
     description:
       "This project is like a personal trainer for your brain. It will test your math and reading skills in a fun and challenging way, just like how working out with a personal trainer is both fun and challenging, except without the sweating.",
-    timespan: "",
-    githubLink: "",
-    technologies: ["JS", "HTML", "React", "Firebase", "SASS"],
-    dateCreated: 1680810698303,
-  },
-  {
-    name: "OpenIntel",
-    status: "planned",
-    description:
-      "A tool for all the Sherlock Holmes wannabes out there who want to get the inside scoop on everyone and everything. With this software, you'll have access to all the Open Source Intelligence (OSINT) gathering tools. Who knows what secrets you'll uncover? Probably nothing too exciting, but still worth a try.",
     timespan: "",
     githubLink: "",
     technologies: ["JS", "HTML", "React", "Firebase", "SASS"],

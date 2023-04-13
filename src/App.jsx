@@ -39,8 +39,6 @@ function App() {
   // Clear all other cookies
   //new CookieManager().removeCookie("Simpl1f1ed.com-cookieSetting")
   //new CookieManager().removeCookie("Simpl1f1ed.com-viewedProjects")
-  new CookieManager().removeCookie("Simpl1f1ed.com-viewedTutorials")
-  new CookieManager().removeCookie("Simpl1f1ed.com-viewedTools")
   //new CookieManager().removeCookie("Simpl1f1ed.com-viewedProfile")
 
   return (

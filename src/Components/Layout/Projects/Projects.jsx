@@ -353,7 +353,7 @@ function Projects() {
                   </button>
                 </a>
               ) : (
-                <></>
+                <>Closed Source</>
               )}
             </div>
           </div>
