@@ -1,0 +1,253 @@
+#SpotifyMatch {
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .headerCard {
+      text-align: center;
+
+      span {
+        font-weight: 800;
+      }
+
+      .title {
+        font-size: 4rem;
+        font-weight: 800;
+      }
+      .description {
+        font-size: 2rem;
+        font-weight: 200;
+      }
+      .account {
+        font-weight: 200;
+
+        > p > span > a {
+          color: var(--background);
+          text-decoration: underline;
+
+          &:hover {
+            color: var(--accentSix);
+          }
+        }
+
+        .spotifyConnection {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 1rem;
+
+          &:has(a) a:hover {
+            background: #1db954;
+          }
+
+          > div {
+            font-weight: 200;
+            cursor: pointer;
+
+            &:hover {
+              font-weight: 600;
+            }
+          }
+
+          > a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 1rem;
+            font-size: 1rem;
+            border: 2px solid #1db954;
+            width: fit-content;
+            padding: 5px;
+            color: var(--textColor);
+
+            svg {
+              width: 32px;
+              height: 32px;
+              padding-right: 5px;
+            }
+          }
+        }
+
+        .disclaimer {
+          margin-top: 1rem;
+        }
+      }
+
+      .compareButton {
+        position: absolute;
+        bottom: 20%;
+        left: 50%;
+        transform: translate(-50%);
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--textColor);
+        background: var(--accentFive);
+        border-radius: 1rem;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+
+        &:hover {
+          transform: translate(-50%) scale(1.08);
+          box-shadow: 0 0 10px 10px var(--accentFour);
+        }
+
+        div {
+          background: linear-gradient(
+            45deg,
+            var(--background),
+            var(--accentTwo)
+          );
+          background-clip: text;
+          -webkit-background-clip: text;
+          color: transparent;
+          font-size: 2rem;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  .userStats {
+    .timeSelection {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      label {
+        margin: 0 0.5rem;
+        font-size: 1.2rem;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.2s ease-in-out;
+        color: var(--textColor);
+
+        input:checked + & {
+          background-color: var(--accentSix);
+          color: var(--background);
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+        }
+      }
+
+      input[type="radio"] {
+        display: none;
+
+        &:checked + label {
+          color: var(--background);
+          transform: translateY(-2px);
+        }
+      }
+    }
+
+    .gridElem {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-rows: 1fr;
+    }
+
+    .section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 1rem;
+      background: transparent;
+      margin: 1rem;
+      text-align: center;
+
+      .legend {
+        font-weight: 200;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+
+        li {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          position: relative;
+          font-weight: 400;
+
+          .index {
+            position: absolute;
+            left: 1%;
+            font-weight: 200;
+          }
+
+          .trackName {
+            max-width: 70%;
+          }
+
+          &:hover {
+            background: var(--accentSix) !important;
+          }
+
+          button {
+            transition: 1000ms;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translate(0, -50%);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--textColor);
+            font-weight: 200 !important;
+
+            svg {
+              width: 16px;
+              height: 16px;
+              fill: var(--background);
+            }
+
+            &:hover {
+              transition: var(--transitionTiming);
+              font-weight: 600 !important;
+
+              svg {
+                fill: var(--textColor);
+              }
+            }
+          }
+
+          &:nth-child(1n + 1) {
+            background: var(--accentFive);
+          }
+          &:nth-child(2n + 1) {
+            background: var(--accentFour);
+          }
+          &:last-child {
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+          }
+        }
+      }
+
+      .sectionName {
+        font-weight: 200;
+        font-size: 2rem;
+        border-top-right-radius: 1rem;
+        border-top-left-radius: 1rem;
+        background: var(--background);
+        width: 100%;
+        border-bottom: 1px solid var(--textColor);
+
+        .end {
+          font-weight: 600;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

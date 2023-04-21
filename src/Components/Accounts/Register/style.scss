@@ -2,7 +2,6 @@
   .container {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
 
@@ -12,27 +11,32 @@
     }
   }
 
-  .register-form {
+  .section {
     flex-direction: column;
     width: 75vw;
     position: relative;
 
     @media screen and (min-width: 600px) {
       width: 50vw;
-      max-width: 20em;
+      max-width: 20rem;
+    }
+
+    & > :nth-child(n) {
+      margin-bottom: 1rem;
     }
   }
 
   .flex-row {
-    position: relative;
     display: flex;
-    margin-bottom: 1em;
+    max-height: 3rem;
+    min-height: 3rem;
+    position: relative;
 
     &.errored {
       box-shadow: 0px 0px 0px 5px var(--background);
 
       .errorLabel {
-        @extend .registerLabel;
+        @extend label;
 
         position: absolute;
         top: 50%;
@@ -50,18 +54,32 @@
     }
   }
 
+  &:has(.errored) #erorrMessage {
+    display: flex;
+  }
+
   #erorrMessage {
     color: var(--background);
     text-align: center;
     font-size: 1rem;
+    outline: 2px solid var(--textColor);
+    max-height: 3rem;
+    min-height: 3rem;
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    &:empty {
+      outline: none;
+    }
   }
 
   .errorLabel {
     display: none;
   }
 
-  .registerLabel {
-    width: 2em;
+  label {
+    width: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -74,22 +92,23 @@
     background: var(--accentSix);
     cursor: pointer;
   }
-  .registerInput {
-    width: 1em;
-    flex: 1;
-    padding: 1em;
-    border: 0;
-    background-color: var(--textColor);
 
-    font-size: 1rem;
+  input {
+    width: 1rem;
+    padding: 1rem;
+    flex: 1;
+    border: none;
+    font: unset;
 
     &:focus {
       outline: none;
     }
   }
 
-  .registerSubmit {
-    display: block;
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 1rem;
     width: 100%;
     background: var(--background);
@@ -98,8 +117,10 @@
     cursor: pointer;
     font-size: 1rem;
     font-weight: 1000;
-    height: 3rem;
+    max-height: 3rem;
+    min-height: 3rem;
     transition: var(--transitionTiming);
+    font: unset;
 
     &:hover {
       background-color: var(--accentSix);
@@ -107,10 +128,6 @@
   }
 
   .alternateOptions {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -118,64 +135,38 @@
     > :nth-child(n):not(:last-child) {
       margin-bottom: 1rem;
     }
-
-    > :nth-child(n) {
-      height: 3rem;
-      display: block;
-      padding: 1rem;
-      width: 100%;
-      background: var(--background);
-      border: 0;
-      color: var(--textColor);
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 1000;
-      transition: var(--transitionTiming);
-
-      &:hover {
-        background-color: var(--accentSix);
-      }
-    }
   }
 
-  .registerProvidersSection {
-    position: relative;
-    font-size: 1rem;
+  .providers {
     display: flex;
-    align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    width: 100%;
 
-    .registerProviders {
-      display: flex;
-      flex-direction: row;
+    .provider {
+      display: table;
+      cursor: pointer;
       width: 100%;
 
-      .registerProvider {
-        display: table;
-        cursor: pointer;
+      div {
+        margin: 0;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
         width: 100%;
+      }
 
-        div {
-          margin: 0;
-          display: table-cell;
-          vertical-align: middle;
-          text-align: center;
-          width: 100%;
-        }
+      svg {
+        display: table-cell;
+        margin: 0;
+        background-color: var(--textColor);
+        width: 2rem;
+        height: 100%;
+      }
 
-        svg {
-          display: table-cell;
-          margin: 0;
-          background-color: var(--textColor);
-          width: 2rem;
-          height: 100%;
-        }
-
-        &.Google {
-          border: 1px solid var(--textColor);
-          background: transparent;
-          color: var(--textColor);
-        }
+      &.Google {
+        border: 1px solid var(--textColor);
+        background: transparent;
+        color: var(--textColor);
       }
     }
   }

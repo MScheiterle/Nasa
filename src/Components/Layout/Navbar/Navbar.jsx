@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import "./style.scss";
 
-import { auth, db, logout } from "../../../firebase.ts";
-import { query, collection, getDocs, where } from "firebase/firestore";
+import { logout } from "../../../firebase.ts";
 
 import { navLinks, projects } from "../../../Constants.ts";
 import CookieManager from "../../Utils/CookieManager";
@@ -254,9 +252,7 @@ function HSLColorSelector() {
   );
 }
 
-function Navbar() {
-  const [user, loading] = useAuthState(auth);
-  const [name, setName] = useState("");
+function Navbar(props) {
   const navigate = useNavigate();
 
   const displayNewContentIcon = useCallback((category) => {
@@ -291,17 +287,6 @@ function Navbar() {
     }
   }, []);
 
-  const fetchUserName = useCallback(async () => {
-    try {
-      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-      const doc = await getDocs(q);
-      const data = doc.docs[0].data();
-      setName(data.name);
-    } catch (err) {
-      alert("An error occured while fetching user data");
-    }
-  }, [user?.uid]);
-
   onscroll = () => {
     if (window.scrollY === 0) {
       document.getElementById("Navbar").classList.remove("scrolled");
@@ -310,7 +295,7 @@ function Navbar() {
     }
   };
 
-  const userAddon = user ? (
+  const userAddon = props.user ? (
     <>
       <button className="userAddon addon hasDropDown">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -344,7 +329,7 @@ function Navbar() {
             )}
           </div>
           <div onClick={() => logout()}>Logout</div>
-          <div>{name}</div>
+          <div>{props.name}</div>
         </div>
       </button>
     </>
@@ -446,18 +431,6 @@ function Navbar() {
     }
   };
 
-  useEffect(() => {
-    if (loading) return () => {};
-    const fetchCall = () => (user ? fetchUserName() : null);
-
-    if (document.readyState === "complete" && user) {
-      fetchCall();
-    } else {
-      window.addEventListener("load", fetchCall, false);
-      return () => window.removeEventListener("load", fetchCall);
-    }
-  }, [user, loading, fetchUserName]);
-
   return (
     <div id="Navbar">
       <div
@@ -485,7 +458,7 @@ function Navbar() {
           </svg>
         </div>
         <div className="logoText">
-          <div>impl1f1ed</div>
+          <div>Simpl1f1ed</div>
         </div>
       </div>
       <div className="pageLinks">{pageLinks}</div>
@@ -507,16 +480,16 @@ function Navbar() {
         >
           {lightModeAddon}
         </button>
-        <div
-          className="menuAddon addon"
-          onClick={() => {
-            document.getElementById("Navbar").classList.toggle("mobileToggle");
-          }}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-            <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
-          </svg>
-        </div>
+      </div>
+      <div
+        className="menuAddon addon"
+        onClick={() => {
+          document.getElementById("Navbar").classList.toggle("mobileToggle");
+        }}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
+        </svg>
       </div>
     </div>
   );

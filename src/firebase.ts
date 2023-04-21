@@ -15,6 +15,7 @@ import {
   collection,
   where,
   addDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -50,6 +51,7 @@ const signInWithGoogle = async (): Promise<void> => {
     console.error(err);
   }
 };
+
 const logInWithEmailAndPassword = async (
   email: string,
   password: string,
@@ -67,6 +69,7 @@ const logInWithEmailAndPassword = async (
     });
   }
 };
+
 const registerWithEmailAndPassword = async (
   name: string,
   email: string,
@@ -96,6 +99,7 @@ const registerWithEmailAndPassword = async (
     });
   }
 };
+
 const sendPasswordReset = async (
   email: string,
   fields: HTMLCollectionOf<Element>,
@@ -117,8 +121,31 @@ const sendPasswordReset = async (
     });
   }
 };
+
 const logout = (): void => {
   signOut(auth);
+};
+
+const addCustomFieldToCurrentUser = async (
+  fieldName: string,
+  data: any
+): Promise<void> => {
+  try {
+    if (!auth.currentUser) {
+      return;
+    }
+    const uid = auth.currentUser?.uid;
+    const q = query(collection(db, "users"), where("uid", "==", uid));
+    const querySnapshot = await getDocs(q);
+    const userDocRef = querySnapshot.docs[0].ref;
+    if (userDocRef) {
+      await updateDoc(userDocRef, {
+        [fieldName]: data,
+      });
+    }
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 export {
@@ -129,4 +156,5 @@ export {
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
+  addCustomFieldToCurrentUser,
 };

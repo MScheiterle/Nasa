@@ -1,7 +1,7 @@
 #Projects {
   .projects {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     grid-template-rows: 1fr;
 
     .project {
@@ -43,25 +43,33 @@
         width: 100%;
         height: 100%;
         display: none;
-        background: var(--accentFive);
         border-radius: 1rem;
         max-height: 100%;
         cursor: auto !important;
 
+        &::before {
+          content: "";
+          position: absolute;
+          top: 5%;
+          left: 5%;
+          height: 90%;
+          width: 90%;
+          background: var(--accentFive);
+          z-index: -1;
+          border-radius: 1rem;
+        }
+
         p {
           margin: 1rem;
-          outline: 5px dashed var(--background);
           border-radius: 1rem;
           padding: 1rem;
           text-align: left;
           font-size: 0.85rem;
-          min-height: 60%;
-          max-height: 60%;
         }
 
         button {
           background: var(--accentTwo);
-          border-radius: 12px;
+          border-radius: 1rem;
           border: none;
           padding: 0;
           cursor: pointer;
@@ -71,9 +79,9 @@
 
           span {
             display: block;
-            padding: 12px 42px;
-            border-radius: 12px;
-            font-size: 1.25rem;
+            padding: 1rem 42px;
+            border-radius: 1rem;
+            font-size: 1rem;
             background: var(--background);
             color: white;
             transform: translateY(-6px);
@@ -102,7 +110,7 @@
         transition: var(--transition-timing);
       }
 
-      &:nth-child(1n) .header {
+      &:nth-child(1n) .header, &:nth-child(1n) .description {
         background: repeating-linear-gradient(
           -45deg,
           var(--background),
@@ -112,7 +120,7 @@
         );
       }
 
-      &:nth-child(2n) .header {
+      &:nth-child(2n) .header, &:nth-child(2n) .description {
         background: radial-gradient(
           circle at 8.5px 8.5px,
           var(--background) 0,
@@ -123,7 +131,7 @@
         background-size: 20px 20px;
       }
 
-      &:nth-child(3n) .header {
+      &:nth-child(3n) .header, &:nth-child(3n) .description {
         background: repeating-radial-gradient(
           circle,
           transparent 0,
@@ -133,7 +141,7 @@
         );
       }
 
-      &:nth-child(4n) .header {
+      &:nth-child(4n) .header, &:nth-child(4n) .description {
         background: linear-gradient(
             45deg,
             var(--background) 25%,
@@ -152,7 +160,7 @@
         background-position: 0 0, 15px 15px;
       }
 
-      &:nth-child(5n) .header {
+      &:nth-child(5n) .header, &:nth-child(5n) .description {
         background: linear-gradient(
             -45deg,
             transparent 15px,
@@ -188,6 +196,7 @@
         height: 10rem;
         transition: var(--transition-timing);
         max-width: 100%;
+        min-width: 100%;
 
         .details {
           position: absolute;
@@ -219,6 +228,7 @@
         }
 
         > h1 {
+          min-width: 100%;
           position: absolute;
           top: 50%;
           left: 50%;

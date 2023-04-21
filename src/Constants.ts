@@ -6,6 +6,7 @@ export interface NavLink {
 
 export const navLinks: NavLink[] = [
   { name: "Projects", link: true, destination: "/Projects" },
+  { name: "SpotifyMatch", link: true, destination: "/SpotifyMatch" },
 ];
 
 export interface Project {
@@ -16,11 +17,12 @@ export interface Project {
   githubLink?: string;
   technologies?: Array<string>;
   dateCreated?: number; // Unix Milli Format
+  link?: string;
 }
 
 export const projects: Project[] = [
   {
-    name: "OpenIntel",
+    name: "Trade My Data",
     status: "current",
     description:
       "A tool for all the Sherlock Holmes wannabes out there who want to get the inside scoop on everyone and everything. With this software, you'll have access to all the Open Source Intelligence (OSINT) gathering tools. Who knows what secrets you'll uncover? Probably nothing too exciting, but still worth a try.",
@@ -28,6 +30,19 @@ export const projects: Project[] = [
     githubLink: "",
     technologies: ["JS", "HTML", "React", "Firebase", "SASS"],
     dateCreated: 1681418904000,
+    link: "https://trademydata.net/",
+  },
+  {
+    name: "Spotify Match",
+    status: "current",
+    description:
+      "Enabling Spotify users to compare their music listening data with others can lead to a fun and insightful experience. This feature can help users discover new music, understand their own habits better, and connect with their community.",
+    timespan: "",
+    githubLink:
+      "https://github.com/MScheiterle/Simpl1f1ed.com/tree/master/src/Components/Layout/SpotifyMatch",
+    technologies: ["JS", "HTML", "React", "Firebase", "SASS"],
+    dateCreated: 1681418904000,
+    link: "/spotifymatch/",
   },
   {
     name: "Simpl1f1ed.com",
@@ -63,7 +78,7 @@ export const projects: Project[] = [
     name: "ImageComb",
     status: "planned",
     description:
-      "A website that encrypts and tags images to make them easily searchable and shareable.",
+      "This website provides users with a unique and secure way to share images online. By encrypting and tagging images with metadata, users can easily search for and discover images they may have otherwise missed. The added layer of security also ensures that the images remain protected from unauthorized access and distribution.",
     timespan: "",
     githubLink: "",
     technologies: ["JS", "HTML", "React", "Firebase", "SASS"],
@@ -73,15 +88,15 @@ export const projects: Project[] = [
 
 export const validateEmail = (email: string): boolean => {
   return (
-    email.match(
-      /^(([^<>()[\]\\.,;:\s@"]M(\.[^<>()[\]\\.,;:\s@"]M)*)|(".M"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]M\.)M[a-zA-Z]{2,}))$/
-    ) !== null
+    email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/) !== null
   );
 };
 
 export const validateMediumPassword = (password: string): boolean => {
   return (
-    password.match(/^(?=.[0-9])(?=.[!@#$%^&])[a-zA-Z0-9!@#$%^&]{7,}$/) !== null
+    password.match(
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&^\\]{8,}$/
+    ) !== null
   );
 };
 

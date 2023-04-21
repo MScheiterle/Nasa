@@ -82,8 +82,8 @@ $navHeight: 7.5dvh;
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%) scale(2);
-      opacity: 0.2;
+      transform: translate(-50%, -50%) scale(1.75);
+      opacity: 0.5;
       display: block;
       z-index: -1;
       transition: var(--transitionTiming);
@@ -109,25 +109,56 @@ $navHeight: 7.5dvh;
   .pageLinks {
     display: flex;
 
-    :nth-child(1).navItem:hover::after {
+    :nth-child(1n).navItem:hover::after {
       transform: translate(-50%, -50%) scale(1.75) rotate(5deg);
     }
-    :nth-child(2).navItem:hover::after {
+    :nth-child(2n).navItem:hover::after {
       transform: translate(-50%, -50%) scale(1.75) rotate(-5deg);
     }
-    :nth-child(3).navItem:hover::after {
+    :nth-child(3n).navItem:hover::after {
       transform: translate(-50%, -50%) scale(1.75) rotate(7deg);
     }
+  }
+
+  .menuAddon {
+    transition: var(--transitionTiming);
+    position: relative;
+    border-radius: 25%;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 20px;
+    background: linear-gradient(
+      to bottom right,
+      var(--background),
+      var(--accentTwo)
+    );
+    cursor: pointer;
+    border: 2px solid var(--accentSix);
+    color: unset; // Stupid button elems
+    font: unset; // Stupid button elems
+
+    > svg {
+      transition: var(--transitionTiming);
+      fill: var(--textColor);
+      position: absolute;
+      width: 1rem;
+      height: 1rem;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0);
+    }
+
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: 1%;
+    transform: translate(0, -50%);
   }
 
   .addons {
     display: flex;
     right: 2vw;
     position: fixed;
-
-    .menuAddon {
-      display: none;
-    }
 
     .addonGroup {
       display: flex;
@@ -418,15 +449,22 @@ $navHeight: 7.5dvh;
   }
 
   @media (max-width: 872px) {
-    .addons {
-      :not(:last-child) {
-        display: none;
-      }
+    $addonheight: 5vh;
+    $addonheight: 5dvh;
+    $spacer: 1.5vh;
+    $spacer: 1.5dvh;
 
-      .addon {
-        width: 2.25rem !important;
-        height: 2.25rem !important;
-      }
+    .addons {
+      position: absolute;
+      top: calc($navHeight - 1px);
+      left: 0;
+      width: 100%;
+      height: $addonheight;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      display: none;
+      z-index: 999;
     }
 
     .menuAddon {
@@ -434,12 +472,36 @@ $navHeight: 7.5dvh;
     }
 
     .pageLinks {
-      display: none !important;
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      grid-template-rows: 1fr;
+      position: absolute;
+      top: calc(($navHeight) + $addonheight + $spacer);
+      left: 0;
+      width: 100%;
+
+      > :nth-child(n) {
+        margin-left: 0;
+        font-size: .75rem;
+        z-index: 1;
+      }
     }
 
     &.mobileToggle {
+      background: var(--background);
+      border-radius: 0;
+      margin: 0;
       .pageLinks {
+        background: var(--accentTwo);
+        display: grid !important;
+      }
+      .addons {
+        background: var(--accentFive);
         display: flex !important;
+        padding: 0.5rem;
+        .addon {
+          display: inline-block !important;
+        }
       }
     }
   }

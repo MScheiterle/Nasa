@@ -8,7 +8,7 @@ function Projects() {
     const handleClickOutsideProjects = (e) => {
       const projectsContainer = document.querySelector(".projects");
 
-      if (!projectsContainer.contains(e.target)) {
+      if (!e.target.classList.contains("project")) {
         const projects = projectsContainer.querySelectorAll(".project");
 
         projects.forEach((project) => {
@@ -346,10 +346,19 @@ function Projects() {
             </div>
             <div className="description">
               <p>{project.description}</p>
+              {project.link ? (
+                <a href={project.link} target="_blank" rel="noreferrer">
+                  <button>
+                    <span>Visit</span>
+                  </button>
+                </a>
+              ) : (
+                <></>
+              )}
               {project.githubLink ? (
                 <a href={project.githubLink} target="_blank" rel="noreferrer">
                   <button>
-                    <span>View On GitHub</span>
+                    <span>GitHub</span>
                   </button>
                 </a>
               ) : (
