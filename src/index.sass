@@ -7,13 +7,7 @@
   -webkit-font-smoothing: antialiased
   text-rendering: optimizeSpeed
 
-  scrollbar-width: none
-  -ms-overflow-style: none
-
-  &::-webkit-scrollbar
-    display: none
-
-  button 
+  button
     font: unset
 
 body
@@ -53,7 +47,7 @@ body
 
   .page
     min-height: 100vh - 7.5vh
-    width: 100vw
+    width: calc(100% - (2 * var(--scrollbar-width)))
     position: relative
     background: var(--accentThree)
 

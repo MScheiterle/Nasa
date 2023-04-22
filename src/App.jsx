@@ -80,7 +80,13 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route
             path="/spotifymatch"
-            element={<SpotifyMatch user={user} name={name} spotifyToken={rawUserData.spotifyToken}/>}
+            element={
+              <SpotifyMatch
+                user={user}
+                name={name}
+                spotifyToken={rawUserData.spotifyToken}
+              />
+            }
           />
           <Route path="*" element={<NoPage />} />
         </Routes>

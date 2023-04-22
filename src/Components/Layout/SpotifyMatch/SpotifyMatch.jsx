@@ -14,8 +14,15 @@ const SCOPE = "user-top-read user-library-read user-modify-playback-state";
 function SpotifyMatch(props) {
   const [spotifyToken, setToken] = useState("");
   const [userName, setUserName] = useState("");
-  const [topArtists, setTopArtists] = useState([]);
-  const [topTracks, setTopTracks] = useState([]);
+  const [topArtistsShort, setTopArtistsShort] = useState([]);
+  const [topArtistsMedium, setTopArtistsMedium] = useState([]);
+  const [topArtistsLong, setTopArtistsLong] = useState([]);
+  const [topTracksShort, setTopTracksShort] = useState([]);
+  const [topTracksMedium, setTopTracksMedium] = useState([]);
+  const [topTracksLong, setTopTracksLong] = useState([]);
+  //const [topTagsShort, setTopTagsShort] = useState([]);
+  //const [topTagsMedium, setTopTagsMedium] = useState([]);
+  //const [topTagsLong, setTopTagsLong] = useState([]);
   const [timeSelected, setTimeSelected] = useState("medium_term");
 
   const handleTimeChange = (event) => {
@@ -41,7 +48,6 @@ function SpotifyMatch(props) {
     const hash = window.location.hash;
 
     if (hash && props.user) {
-      console.log("Hash seen: " + hash);
       const newToken = hash
         .substring(1)
         .split("&")
@@ -71,7 +77,6 @@ function SpotifyMatch(props) {
 
         setUserName(data.display_name);
       } catch {
-        console.log("fail");
         await addCustomFieldToCurrentUser("spotifyToken", "");
         setToken(null);
       }
@@ -97,13 +102,41 @@ function SpotifyMatch(props) {
         }
       );
 
-      setTopArtists(data.items);
+      timeSelected === "short_term"
+        ? setTopArtistsShort(data.items)
+        : timeSelected === "medium_term"
+        ? setTopArtistsMedium(data.items)
+        : setTopArtistsLong(data.items);
     };
 
     if (spotifyToken) {
-      getTopArtists();
+      switch (timeSelected) {
+        case "short_term":
+          if (topArtistsShort.length === 0) {
+            getTopArtists();
+          }
+          break;
+        case "medium_term":
+          if (topArtistsMedium.length === 0) {
+            getTopArtists();
+          }
+          break;
+        case "long_term":
+          if (topArtistsLong.length === 0) {
+            getTopArtists();
+          }
+          break;
+        default:
+          break;
+      }
     }
-  }, [spotifyToken, timeSelected]);
+  }, [
+    spotifyToken,
+    timeSelected,
+    topArtistsShort,
+    topArtistsMedium,
+    topArtistsLong,
+  ]);
 
   useEffect(() => {
     const getTopTracks = async () => {
@@ -120,21 +153,67 @@ function SpotifyMatch(props) {
         }
       );
 
-      setTopTracks(data.items);
+      timeSelected === "short_term"
+        ? setTopTracksShort(data.items)
+        : timeSelected === "medium_term"
+        ? setTopTracksMedium(data.items)
+        : setTopTracksLong(data.items);
     };
 
     if (spotifyToken) {
-      getTopTracks();
+      switch (timeSelected) {
+        case "short_term":
+          if (topTracksShort.length === 0) {
+            getTopTracks();
+          }
+          break;
+        case "medium_term":
+          if (topTracksMedium.length === 0) {
+            getTopTracks();
+          }
+          break;
+        case "long_term":
+          if (topTracksLong.length === 0) {
+            getTopTracks();
+          }
+          break;
+        default:
+          break;
+      }
     }
-  }, [spotifyToken, timeSelected]);
+  }, [
+    spotifyToken,
+    timeSelected,
+    topTracksShort,
+    topTracksMedium,
+    topTracksLong,
+  ]);
 
   const logout = async () => {
     setToken("");
     await addCustomFieldToCurrentUser("spotifyToken", "");
   };
 
-  const RenderTags = () => {
+  const RenderData = () => {
     const [playingTrack, setPlayingTrack] = useState(null);
+    const [timeSelectedTracks, setTimeSelectedTracks] = useState(
+      timeSelected === "short_term"
+        ? topTracksShort
+        : timeSelected === "medium_term"
+        ? topTracksMedium
+        : topTracksLong
+    );
+    const [timeSelectedArtists, setTimeSelectedArtists] = useState(
+      timeSelected === "short_term"
+        ? topArtistsShort
+        : timeSelected === "medium_term"
+        ? topArtistsMedium
+        : topArtistsLong
+    );
+    const [artistSortOrder, setArtistSortOrder] = useState(null);
+    const [artistSortColumn, setArtistSortColumn] = useState(null);
+    const [trackSortOrder, setTrackSortOrder] = useState(null);
+    const [trackSortColumn, setTrackSortColumn] = useState(null);
 
     const playTrack = (uri) => {
       if (!spotifyToken) {
@@ -185,66 +264,251 @@ function SpotifyMatch(props) {
       }
     };
 
-    const tags = {};
+    //const getSongGenres = (songID) => {};
 
-    topArtists.forEach((artist) => {
-      artist.genres.forEach((tag) => {
-        if (tag in tags) {
-          tags[tag]++;
+    //let timeSelectedTags =
+    //  timeSelected === "short_term"
+    //    ? topTagsShort
+    //    : timeSelected === "medium_term"
+    //    ? topTagsMedium
+    //    : topTagsLong;
+
+    const handleSort = (table, column) => {
+      if (table === "artists") {
+        const newOrder =
+          artistSortOrder === "asc"
+            ? "desc"
+            : artistSortOrder === "desc"
+            ? null
+            : "asc";
+        setArtistSortOrder(newOrder);
+        setArtistSortColumn(column);
+        if (newOrder !== null) {
+          const sortedArtists = [...timeSelectedArtists].sort((a, b) => {
+            if (newOrder === "asc") {
+              if (column === "name") {
+                return a[column].localeCompare(b[column]);
+              } else {
+                return a[column] - b[column];
+              }
+            } else if (newOrder === "desc") {
+              if (column === "name") {
+                return b[column].localeCompare(a[column]);
+              } else {
+                return b[column] - a[column];
+              }
+            }
+            return 0;
+          });
+          setTimeSelectedArtists(sortedArtists);
         } else {
-          tags[tag] = 1;
+          setTimeSelectedArtists(
+            timeSelected === "short_term"
+              ? topArtistsShort
+              : timeSelected === "medium_term"
+              ? topArtistsMedium
+              : topArtistsLong
+          );
         }
-      });
-    });
+      } else if (table === "tracks") {
+        const newOrder =
+          trackSortOrder === "asc"
+            ? "desc"
+            : trackSortOrder === "desc"
+            ? null
+            : "asc";
+        setTrackSortOrder(newOrder);
+        setTrackSortColumn(column);
+        if (newOrder !== null) {
+          const sortedTracks = [...timeSelectedTracks].sort((a, b) => {
+            if (newOrder === "asc") {
+              if (column === "name") {
+                return a[column].localeCompare(b[column]);
+              } else if (column === "release_date") {
+                return new Date(a.album[column]) - new Date(b.album[column]);
+              } else {
+                return a[column] - b[column];
+              }
+            } else if (newOrder === "desc") {
+              if (column === "name") {
+                return b[column].localeCompare(a[column]);
+              } else if (column === "release_date") {
+                return new Date(b.album[column]) - new Date(a.album[column]);
+              } else {
+                return b[column] - a[column];
+              }
+            }
+            return 0;
+          });
 
-    const tagsSorted = Object.entries(tags).sort((a, b) => b[1] - a[1]);
+          setTimeSelectedTracks(sortedTracks);
+        } else {
+          setTimeSelectedTracks(
+            timeSelected === "short_term"
+              ? topTracksShort
+              : timeSelected === "medium_term"
+              ? topTracksMedium
+              : topTracksLong
+          );
+        }
+      }
+    };
 
     return (
       <div className="gridElem">
         <div className="section">
           <div className="legend">
-            Format: Tag (Number of times this tag was seen)
-          </div>
-          <div className="legend">
-            Displays the spotify 'Tags' that you listen to the most. These are
-            how Spotify recommends new songs.
+            Displays the Spotify Artisits that you listen to the most.
           </div>
           <div className="sectionName">
-            Your Top {tagsSorted.length} <span className="end">Tags</span>
+            Your Top {timeSelectedArtists.length}{" "}
+            <span className="end">Artisits</span>
           </div>
-          <ul>
-            {tagsSorted.map(([tag, count], index) => (
-              <li key={tag}>
-                <div className="index">{index + 1}</div>
-                {tag} ({count})
-              </li>
-            ))}
-          </ul>
+          <table>
+            <thead>
+              <tr>
+                <th className="mobileHidden">Index</th>
+                <th
+                  onClick={() => handleSort("artists", "name")}
+                  className="sortable"
+                >
+                  Name{" "}
+                  {artistSortColumn === "name" && (
+                    <span>
+                      {artistSortOrder === "asc"
+                        ? "▲"
+                        : artistSortOrder === "desc"
+                        ? "▼"
+                        : "-"}
+                    </span>
+                  )}
+                </th>
+                <th
+                  onClick={() => handleSort("artists", "popularity")}
+                  className="sortable"
+                >
+                  Popularity{" "}
+                  {artistSortColumn === "popularity" && (
+                    <span>
+                      {artistSortOrder === "asc"
+                        ? "▲"
+                        : artistSortOrder === "desc"
+                        ? "▼"
+                        : "-"}
+                    </span>
+                  )}
+                </th>
+                <th>Genres</th>
+              </tr>
+            </thead>
+            <tbody>
+              {timeSelectedArtists.map((artist, index) => (
+                <tr key={artist.id}>
+                  <td className="mobileHidden">{index + 1}</td>
+                  <td className="artistName">{artist.name}</td>
+                  <td>{artist.popularity}</td>
+                  <td>{artist.genres.join(", ")}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
         <div className="section">
-          <div className="legend">Format: Song</div>
           <div className="legend">
-            Displays the top songs you listened to within the time period
-            selected.
+            Displays the Spotify Songs that you listen to the most.
           </div>
           <div className="sectionName">
-            Your Top {topTracks.length} <span className="end">Songs</span>
+            Your Top {timeSelectedTracks.length}{" "}
+            <span className="end">Songs</span>
           </div>
-          <ul>
-            {topTracks.map((track, index) => (
-              <li key={track.name}>
-                <div className="index">{index + 1}</div>
-                <div className="trackName">{track.name}</div>
-                <button onClick={() => playTrack(`spotify:track:${track.id}`)}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                    <path d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
-                  </svg>
-                  <div>Play</div>
-                </button>
-              </li>
-            ))}
-          </ul>
+          <table>
+            <thead>
+              <tr>
+                <th className="mobileHidden">Index</th>
+                <th
+                  onClick={() => handleSort("tracks", "name")}
+                  className="sortable"
+                >
+                  Song Name{" "}
+                  {trackSortColumn === "name" && (
+                    <span>
+                      {trackSortOrder === "asc"
+                        ? "▲"
+                        : trackSortOrder === "desc"
+                        ? "▼"
+                        : "-"}
+                    </span>
+                  )}
+                </th>
+                <th
+                  onClick={() => handleSort("tracks", "popularity")}
+                  className="sortable"
+                >
+                  Popularity{" "}
+                  {trackSortColumn === "popularity" && (
+                    <span>
+                      {trackSortOrder === "asc"
+                        ? "▲"
+                        : trackSortOrder === "desc"
+                        ? "▼"
+                        : "-"}
+                    </span>
+                  )}
+                </th>
+                <th
+                  className="mobileHidden sortable"
+                  onClick={() => handleSort("tracks", "release_date")}
+                >
+                  Release Date{" "}
+                  {trackSortColumn === "release_date" && (
+                    <span>
+                      {trackSortOrder === "asc"
+                        ? "▲"
+                        : trackSortOrder === "desc"
+                        ? "▼"
+                        : "-"}
+                    </span>
+                  )}
+                </th>
+                <th>Artists In Song</th>
+                <th>Play</th>
+              </tr>
+            </thead>
+            <tbody>
+              {timeSelectedTracks.map((track, index) => (
+                <tr key={track.id} id={track.id}>
+                  <td className="mobileHidden">{index + 1}</td>
+                  <td>{track.name}</td>
+                  <td>{track.popularity}</td>
+                  <td className="mobileHidden">
+                    {new Date(track.album.release_date).toLocaleDateString()}
+                  </td>
+                  <td>
+                    {track.artists.map((artist, index) => (
+                      <span key={artist.id}>
+                        {artist.name}
+                        {index !== track.artists.length - 1 && ", "}
+                      </span>
+                    ))}
+                  </td>
+                  <td className="playColumn">
+                    <button
+                      onClick={() => playTrack(`spotify:track:${track.id}`)}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                      >
+                        <path d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
+                      </svg>
+                      <div>Play</div>
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     );
@@ -252,7 +516,7 @@ function SpotifyMatch(props) {
 
   return (
     <div id="SpotifyMatch">
-      <div className="header page">
+      <div className="header page" id="Spotify Match Header">
         <div className="headerCard">
           <div className="title">Spotify Match</div>
           <div className="description">
@@ -319,9 +583,9 @@ function SpotifyMatch(props) {
             )}
           </div>
           {spotifyToken ? (
-            <button className="compareButton">
-              <div>Compare With Friends!</div>
-            </button>
+            <>
+              <button className="compareButton">Compare With Friends!</button>
+            </>
           ) : (
             <></>
           )}
@@ -329,7 +593,7 @@ function SpotifyMatch(props) {
       </div>
 
       {spotifyToken ? (
-        <div className="userStats page">
+        <div className="userStats page" id="User Stats">
           <div className="timeSelection">
             <input
               type="radio"
@@ -339,7 +603,7 @@ function SpotifyMatch(props) {
               checked={timeSelected === "short_term"}
               onChange={handleTimeChange}
             />
-            <label for="weeks">4 Weeks</label>
+            <label htmlFor="weeks">4 Weeks</label>
             <input
               type="radio"
               id="months"
@@ -348,7 +612,7 @@ function SpotifyMatch(props) {
               checked={timeSelected === "medium_term"}
               onChange={handleTimeChange}
             />
-            <label for="months">6 Months</label>
+            <label htmlFor="months">6 Months</label>
             <input
               type="radio"
               id="years"
@@ -357,10 +621,10 @@ function SpotifyMatch(props) {
               checked={timeSelected === "long_term"}
               onChange={handleTimeChange}
             />
-            <label for="years">Several Years</label>
+            <label htmlFor="years">Several Years</label>
           </div>
 
-          {<RenderTags />}
+          {<RenderData />}
         </div>
       ) : (
         <></>
