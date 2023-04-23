@@ -456,7 +456,7 @@ $navHeight: 7.5dvh;
 
     .addons {
       position: absolute;
-      top: calc($navHeight - 1px);
+      top: $navHeight;
       left: 0;
       width: 100%;
       height: $addonheight;
