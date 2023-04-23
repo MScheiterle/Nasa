@@ -85,6 +85,7 @@ function App() {
                 user={user}
                 name={name}
                 spotifyToken={rawUserData.spotifyToken}
+                spotifyTokenExpiration={rawUserData.spotifyTokenExpiration}
               />
             }
           />

@@ -10,6 +10,13 @@
   button
     font: unset
 
+  a
+    color: var(--textColor)
+    text-decoration: none
+
+    &:hover
+      text-decoration: underline
+
 body
   margin: 0
   -webkit-font-smoothing: antialiased
@@ -50,6 +57,7 @@ body
     width: calc(100% - (2 * var(--scrollbar-width)))
     position: relative
     background: var(--accentThree)
+    overflow-x: hidden
 
   .center
     display: flex
