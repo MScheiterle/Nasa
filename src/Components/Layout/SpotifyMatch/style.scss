@@ -100,16 +100,34 @@
         }
       }
 
-      .compareButton {
-        margin-top: 2rem;
-        font-size: 2rem;
-        font-weight: 600;
-        color: var(--textColor);
-        border-radius: 1rem;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        background: var(--accentFive);
+      .menuButtons {
+        display: flex;
+        margin-top: 4rem;
+
+        button {
+          background: var(--accentTwo);
+          border-radius: 12px;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          outline-offset: 4px;
+          margin: 5px;
+          font-weight: 1000;
+
+          span {
+            display: block;
+            padding: 12px 42px;
+            border-radius: 12px;
+            font-size: 1.25rem;
+            background: var(--background);
+            color: white;
+            transform: translateY(-6px);
+          }
+
+          &:active span {
+            transform: translateY(-2px);
+          }
+        }
       }
 
       .scrollIndicator {
@@ -120,20 +138,24 @@
   }
 
   .userStats {
-    .timeSelection {
+    #timeSelection {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: transform 0.3s ease-out;
+      background: var(--accentThree);
+      border-radius: 1rem;
 
       label {
+        position: relative;
         margin: 0 0.5rem;
         font-size: 1.2rem;
         cursor: pointer;
         user-select: none;
         transition: all 0.2s ease-in-out;
         color: var(--textColor);
+        z-index: 0;
+        font-weight: 200;
 
         input:checked + & {
           background-color: var(--accentSix);
@@ -149,9 +171,35 @@
         display: none;
 
         &:checked + label {
-          color: var(--background);
           transform: translateY(-2px);
+          font-weight: 600;
+
+          &::before {
+            content: "";
+            border-radius: 1rem;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(
+              to right bottom,
+              transparent 49.5%,
+              var(--background) 50%,
+              transparent 50.5%
+            );
+            background-size: 5px 5px;
+            z-index: -1;
+          }
         }
+      }
+
+      &.fixed {
+        position: fixed;
+        top: 90px;
+        left: 50%;
+        transform: translate(-50%);
+        padding: 0.5rem 1rem;
       }
     }
 

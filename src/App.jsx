@@ -89,6 +89,8 @@ function App() {
               />
             }
           />
+          <Route path="/spotifymatch/user_stats" element={<></>} />
+          <Route path="/spotifymatch/compare_stats" element={<></>} />
           <Route path="*" element={<NoPage />} />
         </Routes>
         {cookieChosen ? (

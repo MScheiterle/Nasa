@@ -25,8 +25,8 @@ function CountdownClock(props) {
       countdownInterval = setInterval(() => {
         updateLogoutCountdown();
         if (logoutCountdown <= 0) {
-          clearInterval(countdownInterval);
           props.logoutFunction();
+          clearInterval(countdownInterval);
         }
       }, 1000);
     }
@@ -41,7 +41,7 @@ function CountdownClock(props) {
 
   return (
     <div>
-      Your Spotify token will expire in {formatCountdown(logoutCountdown)}
+      Token Expires In {formatCountdown(logoutCountdown)}
     </div>
   );
 }
