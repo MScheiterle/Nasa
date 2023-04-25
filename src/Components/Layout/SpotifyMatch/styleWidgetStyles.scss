@@ -1,0 +1,76 @@
+#SpotifyUserWidget {
+  position: fixed;
+  top: 90px;
+  right: 5%;
+  padding: 0.5rem 1rem;
+  background: var(--accentThree);
+  text-align: center;
+  z-index: 998;
+  font-weight: 200;
+  border-radius: 1rem;
+
+  @media (max-width: 872px) {
+    position: relative;
+    top: unset;
+    right: unset;
+  }
+
+  .spotifyConnection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    &:has(a) a:hover {
+      background: #1db954;
+    }
+
+    > div {
+      font-weight: 200;
+      cursor: pointer;
+
+      &:hover {
+        font-weight: 600;
+      }
+    }
+
+    > a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 1rem;
+      font-size: 1rem;
+      border: 2px solid #1db954;
+      width: fit-content;
+      padding: 5px;
+      color: var(--textColor);
+      font-weight: 600;
+
+      svg {
+        width: 32px;
+        height: 32px;
+        padding-right: 5px;
+      }
+    }
+  }
+
+  .disclaimer {
+    margin-top: 0.6rem;
+    .disclaimerMessage {
+      position: relative;
+
+      .disclaimerTitle {
+        position: absolute;
+        bottom: 100%;
+        left: 25%;
+        transform: translate(-50%, 50%);
+        background: var(--accentThree);
+        padding: 0 1rem;
+        font-weight: 400;
+      }
+      padding: 1rem;
+      border-radius: 1rem;
+      border: 1px solid;
+    }
+  }
+}

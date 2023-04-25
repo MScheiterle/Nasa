@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import "./styleTimeSelection.scss"
 
-function RenderTimeChange(props) {
+function RenderTimeSelector(props) {
   const [windowHeightReq, setWindowHeightReq] = useState("");
 
   useEffect(() => {
@@ -62,4 +63,4 @@ function RenderTimeChange(props) {
   );
 }
 
-export default RenderTimeChange;
+export default RenderTimeSelector;

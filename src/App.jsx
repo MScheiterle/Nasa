@@ -16,7 +16,7 @@ import Profile from "./Components/Accounts/Profile/Profile";
 import CurvedLine from "./Components/Utils/CurvedLine";
 import AcceptCookies from "./Components/Layout/AcceptCookies/AcceptCookies";
 import CookieManager from "./Components/Utils/CookieManager";
-import SpotifyMatch from "./Components/Layout/SpotifyMatch/SpotifyMatch";
+import SpotifyMatchRouter from "./Components/Layout/SpotifyMatch/SpotifyMatchRouter.jsx";
 
 function App() {
   const [user, loading] = useAuthState(auth);
@@ -79,9 +79,9 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/projects" element={<Projects />} />
           <Route
-            path="/spotifymatch"
+            path="/spotifymatch/*"
             element={
-              <SpotifyMatch
+              <SpotifyMatchRouter
                 user={user}
                 name={name}
                 spotifyToken={rawUserData.spotifyToken}
@@ -89,8 +89,6 @@ function App() {
               />
             }
           />
-          <Route path="/spotifymatch/user_stats" element={<></>} />
-          <Route path="/spotifymatch/compare_stats" element={<></>} />
           <Route path="*" element={<NoPage />} />
         </Routes>
         {cookieChosen ? (

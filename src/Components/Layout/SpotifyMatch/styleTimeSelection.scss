@@ -1,0 +1,66 @@
+#timeSelection {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--accentThree);
+  border-radius: 1rem;
+  text-align: center;
+
+  label {
+    position: relative;
+    margin: 0 0.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease-in-out;
+    color: var(--textColor);
+    z-index: 0;
+    font-weight: 200;
+
+    input:checked + & {
+      background-color: var(--accentSix);
+      color: var(--background);
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+
+  input[type="radio"] {
+    display: none;
+
+    &:checked + label {
+      transform: translateY(-2px);
+      font-weight: 600;
+
+      &::before {
+        content: "";
+        border-radius: 1rem;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+          to right bottom,
+          transparent 49.5%,
+          var(--background) 50%,
+          transparent 50.5%
+        );
+        background-size: 5px 5px;
+        z-index: -1;
+      }
+    }
+  }
+
+  &.fixed {
+    position: fixed;
+    top: 90px;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 0.5rem 1rem;
+    z-index: 998;
+  }
+}

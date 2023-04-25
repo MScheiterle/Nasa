@@ -1,30 +1,102 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { addCustomFieldToCurrentUser } from "../../../firebase.ts";
 import CountdownClock from "./CountdownClock.jsx";
+import { encode } from "base-64";
 
-import "./widgetStyles.scss";
+import "./styleWidgetStyles.scss";
 
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-const REDIRECT_URI = "http://localhost:3000/spotifymatch";
+const CLIENT_SECRET = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
+const REDIRECT_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-const RESPONSE_TYPE = "token";
+const RESPONSE_TYPE = "code";
 const SCOPE =
   "user-top-read user-library-read user-modify-playback-state user-read-playback-state";
+const authString = `${CLIENT_ID}:${CLIENT_SECRET}`;
+const base64Auth = encode(authString);
 
-function SpotifyUserWidget({
-  user,
-  spotifyToken,
-  setToken,
-  spotifyTokenExpiration,
-}) {
+function SpotifyUserWidget({ user, spotifyToken, updateTokens }) {
   const [userName, setUserName] = useState("");
+  const [spotifyRefreshToken, setRefreshToken] = useState("");
+  const [spotifyTokenExpiration, setSpotifyTokenExpiration] = useState("");
 
-  const logout = async () => {
-    setToken("");
-    await addCustomFieldToCurrentUser("spotifyToken", "");
-    await addCustomFieldToCurrentUser("spotifyTokenExpiration", "");
-  };
+  useEffect(() => {
+    const expiration = localStorage.getItem("spotifyTokenExpiration");
+    if (expiration) {
+      setSpotifyTokenExpiration(parseInt(expiration));
+    }
+  }, []);
+
+  useEffect(() => {
+    const refreshToken = localStorage.getItem("spotifyRefreshToken");
+    if (refreshToken) {
+      setRefreshToken(refreshToken);
+    }
+  }, []);
+
+  useEffect(() => {
+    async function getTokensFromCode(code) {
+      try {
+        const response = await axios.post(
+          "https://accounts.spotify.com/api/token",
+          `grant_type=authorization_code&code=${code}&redirect_uri=${REDIRECT_URI}`,
+          {
+            headers: {
+              Authorization: `Basic ${base64Auth}`,
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+          }
+        );
+
+        const accessToken = response.data.access_token;
+        const refreshToken = response.data.refresh_token;
+        const expirationTime = Date.now() + 5 * 1 * 1000;
+        setRefreshToken(refreshToken);
+        setSpotifyTokenExpiration(expirationTime);
+        updateTokens(accessToken, expirationTime, refreshToken);
+      } catch (error) {
+        if (error.response && error.response.status === 400) {
+          console.log("Error obtaining access/refresh tokens: ", error);
+        } else {
+          throw error;
+        }
+      }
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get("code");
+    window.history.replaceState({}, document.title, window.location.pathname);
+
+    if (code) {
+      getTokensFromCode(code);
+    }
+  }, [updateTokens]);
+
+  async function refreshAccessToken() {
+    try {
+      const response = await axios.post(
+        "https://accounts.spotify.com/api/token",
+        `grant_type=refresh_token&refresh_token=${spotifyRefreshToken}`,
+        {
+          headers: {
+            Authorization: `Basic ${base64Auth}`,
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
+
+      const accessToken = response.data.access_token;
+      const expirationTime = Date.now() + 60 * 55 * 1000;
+      setSpotifyTokenExpiration(expirationTime);
+      updateTokens(accessToken, expirationTime, null);
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        console.log("Error refreshing access token: ", error);
+      } else {
+        throw error;
+      }
+    }
+  }
 
   useEffect(() => {
     const getUserProfile = async () => {
@@ -40,20 +112,16 @@ function SpotifyUserWidget({
         });
 
         setUserName(data.display_name);
-      } catch {
-        await addCustomFieldToCurrentUser("spotifyToken", "");
-        await addCustomFieldToCurrentUser("spotifyTokenExpiration", "");
-        setToken(null);
-      }
+      } catch {}
     };
 
     if (spotifyToken) {
       getUserProfile();
     }
-  }, [user, spotifyToken, setToken]);
+  }, [user, spotifyToken, updateTokens]);
 
   return (
-    <div>
+    <div id="SpotifyUserWidget">
       <div className="spotifyConnection">
         {!spotifyToken ? (
           <a
@@ -84,24 +152,24 @@ function SpotifyUserWidget({
               </svg>
               <span>{userName}</span>
             </a>
-            <div onClick={logout}>Disconnect</div>
+            <div onClick={() => updateTokens("", "", "")}>Disconnect</div>
           </>
         )}
       </div>
       <div className="disclaimer">
         {spotifyToken ? (
           <CountdownClock
+            refreshAccessToken={refreshAccessToken}
             spotifyTokenExpiration={spotifyTokenExpiration}
-            logoutFunction={logout}
           />
         ) : (
           <div className="disclaimerMessage">
             <div className="disclaimerTitle">Data Usage</div>
-            Connection Only Lasts 55 Minutes.
+            Data updates every 55 minutes.
             <br />
-            Only your Spotify token is stored, not any other data.
+            Only your Spotify token is stored, no other data.
             <br />
-            After an hour all data is deleted.
+            All data is removed when you disconnect.
           </div>
         )}
       </div>
