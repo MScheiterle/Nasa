@@ -463,7 +463,7 @@ function RenderData({ spotifyToken, timeSelected }) {
           </thead>
           <tbody>
             {timeSelectedTracks.map((track, index) => (
-              <tr key={track.id + index + Date.now()} id={track.id}>
+              <tr key={track.id + index + Date.now()}>
                 <td className="mobileHidden">{index + 1}</td>
                 <td>{track.name}</td>
                 <td>{track.popularity}</td>

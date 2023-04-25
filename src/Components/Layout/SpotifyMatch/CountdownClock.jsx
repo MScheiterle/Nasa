@@ -24,7 +24,6 @@ function CountdownClock({ refreshAccessToken, spotifyTokenExpiration }) {
       updateRefreshCountdown();
       countdownInterval = setInterval(() => {
         updateRefreshCountdown();
-        console.log(refreshCountdown);
         if (refreshCountdown === 0) {
           clearInterval(countdownInterval);
           refreshAccessToken();

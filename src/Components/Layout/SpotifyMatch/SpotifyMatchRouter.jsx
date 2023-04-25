@@ -27,6 +27,7 @@ function SpotifyMatchRouter(props) {
     addCustomFieldToCurrentUser("spotifyTokenExpiration", expirationTime);
     if (refreshToken) {
       addCustomFieldToCurrentUser("spotifyRefreshToken", refreshToken);
+      localStorage.setItem("spotifyRefreshToken", refreshToken);
     }
   };
 

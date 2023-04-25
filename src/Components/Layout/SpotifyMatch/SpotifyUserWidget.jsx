@@ -50,7 +50,7 @@ function SpotifyUserWidget({ user, spotifyToken, updateTokens }) {
 
         const accessToken = response.data.access_token;
         const refreshToken = response.data.refresh_token;
-        const expirationTime = Date.now() + 5 * 1 * 1000;
+        const expirationTime = Date.now() + 60 * 55 * 1000;
         setRefreshToken(refreshToken);
         setSpotifyTokenExpiration(expirationTime);
         updateTokens(accessToken, expirationTime, refreshToken);
