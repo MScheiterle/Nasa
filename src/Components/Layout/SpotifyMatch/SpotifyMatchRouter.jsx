@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import SpotifyMatchHome from "./SpotifyMatchHome";
 import NoPage from "../NoPage/NoPage";
@@ -10,6 +10,10 @@ function SpotifyMatchRouter(props) {
   const [spotifyToken, setToken] = useState(
     localStorage.getItem("spotifyToken") || initialToken
   );
+
+  useEffect(() => {
+    console.log("RenderRouter");
+  }, []);
 
   const updateTokens = (token, expirationTime, refreshToken) => {
     if (!token) {
@@ -47,6 +51,28 @@ function SpotifyMatchRouter(props) {
         />
         <Route
           path="/user_stats"
+          element={
+            <SpotifyUserStats
+              user={props.user}
+              name={props.name}
+              updateTokens={updateTokens}
+              spotifyToken={spotifyToken}
+            />
+          }
+        />
+        <Route
+          path="/compare_stats"
+          element={
+            <SpotifyUserStats
+              user={props.user}
+              name={props.name}
+              updateTokens={updateTokens}
+              spotifyToken={spotifyToken}
+            />
+          }
+        />
+        <Route
+          path="/song_recommendations"
           element={
             <SpotifyUserStats
               user={props.user}

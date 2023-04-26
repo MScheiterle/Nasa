@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import CountdownClock from "./CountdownClock.jsx";
 import { encode } from "base-64";
@@ -21,16 +21,13 @@ function SpotifyUserWidget({ user, spotifyToken, updateTokens }) {
   const [spotifyTokenExpiration, setSpotifyTokenExpiration] = useState("");
 
   useEffect(() => {
-    const expiration = localStorage.getItem("spotifyTokenExpiration");
-    if (expiration) {
-      setSpotifyTokenExpiration(parseInt(expiration));
-    }
-  }, []);
-
-  useEffect(() => {
     const refreshToken = localStorage.getItem("spotifyRefreshToken");
     if (refreshToken) {
       setRefreshToken(refreshToken);
+    }
+    const expiration = localStorage.getItem("spotifyTokenExpiration");
+    if (expiration) {
+      setSpotifyTokenExpiration(parseInt(expiration));
     }
   }, []);
 
@@ -72,7 +69,7 @@ function SpotifyUserWidget({ user, spotifyToken, updateTokens }) {
     }
   }, [updateTokens]);
 
-  async function refreshAccessToken() {
+  const refreshAccessToken = useCallback(async () => {
     try {
       const response = await axios.post(
         "https://accounts.spotify.com/api/token",
@@ -96,7 +93,7 @@ function SpotifyUserWidget({ user, spotifyToken, updateTokens }) {
         throw error;
       }
     }
-  }
+  }, [spotifyRefreshToken, updateTokens]);
 
   useEffect(() => {
     const getUserProfile = async () => {
@@ -112,13 +109,15 @@ function SpotifyUserWidget({ user, spotifyToken, updateTokens }) {
         });
 
         setUserName(data.display_name);
-      } catch {}
+      } catch {
+        refreshAccessToken();
+      }
     };
 
     if (spotifyToken) {
       getUserProfile();
     }
-  }, [user, spotifyToken, updateTokens]);
+  }, [user, spotifyToken, updateTokens, refreshAccessToken]);
 
   return (
     <div id="SpotifyUserWidget">

@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
 import CookieManager from "../../Utils/CookieManager";
 import SpotifyUserWidget from "./SpotifyUserWidget";
+import { useNavigate } from "react-router-dom";
 
 import "./styleHome.scss";
 
 function SpotifyMatchHome(props) {
+  const navigate = useNavigate();
+
   useEffect(() => {
     new CookieManager().setCookie(
       "Simpl1f1ed.com-viewedSpotifyMatch",
@@ -53,21 +56,17 @@ function SpotifyMatchHome(props) {
             )}
           </div>
           <div className="menuButtons">
-            <a href="SpotifyMatch/user_stats">
-              <button>
-                <span>View Your Data</span>
-              </button>
-            </a>
-            <a href="SpotifyMatch/compare_data">
-              <button>
-                <span>Compare With Friends</span>
-              </button>
-            </a>
-            <a href="SpotifyMatch/get_recommendations">
-              <button>
-                <span>Get Song Recommendations</span>
-              </button>
-            </a>
+            <button onClick={() => navigate("./user_stats")}>
+              <span>View Your Data</span>
+            </button>
+
+            <button onClick={() => navigate("./compare_stats")}>
+              <span>Compare With Friends</span>
+            </button>
+
+            <button onClick={() => navigate("./song_recommendations")}>
+              <span>Get Song Recommendations</span>
+            </button>
           </div>
         </div>
       </div>

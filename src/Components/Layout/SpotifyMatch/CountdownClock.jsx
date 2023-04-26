@@ -25,7 +25,7 @@ function CountdownClock({ refreshAccessToken, spotifyTokenExpiration }) {
       countdownInterval = setInterval(() => {
         updateRefreshCountdown();
         if (refreshCountdown === 0) {
-          clearInterval(countdownInterval);
+
           refreshAccessToken();
         }
       }, 1000);
@@ -37,7 +37,9 @@ function CountdownClock({ refreshAccessToken, spotifyTokenExpiration }) {
 
   return (
     <div>
-      {refreshCountdown < 0 ? (
+      {refreshCountdown < -9 ? (
+        <>Refresh Failed, Diconnect.</>
+      ) : refreshCountdown < 0 ? (
         <>Loading...</>
       ) : (
         <>Refresh In {formatCountdown(refreshCountdown)}</>
