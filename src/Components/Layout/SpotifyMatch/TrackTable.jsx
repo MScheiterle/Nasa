@@ -1,19 +1,18 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import axios from "axios";
 
 function TrackTable({ initialTime, spotifyToken }) {
   const [data, setData] = useState([]);
-  const [originalData, setOriginalData] = useState([]);
   const [sortOrder, setSortOrder] = useState("");
   const [sortColumn, setSortColumn] = useState("");
+  const [dataShort, setdataShort] = useState([]);
+  const [dataMedium, setdataMedium] = useState([]);
+  const [dataLong, setdataLong] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [playingTrack, setPlayingTrack] = useState(null);
 
   useEffect(() => {
-    console.log("Tracks")
-  }, [])
-
-  useEffect(() => {
-    const getTopArtists = async () => {
+    const getTopTracks = async () => {
       const { data } = await axios.get(
         "https://api.spotify.com/v1/me/top/tracks",
         {
@@ -27,42 +26,89 @@ function TrackTable({ initialTime, spotifyToken }) {
         }
       );
 
-      setData(data.items);
-      setOriginalData(data.items);
+      return data.items;
     };
 
-    if (spotifyToken) {
-      getTopArtists();
-    }
-  }, [initialTime, spotifyToken]);
-
-  const handleSort = (column) => {
-    const newOrder =
-      sortOrder === "asc" ? "desc" : sortOrder === "desc" ? null : "asc";
-    setSortOrder(newOrder);
-    setSortColumn(column);
-    if (newOrder !== null) {
-      const sortedData = [...data].sort((a, b) => {
-        if (newOrder === "asc") {
-          if (column === "name") {
-            return a[column].localeCompare(b[column]);
-          } else {
-            return a[column] - b[column];
-          }
-        } else if (newOrder === "desc") {
-          if (column === "name") {
-            return b[column].localeCompare(a[column]);
-          } else {
-            return b[column] - a[column];
-          }
+    const fetchData = async () => {
+      if (spotifyToken) {
+        switch (initialTime) {
+          case "short_term":
+            if (dataShort.length === 0) {
+              let newData = await getTopTracks();
+              setdataShort(newData);
+              setData(newData);
+              setLoading(false);
+            } else {
+              setData(dataShort);
+              setLoading(false);
+            }
+            break;
+          case "medium_term":
+            if (dataMedium.length === 0) {
+              let newData = await getTopTracks();
+              setdataMedium(newData);
+              setData(newData);
+              setLoading(false);
+            } else {
+              setData(dataMedium);
+              setLoading(false);
+            }
+            break;
+          case "long_term":
+            if (dataLong.length === 0) {
+              let newData = await getTopTracks();
+              setdataLong(newData);
+              setData(newData);
+              setLoading(false);
+            } else {
+              setData(dataLong);
+              setLoading(false);
+            }
+            break;
+          default:
+            break;
         }
-        return 0;
-      });
-      setData(sortedData);
-    } else {
-      setData(originalData);
+      }
+    };
+
+    setLoading(true);
+    fetchData();
+  }, [initialTime, spotifyToken, dataLong, dataMedium, dataShort]);
+
+  const handleSort = useCallback(
+    (column) => {
+      const newOrder =
+        sortOrder === "asc" ? "desc" : sortOrder === "desc" ? null : "asc";
+      setSortOrder(newOrder);
+      setSortColumn(column);
+    },
+    [sortOrder]
+  );
+
+  const sortedData = useMemo(() => {
+    if (!sortColumn || !sortOrder) {
+      return data;
     }
-  };
+
+    return [...data].sort((a, b) => {
+      const columnA = a[sortColumn];
+      const columnB = b[sortColumn];
+
+      if (sortOrder === "asc") {
+        if (typeof columnA === "string") {
+          return columnA.localeCompare(columnB);
+        } else {
+          return columnA - columnB;
+        }
+      } else {
+        if (typeof columnB === "string") {
+          return columnB.localeCompare(columnA);
+        } else {
+          return columnB - columnA;
+        }
+      }
+    });
+  }, [data, sortColumn, sortOrder]);
 
   const playTrack = (uri) => {
     if (!spotifyToken) {
@@ -208,19 +254,25 @@ function TrackTable({ initialTime, spotifyToken }) {
         broad
       </div>
       <div className="sectionName">
-        {data.length < 1 ? (
+        {loading ? (
           <>Loading...</>
         ) : (
           <>
-            <>Your Top {data.length} </>
+            <>Your Top {sortedData.length} </>
             <span className="end">Tracks</span>
           </>
         )}
       </div>
-      <table>
-        {trackHeader}
-        {trackBody}
-      </table>
+      {loading ? (
+        <>Loading...</>
+      ) : (
+        <>
+          <table>
+            {trackHeader}
+            {trackBody}
+          </table>
+        </>
+      )}
     </div>
   );
 }

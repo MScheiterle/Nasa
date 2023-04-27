@@ -5,10 +5,10 @@ function ArtistTable({ initialTime, spotifyToken }) {
   const [data, setData] = useState([]);
   const [sortOrder, setSortOrder] = useState("");
   const [sortColumn, setSortColumn] = useState("");
-
-  useEffect(() => {
-    console.log("Artists")
-  }, [])
+  const [dataShort, setdataShort] = useState([]);
+  const [dataMedium, setdataMedium] = useState([]);
+  const [dataLong, setdataLong] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getTopArtists = async () => {
@@ -25,13 +25,54 @@ function ArtistTable({ initialTime, spotifyToken }) {
         }
       );
 
-      setData(data.items);
+      return data.items;
     };
 
-    if (spotifyToken) {
-      getTopArtists();
-    }
-  }, [initialTime, spotifyToken]);
+    const fetchData = async () => {
+      if (spotifyToken) {
+        switch (initialTime) {
+          case "short_term":
+            if (dataShort.length === 0) {
+              let newData = await getTopArtists();
+              setdataShort(newData);
+              setData(newData);
+              setLoading(false);
+            } else {
+              setData(dataShort);
+              setLoading(false);
+            }
+            break;
+          case "medium_term":
+            if (dataMedium.length === 0) {
+              let newData = await getTopArtists();
+              setdataMedium(newData);
+              setData(newData);
+              setLoading(false);
+            } else {
+              setData(dataMedium);
+              setLoading(false);
+            }
+            break;
+          case "long_term":
+            if (dataLong.length === 0) {
+              let newData = await getTopArtists();
+              setdataLong(newData);
+              setData(newData);
+              setLoading(false);
+            } else {
+              setData(dataLong);
+              setLoading(false);
+            }
+            break;
+          default:
+            break;
+        }
+      }
+    };
+
+    setLoading(true);
+    fetchData();
+  }, [initialTime, spotifyToken, dataLong, dataMedium, dataShort]);
 
   const handleSort = useCallback(
     (column) => {
@@ -147,7 +188,7 @@ function ArtistTable({ initialTime, spotifyToken }) {
         broad
       </div>
       <div className="sectionName">
-        {sortedData.length < 1 ? (
+        {loading ? (
           <>Loading...</>
         ) : (
           <>
@@ -156,10 +197,16 @@ function ArtistTable({ initialTime, spotifyToken }) {
           </>
         )}
       </div>
-      <table>
-        {artistHeader}
-        {artistBody}
-      </table>
+      {loading ? (
+        <>Loading...</>
+      ) : (
+        <>
+          <table>
+            {artistHeader}
+            {artistBody}
+          </table>
+        </>
+      )}
     </div>
   );
 }

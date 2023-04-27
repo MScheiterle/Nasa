@@ -17,6 +17,7 @@ $navHeight: 7.5dvh;
 
   &.scrolled {
     background: var(--background);
+    box-shadow: 10px 10px 0 0 var(--accentOne);
   }
 
   .MainLogo {
@@ -482,7 +483,7 @@ $navHeight: 7.5dvh;
 
       > :nth-child(n) {
         margin-left: 0;
-        font-size: .75rem;
+        font-size: 0.75rem;
         z-index: 1;
       }
     }

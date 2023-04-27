@@ -27,10 +27,6 @@ function App() {
   );
   const [cookieChosen, setCookieChosen] = useState(cookieValue ? true : false);
 
-  useEffect(() => {
-    console.log("RenderApp");
-  }, []);
-
   const updateCookieSettings = useCallback((selectedValue) => {
     if (selectedValue) {
       new CookieManager().setCookiePrime(

@@ -1,24 +1,26 @@
 #Projects {
   .projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    grid-template-rows: 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
 
     .project {
       position: relative;
+      border: 2px solid var(--textColor);
+      margin-bottom: 3rem;
       border-radius: 1rem;
-      margin: 1.5rem;
-      background: var(--accentFive);
-      box-shadow: 0 5px 5px 5px var(--accentFour);
+      padding: 1rem;
+      width: 100%;
+
+      p {
+        margin: 0;
+      }
 
       transition: 1s;
       transform: scale(0);
       animation: projectsGrow 500ms forwards;
-      text-align: center;
 
       color: var(--textColor);
-      text-decoration: none;
-      cursor: pointer;
 
       @keyframes projectsGrow {
         from {
@@ -36,35 +38,34 @@
       }
 
       .description {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        height: 100%;
-        display: none;
-        border-radius: 1rem;
-        max-height: 100%;
-        cursor: auto !important;
+        p {
+          font-weight: 200;
+          @media (max-width: 872px) {
+            text-align: center;
+          }
+        }
+      }
 
-        &::before {
-          content: "";
+      .buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 200;
+        margin-top: 1rem;
+        white-space: nowrap;
+
+        @media (min-width: 872px) {
           position: absolute;
-          top: 5%;
-          left: 5%;
-          height: 90%;
-          width: 90%;
-          background: var(--accentFive);
-          z-index: -1;
-          border-radius: 1rem;
+          top: 0;
+          right: 0;
+          transform: translate(-1rem, 1rem);
+          margin-top: 0;
         }
 
-        p {
-          margin: 1rem;
-          border-radius: 1rem;
-          padding: 1rem;
-          text-align: left;
-          font-size: 0.85rem;
+        svg {
+          width: 1rem;
+          height: 1rem;
+          fill: var(--textColor);
         }
 
         button {
@@ -81,197 +82,106 @@
             display: block;
             padding: 1rem 42px;
             border-radius: 1rem;
-            font-size: 1rem;
             background: var(--background);
-            color: white;
+            color: var(--textColor);
             transform: translateY(-6px);
           }
-
-          &:active span {
-            transform: translateY(-2px);
-          }
         }
-      }
-
-      &.focused {
-        .header,
-        .technologies,
-        .status {
-          visibility: hidden;
-        }
-        .description {
-          display: block;
-        }
-      }
-
-      &:hover {
-        scale: 1.05;
-        box-shadow: 0 10px 10px 10px var(--accentFour);
-        transition: var(--transition-timing);
-      }
-
-      &:nth-child(1n) .header, &:nth-child(1n) .description {
-        background: repeating-linear-gradient(
-          -45deg,
-          var(--background),
-          var(--background) 10px,
-          var(--accentFive) 10px,
-          var(--accentFive) 20px
-        );
-      }
-
-      &:nth-child(2n) .header, &:nth-child(2n) .description {
-        background: radial-gradient(
-          circle at 8.5px 8.5px,
-          var(--background) 0,
-          var(--background) 8px,
-          var(--accentFive) 9px,
-          var(--accentFive) 10px
-        );
-        background-size: 20px 20px;
-      }
-
-      &:nth-child(3n) .header, &:nth-child(3n) .description {
-        background: repeating-radial-gradient(
-          circle,
-          transparent 0,
-          transparent 2px,
-          var(--background) 3px,
-          var(--background) 6px
-        );
-      }
-
-      &:nth-child(4n) .header, &:nth-child(4n) .description {
-        background: linear-gradient(
-            45deg,
-            var(--background) 25%,
-            transparent 25%,
-            transparent 75%,
-            var(--background) 75%
-          ),
-          linear-gradient(
-            45deg,
-            var(--background) 25%,
-            transparent 25%,
-            transparent 75%,
-            var(--background) 75%
-          );
-        background-size: 30px 30px;
-        background-position: 0 0, 15px 15px;
-      }
-
-      &:nth-child(5n) .header, &:nth-child(5n) .description {
-        background: linear-gradient(
-            -45deg,
-            transparent 15px,
-            var(--background) 0,
-            var(--background) 45%,
-            var(--accentFive) 0,
-            var(--accentFive) 55%,
-            var(--background) 0,
-            var(--background)
-          ),
-          linear-gradient(
-            45deg,
-            transparent 15px,
-            var(--background) 0,
-            var(--background) 45%,
-            var(--accentFive) 0,
-            var(--accentFive) 55%,
-            var(--background) 0,
-            var(--background)
-          );
-        background-position: 0 0, 15px 15px;
-        background-size: 30px 30px;
       }
 
       .header {
-        position: relative;
-        margin-bottom: 1rem;
-        border-top-right-radius: 1rem;
-        border-top-left-radius: 1rem;
         display: flex;
-        justify-content: center;
         align-items: center;
-        height: 10rem;
-        transition: var(--transition-timing);
-        max-width: 100%;
-        min-width: 100%;
+        font-weight: 600;
 
-        .details {
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translate(-50%, 50%);
-
-          > svg {
-            min-width: 1rem;
-            min-height: 1rem;
-            max-width: 1rem;
-            max-height: 1rem;
-            fill: var(--textColor);
-            margin-right: 0.25rem;
-          }
-        }
-
-        > svg {
-          position: absolute;
-          top: 0;
-          right: 0;
-          transform: translate(50%, -50%);
-          min-width: 2.5rem;
-          min-height: 2.5rem;
-          max-width: 2.5rem;
-          max-height: 2.5rem;
-          fill: var(--textColor);
-          filter: drop-shadow(0 0 5px var(--textColor));
+        @media (max-width: 872px) {
+          justify-content: center;
         }
 
         > h1 {
-          min-width: 100%;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
+          position: relative;
           font-size: 2.25rem;
-          font-weight: bolder;
+          font-weight: 1000;
           margin: 0;
-          text-shadow: 0 0 5px var(--textColor);
+
+          &::before {
+            content: "";
+            border-radius: 1rem;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(
+              to right bottom,
+              transparent 49.5%,
+              var(--background) 50%,
+              transparent 50.5%
+            );
+            background-size: 10px 10px;
+            z-index: -1;
+          }
+        }
+
+        .status {
+          display: flex;
+          margin-left: 1rem;
+
+          @media (max-width: 872px) {
+            display: none;
+          }
+
+          svg {
+            width: 1rem;
+            height: 1rem;
+            fill: var(--textColor);
+          }
         }
       }
 
-      .technologies {
+      .subHeader {
         display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        max-width: 100%;
         flex-wrap: wrap;
-
-        :nth-child(n) {
-          margin: 0.2rem;
-        }
-      }
-
-      .status {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 4rem;
-        height: 2rem;
-        background: var(--accentThree);
-        padding: 1rem;
-        border-radius: 30% / 50%;
-        outline: 0.25rem solid var(--background);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
         align-items: center;
+        @media (max-width: 872px) {
+          margin-top: 1rem;
+          justify-content: center;
+        }
+        .details {
+          font-weight: 400;
+          > svg {
+            width: 1rem;
+            height: 1rem;
+            fill: var(--textColor);
+          }
+        }
 
-        svg {
-          fill: var(--textColor);
-          min-width: 2rem;
-          min-height: 2rem;
+        .technologies {
+          display: flex;
+          flex-wrap: wrap;
+          max-width: 100%;
+          justify-content: center;
+
+          div {
+            width: 80px;
+            height: fit-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          svg {
+            transform: scale(0.55);
+            border-radius: 1rem;
+            padding: 0.5rem;
+            border: 2px solid var(--background);
+            &.contrast {
+              fill: white;
+            }
+            &:hover {
+              background: var(--background);
+            }
+          }
         }
       }
     }

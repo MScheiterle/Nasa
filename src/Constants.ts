@@ -22,7 +22,7 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    name: "Trade My Data",
+    name: "TradeMyData.net",
     status: "current",
     description:
       "A tool for all the Sherlock Holmes wannabes out there who want to get the inside scoop on everyone and everything. With this software, you'll have access to all the Open Source Intelligence (OSINT) gathering tools. Who knows what secrets you'll uncover? Probably nothing too exciting, but still worth a try.",
