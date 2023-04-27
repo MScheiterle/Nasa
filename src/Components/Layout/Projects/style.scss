@@ -11,6 +11,13 @@
       border-radius: 1rem;
       padding: 1rem;
       width: 100%;
+     
+      &:nth-child(n) {
+        box-shadow: 15px 15px var(--accentTwo);
+      }
+      &:nth-child(2n) {
+        box-shadow: -15px 15px var(--accentTwo);
+      }
 
       p {
         margin: 0;
@@ -125,6 +132,7 @@
 
         .status {
           display: flex;
+          align-items: center;
           margin-left: 1rem;
 
           @media (max-width: 872px) {

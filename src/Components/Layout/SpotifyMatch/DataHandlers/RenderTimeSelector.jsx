@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./styleTimeSelection.scss"
+import "./style.scss"
 
 function RenderTimeSelector(props) {
   const [windowHeightReq, setWindowHeightReq] = useState("");

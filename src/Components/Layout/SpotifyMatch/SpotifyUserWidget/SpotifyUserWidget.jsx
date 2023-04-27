@@ -3,7 +3,7 @@ import axios from "axios";
 import CountdownClock from "./CountdownClock.jsx";
 import { encode } from "base-64";
 
-import "./styleWidgetStyles.scss";
+import "./style.scss";
 
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;

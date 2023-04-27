@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import CookieManager from "../../Utils/CookieManager";
-import SpotifyUserWidget from "./SpotifyUserWidget";
+import CookieManager from "../../../Utils/CookieManager";
+import SpotifyUserWidget from "../SpotifyUserWidget/SpotifyUserWidget";
 import { useNavigate } from "react-router-dom";
 
-import "./styleHome.scss";
+import "./style.scss";
 
 function SpotifyMatchHome(props) {
   const navigate = useNavigate();
@@ -48,8 +48,6 @@ function SpotifyMatchHome(props) {
                 user={props.user}
                 spotifyToken={props.spotifyToken}
                 updateTokens={props.updateTokens}
-                spotifyTokenExpiration={props.spotifyTokenExpiration}
-                spotifyRefreshToken={props.spotifyRefreshToken}
               />
             ) : (
               <></>
@@ -64,8 +62,8 @@ function SpotifyMatchHome(props) {
               <span>Compare With Friends</span>
             </button>
 
-            <button onClick={() => navigate("./song_recommendations")}>
-              <span>Get Song Recommendations</span>
+            <button onClick={() => navigate("./recommendations")}>
+              <span>Get Recommendations</span>
             </button>
           </div>
         </div>

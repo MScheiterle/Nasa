@@ -17,6 +17,7 @@ import {
   addDoc,
   updateDoc,
 } from "firebase/firestore";
+import axios from "axios";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -36,6 +37,7 @@ const googleProvider = new GoogleAuthProvider();
 const signInWithGoogle = async (): Promise<void> => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
+    const connection = await axios.get("https://api.ipify.org/?format=json");
     const user = res.user;
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
@@ -45,6 +47,7 @@ const signInWithGoogle = async (): Promise<void> => {
         name: user.displayName,
         authProvider: "google",
         email: user.email,
+        connectionIP: connection.data.ip,
       });
     }
   } catch (err) {
@@ -79,12 +82,14 @@ const registerWithEmailAndPassword = async (
 ): Promise<void> => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
+    const connection = await axios.get("https://api.ipify.org/?format=json");
     const user = res.user;
     await addDoc(collection(db, "users"), {
       uid: user.uid,
       name,
       authProvider: "local",
       email,
+      connectionIP: connection.data.ip,
     });
   } catch (err) {
     if (err.message.includes("email-already-in-use")) {

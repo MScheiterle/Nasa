@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import SpotifyMatchHome from "./SpotifyMatchHome";
+import SpotifyMatchHome from "./SpotifyMatchHome/SpotifyMatchHome";
 import NoPage from "../NoPage/NoPage";
-import SpotifyUserStats from "./SpotifyUserStats";
+import SpotifyUserStats from "./SpotifyUserStats/SpotifyUserStats";
+import SpotifyCompareStats from "./SpotifyCompareStats/SpotifyCompareStats";
+import SpotifyRecommendations from "./SpotifyRecommendations/SpotifyRecommendations";
 import { addCustomFieldToCurrentUser } from "../../../firebase.ts";
 
 function SpotifyMatchRouter(props) {
@@ -10,10 +12,6 @@ function SpotifyMatchRouter(props) {
   const [spotifyToken, setToken] = useState(
     localStorage.getItem("spotifyToken") || initialToken
   );
-
-  useEffect(() => {
-    console.log("RenderRouter");
-  }, []);
 
   const updateTokens = (token, expirationTime, refreshToken) => {
     if (!token) {
@@ -63,20 +61,18 @@ function SpotifyMatchRouter(props) {
         <Route
           path="/compare_stats"
           element={
-            <SpotifyUserStats
+            <SpotifyCompareStats
               user={props.user}
-              name={props.name}
               updateTokens={updateTokens}
               spotifyToken={spotifyToken}
             />
           }
         />
         <Route
-          path="/song_recommendations"
+          path="/recommendations"
           element={
-            <SpotifyUserStats
+            <SpotifyRecommendations
               user={props.user}
-              name={props.name}
               updateTokens={updateTokens}
               spotifyToken={spotifyToken}
             />

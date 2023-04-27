@@ -1,8 +1,9 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { auth, db } from "./firebase.ts";
+import { addCustomFieldToCurrentUser, auth, db } from "./firebase.ts";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
+import axios from "axios";
 
 import Navbar from "./Components/Layout/Navbar/Navbar";
 import NoPage from "./Components/Layout/NoPage/NoPage";
@@ -47,6 +48,14 @@ function App() {
       const data = doc.docs[0].data();
       setName(data.name);
       setRawUserData(data);
+      if (!data.connectionIP || Date.now() > data.ipExpirationTime) {
+        const connection = await axios.get(
+          "https://api.ipify.org/?format=json"
+        );
+        const ipExpirationTime = Date.now() + 60 * 60 * 24 * 1000;
+        addCustomFieldToCurrentUser("connectionIP", connection.data.ip);
+        addCustomFieldToCurrentUser("ipExpirationTime", ipExpirationTime);
+      }
     } catch (err) {}
   }, [user?.uid]);
 

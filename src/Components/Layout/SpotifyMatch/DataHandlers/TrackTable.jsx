@@ -211,7 +211,7 @@ function TrackTable({ initialTime, spotifyToken }) {
 
   const trackBody = (
     <tbody>
-      {data.map((track, index) => (
+      {sortedData.map((track, index) => (
         <tr key={track.id + index + Date.now()}>
           <td className="mobileHidden">{index + 1}</td>
           <td>{track.name}</td>

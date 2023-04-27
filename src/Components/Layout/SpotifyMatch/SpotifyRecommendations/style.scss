@@ -1,0 +1,15 @@
+#SpotifyRecommendations {
+  .searchPage {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+
+    > div {
+      border-radius: 1rem;
+      height: 400px;
+      border: 1px solid;
+    }
+  }
+}

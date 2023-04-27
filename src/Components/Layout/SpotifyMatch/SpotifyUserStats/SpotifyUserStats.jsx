@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import SpotifyUserWidget from "./SpotifyUserWidget";
-import RenderData from "./RenderData";
-import RenderTimeSelector from "./RenderTimeSelector";
-import "./styleUserStats.scss";
+import SpotifyUserWidget from "../SpotifyUserWidget/SpotifyUserWidget";
+import RenderData from "../DataHandlers/RenderData";
+import RenderTimeSelector from "../DataHandlers/RenderTimeSelector";
+import "./style.scss";
 
 function SpotifyUserStats(props) {
   const [timeSelected, setTimeSelected] = useState("medium_term");
@@ -17,8 +17,6 @@ function SpotifyUserStats(props) {
         user={props.user}
         spotifyToken={props.spotifyToken}
         updateTokens={props.updateTokens}
-        spotifyTokenExpiration={props.spotifyTokenExpiration}
-        spotifyRefreshToken={props.spotifyRefreshToken}
       />
       {props.spotifyToken ? (
         <>
