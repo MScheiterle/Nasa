@@ -43,15 +43,12 @@ function SpotifyMatchHome(props) {
             ) : (
               <p>Welcome, {props.name}!</p>
             )}
-            {props.user ? (
-              <SpotifyUserWidget
-                user={props.user}
-                spotifyToken={props.spotifyToken}
-                updateTokens={props.updateTokens}
-              />
-            ) : (
-              <></>
-            )}
+            <SpotifyUserWidget
+              user={props.user}
+              spotifyToken={props.spotifyToken}
+              updateTokens={props.updateTokens}
+              spotifyRefreshToken={props.spotifyRefreshToken}
+            />
           </div>
           <div className="menuButtons">
             <button onClick={() => navigate("./user_stats")}>

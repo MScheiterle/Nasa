@@ -17,6 +17,7 @@ function SpotifyUserStats(props) {
         user={props.user}
         spotifyToken={props.spotifyToken}
         updateTokens={props.updateTokens}
+        spotifyRefreshToken={props.spotifyRefreshToken}
       />
       {props.spotifyToken ? (
         <>

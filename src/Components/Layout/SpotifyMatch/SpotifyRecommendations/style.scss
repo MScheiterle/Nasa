@@ -1,4 +1,109 @@
 #SpotifyRecommendations {
+  padding: 1rem;
+
+  .pageHeader {
+    text-align: center;
+    font-weight: 200;
+    font-size: 1.2rem;
+
+    span {
+      font-weight: 400;
+    }
+
+    svg {
+      fill: var(--textColor);
+    }
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  table {
+    width: 100%;
+    text-align: center;
+
+    tbody {
+      tr {
+        font-weight: 400;
+        animation: tableRowGrow 250ms forwards;
+        transform: scale(0);
+        animation-delay: 100s;
+        cursor: pointer;
+
+        @media (max-width: 872px) {
+          .mobileHidden {
+            display: none;
+          }
+          & {
+            font-size: 0.75rem;
+          }
+        }
+
+        @keyframes tableRowGrow {
+          from {
+            transform: scale(0);
+          }
+          to {
+            transform: scale(1);
+          }
+        }
+
+        @for $x from 1 through 100 {
+          &:nth-child(#{$x}) {
+            animation-delay: calc(25ms * $x);
+          }
+        }
+
+        .artistName {
+          position: relative;
+
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+        }
+
+        &:hover {
+          background: var(--accentSix) !important;
+        }
+
+        button {
+          display: flex;
+          transition: 1000ms;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          color: var(--textColor);
+
+          svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--background);
+          }
+
+          &:hover {
+            svg {
+              fill: var(--textColor);
+            }
+          }
+        }
+
+        &:nth-child(1n + 1) {
+          background: var(--accentFive);
+        }
+        &:nth-child(2n + 1) {
+          background: var(--accentFour);
+        }
+        &:last-child {
+          border-bottom-left-radius: 1rem;
+          border-bottom-right-radius: 1rem;
+        }
+      }
+    }
+  }
+
   .searchPage {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -6,10 +111,49 @@
     gap: 1rem;
     padding: 1rem;
 
-    > div {
+    > .searchSection {
       border-radius: 1rem;
-      height: 400px;
-      border: 1px solid;
+      padding: 1rem;
+
+      .searchBar {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 600;
+        margin-bottom: 1rem;
+
+        .inputName {
+          position: absolute;
+          left: 0;
+          top: 0;
+          transform: translate(50%, -50%);
+          background: var(--accentThree);
+          padding: 0 1rem;
+          font-size: 0.85rem;
+          font-weight: 400;
+        }
+
+        label > svg {
+          padding: 0 1rem;
+          cursor: pointer;
+          width: 32px;
+          height: 32px;
+          fill: var(--textColor);
+        }
+
+        input {
+          padding: 0.5rem 1rem;
+          flex: 1;
+          border-radius: 1rem;
+          background: transparent;
+          border: none;
+          color: var(--textColor);
+          font: unset;
+          outline: 2px solid var(--textColor);
+          transition: var(--transitionTiming);
+        }
+      }
     }
   }
 }

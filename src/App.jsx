@@ -22,7 +22,6 @@ import SpotifyMatchRouter from "./Components/Layout/SpotifyMatch/SpotifyMatchRou
 function App() {
   const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
-  const [rawUserData, setRawUserData] = useState("");
   const cookieValue = new CookieManager().getCookie(
     "Simpl1f1ed.com-cookieSetting"
   );
@@ -41,27 +40,29 @@ function App() {
     setCookieChosen(true);
   }, []);
 
-  const fetchUserName = useCallback(async () => {
-    try {
-      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-      const doc = await getDocs(q);
-      const data = doc.docs[0].data();
-      setName(data.name);
-      setRawUserData(data);
-      if (!data.connectionIP || Date.now() > data.ipExpirationTime) {
-        const connection = await axios.get(
-          "https://api.ipify.org/?format=json"
-        );
-        const ipExpirationTime = Date.now() + 60 * 60 * 24 * 1000;
-        addCustomFieldToCurrentUser("connectionIP", connection.data.ip);
-        addCustomFieldToCurrentUser("ipExpirationTime", ipExpirationTime);
-      }
-    } catch (err) {}
-  }, [user?.uid]);
+  const fetchData = useCallback(
+    async (setData, dataToRetrieve) => {
+      try {
+        const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+        const doc = await getDocs(q);
+        const data = doc.docs[0].data();
+        setData(data[dataToRetrieve]);
+        if (!data.connectionIP || Date.now() > data.ipExpirationTime) {
+          const connection = await axios.get(
+            "https://api.ipify.org/?format=json"
+          );
+          const ipExpirationTime = Date.now() + 60 * 60 * 24 * 1000;
+          addCustomFieldToCurrentUser("connectionIP", connection.data.ip);
+          addCustomFieldToCurrentUser("ipExpirationTime", ipExpirationTime);
+        }
+      } catch (err) {}
+    },
+    [user?.uid]
+  );
 
   useEffect(() => {
     if (loading) return () => {};
-    const fetchCall = () => (user ? fetchUserName() : null);
+    const fetchCall = () => (user ? fetchData(setName, "name") : null);
 
     if (document.readyState === "complete" && user) {
       fetchCall();
@@ -69,7 +70,7 @@ function App() {
       window.addEventListener("load", fetchCall, false);
       return () => window.removeEventListener("load", fetchCall);
     }
-  }, [user, loading, fetchUserName]);
+  }, [user, loading, fetchData]);
 
   return (
     <div id="app">
@@ -93,8 +94,7 @@ function App() {
               <SpotifyMatchRouter
                 user={user}
                 name={name}
-                spotifyToken={rawUserData.spotifyToken}
-                spotifyTokenExpiration={rawUserData.spotifyTokenExpiration}
+                fetchData={fetchData}
               />
             }
           />

@@ -1,6 +1,6 @@
 import React from "react";
 import SpotifyUserWidget from "../SpotifyUserWidget/SpotifyUserWidget";
-import "./style.scss"
+import "./style.scss";
 
 function SpotifyCompareStats(props) {
   return (
@@ -9,6 +9,7 @@ function SpotifyCompareStats(props) {
         user={props.user}
         spotifyToken={props.spotifyToken}
         updateTokens={props.updateTokens}
+        spotifyRefreshToken={props.spotifyRefreshToken}
       />
       Coming Soon...
     </div>

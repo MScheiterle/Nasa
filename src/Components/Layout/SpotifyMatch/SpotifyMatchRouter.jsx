@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import SpotifyMatchHome from "./SpotifyMatchHome/SpotifyMatchHome";
 import NoPage from "../NoPage/NoPage";
@@ -7,31 +7,41 @@ import SpotifyCompareStats from "./SpotifyCompareStats/SpotifyCompareStats";
 import SpotifyRecommendations from "./SpotifyRecommendations/SpotifyRecommendations";
 import { addCustomFieldToCurrentUser } from "../../../firebase.ts";
 
-function SpotifyMatchRouter(props) {
-  const { spotifyToken: initialToken } = props;
-  const [spotifyToken, setToken] = useState(
-    localStorage.getItem("spotifyToken") || initialToken
-  );
+function SpotifyMatchRouter({ user, name, fetchData }) {
+  const [spotifyToken, setToken] = useState("");
+  const [spotifyRefreshToken, setSpotifyRefreshToken] = useState("");
 
   const updateTokens = (token, expirationTime, refreshToken) => {
-    if (!token) {
-      localStorage.removeItem("spotifyToken");
+    if (!expirationTime) {
       localStorage.removeItem("spotifyTokenExpiration");
-      localStorage.removeItem("spotifyRefreshToken");
     }
 
     setToken(token);
-    if (token && expirationTime) {
-      localStorage.setItem("spotifyToken", token);
+    if (expirationTime) {
       localStorage.setItem("spotifyTokenExpiration", expirationTime);
     }
     addCustomFieldToCurrentUser("spotifyToken", token);
     addCustomFieldToCurrentUser("spotifyTokenExpiration", expirationTime);
     if (refreshToken) {
       addCustomFieldToCurrentUser("spotifyRefreshToken", refreshToken);
-      localStorage.setItem("spotifyRefreshToken", refreshToken);
     }
   };
+
+  useEffect(() => {
+    const fetchCall = () => {
+      if (!spotifyToken) {
+        fetchData(setToken, "spotifyToken");
+      }
+      fetchData(setSpotifyRefreshToken, "spotifyRefreshToken");
+    };
+
+    if (document.readyState === "complete" && user) {
+      fetchCall();
+    } else {
+      window.addEventListener("load", fetchCall, false);
+      return () => window.removeEventListener("load", fetchCall);
+    }
+  }, [user, fetchData, spotifyToken]);
 
   return (
     <div>
@@ -40,10 +50,11 @@ function SpotifyMatchRouter(props) {
           path="/"
           element={
             <SpotifyMatchHome
-              user={props.user}
-              name={props.name}
+              user={user}
+              name={name}
               updateTokens={updateTokens}
               spotifyToken={spotifyToken}
+              spotifyRefreshToken={spotifyRefreshToken}
             />
           }
         />
@@ -51,10 +62,10 @@ function SpotifyMatchRouter(props) {
           path="/user_stats"
           element={
             <SpotifyUserStats
-              user={props.user}
-              name={props.name}
+              user={user}
               updateTokens={updateTokens}
               spotifyToken={spotifyToken}
+              spotifyRefreshToken={spotifyRefreshToken}
             />
           }
         />
@@ -62,9 +73,10 @@ function SpotifyMatchRouter(props) {
           path="/compare_stats"
           element={
             <SpotifyCompareStats
-              user={props.user}
+              user={user}
               updateTokens={updateTokens}
               spotifyToken={spotifyToken}
+              spotifyRefreshToken={spotifyRefreshToken}
             />
           }
         />
@@ -72,7 +84,7 @@ function SpotifyMatchRouter(props) {
           path="/recommendations"
           element={
             <SpotifyRecommendations
-              user={props.user}
+              user={user}
               updateTokens={updateTokens}
               spotifyToken={spotifyToken}
             />

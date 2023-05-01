@@ -8,11 +8,13 @@
   z-index: 998;
   font-weight: 200;
   border-radius: 1rem;
+  box-shadow: 5px 5px 5px var(--background);
 
   @media (max-width: 872px) {
     position: relative;
     top: unset;
     right: unset;
+    box-shadow: none;
   }
 
   .spotifyConnection {
