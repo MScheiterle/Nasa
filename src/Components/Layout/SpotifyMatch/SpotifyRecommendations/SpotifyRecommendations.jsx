@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useCallback, useMemo } from "react";
-import SpotifyUserWidget from "../SpotifyUserWidget/SpotifyUserWidget";
 import axios from "axios";
 import "./style.scss";
 
@@ -24,7 +23,7 @@ function ArtistResult({
         <td className="mobileHidden">{index + 1}</td>
         <td className="artistName">{memoizedRenderArtist(artist)}</td>
         <td>{artist.popularity}</td>
-        <td>{artist.followers.total}</td>
+        <td className="mobileHidden">{artist.followers.total}</td>
         <td>{artist.genres.join(", ")}</td>
       </tr>
     );
@@ -44,7 +43,6 @@ function TrackResult({
     (event) => {
       if (event.target.tagName !== "A" && event.target.tagName !== "DIV") {
         setSelectedTrack(track);
-        console.log(event.target.tagName);
       }
     },
     [setSelectedTrack, track]
@@ -61,7 +59,7 @@ function TrackResult({
         </td>
         <td className="artistName">
           {track.artists.map((artist, index) => (
-            <span key={artist.id}>
+            <span key={artist.id + index}>
               {memoizedRenderArtist(artist)}
               {index !== track.artists.length - 1 && ", "}
             </span>
@@ -184,20 +182,38 @@ function SpotifyRecommendations(props) {
       );
       const deviceId = activeDevice ? activeDevice.id : null;
 
-      axios({
-        method: "put",
-        url: "https://api.spotify.com/v1/me/player/play",
-        headers: {
-          Authorization: `Bearer ${props.spotifyToken}`,
-          "Content-Type": "application/json",
-        },
-        data: {
-          uris: [uri],
-          device_id: deviceId,
-        },
-      }).then(() => {
-        setPlayingTrack(uri);
-      });
+      if (uri === playingTrack) {
+        // if the same song is playing, pause it
+        axios({
+          method: "put",
+          url: "https://api.spotify.com/v1/me/player/pause",
+          headers: {
+            Authorization: `Bearer ${props.spotifyToken}`,
+            "Content-Type": "application/json",
+          },
+          data: {
+            device_id: deviceId,
+          },
+        }).then(() => {
+          setPlayingTrack(null);
+        });
+      } else {
+        // if a different song is requested, play it
+        axios({
+          method: "put",
+          url: "https://api.spotify.com/v1/me/player/play",
+          headers: {
+            Authorization: `Bearer ${props.spotifyToken}`,
+            "Content-Type": "application/json",
+          },
+          data: {
+            uris: [uri],
+            device_id: deviceId,
+          },
+        }).then(() => {
+          setPlayingTrack(uri);
+        });
+      }
     });
   };
 
@@ -239,14 +255,38 @@ function SpotifyRecommendations(props) {
     []
   );
 
+  const memoizedArtistHeader = useMemo(
+    () => (
+      <>
+        <tr>
+          <th className="mobileHidden">#</th>
+          <th>Name</th>
+          <th>Popularity</th>
+          <th className="mobileHidden">Followers</th>
+          <th>Genres</th>
+        </tr>
+      </>
+    ),
+    []
+  );
+
+  const memoizedTrackHeader = useMemo(
+    () => (
+      <>
+        <tr>
+          <th className="mobileHidden">#</th>
+          <th>Name</th>
+          <th>Popularity</th>
+          <th className="mobileHidden">Release Date</th>
+          <th>Artists</th>
+        </tr>
+      </>
+    ),
+    []
+  );
+
   return (
     <div id="SpotifyRecommendations" className="page">
-      <SpotifyUserWidget
-        user={props.user}
-        spotifyToken={props.spotifyToken}
-        updateTokens={props.updateTokens}
-        spotifyRefreshToken={props.spotifyRefreshToken}
-      />
       <div className="pageHeader">
         Get recommendations based on <span>Artist</span> or <span>Song</span>
         <br />
@@ -263,7 +303,7 @@ function SpotifyRecommendations(props) {
             <input
               id="artist"
               type="text"
-              placeholder="Ex: Sam Smith"
+              placeholder="Ex: Cody Fry"
               onChange={(e) => setArtistName(e.target.value)}
             />
             <label htmlFor="artist" className="inputName">
@@ -271,15 +311,7 @@ function SpotifyRecommendations(props) {
             </label>
           </div>
           <table>
-            <thead>
-              <tr>
-                <th className="mobileHidden">#</th>
-                <th>Name</th>
-                <th>Popularity</th>
-                <th>Followers</th>
-                <th>Genres</th>
-              </tr>
-            </thead>
+            <thead>{memoizedArtistHeader}</thead>
             <tbody>
               {artistResults.map((artist, index) => (
                 <ArtistResult
@@ -302,7 +334,7 @@ function SpotifyRecommendations(props) {
             <input
               id="track"
               type="text"
-              placeholder="Ex: Unholy by Sam Smith"
+              placeholder="Ex: Flying by Cody Fry"
               onChange={(e) => {
                 setTrackName(e.target.value);
               }}
@@ -312,15 +344,7 @@ function SpotifyRecommendations(props) {
             </label>
           </div>
           <table>
-            <thead>
-              <tr>
-                <th className="mobileHidden">#</th>
-                <th>Name</th>
-                <th>Popularity</th>
-                <th>Release Date</th>
-                <th>Artists</th>
-              </tr>
-            </thead>
+            <thead>{memoizedTrackHeader}</thead>
             <tbody>
               {trackResults.map((track, index) => (
                 <TrackResult
@@ -343,15 +367,7 @@ function SpotifyRecommendations(props) {
             Recommendations for <span>Track: {selectedTrack.name}</span>
           </div>
           <table>
-            <thead>
-              <tr>
-                <th className="mobileHidden">#</th>
-                <th>Name</th>
-                <th>Popularity</th>
-                <th>Release Date</th>
-                <th>Artists</th>
-              </tr>
-            </thead>
+            <thead>{memoizedTrackHeader}</thead>
             <tbody>
               {recommendations.map((track, index) => (
                 <TrackResult
@@ -374,15 +390,7 @@ function SpotifyRecommendations(props) {
             Recommendations for <span>Artist: {selectedArtist.name}</span>
           </div>
           <table>
-            <thead>
-              <tr>
-                <th className="mobileHidden">#</th>
-                <th>Name</th>
-                <th>Popularity</th>
-                <th>Followers</th>
-                <th>Genres</th>
-              </tr>
-            </thead>
+            <thead>{memoizedArtistHeader}</thead>
             <tbody>
               {recommendations.map((artist, index) => (
                 <ArtistResult

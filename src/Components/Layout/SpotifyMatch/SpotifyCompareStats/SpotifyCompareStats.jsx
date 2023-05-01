@@ -1,17 +1,11 @@
 import React from "react";
-import SpotifyUserWidget from "../SpotifyUserWidget/SpotifyUserWidget";
 import "./style.scss";
 
 function SpotifyCompareStats(props) {
   return (
     <div id="SpotifyCompareStats" className="page">
-      <SpotifyUserWidget
-        user={props.user}
-        spotifyToken={props.spotifyToken}
-        updateTokens={props.updateTokens}
-        spotifyRefreshToken={props.spotifyRefreshToken}
-      />
-      Coming Soon...
+      <div className="sideBar"></div>
+      <div className="content"></div>
     </div>
   );
 }

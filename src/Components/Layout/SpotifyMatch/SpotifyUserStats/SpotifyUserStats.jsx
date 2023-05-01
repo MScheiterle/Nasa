@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import SpotifyUserWidget from "../SpotifyUserWidget/SpotifyUserWidget";
 import RenderData from "../DataHandlers/RenderData";
 import RenderTimeSelector from "../DataHandlers/RenderTimeSelector";
 import "./style.scss";
 
-function SpotifyUserStats(props) {
+function SpotifyUserStats({ spotifyToken }) {
   const [timeSelected, setTimeSelected] = useState("medium_term");
 
   const handleTimeChange = (event) => {
@@ -13,22 +12,13 @@ function SpotifyUserStats(props) {
 
   return (
     <div id="SpotifyUserStats" className="page">
-      <SpotifyUserWidget
-        user={props.user}
-        spotifyToken={props.spotifyToken}
-        updateTokens={props.updateTokens}
-        spotifyRefreshToken={props.spotifyRefreshToken}
-      />
-      {props.spotifyToken ? (
+      {spotifyToken ? (
         <>
           <RenderTimeSelector
             handleTimeChange={handleTimeChange}
             timeSelected={timeSelected}
           />
-          <RenderData
-            spotifyToken={props.spotifyToken}
-            timeSelected={timeSelected}
-          />
+          <RenderData spotifyToken={spotifyToken} timeSelected={timeSelected} />
         </>
       ) : (
         <>You Need To Connect Your Spotify</>

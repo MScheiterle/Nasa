@@ -5,6 +5,7 @@ import NoPage from "../NoPage/NoPage";
 import SpotifyUserStats from "./SpotifyUserStats/SpotifyUserStats";
 import SpotifyCompareStats from "./SpotifyCompareStats/SpotifyCompareStats";
 import SpotifyRecommendations from "./SpotifyRecommendations/SpotifyRecommendations";
+import SpotifyUserWidget from "./SpotifyUserWidget/SpotifyUserWidget";
 import { addCustomFieldToCurrentUser } from "../../../firebase.ts";
 
 function SpotifyMatchRouter({ user, name, fetchData }) {
@@ -45,50 +46,34 @@ function SpotifyMatchRouter({ user, name, fetchData }) {
 
   return (
     <div>
+      <SpotifyUserWidget
+        user={user}
+        spotifyToken={spotifyToken}
+        updateTokens={updateTokens}
+        spotifyRefreshToken={spotifyRefreshToken}
+      />
       <Routes>
         <Route
           path="/"
-          element={
-            <SpotifyMatchHome
-              user={user}
-              name={name}
-              updateTokens={updateTokens}
-              spotifyToken={spotifyToken}
-              spotifyRefreshToken={spotifyRefreshToken}
-            />
-          }
+          element={<SpotifyMatchHome user={user} name={name} />}
         />
         <Route
           path="/user_stats"
-          element={
-            <SpotifyUserStats
-              user={user}
-              updateTokens={updateTokens}
-              spotifyToken={spotifyToken}
-              spotifyRefreshToken={spotifyRefreshToken}
-            />
-          }
+          element={<SpotifyUserStats spotifyToken={spotifyToken} />}
         />
         <Route
           path="/compare_stats"
           element={
             <SpotifyCompareStats
               user={user}
-              updateTokens={updateTokens}
+              name={name}
               spotifyToken={spotifyToken}
-              spotifyRefreshToken={spotifyRefreshToken}
             />
           }
         />
         <Route
           path="/recommendations"
-          element={
-            <SpotifyRecommendations
-              user={user}
-              updateTokens={updateTokens}
-              spotifyToken={spotifyToken}
-            />
-          }
+          element={<SpotifyRecommendations spotifyToken={spotifyToken} />}
         />
         <Route path="*" element={<NoPage />} />
       </Routes>

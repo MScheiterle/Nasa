@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import CookieManager from "../../../Utils/CookieManager";
-import SpotifyUserWidget from "../SpotifyUserWidget/SpotifyUserWidget";
 import { useNavigate } from "react-router-dom";
 
 import "./style.scss";
@@ -43,12 +42,6 @@ function SpotifyMatchHome(props) {
             ) : (
               <p>Welcome, {props.name}!</p>
             )}
-            <SpotifyUserWidget
-              user={props.user}
-              spotifyToken={props.spotifyToken}
-              updateTokens={props.updateTokens}
-              spotifyRefreshToken={props.spotifyRefreshToken}
-            />
           </div>
           <div className="menuButtons">
             <button onClick={() => navigate("./user_stats")}>

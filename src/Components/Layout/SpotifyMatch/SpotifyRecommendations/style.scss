@@ -1,6 +1,12 @@
 #SpotifyRecommendations {
   padding: 1rem;
 
+  @media (max-width: 872px) {
+    & {
+      font-size: 0.75rem;
+    }
+  }
+
   .pageHeader {
     text-align: center;
     font-weight: 200;
@@ -23,6 +29,19 @@
   table {
     width: 100%;
     text-align: center;
+
+    th {
+      white-space: nowrap;
+
+      @media (max-width: 872px) {
+        &.mobileHidden {
+          display: none;
+        }
+        & {
+          font-size: 0.75rem;
+        }
+      }
+    }
 
     tbody {
       tr {
