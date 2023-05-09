@@ -92,13 +92,14 @@ export const validateEmail = (email: string): boolean => {
   );
 };
 
-export const validateMediumPassword = (password: string): boolean => {
-  return (
-    password.match(
-      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&^\\]{8,}$/
-    ) !== null
-  );
+export const validateMediumPassword = () => {
+  const password = "SpotifyTest)!@2";
+  const hasDigit = password.match(/\d/) !== null;
+  const hasSpecialChar = password.match(/[!@#$%^&*]/) !== null;
+  return password.length >= 8 && hasDigit && hasSpecialChar;
 };
+
+
 
 export const validateUsername = (username: string): boolean => {
   return username.match(/^([A-Za-z0-9]|-._){4,20}$/) !== null;

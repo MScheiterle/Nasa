@@ -45,7 +45,7 @@ function Register() {
     if (!validateMediumPassword(password)) {
       passwordElem.classList.add("errored");
       errorMessageElem.innerHTML =
-        "Error: This is not a strong enough password [7 charachters long with 1 number and a special character]...";
+        "Error: This is not a strong enough password [8 characters long with 1 number and 1 special character]...";
       return;
     }
     passwordElem.classList.remove("errored");
