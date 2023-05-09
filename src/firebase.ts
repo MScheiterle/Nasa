@@ -10,12 +10,12 @@ import {
 } from "firebase/auth";
 import {
   getFirestore,
-  query,
-  getDocs,
-  collection,
-  where,
-  addDoc,
   updateDoc,
+  arrayRemove,
+  arrayUnion,
+  doc,
+  getDoc,
+  setDoc,
 } from "firebase/firestore";
 import axios from "axios";
 
@@ -39,17 +39,23 @@ const signInWithGoogle = async (): Promise<void> => {
     const res = await signInWithPopup(auth, googleProvider);
     const connection = await axios.get("https://api.ipify.org/?format=json");
     const user = res.user;
-    const q = query(collection(db, "users"), where("uid", "==", user.uid));
-    const docs = await getDocs(q);
-    if (docs.docs.length === 0) {
-      await addDoc(collection(db, "users"), {
+    const userDocRef = doc(db, "users", user.uid);
+    const privateDocRef = doc(userDocRef, "private", "privateUserRecords");
+    const publicDocRef = doc(userDocRef, "public", "publicUserRecords");
+    const spotifyDocRef = doc(userDocRef, "spotify", "spotifyUserRecords");
+    await setDoc(
+      privateDocRef,
+      {
         uid: user.uid,
         name: user.displayName,
         authProvider: "google",
         email: user.email,
         connectionIP: connection.data.ip,
-      });
-    }
+      },
+      { merge: true }
+    );
+    await setDoc(publicDocRef, {}, { merge: true });
+    await setDoc(spotifyDocRef, {}, { merge: true });
   } catch (err) {
     console.error(err);
   }
@@ -84,13 +90,19 @@ const registerWithEmailAndPassword = async (
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const connection = await axios.get("https://api.ipify.org/?format=json");
     const user = res.user;
-    await addDoc(collection(db, "users"), {
+    const userRef = doc(db, "users", user.uid);
+    const privateDocRef = doc(userRef, "private", "privateUserRecords");
+    const publicDocRef = doc(userRef, "public", "publicUserRecords");
+    const spotifyDocRef = doc(userRef, "spotify", "spotifyUserRecords");
+    await setDoc(privateDocRef, {
       uid: user.uid,
       name,
       authProvider: "local",
       email,
       connectionIP: connection.data.ip,
     });
+    await setDoc(publicDocRef, {});
+    await setDoc(spotifyDocRef, {});
   } catch (err) {
     if (err.message.includes("email-already-in-use")) {
       errorMessageField.innerHTML = "Error: Email already in use...";
@@ -133,23 +145,106 @@ const logout = (): void => {
 
 const addCustomFieldToCurrentUser = async (
   fieldName: string,
-  data: any
+  data: any,
+  subSection: string,
+  removeData?: boolean
 ): Promise<void> => {
   try {
-    if (!auth.currentUser) {
+    const currentUserID = auth.currentUser?.uid;
+    if (!currentUserID) {
       return;
     }
-    const uid = auth.currentUser?.uid;
-    const q = query(collection(db, "users"), where("uid", "==", uid));
-    const querySnapshot = await getDocs(q);
-    const userDocRef = querySnapshot.docs[0].ref;
-    if (userDocRef) {
-      await updateDoc(userDocRef, {
-        [fieldName]: data,
-      });
+    const userRef = doc(
+      db,
+      "users",
+      currentUserID,
+      subSection,
+      `${subSection}UserRecords`
+    );
+
+    if (userRef) {
+      if (Array.isArray(data)) {
+        // If the data is an array, use the arrayUnion method to add the values to the array field.
+        await updateDoc(userRef, {
+          [fieldName]: arrayUnion(...data),
+        });
+      } else {
+        // If the data is not an array, simply update the field with the new value.
+        await updateDoc(userRef, {
+          [fieldName]: data,
+        });
+      }
+      if (Array.isArray(removeData)) {
+        // If `removeData` is an array, use the `arrayRemove` method to remove the values from the array field.
+        await updateDoc(userRef, {
+          [fieldName]: arrayRemove(...removeData),
+        });
+      } else if (removeData) {
+        // If `removeData` is not an array and is truthy, use the `arrayRemove` method to remove the value from the array field.
+        await updateDoc(userRef, {
+          [fieldName]: arrayRemove(removeData),
+        });
+      }
     }
   } catch (err) {
     console.error(err);
+  }
+};
+
+const getCurrentUserData = async (
+  query: string,
+  subSection: string
+): Promise<string | null> => {
+  try {
+    const currentUserID = auth.currentUser?.uid;
+    if (!currentUserID) {
+      return null;
+    }
+    const userRef = doc(
+      db,
+      "users",
+      currentUserID,
+      subSection,
+      `${subSection}UserRecords`
+    );
+    const userDoc = await getDoc(userRef);
+    if (userDoc.exists()) {
+      const userData = userDoc.get(query);
+      return userData || null;
+    } else {
+      console.error("User document not found");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error getting user data:", error);
+    return null;
+  }
+};
+
+const getUserDataByUID = async (
+  uid: string,
+  query: string,
+  subSection: string
+): Promise<string | null> => {
+  try {
+    const userRef = doc(
+      db,
+      "users",
+      uid,
+      subSection,
+      `${subSection}UserRecords`
+    );
+    const userDoc = await getDoc(userRef);
+    if (userDoc.exists()) {
+      const userData = userDoc.get(query);
+      return userData || null;
+    } else {
+      console.error("User document not found");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error getting user data:", error);
+    return null;
   }
 };
 
@@ -162,4 +257,6 @@ export {
   sendPasswordReset,
   logout,
   addCustomFieldToCurrentUser,
+  getUserDataByUID,
+  getCurrentUserData,
 };

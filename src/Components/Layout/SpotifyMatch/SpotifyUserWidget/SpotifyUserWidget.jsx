@@ -2,8 +2,8 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import CountdownClock from "./CountdownClock.jsx";
 import { encode } from "base-64";
-
 import "./style.scss";
+import { addCustomFieldToCurrentUser } from "../../../../firebase.ts";
 
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
@@ -33,40 +33,49 @@ function SpotifyUserWidget({
   }, []);
 
   useEffect(() => {
-    async function getTokensFromCode(code) {
-      try {
-        const response = await axios.post(
-          "https://accounts.spotify.com/api/token",
-          `grant_type=authorization_code&code=${code}&redirect_uri=${REDIRECT_URI}`,
-          {
-            headers: {
-              Authorization: `Basic ${base64Auth}`,
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-          }
-        );
+    const handleLoad = () => {
+      async function getTokensFromCode(code) {
+        try {
+          const response = await axios.post(
+            "https://accounts.spotify.com/api/token",
+            `grant_type=authorization_code&code=${code}&redirect_uri=${REDIRECT_URI}`,
+            {
+              headers: {
+                Authorization: `Basic ${base64Auth}`,
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+            }
+          );
 
-        const accessToken = response.data.access_token;
-        const refreshToken = response.data.refresh_token;
-        const expirationTime = Date.now() + 60 * 55 * 1000;
-        setSpotifyTokenExpiration(expirationTime);
-        updateTokens(accessToken, expirationTime, refreshToken);
-        setLoading(false);
-      } catch (error) {
-        if (error.response && error.response.status === 400) {
-          console.log("Error obtaining access/refresh tokens: ", error);
-        } else {
-          throw error;
+          const accessToken = response.data.access_token;
+          const refreshToken = response.data.refresh_token;
+          const expirationTime = Date.now() + 60 * 55 * 1000;
+          setSpotifyTokenExpiration(expirationTime);
+          updateTokens(accessToken, expirationTime, refreshToken);
+          setLoading(false);
+        } catch (error) {
+          if (error.response && error.response.status === 400) {
+            console.log("Error obtaining access/refresh tokens: ", error);
+          } else {
+            throw error;
+          }
         }
       }
-    }
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get("code");
-    window.history.replaceState({}, document.title, window.location.pathname);
+      const urlParams = new URLSearchParams(window.location.search);
+      const code = urlParams.get("code");
+      window.history.replaceState({}, document.title, window.location.pathname);
 
-    if (code) {
-      getTokensFromCode(code);
+      if (code) {
+        getTokensFromCode(code);
+      }
+    };
+
+    if (document.readyState === "complete") {
+      handleLoad();
+    } else {
+      window.addEventListener("load", handleLoad);
+      return () => window.removeEventListener("load", handleLoad);
     }
   }, [updateTokens]);
 
@@ -112,6 +121,11 @@ function SpotifyUserWidget({
         });
 
         setUserName(data.display_name);
+        addCustomFieldToCurrentUser(
+          "SpotifyPublic",
+          [data.display_name, data.external_urls.spotify, data.images[0].url],
+          "public"
+        );
         setLoading(false);
       } catch {
         refreshAccessToken();

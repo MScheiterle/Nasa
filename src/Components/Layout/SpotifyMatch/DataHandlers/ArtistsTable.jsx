@@ -189,7 +189,9 @@ function ArtistTable({ initialTime, spotifyToken }) {
       </div>
       <div className="sectionName">
         {loading ? (
-          <>Loading...</>
+          <>
+            {spotifyToken ? <>Loading...</> : <>Connect Your Spotify Account</>}
+          </>
         ) : (
           <>
             <>Your Top {sortedData.length} </>
@@ -198,7 +200,9 @@ function ArtistTable({ initialTime, spotifyToken }) {
         )}
       </div>
       {loading ? (
-        <>Loading...</>
+        <>
+          {spotifyToken ? <>Loading...</> : <>Connect Your Spotify Account</>}
+        </>
       ) : (
         <>
           <table>

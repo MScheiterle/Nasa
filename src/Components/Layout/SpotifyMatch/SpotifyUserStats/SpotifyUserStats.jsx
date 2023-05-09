@@ -3,7 +3,7 @@ import RenderData from "../DataHandlers/RenderData";
 import RenderTimeSelector from "../DataHandlers/RenderTimeSelector";
 import "./style.scss";
 
-function SpotifyUserStats({ spotifyToken }) {
+function SpotifyUserStats({ spotifyToken, page }) {
   const [timeSelected, setTimeSelected] = useState("medium_term");
 
   const handleTimeChange = (event) => {
@@ -11,18 +11,12 @@ function SpotifyUserStats({ spotifyToken }) {
   };
 
   return (
-    <div id="SpotifyUserStats" className="page">
-      {spotifyToken ? (
-        <>
-          <RenderTimeSelector
-            handleTimeChange={handleTimeChange}
-            timeSelected={timeSelected}
-          />
-          <RenderData spotifyToken={spotifyToken} timeSelected={timeSelected} />
-        </>
-      ) : (
-        <>You Need To Connect Your Spotify</>
-      )}
+    <div id="SpotifyUserStats" className={`${page && "page"}`}>
+      <RenderTimeSelector
+        handleTimeChange={handleTimeChange}
+        timeSelected={timeSelected}
+      />
+      <RenderData spotifyToken={spotifyToken} timeSelected={timeSelected} />
     </div>
   );
 }

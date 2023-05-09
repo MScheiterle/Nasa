@@ -361,6 +361,9 @@ function SpotifyRecommendations(props) {
           </table>
         </div>
       </div>
+      <div className="pageHeader">
+        {props.spotifyToken ? <></> : <>Connect Your Spotify Account</>}
+      </div>
       {selectedTrack && (
         <>
           <div className="pageHeader">

@@ -1,7 +1,10 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { addCustomFieldToCurrentUser, auth, db } from "./firebase.ts";
-import { query, collection, getDocs, where } from "firebase/firestore";
+import {
+  addCustomFieldToCurrentUser,
+  auth,
+  getCurrentUserData,
+} from "./firebase.ts";
 import { useAuthState } from "react-firebase-hooks/auth";
 import axios from "axios";
 
@@ -40,30 +43,48 @@ function App() {
     setCookieChosen(true);
   }, []);
 
+  const ipHandler = useCallback(async () => {
+    try {
+      const connectionIP = await getCurrentUserData("connectionIP", "private");
+      const ipExpirationTime = await getCurrentUserData("ipExpirationTime", "private");
+
+      if (!connectionIP || Date.now() > ipExpirationTime) {
+        const connection = await axios.get(
+          "https://api.ipify.org/?format=json"
+        );
+        const ipExpirationTime = Date.now() + 60 * 60 * 24 * 1000;
+        await addCustomFieldToCurrentUser(
+          "connectionIP",
+          connection.data.ip,
+          "private"
+        );
+        await addCustomFieldToCurrentUser(
+          "ipExpirationTime",
+          ipExpirationTime,
+          "private"
+        );
+      }
+    } catch (error) {
+      console.error("Error handling IP:", error);
+    }
+  }, []);
+
   const fetchData = useCallback(
     async (setData, dataToRetrieve) => {
       try {
-        const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-        const doc = await getDocs(q);
-        const data = doc.docs[0].data();
-        setData(data[dataToRetrieve]);
-        if (!data.connectionIP || Date.now() > data.ipExpirationTime) {
-          const connection = await axios.get(
-            "https://api.ipify.org/?format=json"
-          );
-          const ipExpirationTime = Date.now() + 60 * 60 * 24 * 1000;
-          addCustomFieldToCurrentUser("connectionIP", connection.data.ip);
-          addCustomFieldToCurrentUser("ipExpirationTime", ipExpirationTime);
-        }
-      } catch (err) {}
+        const data = await getCurrentUserData(dataToRetrieve, "private");
+        setData(data);
+        await ipHandler();
+      } catch (err) {
+        console.error(err);
+      }
     },
-    [user?.uid]
+    [ipHandler]
   );
 
   useEffect(() => {
     if (loading) return () => {};
     const fetchCall = () => (user ? fetchData(setName, "name") : null);
-
     if (document.readyState === "complete" && user) {
       fetchCall();
     } else {
@@ -90,13 +111,7 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route
             path="/spotifymatch/*"
-            element={
-              <SpotifyMatchRouter
-                user={user}
-                name={name}
-                fetchData={fetchData}
-              />
-            }
+            element={<SpotifyMatchRouter user={user} name={name} />}
           />
           <Route path="*" element={<NoPage />} />
         </Routes>

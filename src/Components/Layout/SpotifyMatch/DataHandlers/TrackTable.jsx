@@ -255,7 +255,9 @@ function TrackTable({ initialTime, spotifyToken }) {
       </div>
       <div className="sectionName">
         {loading ? (
-          <>Loading...</>
+          <>
+            {spotifyToken ? <>Loading...</> : <>Connect Your Spotify Account</>}
+          </>
         ) : (
           <>
             <>Your Top {sortedData.length} </>
@@ -264,7 +266,9 @@ function TrackTable({ initialTime, spotifyToken }) {
         )}
       </div>
       {loading ? (
-        <>Loading...</>
+        <>
+          {spotifyToken ? <>Loading...</> : <>Connect Your Spotify Account</>}
+        </>
       ) : (
         <>
           <table>

@@ -1,5 +1,312 @@
 #SpotifyCompareStats {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+
+  .DisplayUserData {
+    height: 100%;
+    margin: 1rem;
+  }
+
+  .loader {
+    width: 1rem;
+    height: 1rem;
+
+    .mainCircle {
+      stroke: var(--accentThree);
+    }
+
+    .secondCircle {
+      stroke: var(--background);
+    }
+
+    .animate {
+      animation: rotate 1.5s linear infinite;
+      stroke-dasharray: 283;
+      stroke-dashoffset: 283;
+      transform-origin: center;
+    }
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0);
+      stroke-dashoffset: 283;
+    }
+    50% {
+      stroke-dashoffset: 71;
+      transform: rotate(450deg);
+    }
+    100% {
+      stroke-dashoffset: 283;
+      transform: rotate(1080deg);
+    }
+  }
+
+  .newMatch {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .users {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .shareText {
+      font-weight: 400;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      span {
+        font-weight: 600;
+      }
+    }
+
+    .user {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      .userName {
+        font-weight: 400;
+      }
+
+      .profilePicture {
+        width: 128px;
+        height: 128px;
+        border-radius: 1rem;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border: 1px solid var(--textColor);
+        fill: var(--textColor);
+
+        img {
+          border-radius: 1rem;
+        }
+      }
+
+      .searchBar {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 400;
+        margin-bottom: 1rem;
+        border-radius: 1rem;
+        outline: 2px solid var(--textColor);
+
+        .inputName {
+          position: absolute;
+          left: 10%;
+          top: 0;
+          transform: translate(0, -50%);
+          background: var(--accentThree);
+          padding: 0 1rem;
+          font-size: 0.85rem;
+          font-weight: 400;
+        }
+
+        span {
+          width: 28ch;
+          padding: 0.5rem 1rem;
+        }
+
+        input {
+          padding: 0.5rem 1rem;
+          background: transparent;
+          border: none;
+          color: var(--textColor);
+          font: unset;
+          outline: none;
+          border-radius: 1rem;
+          width: 28ch;
+        }
+
+        .svgContainer {
+          position: relative;
+          background: var(--textColor);
+          border-radius: 0 1rem 1rem 0;
+          cursor: pointer;
+          transition: var(--transitionTiming);
+
+          &:hover {
+            background: var(--accentThree);
+
+            svg {
+              fill: var(--textColor);
+            }
+          }
+
+          svg {
+            padding: 0.5rem 1rem;
+            fill: var(--accentThree);
+            width: 1rem;
+            height: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  .enableSharing {
+    text-align: center;
+    font-weight: 200;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+      font-size: 4rem;
+      font-weight: 800;
+      position: relative;
+      margin-bottom: 1rem;
+      z-index: 0;
+
+      @media (max-width: 872px) {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      &::before {
+        content: "";
+        border-radius: 1rem;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+          to right bottom,
+          transparent 49.5%,
+          var(--background) 50%,
+          transparent 50.5%
+        );
+        background-size: 10px 10px;
+        z-index: -1;
+      }
+    }
+
+    .desc {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      span {
+        font-weight: 400;
+      }
+    }
+
+    button {
+      background: var(--accentTwo);
+      border-radius: 12px;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      outline-offset: 4px;
+      margin: 5px;
+      font-weight: 1000;
+
+      span {
+        display: block;
+        padding: 12px 42px;
+        border-radius: 12px;
+        font-size: 1.25rem;
+        background: var(--background);
+        color: var(--textColor);
+        transform: translateY(-6px);
+      }
+
+      &:active span {
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  .centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sideBar {
+    max-width: 300px;
+    box-shadow: 10px 10px 0 0 var(--accentFive);
+    outline: 2px solid var(--background);
+    border-radius: 1rem;
+    padding: 1rem;
+
+    .sep {
+      position: relative;
+      border-bottom: 1px solid;
+      white-space: nowrap;
+      font-weight: 400;
+
+      > div {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 0 1rem;
+        background: var(--accentThree);
+      }
+    }
+
+    > :nth-child(n):has(svg) {
+      position: relative;
+      margin: 1rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      white-space: nowrap;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: 400;
+
+      svg {
+        width: 16px;
+        height: 16px;
+        fill: var(--textColor);
+        padding: 0;
+        margin: 0 0.3rem;
+
+        &.close {
+          display: none;
+          padding: 0.5rem;
+          border-radius: 0.5rem;
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translate(0, -50%);
+
+          &:hover {
+            background: var(--accentSix);
+          }
+        }
+      }
+
+      &:hover {
+        background: var(--accentFive);
+
+        svg {
+          &.close {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  .content {
+    width: 100%;
+    box-shadow: 10px 10px 0 0 var(--accentFive);
+    border-radius: 1rem;
+    outline: 2px solid var(--background);
+  }
 }

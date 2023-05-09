@@ -28,6 +28,8 @@ function CountdownClock({ refreshAccessToken, spotifyTokenExpiration }) {
           refreshAccessToken();
         }
       }, 1000);
+    } else {
+      console.log("No Expiration Detected");
     }
     return () => {
       clearInterval(countdownInterval);
