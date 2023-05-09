@@ -41,8 +41,19 @@ function SpotifyMatchRouter({ user, name }) {
   const updateTokens = (token, expirationTime, refreshToken) => {
     if (!expirationTime) {
       localStorage.removeItem("spotifyTokenExpiration");
+      addCustomFieldToCurrentUser(
+        "spotifyTokenExpiration",
+        expirationTime,
+        "spotify",
+        true
+      );
     } else {
       localStorage.setItem("spotifyTokenExpiration", expirationTime);
+      addCustomFieldToCurrentUser(
+        "spotifyTokenExpiration",
+        expirationTime,
+        "spotify"
+      );
     }
 
     setToken((prevToken) => {
@@ -82,7 +93,7 @@ function SpotifyMatchRouter({ user, name }) {
         />
         <Route
           path="/user_stats"
-          element={<SpotifyUserStats spotifyToken={spotifyToken} page={true}/>}
+          element={<SpotifyUserStats spotifyToken={spotifyToken} page={true} />}
         />
         <Route
           path="/compare_stats"

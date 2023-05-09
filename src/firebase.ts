@@ -221,6 +221,51 @@ const getCurrentUserData = async (
   }
 };
 
+const addCustomFieldToUserByUID = async (
+  uid: string,
+  fieldName: string,
+  data: any,
+  subSection: string,
+  removeData?: boolean
+): Promise<void> => {
+  try {
+    const userRef = doc(
+      db,
+      "users",
+      uid,
+      subSection,
+      `${subSection}UserRecords`
+    );
+
+    if (userRef) {
+      if (Array.isArray(data)) {
+        // If the data is an array, use the arrayUnion method to add the values to the array field.
+        await updateDoc(userRef, {
+          [fieldName]: arrayUnion(...data),
+        });
+      } else {
+        // If the data is not an array, simply update the field with the new value.
+        await updateDoc(userRef, {
+          [fieldName]: data,
+        });
+      }
+      if (Array.isArray(removeData)) {
+        // If `removeData` is an array, use the `arrayRemove` method to remove the values from the array field.
+        await updateDoc(userRef, {
+          [fieldName]: arrayRemove(...removeData),
+        });
+      } else if (removeData) {
+        // If `removeData` is not an array and is truthy, use the `arrayRemove` method to remove the value from the array field.
+        await updateDoc(userRef, {
+          [fieldName]: arrayRemove(removeData),
+        });
+      }
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 const getUserDataByUID = async (
   uid: string,
   query: string,
@@ -259,4 +304,5 @@ export {
   addCustomFieldToCurrentUser,
   getUserDataByUID,
   getCurrentUserData,
+  addCustomFieldToUserByUID,
 };

@@ -3,6 +3,10 @@
   gap: 1rem;
   padding: 1rem;
 
+  @media (max-width: 872px) {
+    padding: 1rem 1rem 1rem 0;
+  }
+
   .DisplayUserData {
     height: 100%;
     margin: 1rem;
@@ -51,6 +55,9 @@
 
     .users {
       display: flex;
+      @media (max-width: 872px) {
+        flex-direction: column;
+      }
       gap: 2rem;
     }
 
@@ -88,6 +95,11 @@
         border: 1px solid var(--textColor);
         fill: var(--textColor);
 
+        @media (max-width: 872px) {
+          width: 64px;
+          height: 64px;
+        }
+
         img {
           border-radius: 1rem;
         }
@@ -102,6 +114,7 @@
         margin-bottom: 1rem;
         border-radius: 1rem;
         outline: 2px solid var(--textColor);
+        font-size: 0.75rem;
 
         .inputName {
           position: absolute;
@@ -117,6 +130,12 @@
         span {
           width: 28ch;
           padding: 0.5rem 1rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          @media (max-width: 872px) {
+            width: 18ch;
+          }
         }
 
         input {
@@ -128,6 +147,12 @@
           outline: none;
           border-radius: 1rem;
           width: 28ch;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          @media (max-width: 872px) {
+            width: 18ch;
+          }
         }
 
         .svgContainer {
@@ -236,11 +261,71 @@
   }
 
   .sideBar {
-    max-width: 300px;
+    position: relative;
+    max-width: 200px;
     box-shadow: 10px 10px 0 0 var(--accentFive);
     outline: 2px solid var(--background);
     border-radius: 1rem;
     padding: 1rem;
+    transition: var(--transitionTiming);
+
+    .toggler {
+      display: none !important;
+      z-index: 997;
+      background: var(--accentFive);
+      width: 1.5rem;
+
+      svg {
+        width: 1rem;
+        height: 1rem;
+        transition: var(--transitionTiming);
+        transform: rotate(0deg);
+      }
+    }
+
+    &.toggled .toggler svg {
+      transform: rotate(180deg);
+    }
+
+    @media (max-width: 872px) {
+      width: 0;
+      outline: 0;
+      border-radius: 0;
+      border-top-right-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+      padding: 0;
+
+      .toggler {
+        display: block !important;
+      }
+
+      > .toggler ~ *:not(.toggler) {
+        display: none !important;
+      }
+
+      &.toggled {
+        max-width: 4rem;
+        min-width: 4rem;
+        outline: 2px solid var(--background);
+
+        .toggler {
+          background: none;
+          width: unset;
+        }
+
+        & > .toggler ~ * {
+          display: block !important;
+        }
+      }
+
+      span {
+        display: none !important;
+      }
+
+      .close {
+        display: none !important;
+      }
+    }
 
     .sep {
       position: relative;
@@ -248,7 +333,7 @@
       white-space: nowrap;
       font-weight: 400;
 
-      > div {
+      > span {
         position: absolute;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -294,10 +379,8 @@
       &:hover {
         background: var(--accentFive);
 
-        svg {
-          &.close {
-            display: block;
-          }
+        .close {
+          display: block;
         }
       }
     }

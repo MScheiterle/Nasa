@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import axios from "axios";
+import { getCurrentUserData } from "../../../../firebase.ts";
 
-function TrackTable({ initialTime, spotifyToken }) {
+function TrackTable({ initialTime, spotifyToken, shared }) {
   const [data, setData] = useState([]);
   const [sortOrder, setSortOrder] = useState("");
   const [sortColumn, setSortColumn] = useState("");
@@ -10,6 +11,17 @@ function TrackTable({ initialTime, spotifyToken }) {
   const [dataLong, setdataLong] = useState([]);
   const [loading, setLoading] = useState(true);
   const [playingTrack, setPlayingTrack] = useState(null);
+  const [hostToken, setHostToken] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (shared) {
+        setHostToken(await getCurrentUserData("spotifyToken", "spotify"));
+      }
+    };
+
+    fetchData();
+  }, [shared]);
 
   useEffect(() => {
     const getTopTracks = async () => {
@@ -111,7 +123,7 @@ function TrackTable({ initialTime, spotifyToken }) {
   }, [data, sortColumn, sortOrder]);
 
   const playTrack = (uri) => {
-    if (!spotifyToken) {
+    if (!spotifyToken || (shared && !hostToken)) {
       return;
     }
 
@@ -119,7 +131,7 @@ function TrackTable({ initialTime, spotifyToken }) {
       method: "get",
       url: "https://api.spotify.com/v1/me/player/devices",
       headers: {
-        Authorization: `Bearer ${spotifyToken}`,
+        Authorization: `Bearer ${shared ? hostToken : spotifyToken}`,
         "Content-Type": "application/json",
       },
     }).then((response) => {

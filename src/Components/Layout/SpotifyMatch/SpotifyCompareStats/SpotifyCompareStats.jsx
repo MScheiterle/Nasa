@@ -3,9 +3,12 @@ import {
   addCustomFieldToCurrentUser,
   getCurrentUserData,
   getUserDataByUID,
+  addCustomFieldToUserByUID,
 } from "../../../../firebase.ts";
 import SpotifyUserStats from "../SpotifyUserStats/SpotifyUserStats.jsx";
 import "./style.scss";
+import { encode } from "base-64";
+import axios from "axios";
 
 function EnableSharingComp({ setSharingEnabled }) {
   return (
@@ -81,7 +84,7 @@ function CreateNewConnection({ user, spotifyToken, handleAddConnection }) {
           )}
           <div className="searchBar">
             <span>{user.uid} </span>
-            <label className="inputName">Your Match Code</label>
+            <label className="inputName">Your's</label>
             <div
               className="svgContainer"
               onClick={() => handleCopyClick(user.uid)}
@@ -126,7 +129,7 @@ function CreateNewConnection({ user, spotifyToken, handleAddConnection }) {
               }}
             />
             <label htmlFor="matchCode" className="inputName">
-              Friend's Match Code
+              Friend's
             </label>
             <div className="svgContainer" onClick={() => handleLookup()}>
               {!matchLoading ? (
@@ -209,7 +212,7 @@ function ConnectedComp({ uid, setSelectedUser, handleRemoveConnection }) {
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
           </svg>
-          {connectionData[0]}
+          <span>{connectionData[0]}</span>
           <svg
             className="close"
             xmlns="http://www.w3.org/2000/svg"
@@ -251,6 +254,11 @@ function ConnectedComp({ uid, setSelectedUser, handleRemoveConnection }) {
   );
 }
 
+const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+const CLIENT_SECRET = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
+const authString = `${CLIENT_ID}:${CLIENT_SECRET}`;
+const base64Auth = encode(authString);
+
 function DisplayUserData({ userID }) {
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState(null);
@@ -258,13 +266,50 @@ function DisplayUserData({ userID }) {
   useEffect(() => {
     async function fetchToken() {
       setLoading(true);
-      const privateUserSpotifyToken = await getUserDataByUID(
+      const privateSpotifyTokenExpiration = await getUserDataByUID(
         userID,
-        "spotifyToken",
+        "spotifyTokenExpiration",
         "spotify"
       );
-      setToken(privateUserSpotifyToken);
-      setLoading(false);
+      if (privateSpotifyTokenExpiration < Date.now()) {
+        const privateUserRefreshToken = await getUserDataByUID(
+          userID,
+          "spotifyRefreshToken",
+          "spotify"
+        );
+        const response = await axios.post(
+          "https://accounts.spotify.com/api/token",
+          `grant_type=refresh_token&refresh_token=${privateUserRefreshToken}`,
+          {
+            headers: {
+              Authorization: `Basic ${base64Auth}`,
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+          }
+        );
+        addCustomFieldToUserByUID(
+          userID,
+          "spotifyToken",
+          response.data.access_token,
+          "spotify"
+        );
+        addCustomFieldToUserByUID(
+          userID,
+          "spotifyTokenExpiration",
+          Date.now() + 60 * 55 * 1000,
+          "spotify"
+        );
+        setToken(response.data.access_token);
+        setLoading(false);
+      } else {
+        const privateUserSpotifyToken = await getUserDataByUID(
+          userID,
+          "spotifyToken",
+          "spotify"
+        );
+        setToken(privateUserSpotifyToken);
+        setLoading(false);
+      }
     }
 
     fetchToken();
@@ -275,7 +320,7 @@ function DisplayUserData({ userID }) {
       {!loading ? (
         <>
           {token ? (
-            <SpotifyUserStats spotifyToken={token} />
+            <SpotifyUserStats spotifyToken={token} shared={true} />
           ) : (
             <div>You dont have this user's permission to view their data</div>
           )}
@@ -348,6 +393,18 @@ function SpotifyCompareStats({ user, spotifyToken }) {
         ) : (
           <>
             <div
+              className="toggler"
+              onClick={(event) => {
+                event.currentTarget.parentElement.classList.toggle("toggled");
+                event.stopPropagation();
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <title>Collapse sidebar</title>
+                <path d="M0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM241 377c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l87-87-87-87c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L345 239c9.4 9.4 9.4 24.6 0 33.9L241 377z" />
+              </svg>
+            </div>
+            <div
               onClick={() => {
                 setSelectedUser(null);
               }}
@@ -355,10 +412,10 @@ function SpotifyCompareStats({ user, spotifyToken }) {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
               </svg>
-              Share Data With Friends!
+              <span>New Connection</span>
             </div>
             <div className="sep">
-              <div>Shared With</div>
+              <span>Shared With</span>
             </div>
             {sharedData &&
               Array.isArray(sharedData) &&
