@@ -6,7 +6,7 @@ export interface NavLink {
 
 export const navLinks: NavLink[] = [
   { name: "Projects", link: true, destination: "/Projects" },
-  { name: "SpotifyMatch", link: true, destination: "/SpotifyMatch" },
+  { name: "SpotifyMatch", link: true, destination: "/SongMatch" },
 ];
 
 export interface Project {
@@ -42,7 +42,7 @@ export const projects: Project[] = [
       "https://github.com/MScheiterle/Simpl1f1ed.com/tree/master/src/Components/Layout/SpotifyMatch",
     technologies: ["JS", "HTML", "React", "Firebase", "SASS"],
     dateCreated: 1681418904000,
-    link: "/spotifymatch/",
+    link: "/songmatch/",
   },
   {
     name: "Simpl1f1ed.com",

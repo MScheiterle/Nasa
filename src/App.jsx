@@ -20,7 +20,7 @@ import Profile from "./Components/Accounts/Profile/Profile";
 import CurvedLine from "./Components/Utils/CurvedLine";
 import AcceptCookies from "./Components/Layout/AcceptCookies/AcceptCookies";
 import CookieManager from "./Components/Utils/CookieManager";
-import SpotifyMatchRouter from "./Components/Layout/SpotifyMatch/SpotifyMatchRouter.jsx";
+import SongMatchRouter from "./Components/Layout/SongMatch/SongMatchRouter.jsx";
 
 function App() {
   const [user, loading] = useAuthState(auth);
@@ -46,7 +46,10 @@ function App() {
   const ipHandler = useCallback(async () => {
     try {
       const connectionIP = await getCurrentUserData("connectionIP", "private");
-      const ipExpirationTime = await getCurrentUserData("ipExpirationTime", "private");
+      const ipExpirationTime = await getCurrentUserData(
+        "ipExpirationTime",
+        "private"
+      );
 
       if (!connectionIP || Date.now() > ipExpirationTime) {
         const connection = await axios.get(
@@ -110,8 +113,8 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/projects" element={<Projects />} />
           <Route
-            path="/spotifymatch/*"
-            element={<SpotifyMatchRouter user={user} name={name} />}
+            path="/songmatch/*"
+            element={<SongMatchRouter user={user} name={name} />}
           />
           <Route path="*" element={<NoPage />} />
         </Routes>
