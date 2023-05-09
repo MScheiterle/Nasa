@@ -1,21 +1,20 @@
 import React, { useEffect } from "react";
 import CookieManager from "../../../Utils/CookieManager";
 import { useNavigate } from "react-router-dom";
-
 import "./style.scss";
 
-function SpotifyMatchHome(props) {
+function SongMatchHome(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
     new CookieManager().setCookie(
-      "Simpl1f1ed.com-viewedSpotifyMatch",
+      "Simpl1f1ed.com-viewedSongMatch",
       `${Date.now()}`,
       {
         expires: 7,
       }
     );
-    document.title = "Simpl1f1ed.com - SpotifyMatch";
+    document.title = "Simpl1f1ed.com - SongMatch";
 
     return () => {
       document.title = "Simpl1f1ed.com";
@@ -23,10 +22,10 @@ function SpotifyMatchHome(props) {
   }, []);
 
   return (
-    <div id="SpotifyMatchHome">
-      <div className="header page" id="Spotify Match Header">
+    <div id="SongMatchHome">
+      <div className="header page" id="Song Match Header">
         <div className="headerCard">
-          <div className="title">Spotify Match</div>
+          <div className="title">Song Match</div>
           <div className="description">
             Get your <span>spotify stats</span> and compare them with{" "}
             <span>friends</span>
@@ -62,4 +61,4 @@ function SpotifyMatchHome(props) {
   );
 }
 
-export default SpotifyMatchHome;
+export default SongMatchHome;

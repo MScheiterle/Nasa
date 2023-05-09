@@ -33,7 +33,7 @@ export const projects: Project[] = [
     link: "https://trademydata.net/",
   },
   {
-    name: "Spotify Match",
+    name: "Song Match",
     status: "current",
     description:
       "Enabling Spotify users to compare their music listening data with others can lead to a fun and insightful experience. This feature can help users discover new music, understand their own habits better, and connect with their community.",

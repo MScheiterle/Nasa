@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import SpotifyMatchHome from "./SpotifyMatchHome/SpotifyMatchHome";
+import SongMatchHome from "./SongMatchHome/SongMatchHome";
 import NoPage from "../NoPage/NoPage";
 import SpotifyUserStats from "./SpotifyUserStats/SpotifyUserStats";
 import SpotifyCompareStats from "./SpotifyCompareStats/SpotifyCompareStats";
@@ -11,7 +11,7 @@ import {
   getCurrentUserData,
 } from "../../../firebase.ts";
 
-function SpotifyMatchRouter({ user, name }) {
+function SongMatchRouter({ user, name }) {
   const [spotifyToken, setToken] = useState("");
   const [spotifyRefreshToken, setSpotifyRefreshToken] = useState("");
   const [disconnected, setDisconnected] = useState(false);
@@ -89,7 +89,7 @@ function SpotifyMatchRouter({ user, name }) {
       <Routes>
         <Route
           path="/"
-          element={<SpotifyMatchHome user={user} name={name} />}
+          element={<SongMatchHome user={user} name={name} />}
         />
         <Route
           path="/user_stats"
@@ -111,4 +111,4 @@ function SpotifyMatchRouter({ user, name }) {
   );
 }
 
-export default SpotifyMatchRouter;
+export default SongMatchRouter;
