@@ -329,7 +329,7 @@ function Navbar(props) {
             )}
           </div>
           <div onClick={() => logout()}>Logout</div>
-          <div>{props.name}</div>
+          <div className="userName">{props.name}</div>
         </div>
       </button>
     </>

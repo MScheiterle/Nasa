@@ -296,11 +296,16 @@ $navHeight: 7.5dvh;
       &.hasDropDown {
         &.userAddon > .dropDown {
           display: flex;
-          width: 150px;
+          max-width: 150px;
           flex-direction: column;
           justify-content: center;
           align-items: center;
           padding: 10px;
+
+          .userName {
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
 
           > :nth-child(n) {
             padding: 5px;
@@ -499,7 +504,7 @@ $navHeight: 7.5dvh;
       .addons {
         background: var(--accentFive);
         display: flex !important;
-        padding: 0.5rem;
+        padding: 0.5rem 0;
         .addon {
           display: inline-block !important;
         }

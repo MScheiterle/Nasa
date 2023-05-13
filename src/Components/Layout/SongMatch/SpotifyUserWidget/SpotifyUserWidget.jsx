@@ -126,6 +126,7 @@ function SpotifyUserWidget({
           [data.display_name, data.external_urls.spotify, data.images[0].url],
           "public"
         );
+        console.log(data)
         setLoading(false);
       } catch {
         refreshAccessToken();

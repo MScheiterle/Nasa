@@ -1,9 +1,9 @@
 #Login {
   .container {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
-    gap: 1rem;
 
     > :nth-child(n) {
       min-width: 17rem;
@@ -119,10 +119,6 @@
   }
 
   .alternateOptions {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-
     > :nth-child(n):not(:last-child) {
       margin-bottom: 1rem;
     }
@@ -137,6 +133,8 @@
       display: table;
       cursor: pointer;
       width: 100%;
+      max-height: 3rem;
+      min-height: 3rem;
 
       div {
         margin: 0;
@@ -150,12 +148,12 @@
         display: table-cell;
         margin: 0;
         background-color: var(--textColor);
-        width: 2rem;
+        width: 3rem;
         height: 100%;
       }
 
       &.Google {
-        border: 1px solid var(--textColor);
+        outline: 1px solid var(--textColor);
         background: transparent;
         color: var(--textColor);
       }
