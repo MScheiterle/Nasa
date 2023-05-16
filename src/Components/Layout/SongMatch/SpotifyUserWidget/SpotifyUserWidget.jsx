@@ -126,7 +126,7 @@ function SpotifyUserWidget({
           [data.display_name, data.external_urls.spotify, data.images[0].url],
           "public"
         );
-        console.log(data)
+        console.log(data);
         setLoading(false);
       } catch {
         refreshAccessToken();
@@ -199,14 +199,23 @@ function SpotifyUserWidget({
                     spotifyTokenExpiration={spotifyTokenExpiration}
                   />
                 ) : (
-                  <div className="disclaimerMessage">
-                    <div className="disclaimerTitle">Data Usage</div>
-                    Data updates every 55 minutes.
+                  <>
+                    Although SongMatch works perfectly
                     <br />
-                    Only your Spotify token is stored, no other data.
+                    The Spotify API has not yet been accepted
                     <br />
-                    All data is removed when you disconnect.
-                  </div>
+                    You cannot connect.
+                    <br />
+                    <br />
+                    <div className="disclaimerMessage">
+                      <div className="disclaimerTitle">Data Usage</div>
+                      Data updates every 55 minutes.
+                      <br />
+                      Only your Spotify token is stored, no other data.
+                      <br />
+                      All data is removed when you disconnect.
+                    </div>
+                  </>
                 )}
               </>
             )}
