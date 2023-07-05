@@ -72,17 +72,26 @@ function App() {
     }
   }, []);
 
+  const lastLoggedInHandler = useCallback(async () => {
+    try {
+      await addCustomFieldToCurrentUser("lastLoggedIn", Date.now(), "private");
+    } catch (error) {
+      console.error("Error handling lastLoggedIn:", error);
+    }
+  }, []);
+
   const fetchData = useCallback(
     async (setData, dataToRetrieve) => {
       try {
         const data = await getCurrentUserData(dataToRetrieve, "private");
         setData(data);
         await ipHandler();
+        await lastLoggedInHandler();
       } catch (err) {
         console.error(err);
       }
     },
-    [ipHandler]
+    [ipHandler, lastLoggedInHandler]
   );
 
   useEffect(() => {

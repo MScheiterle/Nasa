@@ -38,6 +38,10 @@ function CreateNewConnection({ user, spotifyToken, handleAddConnection }) {
 
   const handleLookup = async () => {
     setMatchLoading(true);
+    if (matchCode === user.uid) {
+      setMatchLoading(false);
+      return
+    }
     const publicUserInfo = await getUserDataByUID(
       matchCode,
       "SpotifyPublic",

@@ -16,7 +16,11 @@ function SpotifyUserStats({ spotifyToken, page, shared }) {
         handleTimeChange={handleTimeChange}
         timeSelected={timeSelected}
       />
-      <RenderData spotifyToken={spotifyToken} timeSelected={timeSelected} shared={shared} />
+      <RenderData
+        spotifyToken={spotifyToken}
+        timeSelected={timeSelected}
+        shared={shared}
+      />
     </div>
   );
 }

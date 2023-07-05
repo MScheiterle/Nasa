@@ -127,7 +127,7 @@ function Register() {
             />
           </div>
           <p id="erorrMessage"></p>
-          <button onClick={() => handleRegister()}>Resgister</button>
+          <button onClick={() => handleRegister()}>Register</button>
         </div>
         <div className="section">
           <div className="providers">

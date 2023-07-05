@@ -49,8 +49,11 @@ function SpotifyUserWidget({
 
           const accessToken = response.data.access_token;
           const refreshToken = response.data.refresh_token;
-          const expirationTime = Date.now() + 60 * 55 * 1000;
+          const expirationTime = Date.now() + 1 * 55 * 1000;
           setSpotifyTokenExpiration(expirationTime);
+          console.log("AccessToken: "+accessToken)
+          console.log("refreshToken: "+refreshToken)
+          console.log("expirationTime: "+expirationTime)
           updateTokens(accessToken, expirationTime, refreshToken);
           setLoading(false);
         } catch (error) {
@@ -67,6 +70,7 @@ function SpotifyUserWidget({
       window.history.replaceState({}, document.title, window.location.pathname);
 
       if (code) {
+        console.log("CodeGot")
         getTokensFromCode(code);
       }
     };
@@ -96,10 +100,10 @@ function SpotifyUserWidget({
       const expirationTime = Date.now() + 60 * 55 * 1000;
       setSpotifyTokenExpiration(expirationTime);
       updateTokens(accessToken, expirationTime, null);
+      console.log("tokens refreshed")
       setLoading(false);
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        console.log("Refresh Token: ", spotifyRefreshToken);
         console.log("Error refreshing access token: ", error);
       } else {
         throw error;
@@ -126,7 +130,6 @@ function SpotifyUserWidget({
           [data.display_name, data.external_urls.spotify, data.images[0].url],
           "public"
         );
-        console.log(data);
         setLoading(false);
       } catch {
         refreshAccessToken();
@@ -200,13 +203,6 @@ function SpotifyUserWidget({
                   />
                 ) : (
                   <>
-                    Although SongMatch works perfectly
-                    <br />
-                    The Spotify API has not yet been accepted
-                    <br />
-                    You cannot connect.
-                    <br />
-                    <br />
                     <div className="disclaimerMessage">
                       <div className="disclaimerTitle">Data Usage</div>
                       Data updates every 55 minutes.

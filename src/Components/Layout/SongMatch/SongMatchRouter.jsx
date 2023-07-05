@@ -38,37 +38,41 @@ function SongMatchRouter({ user, name }) {
     }
   }, [user, spotifyToken, spotifyRefreshToken, disconnected]);
 
-  const updateTokens = (token, expirationTime, refreshToken) => {
+  const updateTokens = async (token, expirationTime, refreshToken) => {
     if (!expirationTime) {
+      console.log("No Exp");
       localStorage.removeItem("spotifyTokenExpiration");
-      addCustomFieldToCurrentUser(
+      await addCustomFieldToCurrentUser(
         "spotifyTokenExpiration",
-        expirationTime,
+        null,
         "spotify",
         true
       );
     } else {
+      console.log("Exp");
       localStorage.setItem("spotifyTokenExpiration", expirationTime);
-      addCustomFieldToCurrentUser(
+      await addCustomFieldToCurrentUser(
         "spotifyTokenExpiration",
         expirationTime,
         "spotify"
       );
     }
 
-    setToken((prevToken) => {
+    setToken(async (prevToken) => {
       if (prevToken !== token) {
-        addCustomFieldToCurrentUser("spotifyToken", token, "spotify");
+        console.log("prevToken !== token" + token);
+        await addCustomFieldToCurrentUser("spotifyToken", token, "spotify");
       }
       if (token === null) {
+        console.log("token === null");
         setDisconnected(true);
       }
       return token;
     });
 
-    setSpotifyRefreshToken((prevRefreshToken) => {
+    setSpotifyRefreshToken(async (prevRefreshToken) => {
       if (prevRefreshToken !== refreshToken && refreshToken) {
-        addCustomFieldToCurrentUser(
+        await addCustomFieldToCurrentUser(
           "spotifyRefreshToken",
           refreshToken,
           "spotify"
@@ -87,10 +91,7 @@ function SongMatchRouter({ user, name }) {
         spotifyRefreshToken={spotifyRefreshToken}
       />
       <Routes>
-        <Route
-          path="/"
-          element={<SongMatchHome user={user} name={name} />}
-        />
+        <Route path="/" element={<SongMatchHome user={user} name={name} />} />
         <Route
           path="/user_stats"
           element={<SpotifyUserStats spotifyToken={spotifyToken} page={true} />}

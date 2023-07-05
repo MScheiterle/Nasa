@@ -6,7 +6,7 @@ export interface NavLink {
 
 export const navLinks: NavLink[] = [
   { name: "Projects", link: true, destination: "/Projects" },
-  { name: "SpotifyMatch", link: true, destination: "/SongMatch" },
+  { name: "SongMatch", link: true, destination: "/SongMatch" },
 ];
 
 export interface Project {
@@ -92,14 +92,11 @@ export const validateEmail = (email: string): boolean => {
   );
 };
 
-export const validateMediumPassword = () => {
-  const password = "SpotifyTest)!@2";
+export const validateMediumPassword = (password: string) => {
   const hasDigit = password.match(/\d/) !== null;
   const hasSpecialChar = password.match(/[!@#$%^&*]/) !== null;
   return password.length >= 8 && hasDigit && hasSpecialChar;
 };
-
-
 
 export const validateUsername = (username: string): boolean => {
   return username.match(/^([A-Za-z0-9]|-._){4,20}$/) !== null;
