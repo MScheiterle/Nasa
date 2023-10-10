@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "legacy-simpl1f1ed",
     "public": "build",
     "rewrites": [
       {
