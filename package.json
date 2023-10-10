@@ -27,7 +27,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "emulate": "npm ci && npm run build && firebase emulators:start",
-    "deploy": "npm ci && npm run build && firebase deploy"
+    "deploy": "npm ci && npm run build && npx update-browserslist-db@latest && firebase deploy"
   },
   "eslintConfig": {
     "extends": [
