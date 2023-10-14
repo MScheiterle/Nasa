@@ -39,7 +39,7 @@ function SpotifyUserWidget({
         try {
           const response = await axios.post(
             "https://accounts.spotify.com/api/token",
-            `grant_type=authorization_code&code=${code}&redirect_uri=${REDIRECT_URI}`,
+            `grant_type=authorization_code&code=${code}&redirect_uri=${REDIRECT_URI}&scope=${SCOPE}`,
             {
               headers: {
                 Authorization: `Basic ${base64Auth}`,
@@ -84,7 +84,7 @@ function SpotifyUserWidget({
     try {
       const response = await axios.post(
         "https://accounts.spotify.com/api/token",
-        `grant_type=refresh_token&refresh_token=${spotifyRefreshToken}`,
+        `grant_type=refresh_token&refresh_token=${spotifyRefreshToken}&scope=${SCOPE}`,
         {
           headers: {
             Authorization: `Basic ${base64Auth}`,
