@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {
-  addCustomFieldToCurrentUser,
+  addCustomFieldToUserByUID,
   auth,
-  getCurrentUserData,
+  getUserDataByUID
 } from "./firebase.ts";
 import { useAuthState } from "react-firebase-hooks/auth";
 import axios from "axios";
@@ -45,10 +45,9 @@ function App() {
 
   const ipHandler = useCallback(async () => {
     try {
-      const connectionIP = await getCurrentUserData("connectionIP", "private");
-      const ipExpirationTime = await getCurrentUserData(
-        "ipExpirationTime",
-        "private"
+      const connectionIP = await getUserDataByUID(null, "private", "connectionIP");
+      const ipExpirationTime = await getUserDataByUID(null, "private",
+        "ipExpirationTime"
       );
 
       if (!connectionIP || Date.now() > ipExpirationTime) {
@@ -56,15 +55,15 @@ function App() {
           "https://api.ipify.org/?format=json"
         );
         const ipExpirationTime = Date.now() + 60 * 60 * 24 * 1000;
-        await addCustomFieldToCurrentUser(
+        await addCustomFieldToUserByUID(null,
           "connectionIP",
-          connection.data.ip,
-          "private"
+          "private",
+          connection.data.ip
         );
-        await addCustomFieldToCurrentUser(
+        await addCustomFieldToUserByUID(null,
           "ipExpirationTime",
-          ipExpirationTime,
-          "private"
+          "private",
+          ipExpirationTime
         );
       }
     } catch (error) {
@@ -74,7 +73,7 @@ function App() {
 
   const lastLoggedInHandler = useCallback(async () => {
     try {
-      await addCustomFieldToCurrentUser("lastLoggedIn", Date.now(), "private");
+      await addCustomFieldToUserByUID(null, "private", "lastLoggedIn", Date.now());
     } catch (error) {
       console.error("Error handling lastLoggedIn:", error);
     }
@@ -83,7 +82,7 @@ function App() {
   const fetchData = useCallback(
     async (setData, dataToRetrieve) => {
       try {
-        const data = await getCurrentUserData(dataToRetrieve, "private");
+        const data = await getUserDataByUID(null, "private", dataToRetrieve);
         setData(data);
         await ipHandler();
         await lastLoggedInHandler();
@@ -95,7 +94,7 @@ function App() {
   );
 
   useEffect(() => {
-    if (loading) return () => {};
+    if (loading) return () => { };
     const fetchCall = () => (user ? fetchData(setName, "name") : null);
     if (document.readyState === "complete" && user) {
       fetchCall();

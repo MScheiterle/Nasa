@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
-  addCustomFieldToCurrentUser,
-  getCurrentUserData,
-  getUserDataByUID,
   addCustomFieldToUserByUID,
+  getUserDataByUID
 } from "../../../../firebase.ts";
 import SpotifyUserStats from "../SpotifyUserStats/SpotifyUserStats.jsx";
 import "./style.scss";
@@ -21,7 +19,7 @@ function EnableSharingComp({ setSharingEnabled }) {
       <button
         onClick={() => {
           setSharingEnabled(true);
-          addCustomFieldToCurrentUser("sharingEnabled", true, "private");
+          addCustomFieldToUserByUID(null, "private", "sharingEnabled", true);
         }}
       >
         <span>Sign Me Up!</span>
@@ -44,8 +42,8 @@ function CreateNewConnection({ user, spotifyToken, handleAddConnection }) {
     }
     const publicUserInfo = await getUserDataByUID(
       matchCode,
-      "SpotifyPublic",
-      "public"
+      "public",
+      "SpotifyPublic"
     );
     setProfileResults(publicUserInfo);
     setMatchLoading(false);
@@ -192,8 +190,8 @@ function ConnectedComp({ uid, setSelectedUser, handleRemoveConnection }) {
       setLoading(true);
       const publicUserInfo = await getUserDataByUID(
         uid,
-        "SpotifyPublic",
-        "public"
+        "public",
+        "SpotifyPublic"
       );
       setConnectionData(publicUserInfo);
       setLoading(false);
@@ -272,14 +270,16 @@ function DisplayUserData({ userID }) {
       setLoading(true);
       const privateSpotifyTokenExpiration = await getUserDataByUID(
         userID,
-        "spotifyTokenExpiration",
-        "spotify"
+        "spotify",
+        "spotifyTokenExpiration"
+
       );
       if (privateSpotifyTokenExpiration < Date.now()) {
         const privateUserRefreshToken = await getUserDataByUID(
           userID,
-          "spotifyRefreshToken",
-          "spotify"
+          "spotify",
+          "spotifyRefreshToken"
+
         );
         const response = await axios.post(
           "https://accounts.spotify.com/api/token",
@@ -308,8 +308,8 @@ function DisplayUserData({ userID }) {
       } else {
         const privateUserSpotifyToken = await getUserDataByUID(
           userID,
-          "spotifyToken",
-          "spotify"
+          "spotify",
+          "spotifyToken"
         );
         setToken(privateUserSpotifyToken);
         setLoading(false);
@@ -365,8 +365,8 @@ function SpotifyCompareStats({ user, spotifyToken }) {
 
   useEffect(() => {
     const fetchCall = async () => {
-      setSharingEnabled(await getCurrentUserData("sharingEnabled", "private"));
-      setSharedData(await getCurrentUserData("dataSharedWith", "public"));
+      setSharingEnabled(await getUserDataByUID(null, "private", "sharingEnabled"));
+      setSharedData(await getUserDataByUID(null, "public", "dataSharedWith"));
     };
 
     if (document.readyState === "complete" && user) {
@@ -378,13 +378,13 @@ function SpotifyCompareStats({ user, spotifyToken }) {
   }, [user]);
 
   const handleRemoveConnection = (event, uid) => {
-    addCustomFieldToCurrentUser("dataSharedWith", uid, "public", true);
+    addCustomFieldToUserByUID(null, "public", "dataSharedWith", uid, true);
     setSharedData(sharedData.filter((elem) => elem !== uid));
     event.stopPropagation();
   };
 
   const handleAddConnection = (event, uid) => {
-    addCustomFieldToCurrentUser("dataSharedWith", [uid], "public");
+    addCustomFieldToUserByUID(null, "public", "dataSharedWith", [uid]);
     !sharedData.includes(uid) && setSharedData([...sharedData, uid]);
     event.stopPropagation();
   };
@@ -435,9 +435,8 @@ function SpotifyCompareStats({ user, spotifyToken }) {
         )}
       </div>
       <div
-        className={`content ${
-          !spotifyToken || !selectedUser || !sharingEnabled ? "centered" : ""
-        }`}
+        className={`content ${!spotifyToken || !selectedUser || !sharingEnabled ? "centered" : ""
+          }`}
       >
         {!spotifyToken || !user ? (
           <>Connect Your Spotify Account</>

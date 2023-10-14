@@ -3,7 +3,7 @@ import axios from "axios";
 import CountdownClock from "./CountdownClock.jsx";
 import { encode } from "base-64";
 import "./style.scss";
-import { addCustomFieldToCurrentUser } from "../../../../firebase.ts";
+import { addCustomFieldToUserByUID } from "../../../../firebase.ts";
 
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
@@ -121,10 +121,11 @@ function SpotifyUserWidget({
         });
 
         setUserName(data.display_name);
-        addCustomFieldToCurrentUser(
+        addCustomFieldToUserByUID(
+          null,
+          "public",
           "SpotifyPublic",
           [data.display_name, data.external_urls.spotify, data.images[0].url],
-          "public"
         );
         setLoading(false);
       } catch {

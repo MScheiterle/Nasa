@@ -1,3 +1,4 @@
+// Import Firebase modules
 import { initializeApp } from "firebase/app";
 import {
   GoogleAuthProvider,
@@ -16,9 +17,11 @@ import {
   doc,
   getDoc,
   setDoc,
+  DocumentReference,
 } from "firebase/firestore";
 import axios from "axios";
 
+// Firebase configuration object
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -29,11 +32,17 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASURE_ID,
 };
 
+// Initialize Firebase app
 const app = initializeApp(firebaseConfig);
+
+// Get authentication and Firestore instances
 const auth = getAuth(app);
 const db = getFirestore(app);
+
+// Create GoogleAuthProvider instance
 const googleProvider = new GoogleAuthProvider();
 
+// Function to sign in with Google
 const signInWithGoogle = async (): Promise<void> => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
@@ -42,7 +51,8 @@ const signInWithGoogle = async (): Promise<void> => {
     const userDocRef = doc(db, "users", user.uid);
     const privateDocRef = doc(userDocRef, "private", "privateUserRecords");
     const publicDocRef = doc(userDocRef, "public", "publicUserRecords");
-    const spotifyDocRef = doc(userDocRef, "spotify", "spotifyUserRecords");
+
+    // Set user data in Firestore
     await setDoc(
       privateDocRef,
       {
@@ -55,12 +65,12 @@ const signInWithGoogle = async (): Promise<void> => {
       { merge: true }
     );
     await setDoc(publicDocRef, {}, { merge: true });
-    await setDoc(spotifyDocRef, {}, { merge: true });
   } catch (err) {
     console.error(err);
   }
 };
 
+// Function to log in with email and password
 const logInWithEmailAndPassword = async (
   email: string,
   password: string,
@@ -70,15 +80,14 @@ const logInWithEmailAndPassword = async (
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    errorMessageField.innerHTML = "Error: Email and Passowrd don't match...";
+    errorMessageField.innerHTML = "Error: Email and Password don't match...";
     Array.from(fields).forEach((value) => {
-      if (value.parentElement) {
-        value.parentElement.classList.add("errored");
-      }
+      value.classList.toggle("errored", !value.classList.contains("errored"));
     });
   }
 };
 
+// Function to register with email and password
 const registerWithEmailAndPassword = async (
   name: string,
   email: string,
@@ -93,7 +102,8 @@ const registerWithEmailAndPassword = async (
     const userRef = doc(db, "users", user.uid);
     const privateDocRef = doc(userRef, "private", "privateUserRecords");
     const publicDocRef = doc(userRef, "public", "publicUserRecords");
-    const spotifyDocRef = doc(userRef, "spotify", "spotifyUserRecords");
+
+    // Set user data in Firestore
     await setDoc(privateDocRef, {
       uid: user.uid,
       name,
@@ -102,21 +112,33 @@ const registerWithEmailAndPassword = async (
       connectionIP: connection.data.ip,
     });
     await setDoc(publicDocRef, {});
-    await setDoc(spotifyDocRef, {});
   } catch (err) {
     if (err.message.includes("email-already-in-use")) {
       errorMessageField.innerHTML = "Error: Email already in use...";
+
+      Array.from(fields).forEach((parentElement) => {
+        const childNodes = parentElement.childNodes;
+
+        for (const node of childNodes) {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            const element = node as HTMLElement;
+            if (element.id === "email") {
+              parentElement.classList.toggle(
+                "errored",
+                !parentElement.classList.contains("errored")
+              );
+              break;
+            }
+          }
+        }
+      });
     } else {
       errorMessageField.innerHTML = "Error: Report this to Simpl1f1ed";
     }
-    Array.from(fields).forEach((value) => {
-      if (value.parentElement) {
-        value.parentElement.classList.add("errored");
-      }
-    });
   }
 };
 
+// Function to send password reset email
 const sendPasswordReset = async (
   email: string,
   fields: HTMLCollectionOf<Element>,
@@ -139,96 +161,32 @@ const sendPasswordReset = async (
   }
 };
 
+// Function to log out the user
 const logout = (): void => {
   signOut(auth);
 };
 
-const addCustomFieldToCurrentUser = async (
-  fieldName: string,
-  data: any,
-  subSection: string,
-  removeData?: boolean
-): Promise<void> => {
-  try {
-    const currentUserID = auth.currentUser?.uid;
-    if (!currentUserID) {
-      return;
-    }
-    const userRef = doc(
-      db,
-      "users",
-      currentUserID,
-      subSection,
-      `${subSection}UserRecords`
-    );
-
-    if (userRef) {
-      if (Array.isArray(data)) {
-        // If the data is an array, use the arrayUnion method to add the values to the array field.
-        await updateDoc(userRef, {
-          [fieldName]: arrayUnion(...data),
-        });
-      } else {
-        // If the data is not an array, simply update the field with the new value.
-        await updateDoc(userRef, {
-          [fieldName]: data,
-        });
-      }
-      if (Array.isArray(removeData)) {
-        // If `removeData` is an array, use the `arrayRemove` method to remove the values from the array field.
-        await updateDoc(userRef, {
-          [fieldName]: arrayRemove(...removeData),
-        });
-      } else if (removeData) {
-        // If `removeData` is not an array and is truthy, use the `arrayRemove` method to remove the value from the array field.
-        await updateDoc(userRef, {
-          [fieldName]: arrayRemove(removeData),
-        });
-      }
-    }
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-const getCurrentUserData = async (
-  query: string,
-  subSection: string
-): Promise<string | null> => {
-  try {
-    const currentUserID = auth.currentUser?.uid;
-    if (!currentUserID) {
-      return null;
-    }
-    const userRef = doc(
-      db,
-      "users",
-      currentUserID,
-      subSection,
-      `${subSection}UserRecords`
-    );
-    const userDoc = await getDoc(userRef);
-    if (userDoc.exists()) {
-      const userData = userDoc.get(query);
-      return userData || null;
-    } else {
-      console.error("User document not found");
-      return null;
-    }
-  } catch (error) {
-    console.error("Error getting user data:", error);
-    return null;
-  }
-};
-
+// Function to add custom field to a user's document in Firestore using UID
 const addCustomFieldToUserByUID = async (
-  uid: string,
+  uid: string | undefined,
+  subSection: string,
   fieldName: string,
   data: any,
-  subSection: string,
-  removeData?: boolean
+  removeData?: any | any[]
 ): Promise<void> => {
   try {
+
+    if (!uid) {
+      const currentUser = auth.currentUser;
+
+      if (!currentUser) {
+        console.log("UID is missing and user is not authenticated");
+        return;
+      }
+
+      uid = currentUser.uid;
+    }
+
     const userRef = doc(
       db,
       "users",
@@ -237,41 +195,83 @@ const addCustomFieldToUserByUID = async (
       `${subSection}UserRecords`
     );
 
-    if (userRef) {
-      if (Array.isArray(data)) {
-        // If the data is an array, use the arrayUnion method to add the values to the array field.
-        await updateDoc(userRef, {
-          [fieldName]: arrayUnion(...data),
-        });
-      } else {
-        // If the data is not an array, simply update the field with the new value.
-        await updateDoc(userRef, {
-          [fieldName]: data,
-        });
-      }
+    if (!userRef) {
+      console.error("User document not found");
+      return;
+    }
+
+    if (Array.isArray(data)) {
+      await addDataToArrayField(userRef, fieldName, data);
+    } else {
+      await setDataToField(userRef, fieldName, data);
+    }
+
+    if (removeData) {
       if (Array.isArray(removeData)) {
-        // If `removeData` is an array, use the `arrayRemove` method to remove the values from the array field.
-        await updateDoc(userRef, {
-          [fieldName]: arrayRemove(...removeData),
-        });
-      } else if (removeData) {
-        // If `removeData` is not an array and is truthy, use the `arrayRemove` method to remove the value from the array field.
-        await updateDoc(userRef, {
-          [fieldName]: arrayRemove(removeData),
-        });
+        await removeDataFromArrayField(userRef, fieldName, removeData);
+      } else {
+        await removeDataFromField(userRef, fieldName, removeData);
       }
     }
   } catch (err) {
-    console.error(err);
+    console.error("Error adding custom field to user:", err);
   }
+};
+
+const addDataToArrayField = async (
+  userRef: DocumentReference,
+  fieldName: string,
+  data: any[]
+): Promise<void> => {
+  await updateDoc(userRef, {
+    [fieldName]: arrayUnion(...data),
+  });
+};
+
+const setDataToField = async (
+  userRef: DocumentReference,
+  fieldName: string,
+  data: any
+): Promise<void> => {
+  await updateDoc(userRef, {
+    [fieldName]: data,
+  });
+};
+
+const removeDataFromArrayField = async (
+  userRef: DocumentReference,
+  fieldName: string,
+  removeData: any[]
+): Promise<void> => {
+  await updateDoc(userRef, {
+    [fieldName]: arrayRemove(...removeData),
+  });
+};
+
+const removeDataFromField = async (
+  userRef: DocumentReference,
+  fieldName: string,
+  removeData: any
+): Promise<void> => {
+  await updateDoc(userRef, {
+    [fieldName]: arrayRemove(removeData),
+  });
 };
 
 const getUserDataByUID = async (
-  uid: string,
-  query: string,
-  subSection: string
-): Promise<string | null> => {
+  uid: string | undefined,
+  subSection: string,
+  query: string
+): Promise<Record<string, any> | null> => {
   try {
+    if (!uid) {
+      uid = auth.currentUser?.uid;
+    }
+
+    if (!uid) {
+      return null;
+    }
+
     const userRef = doc(
       db,
       "users",
@@ -280,11 +280,14 @@ const getUserDataByUID = async (
       `${subSection}UserRecords`
     );
     const userDoc = await getDoc(userRef);
+
     if (userDoc.exists()) {
-      const userData = userDoc.get(query);
-      return userData || null;
+      const userData = userDoc.data();
+
+      const extractedData = userData[query];
+
+      return extractedData;
     } else {
-      console.error("User document not found");
       return null;
     }
   } catch (error) {
@@ -292,6 +295,7 @@ const getUserDataByUID = async (
     return null;
   }
 };
+
 
 export {
   auth,
@@ -301,8 +305,6 @@ export {
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
-  addCustomFieldToCurrentUser,
   getUserDataByUID,
-  getCurrentUserData,
   addCustomFieldToUserByUID,
 };

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import axios from "axios";
-import { getCurrentUserData } from "../../../../firebase.ts";
+import { getUserDataByUID } from "../../../../firebase.ts";
 
 function TrackTable({ initialTime, spotifyToken, shared }) {
   const [data, setData] = useState([]);
@@ -16,7 +16,7 @@ function TrackTable({ initialTime, spotifyToken, shared }) {
   useEffect(() => {
     const fetchData = async () => {
       if (shared) {
-        setHostToken(await getCurrentUserData("spotifyToken", "spotify"));
+        setHostToken(await getUserDataByUID(null, "private", "spotifyToken"));
       }
     };
 

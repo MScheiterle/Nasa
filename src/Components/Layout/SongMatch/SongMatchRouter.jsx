@@ -7,8 +7,8 @@ import SpotifyCompareStats from "./SpotifyCompareStats/SpotifyCompareStats";
 import SpotifyRecommendations from "./SpotifyRecommendations/SpotifyRecommendations";
 import SpotifyUserWidget from "./SpotifyUserWidget/SpotifyUserWidget";
 import {
-  addCustomFieldToCurrentUser,
-  getCurrentUserData,
+  addCustomFieldToUserByUID,
+  getUserDataByUID,
 } from "../../../firebase.ts";
 
 function SongMatchRouter({ user, name }) {
@@ -20,9 +20,9 @@ function SongMatchRouter({ user, name }) {
     const fetchCall = async () => {
       try {
         if (!disconnected) {
-          setToken(await getCurrentUserData("spotifyToken", "spotify"));
+          setToken(await getUserDataByUID(null, "private", "spotifyToken"));
           setSpotifyRefreshToken(
-            await getCurrentUserData("spotifyRefreshToken", "spotify")
+            await getUserDataByUID(null, "private", "spotifyRefreshToken")
           );
           console.log("singed in with tokens from DB")
         }
@@ -49,17 +49,16 @@ function SongMatchRouter({ user, name }) {
       localStorage.setItem("spotifyTokenExpiration", expirationTime);
     }
 
-    await addCustomFieldToCurrentUser("spotifyTokenExpiration", expirationTime, "spotify");
+    await addCustomFieldToUserByUID(null, "private", "spotifyTokenExpiration", expirationTime);
 
-    await addCustomFieldToCurrentUser("spotifyToken", token, "spotify");
+    await addCustomFieldToUserByUID(null, "private", "spotifyToken", token);
     setToken(token); // Set the token here
 
     // Set the refreshToken directly using setSpotifyRefreshToken
     if (refreshToken) {
-      await addCustomFieldToCurrentUser(
+      await addCustomFieldToUserByUID(null, "private",
         "spotifyRefreshToken",
-        refreshToken,
-        "spotify"
+        refreshToken
       );
     }
 
