@@ -20,6 +20,7 @@ function SpotifyUserWidget({
   spotifyToken,
   updateTokens,
   spotifyRefreshToken,
+  disconnect
 }) {
   const [userName, setUserName] = useState("");
   const [spotifyTokenExpiration, setSpotifyTokenExpiration] = useState("");
@@ -49,11 +50,8 @@ function SpotifyUserWidget({
 
           const accessToken = response.data.access_token;
           const refreshToken = response.data.refresh_token;
-          const expirationTime = Date.now() + 1 * 55 * 1000;
+          const expirationTime = Date.now() + 60 * 55 * 1000;
           setSpotifyTokenExpiration(expirationTime);
-          console.log("AccessToken: "+accessToken)
-          console.log("refreshToken: "+refreshToken)
-          console.log("expirationTime: "+expirationTime)
           updateTokens(accessToken, expirationTime, refreshToken);
           setLoading(false);
         } catch (error) {
@@ -70,7 +68,6 @@ function SpotifyUserWidget({
       window.history.replaceState({}, document.title, window.location.pathname);
 
       if (code) {
-        console.log("CodeGot")
         getTokensFromCode(code);
       }
     };
@@ -100,11 +97,10 @@ function SpotifyUserWidget({
       const expirationTime = Date.now() + 60 * 55 * 1000;
       setSpotifyTokenExpiration(expirationTime);
       updateTokens(accessToken, expirationTime, null);
-      console.log("tokens refreshed")
       setLoading(false);
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        console.log("Error refreshing access token: ", error);
+        console.trace("Call stack trace:");
       } else {
         throw error;
       }
@@ -141,7 +137,7 @@ function SpotifyUserWidget({
     } else {
       setLoading(false);
     }
-  }, [user, spotifyToken, updateTokens, refreshAccessToken]);
+  }, [user, spotifyToken, refreshAccessToken]);
 
   return (
     <>
@@ -185,7 +181,7 @@ function SpotifyUserWidget({
                       </svg>
                       <span>{userName}</span>
                     </a>
-                    <div onClick={() => updateTokens(null, null, null)}>
+                    <div onClick={() => disconnect()}>
                       Disconnect
                     </div>
                   </>
@@ -207,9 +203,7 @@ function SpotifyUserWidget({
                       <div className="disclaimerTitle">Data Usage</div>
                       Data updates every 55 minutes.
                       <br />
-                      Only your Spotify token is stored, no other data.
-                      <br />
-                      All data is removed when you disconnect.
+                      only while this page is open.
                     </div>
                   </>
                 )}

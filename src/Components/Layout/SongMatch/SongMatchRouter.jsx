@@ -19,15 +19,14 @@ function SongMatchRouter({ user, name }) {
   useEffect(() => {
     const fetchCall = async () => {
       try {
-        if (!spotifyToken && !disconnected) {
+        if (!disconnected) {
           setToken(await getCurrentUserData("spotifyToken", "spotify"));
-        }
-        if (!spotifyRefreshToken && !disconnected) {
           setSpotifyRefreshToken(
             await getCurrentUserData("spotifyRefreshToken", "spotify")
           );
+          console.log("singed in with tokens from DB")
         }
-      } catch {}
+      } catch { }
     };
 
     if (document.readyState === "complete" && user) {
@@ -36,50 +35,37 @@ function SongMatchRouter({ user, name }) {
       window.addEventListener("load", fetchCall, false);
       return () => window.removeEventListener("load", fetchCall);
     }
-  }, [user, spotifyToken, spotifyRefreshToken, disconnected]);
+  }, [user, disconnected]);
+
+  const disconnect = () => {
+    setDisconnected(true);
+    updateTokens(null, null);
+  }
 
   const updateTokens = async (token, expirationTime, refreshToken) => {
     if (!expirationTime) {
-      console.log("No Exp");
       localStorage.removeItem("spotifyTokenExpiration");
-      await addCustomFieldToCurrentUser(
-        "spotifyTokenExpiration",
-        null,
-        "spotify",
-        true
-      );
     } else {
-      console.log("Exp");
       localStorage.setItem("spotifyTokenExpiration", expirationTime);
+    }
+
+    await addCustomFieldToCurrentUser("spotifyTokenExpiration", expirationTime, "spotify");
+
+    await addCustomFieldToCurrentUser("spotifyToken", token, "spotify");
+    setToken(token); // Set the token here
+
+    // Set the refreshToken directly using setSpotifyRefreshToken
+    if (refreshToken) {
       await addCustomFieldToCurrentUser(
-        "spotifyTokenExpiration",
-        expirationTime,
+        "spotifyRefreshToken",
+        refreshToken,
         "spotify"
       );
     }
 
-    setToken(async (prevToken) => {
-      if (prevToken !== token) {
-        console.log("prevToken !== token" + token);
-        await addCustomFieldToCurrentUser("spotifyToken", token, "spotify");
-      }
-      if (token === null) {
-        console.log("token === null");
-        setDisconnected(true);
-      }
-      return token;
-    });
+    setSpotifyRefreshToken(refreshToken); // Set the refreshToken here
 
-    setSpotifyRefreshToken(async (prevRefreshToken) => {
-      if (prevRefreshToken !== refreshToken && refreshToken) {
-        await addCustomFieldToCurrentUser(
-          "spotifyRefreshToken",
-          refreshToken,
-          "spotify"
-        );
-      }
-      return refreshToken;
-    });
+    console.log("Updated tokens")
   };
 
   return (
@@ -88,6 +74,7 @@ function SongMatchRouter({ user, name }) {
         user={user}
         spotifyToken={spotifyToken}
         updateTokens={updateTokens}
+        disconnect={disconnect}
         spotifyRefreshToken={spotifyRefreshToken}
       />
       <Routes>
