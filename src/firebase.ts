@@ -168,23 +168,29 @@ const logout = (): void => {
 
 // Function to add custom field to a user's document in Firestore using UID
 const addCustomFieldToUserByUID = async (
-  uid: string | undefined,
+  uid: string,
   subSection: string,
   fieldName: string,
   data: any,
   removeData?: any | any[]
 ): Promise<void> => {
   try {
+    // Use a Promise to wait for authentication to be established
+    const waitForAuth = new Promise<void>((resolve, reject) => {
+      const unsubscribe = auth.onAuthStateChanged((user) => {
+        if (user) {
+          uid = user.uid;
+          resolve();
+        } else {
+          console.error("User is not authenticated");
+          reject("User is not authenticated");
+        }
+        unsubscribe(); // Remove the observer once the user state is determined
+      });
+    });
 
     if (!uid) {
-      const currentUser = auth.currentUser;
-
-      if (!currentUser) {
-        console.log("UID is missing and user is not authenticated");
-        return;
-      }
-
-      uid = currentUser.uid;
+      await waitForAuth; // Wait for authentication before proceeding
     }
 
     const userRef = doc(
@@ -259,19 +265,28 @@ const removeDataFromField = async (
 };
 
 const getUserDataByUID = async (
-  uid: string | undefined,
+  uid: string,
   subSection: string,
   query: string
 ): Promise<Record<string, any> | null> => {
   try {
-    if (!uid) {
-      uid = auth.currentUser?.uid;
-    }
+    // Use a Promise to wait for authentication to be established
+    const waitForAuth = new Promise<void>((resolve, reject) => {
+      const unsubscribe = auth.onAuthStateChanged((user) => {
+        if (user) {
+          uid = user.uid;
+          resolve();
+        } else {
+          console.error("User is not authenticated");
+          reject("User is not authenticated");
+        }
+        unsubscribe(); // Remove the observer once the user state is determined
+      });
+    });
 
     if (!uid) {
-      return null;
+      await waitForAuth; // Wait for authentication before proceeding
     }
-
     const userRef = doc(
       db,
       "users",

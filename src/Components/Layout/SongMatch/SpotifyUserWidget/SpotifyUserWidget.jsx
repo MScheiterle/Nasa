@@ -56,7 +56,7 @@ function SpotifyUserWidget({
           setLoading(false);
         } catch (error) {
           if (error.response && error.response.status === 400) {
-            console.log("Error obtaining access/refresh tokens: ", error);
+            console.error("Error obtaining access/refresh tokens: ", error);
           } else {
             throw error;
           }

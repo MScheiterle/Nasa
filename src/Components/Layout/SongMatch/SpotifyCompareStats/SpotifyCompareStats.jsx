@@ -67,7 +67,7 @@ function CreateNewConnection({ user, spotifyToken, handleAddConnection }) {
       .then((data) => {
         setProfileData(data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   }, [spotifyToken]);
 
   return (

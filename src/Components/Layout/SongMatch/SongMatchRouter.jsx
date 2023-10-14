@@ -24,7 +24,6 @@ function SongMatchRouter({ user, name }) {
           setSpotifyRefreshToken(
             await getUserDataByUID(null, "private", "spotifyRefreshToken")
           );
-          console.log("singed in with tokens from DB")
         }
       } catch { }
     };
@@ -63,8 +62,6 @@ function SongMatchRouter({ user, name }) {
     }
 
     setSpotifyRefreshToken(refreshToken); // Set the refreshToken here
-
-    console.log("Updated tokens")
   };
 
   return (
