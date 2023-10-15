@@ -11,7 +11,7 @@ const REDIRECT_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
 const RESPONSE_TYPE = "code";
 const SCOPE =
-  "user-top-read user-library-read user-modify-playback-state user-read-playback-state user-read-private";
+  "user-top-read user-modify-playback-state user-read-playback-state user-read-private";
 const authString = `${CLIENT_ID}:${CLIENT_SECRET}`;
 const base64Auth = encode(authString);
 
